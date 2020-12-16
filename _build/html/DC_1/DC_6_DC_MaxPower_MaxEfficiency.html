@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>18. Maximum Power Transfer Theorem &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="16. Thevenin’s DC Equivalent Circuit" href="DC_5_Thvenin_Norton.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to the book “Python &amp; SPICE”
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
+   Book Specific Code
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active collapsible-parent">
+    <a class="reference internal" href="DC_1.html">
+     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+    </a>
+    <ul class="current collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1_op_ohm.html">
+       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+       2. SPICE’s DC Operating Point simulation
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .op
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_2_op_source_transform.html">
+       3. Working with SKiDl elements
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+       4. DC Sweeps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+       5. DC load sweep of an Ideal Voltage source
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+       6. A Better
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .dc
+        </span>
+       </code>
+       Sim Interaction¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+       7. Ideal Current Source¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+       8. First testbench element¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+       9. Controlled Dependent Sources in SPICE
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+       10. CCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+       11. Enter the SPICE transfer function
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+       12. LCAPY
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+       13. VCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+       14. CCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+       15. VCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+       16. Thevenin’s DC Equivalent Circuit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+       17. Norton’s Theorem
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       18. Maximum Power Transfer Theorem
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_6_DC_MaxPower_MaxEfficiency.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#max-power-delivered-vs-most-efficient-power-delivered">
+   18.1. Max Power Delivered vs Most Efficient Power Delivered
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above">
+   18.2. Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min">
+   18.3. Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~4:47 min
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min">
+   18.4. Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~8:46 min
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citations">
+   18.5. Citations:
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>TODO</strong>:</p>
+<ul class="simple">
+<li><p>fix pyspice to do not only R sweeps but also other parameter sweeps. The issue appears to be in the <code class="docutils literal notranslate"><span class="pre">plot</span></code> module that read the return from ngspice server results.</p>
+<ul>
+<li><p>need to experiment with ngspice server, since I have already confirmed R sweep just using ngspice alone</p></li>
+<li><p>run simulation from pyspice step by step and grab results without <code class="docutils literal notranslate"><span class="pre">plot</span></code></p></li>
+<li><p>fix <code class="docutils literal notranslate"><span class="pre">plot</span></code></p></li>
+</ul>
+</li>
+<li><p>use what we have done</p></li>
+<li><p>find max power and efficincy with the SPICE</p></li>
+<li><p>add usage of standard resistor values from sweep</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Library import statements</span>
+
+<span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#can you say cheeky </span>
+<span class="kn">import</span> <span class="nn">PySpice</span> <span class="k">as</span> <span class="nn">pspice</span>
+<span class="c1">#becouse it&#39;s written by a kiwi you know</span>
+<span class="kn">import</span> <span class="nn">lcapy</span> <span class="k">as</span> <span class="nn">kiwi</span>
+
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<p>#notebook specific loading control statements</p>
+<p>#tool to log notebook internals
+#https://github.com/jrjohansson/version_information</p>
+<div class="section" id="maximum-power-transfer-theorem">
+<h1><span class="section-number">18. </span>Maximum Power Transfer Theorem<a class="headerlink" href="#maximum-power-transfer-theorem" title="Permalink to this headline">¶</a></h1>
+<p>The Maximum Power transfer theorem for DC states that when the Load is equal to the Thevenin resistance of the circuit(<span class="math notranslate nohighlight">\(R_{L}=R_{th}\)</span>) the power delivered to the load is maximized which is proven via taking the derivative of $<span class="math notranslate nohighlight">\(P=i^2 R_L=(\dfrac{V_{th}}{R_{th}+R_L})^2 R_L\)</span>$ and setting it to zero and solving. The details of which are given by ALL ABOUT ELECTRONICS in his YT video <a class="reference external" href="https://www.youtube.com/watch?v=RbII8o49Hvs">Maximum Power Transfer Theorem for DC Circuits (with Examples)</a>. But suffice to say we have already done the work to find this in the last two sections of this chapter by finding the Thevenin and Norton values of the circuit or when permitted using the .tf to find the DC transfer function which also gives us the input resistance. But here we want to show how to just sweep the load resistance itself (or any resistor in the circuit) and then find the peak in the resulting data that will give us the maximum power while also measuring the efficiency of the load where then we can find the ideal optimal load by finding the intersection of the two curves. We can do this by again utilizing the machinery we have developed to easily find the Thevenin and Norton equivalent circuits for circuits with multiple sources. Further, we want to then translate that semi-arbitrary value to a value we can use in the real world where the values you can get for a resistor are finite. So, let’s start with a theoretical model and then work with Examples 2 and 3 from ALL ABOUT ELECTRONICS video and develop a tool to automatically do all this for us.</p>
+<div class="section" id="max-power-delivered-vs-most-efficient-power-delivered">
+<h2><span class="section-number">18.1. </span>Max Power Delivered vs Most Efficient Power Delivered<a class="headerlink" href="#max-power-delivered-vs-most-efficient-power-delivered" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efficiency</span><span class="p">,</span> <span class="n">powerload</span><span class="p">,</span> <span class="n">powersource</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="n">Rth</span><span class="p">,</span> <span class="n">RL</span> <span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\eta, P_L, P_S, i, v, R_</span><span class="si">{th}</span><span class="s2">, R_L&quot;</span><span class="p">)</span>
+<span class="n">efficiency</span><span class="p">,</span> <span class="n">powerload</span><span class="p">,</span> <span class="n">powersource</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="n">Rth</span><span class="p">,</span> <span class="n">RL</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_6_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_6_0.png" />
+</div>
+</div>
+<p>For a DC Thevenin reduced circuit (one that contains only a Thevenin voltage source, Thevenin equivalent resistor, and equivalent load resistor) we know that the current will be</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ithev_eq</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">voltage</span><span class="o">/</span><span class="p">(</span><span class="n">Rth</span><span class="o">+</span><span class="n">RL</span><span class="p">));</span> <span class="n">ithev_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_8_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_8_0.png" />
+</div>
+</div>
+<p>and the power in the load will be</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerload_eq</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">powerload</span><span class="p">,</span> <span class="n">current</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">RL</span><span class="p">);</span> <span class="n">powerload_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_10_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_10_0.png" />
+</div>
+</div>
+<p>and thus the power the load receives reduces to</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerload_eq</span><span class="o">=</span><span class="n">powerload_eq</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">ithev_eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">:</span> <span class="n">ithev_eq</span><span class="o">.</span><span class="n">rhs</span><span class="p">});</span> <span class="n">powerload_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_12_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_12_0.png" />
+</div>
+</div>
+<p>Using the first example from <a class="reference external" href="https://www.youtube.com/watch?v=RbII8o49Hvs">Maximum Power Transfer Theorem for DC Circuits (with Examples)</a> we know and can find the Thevenin equivalent easily, and thus the max power that the source can supply. And so if we then plot the values of the power of the load vs the resistance of the load we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">Rth</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span>  <span class="n">voltage</span><span class="p">:</span><span class="mi">32</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerload_lam</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">RL</span><span class="p">,</span> <span class="n">powerload_eq</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs</span><span class="p">))</span>
+
+<span class="n">RL_sweep</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">powerload_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{powerload}</span><span class="s1">$ vs $</span><span class="si">{Rth}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">powerload_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Max Load Power {powerload_lam(subs[Rth])} [watts] @ </span><span class="si">{subs[Rth]}</span><span class="s1"> [Ohms]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{RL}</span><span class="s2">$[Ohms]&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{powerload}</span><span class="s2">$[Watts]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Load Power vs Load Resistance&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_15_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_15_0.png" />
+</div>
+</div>
+<p>But this is not our efficient load since our Thevenin equivalent source of the voltage and current source given by this example can deliver a total power of 128 [watts] when the load is short-circuited. So, then what is the most efficient load. While efficiency is defined as. Where we are looking at the global sources and global loads to our circuit which we have made easy in this example by looking only at a Thevenin reduced DC circuit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efficiency_eq</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">efficiency</span><span class="p">,</span> <span class="n">powerload</span><span class="o">/</span><span class="n">powersource</span><span class="p">);</span> <span class="n">efficiency_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_17_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_17_0.png" />
+</div>
+</div>
+<p>the power from the source with a completed Thevenin circuit with load is the sum of the power in the Thevenin and load resistances</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powersource_eq</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">powersource</span><span class="p">,</span> <span class="n">current</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span><span class="n">Rth</span> <span class="o">+</span><span class="n">current</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span><span class="n">RL</span><span class="p">);</span> <span class="n">powersource_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_19_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_19_0.png" />
+</div>
+</div>
+<p>Substituting the expression for the current in the Thevenin circuit we have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powersource_eq</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">powersource_eq</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">ithev_eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">:</span> <span class="n">ithev_eq</span><span class="o">.</span><span class="n">rhs</span><span class="p">}));</span> <span class="n">powersource_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_21_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_21_0.png" />
+</div>
+</div>
+<p>plotting this as a function of the load we can see how the load affects the power supplied on the Thevenin equivalent source</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powersource_lam</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">RL</span><span class="p">,</span> <span class="n">powersource_eq</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">powersource_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{powerload}</span><span class="s1">$ vs $</span><span class="si">{Rth}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">powersource_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Source Power {powersource_lam(subs[Rth])} [watts] @ $</span><span class="si">{Rth}</span><span class="s1">$ (</span><span class="si">{subs[Rth]}</span><span class="s1"> [Ohms])&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{RL}</span><span class="s2">$[Ohms]&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{powerload}</span><span class="s2">$[Watts]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Source Power vs Load Resistance&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_23_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_23_0.png" />
+</div>
+</div>
+<p>so then we find for the case of a DC Thevenin circuit our efficiency is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efficiency_eq</span><span class="o">=</span><span class="n">efficiency_eq</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">powersource_eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">:</span><span class="n">powersource_eq</span><span class="o">.</span><span class="n">rhs</span><span class="p">,</span> <span class="n">powerload_eq</span><span class="o">.</span><span class="n">lhs</span><span class="p">:</span><span class="n">powerload_eq</span><span class="o">.</span><span class="n">rhs</span>  <span class="p">});</span> <span class="n">efficiency_eq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_25_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_25_0.png" />
+</div>
+</div>
+<p>So then we can compare the efficiency (which is only defined between 0 and 1) to the power transferred to the load normalized to the maximum power at the Thevenin resistance as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerload_norm_lam</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">RL</span><span class="p">,</span> <span class="n">powerload_eq</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs</span><span class="p">)</span><span class="o">/</span><span class="n">powerload_eq</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">RL</span><span class="p">:</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]}))</span>
+
+<span class="n">efficiency_lam</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">RL</span><span class="p">,</span> <span class="n">efficiency_eq</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">subs</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">powerload_norm_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Normalized $</span><span class="si">{powerload}</span><span class="s1">$ vs $</span><span class="si">{RL}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">],</span> <span class="n">powerload_norm_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Max Load Power {powerload_lam(subs[Rth])} [watts] @ </span><span class="si">{subs[Rth]}</span><span class="s1"> [Ohms]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">efficiency_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{efficiency}</span><span class="s1">$ vs $</span><span class="si">{RL}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">],</span> <span class="n">efficiency_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="s1">&#39;r*&#39;</span><span class="p">,</span> 
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{efficiency}</span><span class="s1">={efficiency_lam(subs[Rth])}$ at $\max[</span><span class="si">{powerload}</span><span class="s1">]$&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{RL}</span><span class="s2">$[Ohms]&quot;</span><span class="p">);</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dfrac{&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{powerload}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s1">&#39;}{\max[&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{powerload}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;]}$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maxium Load Power Transfer &amp; Efficiency vs $</span><span class="si">{RL}</span><span class="s1">$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_27_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_27_0.png" />
+</div>
+</div>
+<p>So then if we need to optimize the DC maximum power to the load, we know it to be the load resistance equal the Thevenin resistance; but if we could sacrifice the maximum power to the load in order max out the efficiency of our total circuit while minimizing the loss of power delivered to load. We then can then find said load via the intersection of the two curves above thusly</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 6 findIntersection function</span>
+<span class="c1">#Assist function to find the intersection of two functions</span>
+
+<span class="c1">#from https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html </span>
+<span class="c1">#load fslove from scipy&#39;s optimize module</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+
+<span class="c1">#helper function to find the intersection of two functions with an initial guess</span>
+<span class="k">def</span> <span class="nf">findIntersection</span><span class="p">(</span><span class="n">fun1</span><span class="p">,</span><span class="n">fun2</span><span class="p">,</span><span class="n">x0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Aid function to find the intersection point of two curves</span>
+<span class="sd">    from: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html </span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        func1(function or class): the first function whose curve is </span>
+<span class="sd">            used to find the intersection of the two curves</span>
+<span class="sd">        </span>
+<span class="sd">        func2(function or class): the second function whose curve is </span>
+<span class="sd">            used to find the intersection of the two curves</span>
+<span class="sd">        </span>
+<span class="sd">        x0 (float); initial guess of the intersection of the two functions</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Returns array of float that are the intersections of the two functions, </span>
+<span class="sd">        this is not very robust and thus one should read `fsolve`&#39;s documentation </span>
+<span class="sd">        for caveats  of usage</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">fsolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">fun1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">fun2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">x0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#find the find the intersection and round value to three digits and; get just the first intersection</span>
+<span class="n">optimal_point</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">findIntersection</span><span class="p">(</span><span class="n">powerload_norm_lam</span><span class="p">,</span> <span class="n">efficiency_lam</span><span class="p">,</span> <span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">optimal_point</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_30_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_30_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">powerload_norm_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{powerload}</span><span class="s1">$ vs $</span><span class="si">{RL}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">],</span> <span class="n">powerload_norm_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">]),</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Max $</span><span class="si">{powerload}</span><span class="s1">$ {powerload_lam(subs[Rth])} [watts] @ </span><span class="si">{subs[Rth]}</span><span class="s1"> [Ohms]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">,</span> <span class="n">efficiency_lam</span><span class="p">(</span><span class="n">RL_sweep</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{efficiency}</span><span class="s1">$ vs $</span><span class="si">{RL}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">,</span> <span class="n">efficiency_lam</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">),</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> 
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Mutualy Optimal Point @$</span><span class="si">{RL}</span><span class="s1">=</span><span class="si">{optimal_point}</span><span class="s1">$[Ohm]; $</span><span class="si">{efficiency}</span><span class="s1">={efficiency_lam(optimal_point)}$; $</span><span class="si">{powerload}</span><span class="s1">={powerload_lam(optimal_point)}$ [watts]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{RL}</span><span class="s2">$[Ohms]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dfrac{&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{powerload}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s1">&#39;}{\max[&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{powerload}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;]}$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum Load Power Transfer &amp; Efficiency vs $</span><span class="si">{RL}</span><span class="s1">$ with cross optimization&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_6_DC_MaxPower_MaxEfficiency_31_0.png" src="../_images/DC_6_DC_MaxPower_MaxEfficiency_31_0.png" />
+</div>
+</div>
+<p>Thus, by moving to the intersection of the Power to the load and the efficiency of the circuit at the load from the Maximum power to the load point. We have a reduction of the amount of power delivered to the load of</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerload_at_mpow</span><span class="o">=</span><span class="n">powerload_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">])</span>
+<span class="n">powerload_at_mp</span><span class="o">=</span><span class="n">powerload_lam</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">)</span>
+<span class="sa">f</span><span class="s2">&quot;</span><span class="si">{powerload_at_mpow}</span><span class="s2">[watts] to </span><span class="si">{powerload_at_mp}</span><span class="s2">[watts]; a {powerload_at_mp-powerload_at_mpow}[watt] change&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;32.0[watts] to 24.0[watts]; a -8.0[watt] change&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>And have gained an efficiency boost of</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efficiency_at_mpow</span><span class="o">=</span><span class="n">efficiency_lam</span><span class="p">(</span><span class="n">subs</span><span class="p">[</span><span class="n">Rth</span><span class="p">])</span>
+<span class="n">efficiency_at_mp</span><span class="o">=</span><span class="n">efficiency_lam</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">)</span>
+<span class="sa">f</span><span class="s2">&quot;{efficiency_at_mpow*100}% to {efficiency_at_mp*100}%; a {(efficiency_at_mp-efficiency_at_mpow)*100}</span><span class="si">% g</span><span class="s2">ain&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;50.0% to 75.0%; a 25.0% gain&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now the task at hand is to move beyond this ideal theoretical example to having SPICE find the values we need and then building a testbench class in python that will do the data analysis along with all the SPICE work we just showed automatically for nearly any DC circuit. Where AC circuits and circuits that rely on Transient circuit effects (think switch-mode power supplies) will have to be analyzed separately when we cross those bridges.</p>
+</div>
+<div class="section" id="cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above">
+<h2><span class="section-number">18.2. </span>Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above<a class="headerlink" href="#cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min">
+<h2><span class="section-number">18.3. </span>Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~4:47 min<a class="headerlink" href="#example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;RbII8o49Hvs&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">287</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/RbII8o49Hvs?start=287"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">);</span> <span class="n">net_4</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N4&#39;</span><span class="p">)</span>
+
+<span class="c1">#voltage source bottom left</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">100</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+<span class="c1">#restors on the center leg</span>
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span>
+
+<span class="c1">#vcvs and resistor on top leg</span>
+<span class="n">vcvs</span><span class="o">=</span><span class="n">E</span><span class="p">(</span><span class="n">voltage_gain</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#vcvs inputs; outputs</span>
+<span class="n">vcvs</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_1</span><span class="p">;</span> <span class="n">vcvs</span><span class="p">[</span><span class="s1">&#39;op&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_4</span>
+<span class="n">rtop</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rtop</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_4</span><span class="p">,</span> <span class="n">net_3</span>
+
+<span class="c1">#load with dummy resistance</span>
+<span class="n">rload</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rload</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_3</span><span class="p">,</span> <span class="n">gnd</span>
+
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+E1 N1 N4 N2 N1 1
+V1 N1 0 100V
+Rleft N1 N2 4Ohm
+Rload N3 0 1Ohm
+Rright N2 N3 4Ohm
+Rtop N4 N3 4Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min">
+<h2><span class="section-number">18.4. </span>Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~8:46 min<a class="headerlink" href="#example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;RbII8o49Hvs&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">526</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/RbII8o49Hvs?start=526"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">)</span>
+
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#center T network</span>
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">30</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">rcenter</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">30</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">gnd</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">30</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span>
+
+<span class="c1">#rvar with dummy resistance</span>
+<span class="n">rtest</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rtest</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_3</span>
+
+<span class="n">rload</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rload</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_3</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 0 10V
+Rcenter N2 0 30Ohm
+Rleft N1 N2 30Ohm
+Rload N3 0 10Ohm
+Rright N2 N3 30Ohm
+Rtest N1 N3 1Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="citations">
+<h2><span class="section-number">18.5. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<p>[1] ALL ABOUT ELECTRONICS. “Maximum Power Transfer Theorem for DC Circuits (with Examples),” YouTube, May 20, 2017. [Video file]. Available: https://youtu.be/RbII8o49Hvs. [Accessed: Nov 30, 2020].</p>
+<p>[2] &#64;JustGlowing, “How to find the intersection of two functions,” The Glowing Python, 10-May-2011. [Online]. Available: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html. [Accessed: 20-Nov-2020].</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./DC_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="DC_5_Thvenin_Norton.html" title="previous page"><span class="section-number">16. </span>Thevenin’s DC Equivalent Circuit</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

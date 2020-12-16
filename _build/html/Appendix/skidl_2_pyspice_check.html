@@ -1,0 +1,2350 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Checking tool &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Welcome to the book “Python &amp; SPICE”
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
+   Book Specific Code
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="../DC_1/DC_1.html">
+     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_1_op_ohm.html">
+       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+       2. SPICE’s DC Operating Point simulation
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .op
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_2_op_source_transform.html">
+       3. Working with SKiDl elements
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+       4. DC Sweeps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+       5. DC load sweep of an Ideal Voltage source
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+       6. A Better
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .dc
+        </span>
+       </code>
+       Sim Interaction¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+       7. Ideal Current Source¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+       8. First testbench element¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html">
+       9. Controlled Dependent Sources in SPICE
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#ccvs">
+       10. CCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+       11. Enter the SPICE transfer function
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#lcapy">
+       12. LCAPY
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#vcvs">
+       13. VCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#cccs">
+       14. CCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_4_dependent_sources_and_tf.html#vccs">
+       15. VCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_5_Thvenin_Norton.html">
+       16. Thevenin’s DC Equivalent Circuit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_5_Thvenin_Norton.html#norton-s-theorem">
+       17. Norton’s Theorem
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../DC_1/DC_6_DC_MaxPower_MaxEfficiency.html">
+       18. Maximum Power Transfer Theorem
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Appendix/skidl_2_pyspice_check.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAppendix/skidl_2_pyspice_check.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Appendix/skidl_2_pyspice_check.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Checking tool
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-elements">
+   Basic Elements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-xspice-code-model-not-checked">
+     A            | XSPICE code model (not checked)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-behavioral-arbitrary-source-not-checked">
+     B            | Behavioral (arbitrary) source (not checked)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-capacitor">
+     C            | Capacitor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#notes">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-diode">
+     D            | Diode
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-voltage-controlled-voltage-source-vcvs">
+     E            | Voltage-controlled voltage source (VCVS)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f-current-controlled-current-source-cccs">
+     F            | Current-controlled current source (CCCs)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g-voltage-controlled-current-source-vccs">
+     G            | Voltage-controlled current source (VCCS)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#h-current-controlled-voltage-source-ccvs">
+     H            | Current-controlled voltage source (CCVS)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-current-source">
+     I            | Current source
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#j-junction-field-effect-transistor-jfet">
+     J            | Junction field effect transistor (JFET)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-coupled-mutual-inductors">
+     K            | Coupled (Mutual) Inductors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l-inductor">
+     L            | Inductor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m-metal-oxide-field-effect-transistor-mosfet">
+     M            | Metal oxide field effect transistor (MOSFET)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#q-bipolar-junction-transistor-bjt">
+     Q            | Bipolar junction transistor (BJT)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#r-resistor">
+     R            | Resistor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#v-voltage-source">
+     V | Voltage source
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#z-metal-semiconductor-field-effect-transistor-mesfet">
+     Z            | Metal semiconductor field effect transistor (MESFET)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note-in-armour-s-fort-added-as-phase">
+     Note in Armour’s fort added as_phase
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sinusoidalmixin-args">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SinusoidalMixin
+      </span>
+     </code>
+     args:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sinusoidalvoltagesource-ac">
+     SinusoidalVoltageSource (AC)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sinusoidalcurrentsource-ac">
+     SinusoidalCurrentSource (AC)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acline-sinusoidalvoltagesource">
+     AcLine(SinusoidalVoltageSource)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponentialmixin-args">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ExponentialMixin
+      </span>
+     </code>
+     args:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponentialvoltagesource">
+     ExponentialVoltageSource
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponentialcurrentsource">
+     ExponentialCurrentSource
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       Notes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PySpice.Spice.Netlist</span> <span class="kn">import</span> <span class="n">Circuit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-tool">
+<h1>Checking tool<a class="headerlink" href="#checking-tool" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_netlist</span><span class="p">,</span> <span class="n">pyspice_netlist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simple dumb check tool to compare the netlist from sckidl and pyspice </span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        skidl_netlist (PySpice.Spice.Netlist.Circuit): resulting netlist obj from</span>
+<span class="sd">            skidl using skidl&#39;s `generate_netlist` utlity to compare to pyspice direct</span>
+<span class="sd">            creation</span>
+<span class="sd">        </span>
+<span class="sd">        pyspice_netlist (PySpice.Spice.Netlist.Circuit): circuit obj created directly in pyspice via</span>
+<span class="sd">            `PySpice.Spice.Netlist.Circuit` to compare it&#39;s netlist to skidl produced one</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        if skidl_netlist is longer then pyspice_netlist will return string statment saying: &#39;skidl_netlist is longer then pyspice_netlist&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        if skidl_netlist is shorter then pyspice_netlist will return string statment saying: &#39;skidl_netlist is shorter then pyspice_netlist&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        if skidl_netlist and pyspice_netlist are equall and but there are diffrances then will print</span>
+<span class="sd">        message of thoes difrances(|1 indexed) and return a list of indexs where the skidl netlist is differs from the pyspice one</span>
+<span class="sd">        </span>
+<span class="sd">        if skidl_netlist == pyspice_netlist then will return the word: &#39;Match&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    TODO: Where should I start</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#only care about the final netlist string</span>
+    <span class="n">skidl_netlist</span><span class="o">=</span><span class="n">skidl_netlist</span><span class="o">.</span><span class="n">str</span><span class="p">()</span>
+    <span class="n">pyspice_netlist</span><span class="o">=</span><span class="n">pyspice_netlist</span><span class="o">.</span><span class="n">str</span><span class="p">()</span>
+    
+    <span class="c1">#check the lengths</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">skidl_netlist</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">pyspice_netlist</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="s1">&#39;skidl_netlist is longer then pyspice_netlist&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">skidl_netlist</span><span class="p">)</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">pyspice_netlist</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="s1">&#39;skidl_netlist is shorter then pyspice_netlist&#39;</span><span class="p">)</span> 
+    
+    <span class="c1">#compare strings char by char</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">string_check</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">skidl_netlist</span><span class="p">))</span> <span class="k">if</span> <span class="n">skidl_netlist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pyspice_netlist</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">string_check</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="k">return</span> <span class="s1">&#39;Match&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Match failed skidl_netlist:&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;{[i|1 for i in string_check]}&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">string_check</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="basic-elements">
+<h1>Basic Elements<a class="headerlink" href="#basic-elements" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-xspice-code-model-not-checked">
+<h2>A            | XSPICE code model (not checked)<a class="headerlink" href="#a-xspice-code-model-not-checked" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; (need to find):</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”A”</p>
+</div>
+<div class="section" id="b-behavioral-arbitrary-source-not-checked">
+<h2>B            | Behavioral (arbitrary) source (not checked)<a class="headerlink" href="#b-behavioral-arbitrary-source-not-checked" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class BehavioralSource:</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”B”</p>
+<p>ngspice 5.1: Bxxxx: Nonlinear dependent source (ASRC): BXXXXXXX n| n- &lt;i=expr &gt; &lt;v=expr &gt; &lt;tc1=value &gt; &lt;tc2=value &gt; &lt;temp=value &gt; &lt;dtemp=value &gt;</p>
+</div>
+<div class="section" id="c-capacitor">
+<h2>C            | Capacitor<a class="headerlink" href="#c-capacitor" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Capacitor(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”C”</p>
+<p>ngspice 3.2.5 Capacitors:</p>
+<p>CXXXXXXX n| n- <value > <mname > &lt;m=val&gt; &lt;scale=val&gt; &lt;temp=val&gt; &lt;dtemp=val&gt; &lt;tc1=val&gt; &lt;tc2=val&gt; &lt;ic=init_condition &gt;</p>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_C</span><span class="o">=</span><span class="n">C</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_C</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+C1 N1 N2 5 dtemp=5 ic=5 m=5 scale=5 temp=5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">C</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+C1 N1 N2 5 dtemp=5 ic=5 m=5 scale=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="d-diode">
+<h2>D            | Diode<a class="headerlink" href="#d-diode" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Diode(FixedPinElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”D”</p>
+<p>ngspice 7.1 Junction Diodes:</p>
+<p>DXXXXXXX n| n- mname &lt;area=val&gt; &lt;m=val&gt; &lt;pj=val&gt; <off> &lt;ic=vd&gt; &lt;temp=val&gt; &lt;dtemp=val&gt;</p>
+<div class="section" id="id1">
+<h3>Notes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ic</span></code>: did not work in eather skidl or pyspice</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_D</span><span class="o">=</span><span class="n">D</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pj</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_D</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>                 <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">303</span>                     <span class="n">path</span> <span class="o">=</span> <span class="n">pyspice</span><span class="p">[</span><span class="s2">&quot;lib&quot;</span><span class="p">][</span><span class="n">model</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+
+<span class="ne">KeyError</span>: &#39;lib&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="mi">4277413</span><span class="n">c28a1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">skidl_D</span><span class="o">=</span><span class="n">D</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pj</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">skidl_D</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/circuit.py</span> in <span class="ni">generate_netlist</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">489</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>             <span class="n">gen_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_gen_netlist_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tool</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">491</span>             <span class="n">netlist</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Pass any remaining arguments.</span>
+<span class="g g-Whitespace">    </span><span class="mi">492</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="n">log_and_raise</span><span class="p">(</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>                         <span class="c1"># Read the default SPICE libraries.</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>                         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">lib_search_paths</span><span class="p">[</span><span class="n">SPICE</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">309</span>                             <span class="n">default_libs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SpiceLibrary</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> 
+<span class="g g-Whitespace">    </span><span class="mi">311</span>                     <span class="c1"># Search for the model in the default libraries.</span>
+
+<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;recurse&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">D</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pj</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+D1 N1 N2 5 area=5 dtemp=5 m=5 off pj=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e-voltage-controlled-voltage-source-vcvs">
+<h2>E            | Voltage-controlled voltage source (VCVS)<a class="headerlink" href="#e-voltage-controlled-voltage-source-vcvs" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class VoltageControlledVoltageSource(TwoPortElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”E”</p>
+<p>ngspice 4.2.2 Exxxx: Linear Voltage-Controlled Voltage Sources (VCVS):</p>
+<p>EXXXXXXX N| N- NC| NC- VALUE</p>
+<div class="section" id="id2">
+<h3>Notes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">);</span> <span class="n">net_4</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N4&#39;</span><span class="p">)</span>
+<span class="n">skidl_E</span><span class="o">=</span><span class="n">E</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">voltage_gain</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_E</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">;</span> <span class="n">skidl_E</span><span class="p">[</span><span class="s1">&#39;op&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_3</span><span class="p">,</span> <span class="n">net_4</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+E1 N3 N4 N1 N2 5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">VoltageControlledVoltageSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="s1">&#39;N4&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="n">voltage_gain</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+E1 N3 N4 N1 N2 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="f-current-controlled-current-source-cccs">
+<h2>F            | Current-controlled current source (CCCs)<a class="headerlink" href="#f-current-controlled-current-source-cccs" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class CurrentControlledCurrentSource(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”F”</p>
+<p>ngspice 4.2.3 Fxxxx: Linear Current-Controlled Current Sources (CCCS):</p>
+<p>FXXXXXXX N| N- VNAM VALUE &lt;m=val&gt;</p>
+<div class="section" id="id3">
+<h3>Notes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_F</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="s1">&#39;V1&#39;</span><span class="p">,</span> <span class="n">current_gain</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_F</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">;</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+F1 N1 N2 V1 5 m=5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">CurrentControlledCurrentSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;V1&#39;</span><span class="p">,</span> <span class="n">current_gain</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+F1 N1 N2 V1 5 m=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="g-voltage-controlled-current-source-vccs">
+<h2>G            | Voltage-controlled current source (VCCS)<a class="headerlink" href="#g-voltage-controlled-current-source-vccs" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class VoltageControlledCurrentSource(TwoPortElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”G”</p>
+<p>ngspice 4.2.1 Gxxxx: Linear Voltage-Controlled Current Sources (VCCS):</p>
+<p>GXXXXXXX N| N- NC| NC- VALUE &lt;m=val&gt;</p>
+<div class="section" id="id4">
+<h3>Notes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>‘transconductance’ did not work in skidl; but <code class="docutils literal notranslate"><span class="pre">gain</span></code> did as did <code class="docutils literal notranslate"><span class="pre">current_gain</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">);</span> <span class="n">net_4</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N4&#39;</span><span class="p">)</span>
+<span class="n">skidl_G</span><span class="o">=</span><span class="n">G</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">current_gain</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_G</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">;</span> <span class="n">skidl_G</span><span class="p">[</span><span class="s1">&#39;op&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_3</span><span class="p">,</span> <span class="n">net_4</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+G1 N3 N4 N1 N2 5 m=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">VoltageControlledCurrentSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="s1">&#39;N4&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="n">transconductance</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+G1 N3 N4 N1 N2 5 m=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="h-current-controlled-voltage-source-ccvs">
+<h2>H            | Current-controlled voltage source (CCVS)<a class="headerlink" href="#h-current-controlled-voltage-source-ccvs" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class CurrentControlledVoltageSource(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”H”</p>
+<p>ngspice 4.2.4 Hxxxx: Linear Current-Controlled Voltage Sources (CCVS):</p>
+<p>HXXXXXXX n| n- vnam val</p>
+<div class="section" id="id5">
+<h3>Notes<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_H</span><span class="o">=</span><span class="n">H</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="s1">&#39;V1&#39;</span><span class="p">,</span> <span class="n">transresistance</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_H</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">;</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+H1 N1 N2 V1 5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">CurrentControlledVoltageSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;V1&#39;</span><span class="p">,</span> <span class="n">transresistance</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+H1 N1 N2 V1 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="i-current-source">
+<h2>I            | Current source<a class="headerlink" href="#i-current-source" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class CurrentSource(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”I”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current:</p>
+<p>IYYYYYYY N| N- &lt;<DC></p>
+<div class="section" id="id6">
+<h3>Notes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>a reduced version of ngspices IYYYYYYY only generating the arguement for &lt;<DC> DC/TRAN VALUE &gt;</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_I</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_I</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">I</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="j-junction-field-effect-transistor-jfet">
+<h2>J            | Junction field effect transistor (JFET)<a class="headerlink" href="#j-junction-field-effect-transistor-jfet" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class JunctionFieldEffectTransistor(JfetElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”J”</p>
+<p>ngspice 9.1 Junction Field-Effect Transistors (JFETs):</p>
+<p>JXXXXXXX nd ng ns mname <area > <off> &lt;ic=vds,vgs&gt; &lt;temp=t&gt;</p>
+<div class="section" id="id7">
+<h3>Notes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ic</span></code>: did not work in eather skidl or pyspice</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">)</span>
+<span class="n">skidl_J</span><span class="o">=</span><span class="n">J</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_J</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Unknown SPICE model: 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+J1 N1 N2 N3 5 area=5 m=5 off temp=5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 warnings found during netlist generation.
+1 errors found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">J</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+J1 N1 N2 N3 5 area=5 m=5 off temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="k-coupled-mutual-inductors">
+<h2>K            | Coupled (Mutual) Inductors<a class="headerlink" href="#k-coupled-mutual-inductors" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class CoupledInductor(AnyPinElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”K”</p>
+<p>ngspice 3.2.11 Coupled (Mutual) Inductors:</p>
+<p>KXXXXXXX LYYYYYYY LZZZZZZZ value</p>
+<div class="section" id="id8">
+<h3>Notes<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>need to get daves help on using K inside skidl</p></li>
+<li><p>the inductors must already exsist for pyspice to work</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_L1</span><span class="o">=</span><span class="n">L</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_L1</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+
+<span class="n">skidl_L2</span><span class="o">=</span><span class="n">L</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_L2</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+
+<span class="c1">#need to find out how to use this</span>
+<span class="c1">#skidl_K=K()</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+L1 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+L2 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1">#inductors need to exsist to then be coupled</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="s1">&#39;L2&#39;</span><span class="p">,</span> <span class="n">coupling_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+L1 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+L2 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+K1 L1 L2 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;skidl_netlist is shorter then pyspice_netlist&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="l-inductor">
+<h2>L            | Inductor<a class="headerlink" href="#l-inductor" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Inductor(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”L”</p>
+<p>ngspice 3.2.9 Inductors:</p>
+<p>LYYYYYYY n| n- <value > <mname > &lt;nt=val&gt; &lt;m=val&gt; &lt;scale=val&gt; &lt;temp=val&gt; &lt;dtemp=val&gt; &lt;tc1=val&gt; &lt;tc2=val&gt; &lt;ic=init_condition &gt;</p>
+<div class="section" id="id9">
+<h3>Notes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_L</span><span class="o">=</span><span class="n">L</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_L</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+L1 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+L1 N1 N2 5 dtemp=5 ic=5 m=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="m-metal-oxide-field-effect-transistor-mosfet">
+<h2>M            | Metal oxide field effect transistor (MOSFET)<a class="headerlink" href="#m-metal-oxide-field-effect-transistor-mosfet" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Mosfet(FixedPinElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”M”</p>
+<p>ngspice 11.1 MOSFET devices:</p>
+<p>MXXXXXXX nd ng ns nb mname &lt;m=val&gt; &lt;l=val&gt; &lt;w=val&gt; &lt;ad=val&gt; &lt;as=val&gt; &lt;pd=val&gt; &lt;ps=val&gt; &lt;nrd=val&gt; &lt;nrs=val&gt; <off> &lt;ic=vds, vgs, vbs&gt; &lt;temp=t&gt;</p>
+<div class="section" id="id10">
+<h3>Notes<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ic</span></code>: did not work in eather skidl or pyspice</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">);</span> <span class="n">net_4</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N4&#39;</span><span class="p">)</span>
+<span class="n">skidl_M</span><span class="o">=</span><span class="n">M</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="n">drain_area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">drain_perimeter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_perimeter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="n">drain_number_square</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_number_square</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">skidl_M</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span><span class="p">,</span> <span class="n">net_4</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Unknown SPICE model: 5
+
+0 warnings found during netlist generation.
+1 errors found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+M1 N1 N2 N3 N4 5 ad=5 nrd=5 pd=5 l=5 m=5 off as=5 nrs=5 ps=5 temp=5 w=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="s1">&#39;N4&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="n">drain_area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">drain_perimeter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_perimeter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="n">drain_number_square</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">source_number_square</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+              <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+M1 N1 N2 N3 N4 5 ad=5 nrd=5 pd=5 l=5 m=5 off as=5 nrs=5 ps=5 temp=5 w=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>| N            | Numerical device for GSS                             |</p>
+<p>| O            | Lossy transmission line                              |</p>
+<p>| P            | Coupled multiconductor line (CPL)                    |</p>
+</div>
+</div>
+<div class="section" id="q-bipolar-junction-transistor-bjt">
+<h2>Q            | Bipolar junction transistor (BJT)<a class="headerlink" href="#q-bipolar-junction-transistor-bjt" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class BipolarJunctionTransistor(FixedPinElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”Q”</p>
+<p>ngspice 8.1 Bipolar Junction Transistors (BJTs):</p>
+<p>QXXXXXXX nc nb ne <ns> mname &lt;area=val&gt; &lt;areac=val&gt; &lt;areab=val&gt; &lt;m=val&gt; <off> &lt;ic=vbe,vce&gt; &lt;temp=val&gt; &lt;dtemp=val&gt;</p>
+<div class="section" id="id11">
+<h3>Notes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>could not get the substrate connection working in pyspice but it worked fine with skidl</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ic</span></code>: did not work in eather skidl or pyspice</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">);</span> <span class="n">net_4</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N4&#39;</span><span class="p">)</span>
+<span class="n">skidl_Q</span><span class="o">=</span><span class="n">Q</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+          <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">areab</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">areac</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+          <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_Q</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span>
+
+<span class="c1">#skidl will make the substrate connection fine but could not get pyspice to do so</span>
+<span class="c1">#therefore skiping for the time being</span>
+<span class="c1">#skidl_Q[&#39;s&#39;]+=net_4</span>
+
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Unknown SPICE model: 5
+
+0 warnings found during netlist generation.
+1 errors found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Q1 N1 N2 N3 5 area=5 areab=5 areac=5 dtemp=5 m=5 off temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">Q</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">areab</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">areac</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+          <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+               <span class="c1">#could not get the substrate connection working in pyspice</span>
+              <span class="c1">#ns=&#39;N4&#39;</span>
+              <span class="p">)</span>
+               
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Q1 N1 N2 N3 5 area=5 areab=5 areac=5 dtemp=5 m=5 off temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="r-resistor">
+<h2>R            | Resistor<a class="headerlink" href="#r-resistor" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Resistor(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”R”</p>
+<p>ngspice 3.2.1 Resistors:</p>
+<p>RXXXXXXX n| n- &lt;resistance|r=&gt;value &lt;ac=val&gt; &lt;m=val&gt; &lt;scale=val&gt; &lt;temp=val&gt; &lt;dtemp=val&gt; &lt;tc1=val&gt; &lt;tc2=val&gt; &lt;noisy=0|1&gt;</p>
+<div class="section" id="id12">
+<h3>Notes<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_R</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ac</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">skidl_R</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+R1 N1 N2 5 ac=5 dtemp=5 m=5 noisy=1 scale=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">ac</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dtemp</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+R1 N1 N2 5 ac=5 dtemp=5 m=5 noisy=1 scale=5 temp=5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>| S            | Switch (voltage-controlled)                          |</p>
+<p>| T            | Lossless transmission line                           |</p>
+<p>| U            | Uniformly distributed RC line                        |</p>
+</div>
+</div>
+<div class="section" id="v-voltage-source">
+<h2>V | Voltage source<a class="headerlink" href="#v-voltage-source" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class VoltageSource(DipoleElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”V”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current:</p>
+<p>VXXXXXXX N| N- &lt;<DC> DC/TRAN VALUE &gt;</p>
+<div class="section" id="id13">
+<h3>Notes<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>a reduced version of ngspices VXXXXXXX only generating the arguement for &lt;<DC> DC/TRAN VALUE &gt;</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_V</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_V</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">V</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>| W            | Switch (current-controlled)                          |</p>
+<p>| X            | Subcircuit                                           |</p>
+<p>| Y            | Single lossy transmission line (TXL)                 |</p>
+<p>| Z            | Metal semiconductor field effect transistor (MESFET) |</p>
+</div>
+</div>
+<div class="section" id="z-metal-semiconductor-field-effect-transistor-mesfet">
+<h2>Z            | Metal semiconductor field effect transistor (MESFET)<a class="headerlink" href="#z-metal-semiconductor-field-effect-transistor-mesfet" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/BasicElement.py; class Mesfet(JfetElement)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”Z”</p>
+<p>ngspice 10.1 MESFETs:</p>
+<p>ZXXXXXXX ND NG NS MNAME <AREA > <OFF> &lt;IC=VDS, VGS&gt;</p>
+<div class="section" id="id14">
+<h3>Notes<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ic</span></code>: did not work in eather skidl or pyspice</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_3</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N3&#39;</span><span class="p">)</span>
+<span class="n">skidl_Z</span><span class="o">=</span><span class="n">Z</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">skidl_Z</span><span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span><span class="p">,</span> <span class="n">net_3</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Unknown SPICE model: 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Z1 N1 N2 N3 5 area=5 m=5 off
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 warnings found during netlist generation.
+1 errors found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">Z</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> <span class="s1">&#39;N3&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">off</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Z1 N1 N2 N3 5 area=5 m=5 off
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="highlevel-elements-sinusoidalmixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">SinusoidalMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-sinusoidalmixin-based" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="note-in-armour-s-fort-added-as-phase">
+<h2>Note in Armour’s fort added as_phase<a class="headerlink" href="#note-in-armour-s-fort-added-as-phase" title="Permalink to this headline">¶</a></h2>
+<p>SinusoidalMixin is the base translation class for sinusoid wave waveform sources, in other words even thou ngspice compines most sinusoid source as just argument extations to exsisting DC source to create AC souces through pyspice to ngspice these elements must be used</p>
+</div>
+<div class="section" id="sinusoidalmixin-args">
+<h2><code class="docutils literal notranslate"><span class="pre">SinusoidalMixin</span></code> args:<a class="headerlink" href="#sinusoidalmixin-args" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vo</p></td>
+<td><p>offset</p></td>
+<td><p></p></td>
+<td><p>V, A</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>—————-</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>Va</p></td>
+<td><p>amplitude</p></td>
+<td><p></p></td>
+<td><p>V, A</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>—————-</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>frequency</p></td>
+<td><p>1 / TStop</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>—————-</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>Td</p></td>
+<td><p>delay</p></td>
+<td><p>0.0</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>—————-</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>Df</p></td>
+<td><p>damping factor</p></td>
+<td><p>0.01</p></td>
+<td><p>1/sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>—————-</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+</tbody>
+</table>
+<p>so for a AC SIN voltage sours it’s output should be equilint to the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}V(t) = \begin{cases}
+          V_o &amp; \text{if}\ 0 \leq t &lt; T_d, \\
+          V_o + V_a e^{-D_f(t-T_d)} \sin\left(2\pi f (t-T_d)\right) &amp; \text{if}\ T_d \leq t &lt; T_{stop}.
+        \end{cases}\end{split}\]</div>
+</div>
+<div class="section" id="sinusoidalvoltagesource-ac">
+<h2>SinusoidalVoltageSource (AC)<a class="headerlink" href="#sinusoidalvoltagesource-ac" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/HighLevelElement.py; class SinusoidalVoltageSource(VoltageSource, VoltageSourceMixinAbc, SinusoidalMixin)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”SINEV”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current &amp; 4.1.2 Sinusoidal:</p>
+<p>VXXXXXXX N+ N- &lt;<DC> DC/TRAN VALUE &gt; &lt;AC &lt;ACMAG <ACPHASE >&gt;&gt; &lt;DISTOF1 &lt;F1MAG <F1PHASE >&gt;&gt; &lt;DISTOF2 &lt;F2MAG <F2PHASE >&gt;&gt;</p>
+<p>SIN(VO VA FREQ TD THETA PHASE)</p>
+<div class="section" id="id15">
+<h3>Notes<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>a amalgumation of ngspice’s  Independent Sources for Voltage &amp; Sinusoidal statment for transint simulations</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_SINV</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">amplitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">damping_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="c1">#ac sim statments</span>
+            <span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dc_offset</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">skidl_SINV</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 DC 5V AC 5V SIN(5V 5V 5Hz 5s 5Hz)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">SinusoidalVoltageSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> 
+                <span class="c1">#transit sim statments</span>
+                <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">amplitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">damping_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                <span class="c1">#ac sim statments</span>
+                <span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dc_offset</span><span class="o">=</span><span class="mi">5</span>
+                                    
+                                    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 DC 5V AC 5V SIN(5V 5V 5Hz 5s 5Hz)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sinusoidalcurrentsource-ac">
+<h2>SinusoidalCurrentSource (AC)<a class="headerlink" href="#sinusoidalcurrentsource-ac" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/HighLevelElement.py; class class SinusoidalCurrentSource(CurrentSource, CurrentSourceMixinAbc, SinusoidalMixin):</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”SINEI”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current &amp; 4.1.2 Sinusoidal:</p>
+<p>IYYYYYYY N+ N- &lt;<DC> DC/TRAN VALUE &gt; &lt;AC &lt;ACMAG <ACPHASE >&gt;&gt; &lt;DISTOF1 &lt;F1MAG <F1PHASE >&gt;&gt; &lt;DISTOF2 &lt;F2MAG <F2PHASE >&gt;&gt;</p>
+<p>SIN(VO VA FREQ TD THETA PHASE)</p>
+<div class="section" id="id16">
+<h3>Notes<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>a amalgumation of ngspice’s  Independent Sources for Voltage &amp; Sinusoidal statment for transint simulations</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_SINI</span><span class="o">=</span><span class="n">SINEI</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">amplitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">damping_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="c1">#ac sim statments</span>
+            <span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dc_offset</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">skidl_SINI</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 DC 5A AC 5A SIN(5A 5A 5Hz 5s 5Hz)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">SinusoidalCurrentSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> 
+                <span class="c1">#transit sim statments</span>
+                <span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">amplitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">damping_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                <span class="c1">#ac sim statments</span>
+                <span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dc_offset</span><span class="o">=</span><span class="mi">5</span>
+                                    
+                                    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 DC 5A AC 5A SIN(5A 5A 5Hz 5s 5Hz)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="acline-sinusoidalvoltagesource">
+<h2>AcLine(SinusoidalVoltageSource)<a class="headerlink" href="#acline-sinusoidalvoltagesource" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/HighLevelElement.py; class AcLine(SinusoidalVoltageSource)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; NOT IMPLIMENTED</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current:</p>
+<p>VXXXXXXX N+ N- &lt;<DC> DC/TRAN VALUE &gt; &lt;AC &lt;ACMAG <ACPHASE >&gt;&gt; &lt;DISTOF1 &lt;F1MAG <F1PHASE >&gt;&gt; &lt;DISTOF2 &lt;F2MAG <F2PHASE >&gt;&gt;</p>
+<div class="section" id="id17">
+<h3>Notes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>it’s a pyspice only wraper around pyspices <code class="docutils literal notranslate"><span class="pre">SinusoidalVoltageSource</span></code> that makes a pure for transisint simulation only SIN voltage source with the only arguments being <code class="docutils literal notranslate"><span class="pre">rms_voltage</span></code> and <code class="docutils literal notranslate"><span class="pre">frequency</span></code></p></li>
+<li><p>pyspice does the rms to amplitute conversion internaly</p></li>
+<li><p>pyspice does not have a <code class="docutils literal notranslate"><span class="pre">offset</span></code> arg</p></li>
+<li><p>pyspice does not have a <code class="docutils literal notranslate"><span class="pre">delay</span></code> arg</p></li>
+<li><p>pyspice does not have a <code class="docutils literal notranslate"><span class="pre">damping_factor</span></code> arg</p></li>
+<li><p>pyspice does not have a <code class="docutils literal notranslate"><span class="pre">ac_magnitude</span></code> arg</p></li>
+<li><p>pyspice does not have a <code class="docutils literal notranslate"><span class="pre">dc_offset</span></code> arg</p></li>
+<li><p>pspice still gives a AC output of the default 1V; this needs to be changed to be equal to <code class="docutils literal notranslate"><span class="pre">amplitude</span></code> internal value or else will give aid in producing incorect results with <strong>ac</strong> simulations</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="c1"># Skidle does not impliment an AcLine equivlent at this time</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">AcLine</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> 
+                <span class="c1">#transit sim statments</span>
+                <span class="n">rms_voltage</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">5</span> 
+                                    
+                                    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 DC 0V AC 1V SIN(0V 11.313708498984761V 5Hz 0s 0Hz)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;skidl_netlist is shorter then pyspice_netlist&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="highlevel-elements-pulsemixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">PulseMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-pulsemixin-based" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="highlevel-elements-exponentialmixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">ExponentialMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-exponentialmixin-based" title="Permalink to this headline">¶</a></h1>
+<p>ExponentialMixin is the base translation class for exponential shped sources used for transisint simulations. Typicly used for simulating responce to charing and discharing events from capcitor/inductor networks. Pyspice does not include ac arguements that are technicly allowed by ngspice</p>
+<div class="section" id="exponentialmixin-args">
+<h2><code class="docutils literal notranslate"><span class="pre">ExponentialMixin</span></code> args:<a class="headerlink" href="#exponentialmixin-args" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>V1</p></td>
+<td><p>Initial value</p></td>
+<td><p></p></td>
+<td><p>V, A</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>V2</p></td>
+<td><p>pulsed value</p></td>
+<td><p></p></td>
+<td><p>V, A</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>Td1</p></td>
+<td><p>rise delay time</p></td>
+<td><p>0.0</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>tau1</p></td>
+<td><p>rise time constant</p></td>
+<td><p>Tstep</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>Td2</p></td>
+<td><p>fall delay time</p></td>
+<td><p>Td1</p></td>
+<td><p>Tstep</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+<tr class="row-even"><td><p>tau2</p></td>
+<td><p>fall time constant</p></td>
+<td><p>Tstep</p></td>
+<td><p>sec</p></td>
+</tr>
+<tr class="row-odd"><td><p>——</p></td>
+<td><p>——————–</p></td>
+<td><p>—————</p></td>
+<td><p>——-</p></td>
+</tr>
+</tbody>
+</table>
+<p>so for a expoential based voltage source it’s output should be equilint to the following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}V(t) = \begin{cases}
+          V_1 &amp; \text{if}\ 0 \leq t &lt; T_{d1}, \\
+          V_1 + V_{21} ( 1 − e^{-\frac{t-T_{d1}}{\tau_1}} )
+          &amp; \text{if}\ T_{d1} \leq t &lt; T_{d2}, \\
+          V_1 + V_{21} ( 1 − e^{-\frac{t-T_{d1}}{\tau_1}} ) + V_{12} ( 1 − e^{-\frac{t-T_{d2}}{\tau_2}} )
+          &amp; \text{if}\ T_{d2} \leq t &lt; T_{stop}
+        \end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_{21} = V_2 - V_1\)</span> and <span class="math notranslate nohighlight">\(V_{12} = V_1 - V_2\)</span></p>
+</div>
+<div class="section" id="exponentialvoltagesource">
+<h2>ExponentialVoltageSource<a class="headerlink" href="#exponentialvoltagesource" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/HighLevelElement.py; class ExponentialVoltageSource(VoltageSource, VoltageSourceMixinAbc, ExponentialMixin)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”EXPV”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current &amp; 4.1.3 Exponential:</p>
+<p>VXXXXXXX N+ N-</p>
+<p>EXP(V1 V2 TD1 TAU1 TD2 TAU2)</p>
+<div class="section" id="id18">
+<h3>Notes<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>should technicly also alow dc and ac values from ngspice Independent voltage source statment</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_EXPV</span><span class="o">=</span><span class="n">EXPV</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">initial_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">pulsed_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rise_delay_time</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">rise_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_delay_time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+           <span class="p">)</span>
+
+<span class="n">skidl_EXPV</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 EXP(5V 5V 5s 5s 5s 5s)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">ExponentialVoltageSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">initial_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">pulsed_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rise_delay_time</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">rise_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_delay_time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            
+                                    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 N1 N2 EXP(5V 5V 5s 5s 5s 5s)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exponentialcurrentsource">
+<h2>ExponentialCurrentSource<a class="headerlink" href="#exponentialcurrentsource" title="Permalink to this headline">¶</a></h2>
+<p>PySpice/PySpice/Spice/HighLevelElement.py; class ExponentialCurrentSource(VoltageSource, VoltageSourceMixinAbc, ExponentialMixin)</p>
+<p>skidl/skidl/libs/pyspice_sklib.py; name=”EXPI”</p>
+<p>ngspice 4.1 Independent Sources for Voltage or Current &amp; 4.1.3 Exponential:</p>
+<p>IXXXXXXX N+ N-</p>
+<p>EXP(I1 I2 TD1 TAU1 TD2 TAU2)</p>
+<div class="section" id="id19">
+<h3>Notes<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>should technicly also alow dc and ac values from ngspice Independent voltage source statment</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">skidl_EXPI</span><span class="o">=</span><span class="n">EXPI</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">initial_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">pulsed_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rise_delay_time</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">rise_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_delay_time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+           <span class="p">)</span>
+
+<span class="n">skidl_EXPI</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">skidl_circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 EXP(5A 5A 5s 5s 5s 5s)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyspice_circ</span><span class="o">=</span><span class="n">Circuit</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">pyspice_circ</span><span class="o">.</span><span class="n">ExponentialCurrentSource</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;N1&#39;</span><span class="p">,</span> <span class="s1">&#39;N2&#39;</span><span class="p">,</span> 
+            <span class="c1">#transit sim statments</span>
+            <span class="n">initial_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">pulsed_value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rise_delay_time</span><span class="o">=</span><span class="mi">5</span> <span class="p">,</span> <span class="n">rise_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_delay_time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">fall_time_constant</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            
+                                    <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 N1 N2 EXP(5A 5A 5s 5s 5s 5s)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">netlist_comp_check</span><span class="p">(</span><span class="n">skidl_circ</span><span class="p">,</span> <span class="n">pyspice_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Match&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="highlevel-elements-piecewiselinearmixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">PieceWiseLinearMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-piecewiselinearmixin-based" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="highlevel-elements-singlefrequencyfmmixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">SingleFrequencyFMMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-singlefrequencyfmmixin-based" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="highlevel-elements-amplitudemodulatedmixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">AmplitudeModulatedMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-amplitudemodulatedmixin-based" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="highlevel-elements-randommixin-based">
+<h1>Highlevel Elements <code class="docutils literal notranslate"><span class="pre">RandomMixin</span></code> Based<a class="headerlink" href="#highlevel-elements-randommixin-based" title="Permalink to this headline">¶</a></h1>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Appendix"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

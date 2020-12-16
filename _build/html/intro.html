@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to the book “Python &amp; SPICE” &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dependency install instruction" href="needed_libraries.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   Welcome to the book “Python &amp; SPICE”
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="needed_libraries.html#book-specific-code">
+   Book Specific Code
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2 collapsible-parent">
+    <a class="reference internal" href="DC_1/DC_1.html">
+     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+    </a>
+    <ul class="collapse-ul">
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_1_op_ohm.html">
+       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+       2. SPICE’s DC Operating Point simulation
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .op
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_2_op_source_transform.html">
+       3. Working with SKiDl elements
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+       4. DC Sweeps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+       5. DC load sweep of an Ideal Voltage source
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+       6. A Better
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         .dc
+        </span>
+       </code>
+       Sim Interaction¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+       7. Ideal Current Source¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+       8. First testbench element¶
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html">
+       9. Controlled Dependent Sources in SPICE
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#ccvs">
+       10. CCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+       11. Enter the SPICE transfer function
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#lcapy">
+       12. LCAPY
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#vcvs">
+       13. VCVS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#cccs">
+       14. CCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#vccs">
+       15. VCCS
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_5_Thvenin_Norton.html">
+       16. Thevenin’s DC Equivalent Circuit
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_5_Thvenin_Norton.html#norton-s-theorem">
+       17. Norton’s Theorem
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="DC_1/DC_6_DC_MaxPower_MaxEfficiency.html">
+       18. Maximum Power Transfer Theorem
+      </a>
+     </li>
+    </ul>
+    <i class="fas fa-chevron-down">
+    </i>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-this-book-going-to-do-and-not-do-and-why-you-should-keep-reading">
+   What is this book going to do/and not do and why you should keep reading:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-short">
+     In short:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-most-important-thing-this-book-is-going-to-do-revolutionize-analog-mixed-single-design-verification">
+   The most important thing this book is going to do: Revolutionize Analog/mixed single design verification.
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>TODO:</p>
+<ul class="simple">
+<li><p>consuldate</p></li>
+<li><p>get consistinat with “we”, “you”, “I”</p></li>
+<li><p>add images and flow diagrams</p></li>
+<li><p>fix the markdown headers to work with jupyter book</p></li>
+<li><p>figuer out jupyter book</p></li>
+</ul>
+<div class="section" id="welcome-to-the-book-python-spice">
+<h1>Welcome to the book “Python &amp; SPICE”<a class="headerlink" href="#welcome-to-the-book-python-spice" title="Permalink to this headline">¶</a></h1>
+<p>This work represents an attempt at dragging SPICE from a niche tool of analog circuit designers to a standard part of the workflow of anyone practicing electronic design.  And by electronic design that doesn’t just mean for this select few doing custom silicon, it means anyone who is designing any electronics from discrete RLC circuits in class to analog PCBs, and yes those do custom silicon.  What is different about this SPICE book from all the other academic SPICE books written for SPICE/ PSPICE/ Spectra/ect.? SPICE netlist are going to be generated and manipulated in Python and SPICE (specifically Ngspice) is going to be controlled via a Python extraction layer. Thus we never have to leave python to do any SPICE simulation and with every part of the process of interacting with SPICE in python, we can take advantage of python’s clean programming language and full-stack to scientific tools to take SPICE into the 21st century. And did I mention that every tool is FREE!</p>
+<p>This wouldn’t be possible without the following specific works that allow us to Python &amp; SPICE with ease:</p>
+<ul class="simple">
+<li><p>Dave Vandenbout creator of <a class="reference external" href="https://github.com/xesscorp/skidl">SKiDl</a></p></li>
+<li><p>Fabrice Salvaire creator of <a class="reference external" href="https://github.com/FabriceSalvaire/PySpice">PySpice</a></p></li>
+<li><p>The <a class="reference external" href="http://ngspice.sourceforge.net/devel.html">ngspice development team</a></p></li>
+</ul>
+<p>In addition to the primary pipeline code, this book also uses the work of</p>
+<ul class="simple">
+<li><p>Michael Hayes creator of <a class="reference external" href="https://github.com/mph-/lcapy">Lcapy</a>
+which allows us to create schematics directly in jupyter notebooks.</p></li>
+</ul>
+<p>In addition, this book uses a lot of examples and follows the organization of one of the best YT channels on the analytical analysis of Electronics</p>
+<ul class="simple">
+<li><p>Rushal Shah creator of the YT channel <a class="reference external" href="https://www.youtube.com/c/ALLABOUTELECTRONICS/featured">ALL ABOUT ELECTRONICS</a></p></li>
+</ul>
+<div class="section" id="what-is-this-book-going-to-do-and-not-do-and-why-you-should-keep-reading">
+<h2>What is this book going to do/and not do and why you should keep reading:<a class="headerlink" href="#what-is-this-book-going-to-do-and-not-do-and-why-you-should-keep-reading" title="Permalink to this headline">¶</a></h2>
+<p>This book is not a guide to circuit and electronics theory and doing all the analytical math that comes with said theory.  For that reason, I have included a video from the YT channel ALL ABOUT ELECTRONICS who makes excellent circuit and electronic theory YT videos to consult and where I will be templating a majority of this book from. This is also not a guide to python, so you should already have familiarity with python to the point you can write your own classes and deploy basic Object Oriented Programing.</p>
+<p>What this book is going to show you is how to generate or import a SPICE netlist with python via SKiDl and manipulate said netlist. I cant, but I will in more detail shortly, stress how big a deal this is. Since one of the biggest frustrations of using SPICE is dealing with netlist. Even if you are using schematic capture tools to generate your netlist. Dealing with netlist is by far the most exasperating part of SPICE. This book is also going to be a dive into what SPICE can do. Trust me when I say this, there is a 99% chance you have barely put SPICE to work. And at the same time, I am going to point out the lacking of SPICE. And finely this book is going to show you how to maximize what  SPICE can do via wrapping it with python to make it easier to use and to analyze the data from SPICE like it, in all respect to EDA tool creators, has never been done before by leveraging the Python Scientific, Data Science, and Machine Learning ecosystems.</p>
+<div class="section" id="in-short">
+<h3>In short:<a class="headerlink" href="#in-short" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If you’re a student trying to learn circuits and electronics this book is going to show you how to quickly create your circuit understudy and get the most of the values you need lickety-split</p></li>
+<li><p>If you’re an educator this books is going to show you how to create interactive simulations</p></li>
+<li><p>If you’re a practicing designer this book is going to show you how to leverage SPICE with Python to not just simulate things by verify them as much as SPICE can do</p></li>
+<li><p>If you’re in test this book is going to show you how to simulate a DUT (to a reasonable degree) like the DUT was on the bench to do give you a starting point as a sanity check</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-most-important-thing-this-book-is-going-to-do-revolutionize-analog-mixed-single-design-verification">
+<h2>The most important thing this book is going to do: Revolutionize Analog/mixed single design verification.<a class="headerlink" href="#the-most-important-thing-this-book-is-going-to-do-revolutionize-analog-mixed-single-design-verification" title="Permalink to this headline">¶</a></h2>
+<p>So I learned electronics in Fort Collins Colorado, a town built on Hewlett-Packard (HP), and even worked for a time at a legacy VLSI group from the HP days. So I am going to use that terminology. And in the VLSI group I worked in I worked with a great Design Verification Group who was technically headed by an author of one of the first books are assertion-based design in HDL.  Why am I bringing that up, because I never heard about a problem in the digital logic parts of what we produced, and that was because the Design Verification group was a Digital Design Verification group and I am going to leave the analog and mixed-signal verification in that VLSI group to the readers own imagination.</p>
+<p>So I am using HP’s terminology for the design and release process, but no matter where you are there are always two major steps to releasing a product (or at least you hope there are). Where HP called those Phases 1 and 2 and both have numerous sup-phases. Phase 1 is the design stage, this is when HDL is written, put through design verification, RTL’ed, and placed (this is for both custom silicon and FPGA work)  on the digital side of things. And in analog/mixed-signal sides this is when circuits are down up, simulations are done, and things are laid out and routed for custom silicon or placed and routed for PCBs while working in tandem with Signal Integrity folks for the important interconnects.  After this and after a whole lot of going back and forth with the manufactures till everyone agrees there’s Tapeout (Tapeout refers to sending literal stacks of magnetic tape storage to the faps for ASICs creation back in the day) or Gerbered out (Gerber is the standard PCB place and route file format) and thus there’s no going back and begins Phase 2. Phase 2 is where you get to verify what was Taped/ Gerbered out. It is when you take what you design and you put it through rigorous testing (hopefully)  via stupidly expensive test and measurement equipment and real-world like conditions to find out what you shouldn’t have released from Phase 1. The outcome of Phase 2 is you either release with (again hopefully) realistic scaling of what your product can or can’t do, or you don’t release. If you have the resources you do what is called a Phase 1 spin either to get a release or as an updated version. Either way, your back to Phase 1 to fix or improve what should be manufactured and still having to redo Phase 2. And the whole exercise is expensive, especially if you have to spin.</p>
+<p>Notice something when I was talking about Phase 1, when talking about digital I said it’s “put through design verification” and when I talked about analog/mixed-signal I said, “simulations are done”. It’s a subtle but big difference. After all, any verification is going to included simulation. This difference is that verification is a systematic and rigorous set of simulations to verify functionality or lack thereof. And since the creation of HDL the digital logic verification folks have had it easy and it’s only been getting easier. On the other hand, pure analog simulation has always been hard and that’s ignoring E&amp;M solvers that are even harder but will not be discussed here. And mixed-signal has seen some improvement with things such abstraction of analog blocks via real number modeling, AMI, etc. But the fact of the matter is that things like real number models must be abstracted from analog simulations.</p>
+<p>So what is the big deal everything since everything has gone digital anyway and we just use DSP and ADCs and DACs; WRONG! First off, your ADC/DAC is a mixed-signal system and are predominantly analog. And secondly, digital devices are islands in a sea of analog. Think about it, unless you are using 100% verified IP or fully built FPGA boards that have all the analog already sorted out from the power, clocks, and IO your logic is at the mercy of the analog. Whether that be your power distribution system, your clocks, and or your low and or high speed interconnects; it all analog and if the analog isn’t up to snuff you digital now matter how well it’s been verified it’s useless.</p>
+<p>So why do the digital logic folk, expressly Verilog,  have it so easy and the analog folks don’t?  The obvious reason is that you’re hitting code with code. In HDL you write a logical or behavioral expression of what you want your logical system to do in code. From there to simulate you just instantiate that chunk of code in another chunk of code that contains your test stimuli vectors to see what happens. Furthermore, with Verilog and assertions, you can not only throw test vectors at the modules under test but also use powerful abstraction verification tools like formal verification that will also check the system when certain conditions are met. And then when all the verification is done you pass the module under test to an RTL synthesizer which then creates the hardware (FPGAs are a bit different but the same idea) from standard cells and there’s the silicon. In fact, there are quite a few commercial and open source tools that will do the formal varication and automatic test vector testing like SymbiYosys and the now being phased out Cadence’s Specman. And note here this is a high-level overview for contrast to analog/ mixed-signal. It’s a lot more involved with its own plights than I am letting on here.</p>
+<p>But in analog, we really have not had that kind of ease of writing code and smacking it with code to ensure the code works. And sure there are things like Verilog-AMI but that is very specialty stuff. The reality is that someone draws up a circuit in a schematic capture tool. And then if all the elements are there to do the SPICE simulation they have to export the netlist to the SPICE engine and run the simulation. Let alone then grab the data from the simulation and analyze it. If not all the elements are there to do the simulation, then the schematic has to be modified to add those elements, and then after the simulation, those extra elements need to be removed. Going back to the data from the simulation. Yes most SPICE engines have some basic math like FFTs but compared to Python it’s a joke and getting the data from your SPICE engine into a programming environment even like Matlab is not trivial and often evolves a lot of intermediate data steps like databases, excels, and CSVs. There are industry solutions (yeah right)  to this problem. The first is interactive SPICE controls via what is typically called probs. Some good examples of these are ANSYS’s Electronics Desktop and NI’s Multisim, but these again add elements to the schematic that need to be removed before place and route. The second solution is typically a programming route using the EDA vendor’s built-in API with such horrors as TCL, LISP,  SKILL, OCEAN, and even Matlab some rare times. But those are all mostly horrible out of data languages and every one of them has to be used exactly with its respective tool. And therefore, requires teams of just tool builders. Finally, there is the issue of SPICE is just slow. And thus, things like real-world modeling and AMI modeling were developed to create faster emulation objects that then work within the relatively fast Verilog/VHDL simulations. But the problem is that those models have to be extracted from the actual circuit that there emulating and if there are any changes to the circuit while, back to square one and to the problem of setting up those SPICE simulations.  And all and all this is why unless you have the team and resources to do it Analog is simulated and not verified because to do verification like the digital logic folk is an astronomic cost and thus the industry has accepted that tradeoff for a very long time. Though things are changing.</p>
+<p>So what is going to do about is and improve the discipline of Analog Verification.</p>
+<ol class="simple">
+<li><p>Where going to use SKiDl to enclose the fundamental building blocks of our circuits. Wither this is directly coded circuits in SKiDl or netlist capture from a schematic tool. Where even with terminal changes SKiDl gives us a way to manipulate the netlist programmatically with a grace that has not really been shown before with SPICE tools. Further, we can create testbench items with SKiDl and the other tools to very easily slap onto our DUT without altering the DUT’s base.</p></li>
+<li><p>Where going to develop wrappers around SPICE calls, even though pyspice,  to make performing a simulation trivial</p></li>
+<li><p>Where going to leverage the whole of the python scientific/data ecosystem to analyze the data to verify what is going on.</p></li>
+<li><p>The testbenchs and analysis code we write will try there best to emulate the measurements that would be done in the lab to a physical DUT and thus when we get data from the lab we can do a much more direct comparison to figure out what happened between phase 1 and phase 2 with unparalleled grace to what has been done</p></li>
+<li><p>And we will show how to extract high-level models using traditional real-world and AMI tools along with machine learning tools that Python is light years ahead of other traditional scientific programming languages of</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='right-next' id="next-link" href="needed_libraries.html" title="next page">Dependency install instruction</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

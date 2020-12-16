@@ -28,6 +28,9 @@ Factional issue may be logged in the issue with a statement why what is presente
 ### Editorial issues
 Editorial fixes will be a lower priority then Factual issues but will be reviewed. 
 
+## State of the Book
+Constant changes will be ongoing within the chapters. However, any reordering, chapter releases, or major code changes to the primary dependent libraries will get a new branch and revision in this repo.
+
 
 ```python
 

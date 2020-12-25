@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting started with Python &amp; SPICE, DC Operating Point Analysis &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with SKiDl elements" href="DC_2_op_source_transform.html" />
+    <link rel="prev" title="Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE" href="DC_1.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/DC_1/DC_1_op_ohm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_1_op_ohm.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/DC_1/DC_1_op_ohm.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Getting started with Python &amp; SPICE, DC Operating Point Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-a-circuit-to-produce-a-spice-netlist-with-skidl">
+     Building a circuit to produce a SPICE netlist with SKiDl¶
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spice-s-dc-operating-point-simulation-op">
+   SPICE’s DC Operating Point simulation
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     .op
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-brief-into-spice-simulation-automation-with-python">
+     A Brief into SPICE simulation automation with Python¶¶
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#citations">
+     Citations:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>TODO</strong></p>
+<ul class="simple">
+<li><p>clearfy language</p></li>
+</ul>
+<div class="section" id="getting-started-with-python-spice-dc-operating-point-analysis">
+<h1>Getting started with Python &amp; SPICE, DC Operating Point Analysis<a class="headerlink" href="#getting-started-with-python-spice-dc-operating-point-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile DC_1_Codes.py</span>
+<span class="c1">#Library import statements</span>
+
+<span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#can you say cheeky </span>
+<span class="kn">import</span> <span class="nn">PySpice</span> <span class="k">as</span> <span class="nn">pspice</span>
+<span class="c1">#becouse it&#39;s written by a kiwi you know</span>
+<span class="kn">import</span> <span class="nn">lcapy</span> <span class="k">as</span> <span class="nn">kiwi</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#notebook specific loading control statements </span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#tool to log notebook internals</span>
+<span class="c1">#https://github.com/jrjohansson/version_information</span>
+<span class="o">%</span><span class="k">load_ext</span> version_information
+<span class="o">%</span><span class="k">version_information</span> skidl, PySpice,lcapy, sympy, numpy, matplotlib, pandas, scipy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:01 2020 MST</td></tr></table></div></div>
+</div>
+<p>#Starting simple with the basic three¶
+By the basic three, I mean the <code class="docutils literal notranslate"><span class="pre">Linear</span> <span class="pre">Independent</span> <span class="pre">Voltage</span> <span class="pre">Sources</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span> <span class="pre">Independent</span> <span class="pre">Current</span> <span class="pre">Sources</span></code>, and <code class="docutils literal notranslate"><span class="pre">Resistors</span></code> as the three elements to start building primitive circuits. So what is an element, it’s SPICE terminology for any device or part that affects the voltage and or current in the circuit. To start with the only elements we are using in this section are Ideal Voltage Souces, Ideal Current Source, and ideal resistors. SPICE allows us to have some fairly fancy elements like semiconductor resistors, but let’s stick to the basics here.
+The other part of any circuit is interconnections between the elements where these in SPICE (99% of the time) are idealized zero loss wires, or in SPICE terminally nets. Where a net also represents a node in our circuit. SO to start we will look a the well-known relation between resistors and our independent sources as given by Ohms law. Where for the analytical explanation see All About Electronics YT video on “Ohm’s Law”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;PV8CMZZKrB4&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/PV8CMZZKrB4"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<p>Again the purpose of the work isn’t to go over the analytical paper and pencil work, but in part show how to use Python &amp; SPICE to verify our results and go further with SPICE circuit simulation enhanced by being wrapping as much as we can in Python. And so we start our first foray by verifying the results of the example circuit at the ~10:30 mark of All ABOUT ELELCTRONINCS YT video on “Ohm’s Law”, a simple voltage source, and resistor.</p>
+<div class="section" id="building-a-circuit-to-produce-a-spice-netlist-with-skidl">
+<h2>Building a circuit to produce a SPICE netlist with SKiDl¶<a class="headerlink" href="#building-a-circuit-to-produce-a-spice-netlist-with-skidl" title="Permalink to this headline">¶</a></h2>
+<p>The first thing to understand is that we are building a global circuit here. SKiDl also has local circuits where all of the circuit is contained to an object. And we will work with those eventually but for now, we will work with the global circuit. Where the global circuit will automatically append to its self any SKiDl elements instantiate between calls of <code class="docutils literal notranslate"><span class="pre">reset()</span></code>. Therefore, we have to call <code class="docutils literal notranslate"><span class="pre">reset()</span></code> to clear out the global circuit to a blank slate before adding to it.
+Secondly, let’s delve into the three things that all SPICE netlist must-have.</p>
+<ol class="simple">
+<li><p>Elements: these are the things that manipulate the electricity in a circuit</p></li>
+<li><p>Nets: nets are the same things as a single node, which is the same thing as idle traces or wires in a circuit. They direct the flow of electricity to and from the elements. In SPICE (till you get into layout) a net is an ideal connection between element terminals with a common voltage</p></li>
+<li><p>A master ground net: This is a net that has zero voltage that SPICE references all other voltages from. While there are many types of grounds especially important in more complex and mixed-signal circuits SPICE is only concerned with a universal ground designated as 0</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#clear global SkiDl circuit</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create one of two nets, gnd we get for free</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">)</span>
+
+<span class="c1">#create a voltage source and set it&#39;s dc value</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">)</span>
+<span class="c1">#connect the voltage source to the nets</span>
+<span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#create the resistor and set its value to the analytically found value</span>
+<span class="n">r1</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_Ohm</span><span class="p">)</span>
+<span class="c1">#cpnnect the resistor to the nets</span>
+<span class="n">r1</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#generate the netlist and print it</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+R1 N1 0 5Ohm
+V1 N1 0 10V
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what did we do to get the netlist and what does the netlist mean.</p>
+<p>In line 2 we called <code class="docutils literal notranslate"><span class="pre">reset()</span></code> this clears or resets, the global SKiDl netlist so that no previous elements or connections exist such that we have a blank slate.</p>
+<p>In line 4 a single net was created since this circuit only has two nodes or wires. Where one of those wires is at ground where we get for free with <code class="docutils literal notranslate"><span class="pre">gnd</span></code> which is the common name for the master ground</p>
+<p>In line 5 a voltage source is created. Pure DC voltage sources are created in SkiDl with <code class="docutils literal notranslate"><span class="pre">V()</span></code> but as will be shown when we get to AC circuits DC voltage sources are a subset of the global use of a linear independent voltage source in SPICE. Further, we set the Voltage source to a python object <code class="docutils literal notranslate"><span class="pre">vs</span></code>. We do this for two reasons.</p>
+<ol class="simple">
+<li><p>since everything is an object in python we can call and manipulate information about our voltage source <code class="docutils literal notranslate"><span class="pre">vs</span></code> using its variable name</p></li>
+<li><p>we need to be able to set it’s connections to the circuit</p></li>
+</ol>
+<p>In line 9 we connect the voltage source to our two nets, and again we get ground for free with <code class="docutils literal notranslate"><span class="pre">gnd</span></code> also since a voltage source is a directional element we need to tell it what connection (terminal) is connected to what net with the access call to <code class="docutils literal notranslate"><span class="pre">vs</span></code>: <code class="docutils literal notranslate"><span class="pre">['p',</span> <span class="pre">'n']</span></code>
+where <code class="docutils literal notranslate"><span class="pre">'p'</span></code> is the positive terminal and <code class="docutils literal notranslate"><span class="pre">'n'</span></code> is the negative one.</p>
+<p>In line 12 we create the resistor in the same way as the voltage source back on line 7 with the only difference being that the resistance of a resistor is universal to DC and AC so it’s argument is <code class="docutils literal notranslate"><span class="pre">value</span></code> and since 99% of the resistors in the world are omnidirectional we connect it to the nets in line 14  using an access call of just 1 &amp; 2 to tell what terminals are connected to what nets without regard to polarity.</p>
+<p>In line 17 we create the netlist and set it to the object <code class="docutils literal notranslate"><span class="pre">circ</span></code> the reason being is that we want to print out our netlist for debugging and again it’s an object so there is information in it we want to utilize. But we also have to because <code class="docutils literal notranslate"><span class="pre">circ</span></code> is not only an object with a netlist string it is a full circuit object that will be passed to the simulator shortly</p>
+<p>So what does the netlist say:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+<p>this is just the name of the circuit where we are ignoring right now</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R1</span> <span class="n">N1</span> <span class="mi">0</span> <span class="mi">5</span><span class="n">Ohm</span>
+</pre></div>
+</div>
+<p>This says that the circuit has an element <code class="docutils literal notranslate"><span class="pre">R1</span></code>. Where the first letter <code class="docutils literal notranslate"><span class="pre">R</span></code> tells SPICE it’s a resistor and <code class="docutils literal notranslate"><span class="pre">1</span></code> its designator. The rest of the statement says that it’s terminals are connected to  net <code class="docutils literal notranslate"><span class="pre">N1</span></code> and net <code class="docutils literal notranslate"><span class="pre">0</span></code>, ground, with a resistance of <code class="docutils literal notranslate"><span class="pre">5Ohm</span></code></p>
+<p>And the last line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">V1</span> <span class="n">N1</span> <span class="mi">0</span> <span class="mi">10</span><span class="n">V</span>
+</pre></div>
+</div>
+<p>says we have Indepened Voltage source <code class="docutils literal notranslate"><span class="pre">V1</span></code> where again the first letter <code class="docutils literal notranslate"><span class="pre">V</span></code> tells SPICE it’s an independent voltage source and its designator <code class="docutils literal notranslate"><span class="pre">1</span></code> with its positive terminal connected to net <code class="docutils literal notranslate"><span class="pre">N1</span></code> and negative terminal <code class="docutils literal notranslate"><span class="pre">0</span></code> connected to ground with a DC value of <code class="docutils literal notranslate"><span class="pre">10V</span></code></p>
+</div>
+</div>
+<div class="section" id="spice-s-dc-operating-point-simulation-op">
+<h1>SPICE’s DC Operating Point simulation <code class="docutils literal notranslate"><span class="pre">.op</span></code><a class="headerlink" href="#spice-s-dc-operating-point-simulation-op" title="Permalink to this headline">¶</a></h1>
+<p>This is the simplest of all simulations since it just produces results with everything being static. Now technically there is a .dc simulation that is coming up in this chapter  that gives the same results when set up a certain way. But that’s to come. And when using .dc simulation a series of operating point simulations are just being carried out in the background anyway. So let get in the habit of if we just need static value for a dc simulation we use operating point analysis.</p>
+<p>Also, what is the deal between AC and DC simulations? The main difference is that a DC simulation will ignore capacitors and inductors as opens and shorts respectively not only for true capacitor and inductor elements in the circuit but also all internal capacitors and inductors as part of an elements internal model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create a simulation obj from our circuit</span>
+<span class="n">sim</span><span class="o">=</span><span class="n">circ</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+<span class="c1">#perform the .op simulation and store results to new obj</span>
+<span class="n">dc_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">operating_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we have a simulation object made by <code class="docutils literal notranslate"><span class="pre">sim=circ.simulator()</span></code> where this creates a simulation environment of the circuit netlist stored in <code class="docutils literal notranslate"><span class="pre">circ</span></code> that is set to <code class="docutils literal notranslate"><span class="pre">sim</span></code>. When the simulation is created it is at default 25C. From there we can then call a simulation type to run on the circuit stored in  <code class="docutils literal notranslate"><span class="pre">sim</span></code> given that all the appropriate elements and connections are there to work with the simulation to get results that make sense. At the moment we’re sticking with the very basics by doing an operating point analysis via <code class="docutils literal notranslate"><span class="pre">dc_vals=sim.operating_point()</span></code> where <code class="docutils literal notranslate"><span class="pre">dc_vals</span></code> stores the result of the operating point analysis that was called with the<code class="docutils literal notranslate"><span class="pre">.operating_point()</span></code> method call. So to get our results we need to look at the first two things that are in <code class="docutils literal notranslate"><span class="pre">dc_vals</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#nodes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dc_vals Nodes: </span><span class="si">{dc_vals.nodes}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">#branches</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dc_vals Branches: </span><span class="si">{dc_vals.nodes}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dc_vals Nodes: {&#39;n1&#39;: WaveForm n1 [10.]@V}
+dc_vals Branches: {&#39;n1&#39;: WaveForm n1 [10.]@V}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will see that there are more things that a simulation can return but that is coming. The import results that most SPICE simulations store all the branch and node values. Where those values are stored in a dictionary inside <code class="docutils literal notranslate"><span class="pre">dc_vals</span></code>. Where simulation returns have a nice super dictionary of values to quickly retrieve results from and treat as NumPy arrays. But the supper dictionary is primarily a construct of the branch and node value results of the simulation as is shown in the cell above. If you need a reference on circuit terminally conventions, please watch the following video from ALL ABOUT ELECTRONICS  “Circuit terminology: Concept of Loop, Mesh, Node and Branch explained”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;zUGaU4kZpag&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/zUGaU4kZpag"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<p>To use the supper dictionary lookup of the results from a simulation we have to input the exact NETLIST name of the source or node as shown</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get voltage at the node</span>
+<span class="n">dc_vals</span><span class="p">[</span><span class="s1">&#39;N1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WaveForm n1 [10.]@V
+</pre></div>
+</div>
+</div>
+</div>
+<p>but this is tedious and since we have to look back at the netlist so instead we can take advantage of Python to automate this and put our results in a convenient table with SKiDl’s help</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">circ</span><span class="o">.</span><span class="n">node_names</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{n}</span><span class="s2"> :</span><span class="si">{dc_vals[n]}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;got an error when trying to retrive node voltage </span><span class="si">{n}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">with the following  error: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>got an error when trying to retrive node voltage 0 
+with the following  error: 
+
+Traceback (most recent call last):
+  File &quot;/home/iridium/anaconda3/lib/python3.7/site-packages/PySpice/Probe/WaveForm.py&quot;, line 294, in __getitem__
+    return self._get_item(name)
+  File &quot;/home/iridium/anaconda3/lib/python3.7/site-packages/PySpice/Probe/WaveForm.py&quot;, line 288, in _get_item
+    raise IndexError(name)
+IndexError: 0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;&lt;ipython-input-9-528ab68a0bd1&gt;&quot;, line 3, in &lt;module&gt;
+    print(f&quot;Node {n} :{dc_vals[n]}&quot;)
+  File &quot;/home/iridium/anaconda3/lib/python3.7/site-packages/PySpice/Probe/WaveForm.py&quot;, line 296, in __getitem__
+    return self._get_item(name.lower())
+  File &quot;/home/iridium/anaconda3/lib/python3.7/site-packages/PySpice/Probe/WaveForm.py&quot;, line 288, in _get_item
+    raise IndexError(name)
+IndexError: 0
+
+Node N1 :n1
+</pre></div>
+</div>
+</div>
+</div>
+<p>What this means that we can’t blindly use SKiDl since ngspice does not report a voltage for the ground since it is by definition always at 0V so we, therefore, need to skip it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">circ</span><span class="o">.</span><span class="n">node_names</span><span class="p">:</span>
+    <span class="c1">#skip the ground node</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> 
+        <span class="k">continue</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{n}</span><span class="s2"> with voltage {dc_vals[n].as_ndarray()}&quot;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Node N1 with voltage [10.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will stop here and focuses on getting the currents cause in spice getting the currents is going to be convoluted. To start there are two ways to get current in SPICE. The one that doesn’t work all the time is to use internal parameters that we will address later. The surefire way is to measure the current through a voltage source. That means we can get a current measurement at a branch in our circuit for free if there is a voltage source already in that branch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#not correct sign, see description below</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Current at vs: {dc_vals[vs.ref].as_ndarray()} A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current at vs: [-2.] A
+</pre></div>
+</div>
+</div>
+</div>
+<p>So first we took advantage of SKiDl to store the netlist name for the voltage source within the <code class="docutils literal notranslate"><span class="pre">vs</span></code> object and pass its name to our simulation results. But the current is negative with respect to our voltage sources terminal definitions. This is due to the fact that the direction of current flow is from high voltage to lower voltage. So from the circuit’s point of view, the current goes from the positive terminal of the voltage source through the resistor to ground where the negative voltage of our voltage source also is. But between the two terminals of the voltage source current is flowing directly from the positive terminal to the negative one and so with the way SPICE does the accounting with supernodes the current between the terminals of a voltage source equals the opposite of the current through the supernode imposed by a voltage source</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#correct current</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Current at vs: {-dc_vals[vs.ref].as_ndarray()} A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current at vs: [2.] A
+</pre></div>
+</div>
+</div>
+</div>
+<p>So if we needed to measure the current at any other branches we would have to add a voltage source that would not affect our circuit via adding a 0V source in line. This trick is known as adding a SPICE ammeter. And as will be shown further SKiDl makes adding a SPICE ammeter trivial. Opposed to having to rework schematics to add one. For our first section introducing SKiDl, PySPICE, and SPICE this is enough. In the following sections of this chapter on DC SPICE simulations, we will get familiar enough with creating circuits with SKiDl and controlling SPICE with PySPICE. So to end this section let’s now introduce the power of automation SPICE with python.</p>
+<div class="section" id="a-brief-into-spice-simulation-automation-with-python">
+<h2>A Brief into SPICE simulation automation with Python¶¶<a class="headerlink" href="#a-brief-into-spice-simulation-automation-with-python" title="Permalink to this headline">¶</a></h2>
+<p>In the work above we manually created the circuit, the simulation object, calling an operating point simulation against the simulation object, and finally, we semi-manually sorted through operating point simulation results. We chose here to create the circuit in SKiDL instead of a schematic capture tool. Because: one for small circuits it’s a lot faster, and two serves our usage of showing how to use SKiDl. And as we will come to see we can also encapsulate parts of circuits inside python functions and classes with SkiDl to then tag onto other circuits. We also manually created our circuit simulation object and then called a SPICE simulation against it. If you have never worked with any other SPICE interface before I can’t stress how powerful this is to just be able to call a SPICE simulation like that. And in fact, nothing is stopping us, save the requirements of any particular SPICE simulation, from calling a myriad of SPICE simulations against the simulation object. But every time we do one of these simulations we also have to handle the data that it produces. Above we walked through how data is returned for operating point analysis and had to do a fair bit of repetitive work to get the data back in not the most presentable of manors. So let rectify that and remove that burden by creating a class to handle performing the operating point simulation, collecting the results into pandas dataframe, and spitting out at the result. For this, the result is given below, as we continue through this book we will go over the creation of these tools in what is known as abstraction. Where being able to abstract and automate the simulation and reporting will truly showcase the power of integrating SPICE with Python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 1 op_results_collect class</span>
+<span class="c1">#used for basic operating point simulation analysis, does not support internal parameters</span>
+
+<span class="k">class</span> <span class="nc">op_results_collect</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic class to get pyspice operating_point (ngspice `.op`) simulation results</span>
+<span class="sd">    for simulated circuit&#39;s global elements, no internal parameters just yet, that&#39;s coming</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_sim_circ</span><span class="p">,</span> <span class="n">display_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Basic class to get pyspice operating_point (ngspice `.op`) simulation results</span>
+<span class="sd">        for simulated circuit&#39;s global elements</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            op_sim_circ (pspice.Spice.Netlist.Circuit): the Netlist circuit produced </span>
+<span class="sd">            from SKiDl&#39;s `generate_netlist()`</span>
+<span class="sd">            </span>
+<span class="sd">            display_results (bool; False): option to have the simulation results</span>
+<span class="sd">                stored in `self.results_df` automatic displayed from a jupyter notebook</span>
+<span class="sd">                ell</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            will create a simulation in `self.op_sim`, raw results of dc operating </span>
+<span class="sd">            point simulation will be stored in `self.op_sim_results`, the tablized</span>
+<span class="sd">            results will be stored in pandas dataframe `self.results_df`</span>
+<span class="sd">        </span>
+<span class="sd">        TODO: </span>
+<span class="sd">            - add kwargs to the simulator</span>
+<span class="sd">            - add an assertion that only a pyspice netlist circuit obj can</span>
+<span class="sd">                    be passed into op_sim_circ</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#need to add assertions for op_sim_circ ==pspice.Spice.Netlist.Circuit</span>
+        
+        <span class="c1">#store the circuit internally</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_sim_circ</span><span class="o">=</span><span class="n">op_sim_circ</span>
+        <span class="c1">#create the sim obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">op_sim_circ</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+        <span class="c1">#do the sim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_sim_results</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">op_sim</span><span class="o">.</span><span class="n">operating_point</span><span class="p">()</span>
+        <span class="c1">#get the results in a table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="n">display_results</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">create_results_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates an empty dataframe of the results</span>
+<span class="sd">        Args:</span>
+<span class="sd">            none</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            self.results_df: a pandas dataframe </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#could be done in self.__init__ but OOP</span>
+        <span class="c1">#create pandas DF container</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Circ_Item&#39;</span><span class="p">,</span> <span class="s1">&#39;Item_Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="s1">&#39;Unit&#39;</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">get_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">display_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves elements and nodes from the circuit and then gets the corresponding </span>
+<span class="sd">        value from the simulation</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            display_results (bool; False): if True will use ipython display to show </span>
+<span class="sd">            self.results_df just below the cell</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            self.results_df: populated dataframe of simulation results</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#insure the dataframe is constructed to fill</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_results_df</span><span class="p">()</span>
+        
+        <span class="c1">#get node voltages</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_sim_circ</span><span class="o">.</span><span class="n">node_names</span><span class="p">:</span>
+            <span class="c1">#skip ground</span>
+            <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="c1">#add row and set value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">),</span> <span class="p">:]</span><span class="o">=</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="s1">&#39;Node_Voltage&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_sim_results</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;V&#39;</span><span class="p">]</span>
+        
+        <span class="c1">#get the current from  any voltage sources</span>
+        <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_sim_circ</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="c1">#only look at voltage sources since SPICE uses them for current reading</span>
+            <span class="k">if</span> <span class="s1">&#39;V&#39;</span><span class="o">==</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="c1">#the negative sign on the results will be explained in alsdkjfaldsjlk</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">),</span> <span class="p">:]</span><span class="o">=</span><span class="p">[</span><span class="n">cm</span><span class="p">,</span> <span class="s1">&#39;Branch_Curr&#39;</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">op_sim_results</span><span class="p">[</span><span class="n">cm</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span>
+        
+        <span class="c1">#gets rid of the generic index and replace it with items are index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Circ_Item&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        
+        <span class="c1">#prety display of results</span>
+        <span class="k">if</span> <span class="n">display_results</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span>
+ 
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#clear global SkiDl circuit</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create one of two nets, gnd we get for free</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">)</span>
+
+<span class="c1">#create a voltage source and set its dc value</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">)</span>
+<span class="c1">#connect the voltage source to the nets</span>
+<span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#create the resistor and set its value to the analytically found value</span>
+<span class="n">r1</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_Ohm</span><span class="p">)</span>
+<span class="c1">#cpnnect the resistor to the nets</span>
+<span class="n">r1</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#generate the netlist and print it</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+
+<span class="n">op_results_collect</span><span class="p">(</span> <span class="n">circ</span><span class="p">,</span> <span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+R1 N1 0 5Ohm
+V1 N1 0 10V
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Item_Type</th>
+      <th>Value</th>
+      <th>Unit</th>
+    </tr>
+    <tr>
+      <th>Circ_Item</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N1</th>
+      <td>Node_Voltage</td>
+      <td>10</td>
+      <td>V</td>
+    </tr>
+    <tr>
+      <th>V1</th>
+      <td>Branch_Curr</td>
+      <td>2</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As you can see we were able to just pass our <code class="docutils literal notranslate"><span class="pre">circ</span></code> object into our created <code class="docutils literal notranslate"><span class="pre">op_results_collect</span></code> tool and it created the simulation object, performed the operating point analysis, and collected all the data into a dataframe that is easy to read and can be stored to a variable and be analyzed by the rest of the Python scientific ecosystem all in one line.</p>
+</div>
+<div class="section" id="citations">
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<p>[1] ALL ABOUT ELECTRONICS. “Ohm’s law Explained
+,” YouTube, Dec 17, 2016. [Video file]. Available: https://youtu.be/PV8CMZZKrB4. [Accessed: Nov 30, 2020].</p>
+<p>[2] ALL ABOUT ELECTRONICS. “Circuit terminology: Concept of Loop, Mesh, Node and Branch explained,” YouTube, Jan 24, 2017. [Video file]. Available: https://youtu.be/zUGaU4kZpag. [Accessed: Nov 30, 2020].</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./DC_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="DC_1.html" title="previous page">Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE</a>
+    <a class='right-next' id="next-link" href="DC_2_op_source_transform.html" title="next page">Working with SKiDl elements</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

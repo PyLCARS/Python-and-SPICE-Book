@@ -1,0 +1,2760 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>DC Sweeps &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
+    <link rel="prev" title="Working with SKiDl elements" href="DC_2_op_source_transform.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   DC Sweeps
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dc-load-sweep-of-an-ideal-voltage-source">
+   DC load sweep of an Ideal Voltage source
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-better-dc-sim-interaction">
+   A Better
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     .dc
+    </span>
+   </code>
+   Sim Interaction¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ideal-current-source">
+   Ideal Current Source¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-testbench-element">
+   First testbench element¶
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-ideal-voltage-source-testbench">
+     Non-Ideal Voltage  Source Testbench¶
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-ideal-current-source-testbench">
+     Non-Ideal Current Source Testbench¶
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#citations">
+     Citations:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>TODO</strong></p>
+<ul class="simple">
+<li><p>just the general stuff</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Library import statements</span>
+
+<span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#can you say cheeky </span>
+<span class="kn">import</span> <span class="nn">PySpice</span> <span class="k">as</span> <span class="nn">pspice</span>
+<span class="c1">#becouse it&#39;s written by a kiwi you know</span>
+<span class="kn">import</span> <span class="nn">lcapy</span> <span class="k">as</span> <span class="nn">kiwi</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#notebook specific loading control statements </span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#tool to log notebook internals</span>
+<span class="c1">#https://github.com/jrjohansson/version_information</span>
+<span class="o">%</span><span class="k">load_ext</span> version_information
+<span class="o">%</span><span class="k">version_information</span> skidl, PySpice,lcapy, sympy, numpy, matplotlib, pandas, scipy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:10 2020 MST</td></tr></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dc-sweeps">
+<h1>DC Sweeps<a class="headerlink" href="#dc-sweeps" title="Permalink to this headline">¶</a></h1>
+<p>In the last two sections, we worked with SPICE operating point analysis (.op) which just gives us static values for everything in the circuit. While this is handy for getting values it’s not really that useful. What is more useful is seeing some kind of “dynamic” response of the circuit. If you know anything about SPICE you might be thinking of Transient simulations, but that is to come. Right now we want to look at the DC response of the circuit to some swept value in the circuit. To do this we use the DC simulation in ngspice (<code class="docutils literal notranslate"><span class="pre">.dc</span></code>) to shift the value of one of the elements in the circuit. Technically as of writing this ngspice (vs33) <code class="docutils literal notranslate"> <span class="pre">.dc</span></code> can sweep two values at the same time but the results are interlaced results and it’s just worth doing when we can pay a slight speed penalty for using python tools like xarray to look for relations resulting from N number of individual variable sweeps. (Also as of the time of writing this pyspice will not sweep anything other than voltage and current sources, this is on my list of things to fix since ngspice by its self can sweep more than just voltage and current sources)</p>
+<p>To illustrate DC sweeps and also to present SKiDl’s subcircuit feature (more on that below) we look at Ideal vs Non-Ideal sources response to load effects. The example circuits  are based on the examples from  ALL ABOUT ELECTRONICS “Ideal Voltage Source vs. Practical Voltage Source” and “Ideal Current Source vs. Practical Current Source” that gives a good review of ideal vs non-ideal sources</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;TRzpqHwb-5Y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">306</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/TRzpqHwb-5Y?start=306"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@~5min</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;dTf1h_xhHng&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">173</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/dTf1h_xhHng?start=173"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+</div>
+<div class="section" id="dc-load-sweep-of-an-ideal-voltage-source">
+<h1>DC load sweep of an Ideal Voltage source<a class="headerlink" href="#dc-load-sweep-of-an-ideal-voltage-source" title="Permalink to this headline">¶</a></h1>
+<p>So the first thing is we create a circuit just like we would for an operating point simulation previously. And even though we are going to be sweeping values in our elements we must give all elements initial values, even if they’re not in our sweep range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;_vs&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">30</span><span class="nd">@u_V</span><span class="p">)</span>
+
+<span class="n">dummy_load</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;dload&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_A</span><span class="p">)</span>
+
+<span class="n">gnd</span> <span class="o">&amp;</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>  <span class="o">&amp;</span> <span class="n">dummy_load</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">gnd</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V_vs N_1 0 30V
+Idload N_1 0 1A
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next thing we do is create a pyspice simulation object just like we would do for an operating point analysis to give us access to ngspice and from which we call the DC simulation from. In the following cell, we invoke the .dc simulation on the second line. The general syntax for which is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pyspice</span> <span class="n">sim</span> <span class="n">obj</span><span class="o">&gt;.</span><span class="n">dc</span><span class="p">(</span><span class="o">&lt;</span><span class="n">SPICE</span> <span class="n">netlist</span> <span class="n">element</span> <span class="n">name</span> <span class="n">to</span> <span class="n">sweep</span><span class="o">&gt;=</span><span class="nb">slice</span><span class="p">(</span><span class="o">&lt;</span><span class="n">sweep</span> <span class="n">stating</span> <span class="n">value</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">sweep</span> <span class="n">noninclusive</span> <span class="n">ending</span> <span class="n">value</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">sweep</span> <span class="n">step</span> <span class="n">size</span><span class="o">&gt;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>.dc is the method call and it uses pythons kwargs to accepts the SPICE netlist element full reference that we intend to sweep. So that in this case we are sweeping <code class="docutils literal notranslate"><span class="pre">dummy_load</span></code> as our current draw on the voltage source, and its netlist entry is <code class="docutils literal notranslate"><span class="pre">Idload</span></code>. So we pass Idload as the keyword argument to <code class="docutils literal notranslate"><span class="pre">.dc</span></code>. Then we set the value of the argument using pythons’ built-in <code class="docutils literal notranslate"><span class="pre">slice</span></code> function. If you have never used it before it’s a way of setting list indexing to a variable and in this case, passing list indexing through a stack. Here is a quick example that you can see <code class="docutils literal notranslate"><span class="pre">slice</span></code> in action for yourself</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a_array</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">a_slice</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">#start at item 8, up to item 15, by 3 items</span>
+<span class="p">(</span><span class="n">a_array</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">==</span><span class="n">a_array</span><span class="p">[</span><span class="n">a_slice</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Back to doing a <code class="docutils literal notranslate"><span class="pre">.dc</span></code> sim, we want to sweep our load dummy_load that will draw from 0A up to 1000A (not including) with a step size of 0.1A and see what effect it has on the source. So our code will be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dc_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="n">Idload</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">dc_vals</span></code> is just the simulation results, just like an operating point analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">=</span><span class="n">circ</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+<span class="n">dc_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="n">Idload</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our results are accessed just like the results of an operating point analysis expect two things. One we get arrays of results for each item measured instead of just a float. Though we could get a single value if we set the .dc to only capture one point. And secondly, we have a new access <code class="docutils literal notranslate"><span class="pre">.sweep</span></code> that stores the value of the sweep variable. This means that the value at any index of the <code class="docutils literal notranslate"><span class="pre">.sweep</span></code> returned array is the circuit measured response to the sweep value at that same index.</p>
+<p>And since we now have arrays of results we can start to do plotting. Where for this example we are going to store our voltage and current results from the simulations. Where the current is going to be the swept value. And then plot the two on an I-V plot. Whereas expected the voltage at the output of our source is unaffected by the load current.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iv_voltage</span><span class="o">=</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">node</span><span class="p">(</span><span class="n">dummy_load</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+<span class="n">iv_current</span><span class="o">=</span><span class="n">dc_vals</span><span class="o">.</span><span class="n">sweep</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">iv_current</span><span class="p">,</span> <span class="n">iv_voltage</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Load Draw [A]&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Source Voltage [V]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ideal Voltage Source response to any load&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Ideal Voltage Source response to any load&#39;)
+</pre></div>
+</div>
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_12_1.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_12_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="a-better-dc-sim-interaction">
+<h1>A Better <code class="docutils literal notranslate"><span class="pre">.dc</span></code> Sim Interaction¶<a class="headerlink" href="#a-better-dc-sim-interaction" title="Permalink to this headline">¶</a></h1>
+<p>So as we saw that was tedious. And we have already abstracted operating point analysis away in the previous sections. So using what we leaned doing that abstraction combined with what we have just learned about how a <code class="docutils literal notranslate"><span class="pre">.dc</span></code> simulation works in contrast to a <code class="docutils literal notranslate"><span class="pre">.op</span></code> we can abstract via the following steps:</p>
+<ol class="simple">
+<li><p>create the ngspice simulation access object</p></li>
+<li><p>get the element we want to sweep SPICE name</p></li>
+<li><p>construct our sweep via a slice</p></li>
+<li><p>perform the .dc simulation</p></li>
+<li><p>get results into more accessible structures</p></li>
+<li><p>(extra) create a quick plot tool</p></li>
+</ol>
+<p>Below we accomplished that with the following class</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 3 dc_ease class</span>
+<span class="c1"># class to perform easily perform DC sweep simulations</span>
+<span class="c1">#gets both branch currents/node voltages and also internal parameters</span>
+
+<span class="k">class</span> <span class="nc">dc_ease</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class to perform DC (.dc) SPICE simulation with some grace; only does single variable</span>
+<span class="sd">    and is currently limited to what +variable pyspice supports</span>
+<span class="sd">    </span>
+<span class="sd">    TODO:</span>
+<span class="sd">        make so that it can iterate over all filled in entries in `self.sweep_DF` and</span>
+<span class="sd">        exports data to xarray</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circ_netlist_obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class to perform DC (.dc) SPICE simulation with some grace; only does single variable</span>
+<span class="sd">        and is currently limited to what variable pyspice supports</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            circ_netlist_obj (pspice.Spice.Netlist.Circuit): the Netlist circuit produced </span>
+<span class="sd">                from SKiDl&#39;s `generate_netlist()`</span>
+<span class="sd">        </span>
+<span class="sd">        Returns: </span>
+<span class="sd">            creates a table of variables that could be swept in `self.sweep_DF`</span>
+<span class="sd">            this table will still need to be filled out for a single variable to be swept</span>
+<span class="sd">        </span>
+<span class="sd">        TODO: add kwargs to pass to sim creation</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#need to add assertions for op_sim_circ ==pspice.Spice.Netlist.Circuit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">=</span><span class="n">circ_netlist_obj</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_table</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">_build_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        protected method to create `self.sweep_DF` dataframe of all things in the</span>
+<span class="sd">        the circuit that can be swept; currently that is only voltage and current sources</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            -when pyspice accepts more things to sweep add them below</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Element&#39;</span><span class="p">,</span> <span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="s1">&#39;Stop&#39;</span><span class="p">,</span> <span class="s1">&#39;Step&#39;</span><span class="p">])</span>
+        
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="p">),</span> <span class="s1">&#39;Element&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">e</span>
+        
+        <span class="c1">#convert ELmenet to index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Element&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verify_integrity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+
+        
+    <span class="k">def</span> <span class="nf">clean_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper method to clean `self.sweep_DF` of any rows that are not to going to be swept</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">addback_elements_2table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Helper method to return empty rows to `self.sweep_DF` to manually then add sweep info to</span>
+<span class="sd">        uses `self._build_table` to rebuild the table</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">e</span><span class="p">,</span> <span class="p">:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    
+    <span class="c1">#so ngspice is only 2d sweeps and so need figurer this out to do 2d sets</span>
+    <span class="c1">#but will, for now, do sets of 1d</span>
+    <span class="c1">#def _make_sim_control(self):</span>
+    <span class="c1">#    self.clean_table()</span>
+    <span class="c1">#    </span>
+    <span class="c1">#    #for now dc sim through pyspice only support voltage and current sources</span>
+    <span class="c1">#    self.dc_contorl={row[0]: slice(row[1], row[2], row[3]) for row in self.sweep_DF.itertuples() if row[0][0] in [&#39;V&#39;, &#39;I&#39;]}</span>
+    
+    
+    <span class="k">def</span> <span class="nf">_make_sim_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Internal method to extract the row information to the .dc kargs and slice argument</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            varible (str): the index in `self.sweep_DF` to exstract the info from</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            `self.dc_contorl` what is feed into the .dc to do the simulation for a single var</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#clean the table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_table</span><span class="p">()</span>
+        <span class="c1">#get the location of the variable&#39;s index</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">row</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">varible</span><span class="p">)</span>
+            <span class="c1">#get said row</span>
+            <span class="n">row</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+            <span class="c1">#need to fix this in pyspice to make it fully ngspice capale</span>
+            <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span>
+            
+            <span class="c1">#build the control</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dc_contorl</span><span class="o">=</span><span class="p">{</span><span class="n">row</span><span class="o">.</span><span class="n">name</span><span class="p">:</span><span class="nb">slice</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">Start</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">Stop</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">Step</span><span class="p">)}</span>
+            
+            <span class="k">return</span> <span class="mi">0</span>
+            
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Variable: </span><span class="si">{varible}</span><span class="s1"> is not in or able self.sweep_DF to be swept &#39;</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">do_dc_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does a standard Branch and Node .dc simulation for a single filled out row in `self.sweep_DF`</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            variable (str): the index in `self.sweep_DF` that corresponds to the thing to sweep in the .dc simulation</span>
+<span class="sd">        </span>
+<span class="sd">        Returns: </span>
+<span class="sd">            raw results are stored in `self.dc_vals`, processed results are automatically stored in </span>
+<span class="sd">            `self.dc_resultsNB_DF` via `self.record_dc_nodebranch`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_sim_control</span><span class="p">(</span><span class="n">varible</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_contorl</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_dc_nodebranch</span><span class="p">(</span><span class="n">varible</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+                
+        
+    
+    <span class="k">def</span> <span class="nf">record_dc_nodebranch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Helper method to put .dc node branch results into a dataframe where the index is the  variable</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            variable (str): used to set the index name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            `self.dc_resultsNB_DF` which is a pandas dataframe with the index being the sweep and the columns being</span>
+<span class="sd">            the node voltages and branch currents from any available voltage sources</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="o">.</span><span class="n">sweep</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">())</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">varible</span>
+        
+        <span class="c1">#get node voltages:</span>
+        
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+        
+        <span class="c1">#get the current from any voltage sources:</span>
+        <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;V&#39;</span><span class="o">==</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="n">cm</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span><span class="p">]</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">do_dc_intsim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does a .dc simulation the internal variables for  a single filled out row in `self.sweep_DF`</span>
+<span class="sd">        Right now the internal variables gathered are:</span>
+<span class="sd">        current, voltage power for: VCCS VCVS, CCVS, CCCS, Independent current source </span>
+<span class="sd">        current and power for Resistors and independent voltage sources</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            variable (str): the index in `self.sweep_DF` that corresponds to the thing to sweep in the .dc simulation</span>
+<span class="sd">        </span>
+<span class="sd">        Returns: </span>
+<span class="sd">            raw results are stored in `self.dc_resultsINT_DF`, processed results are automatically stored in </span>
+<span class="sd">            `self.dc_resultsNB_DF` via `self.record_dc_internals`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="o">=</span><span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;R&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="o">+=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[i]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[p]&#39;</span><span class="p">]</span>
+            
+            <span class="k">elif</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;I&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="o">+=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[c]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[v]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[p]&#39;</span><span class="p">]</span>
+            
+            <span class="k">elif</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;V&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="o">+=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[i]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[p]&#39;</span><span class="p">]</span>
+            
+            <span class="k">elif</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="o">+=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[i]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[v]&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;@</span><span class="si">{e}</span><span class="s1">[p]&#39;</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_sim_control</span><span class="p">(</span><span class="n">varible</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">save_internal_parameters</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_contorl</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_dc_internals</span><span class="p">(</span><span class="n">varible</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">record_dc_internals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">        Helper method to put .dc internal variable results into a dataframe where the index is the  variable</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            variable (str): used to set the index name</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            `self.dc_resultsINT_DF` which is a pandas dataframe with the index being the sweep and the columns being</span>
+<span class="sd">            the saved internal variables</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="o">.</span><span class="n">sweep</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">varible</span>
+
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_internals</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;I&#39;</span> <span class="ow">and</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c&#39;</span><span class="p">:</span>
+                <span class="n">result_name</span><span class="o">=</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span>
+            
+            <span class="k">elif</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;i&#39;</span><span class="p">:</span>
+                <span class="n">result_name</span><span class="o">=</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span>
+            
+            <span class="k">elif</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;v&#39;</span><span class="p">:</span>
+                <span class="n">result_name</span><span class="o">=</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span>
+            
+            <span class="k">elif</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;p&#39;</span><span class="p">:</span>
+                <span class="n">result_name</span><span class="o">=</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">+</span><span class="s1">&#39;_[W]&#39;</span>
+            
+            <span class="c1">#deal with the fliped current for voltage sources even internally</span>
+            <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;V&#39;</span> <span class="ow">and</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;i&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="p">[</span><span class="n">result_name</span><span class="p">]</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="p">[</span><span class="n">result_name</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+            
+    
+    <span class="k">def</span> <span class="nf">quick_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodebranch_int_cont</span><span class="o">=</span><span class="s1">&#39;nb&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a quick plot of all columns with respect to the index for the data stored in </span>
+<span class="sd">        `self.dc_resultsNB_DF` or `self.dc_resultsINT_DF`. Note that for larger cirucits</span>
+<span class="sd">        these plots can have a ridicules number of subplots so yeah there is a reason for this</span>
+<span class="sd">        methods name</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            nodebranch_int_cont (str; &#39;nb&#39;): control word for wither to plot the node branch data (&#39;nb&#39;)</span>
+<span class="sd">                or the internal data (&#39;int&#39;)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Creates a rudimentary plot sharing a common x axis correspond the index</span>
+<span class="sd">            for the data source and subplot row for each column in the data source</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="n">nodebranch_int_cont</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;nb&#39;</span><span class="p">,</span> <span class="s1">&#39;int&#39;</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{nodebranch_int_cont}</span><span class="s1"> in not a allowed control statment&#39;</span>
+        <span class="c1">#add a check for existence</span>
+        
+        <span class="k">if</span> <span class="n">nodebranch_int_cont</span><span class="o">==</span><span class="s1">&#39;nb&#39;</span><span class="p">:</span>
+            <span class="n">plotDF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span>
+        <span class="k">elif</span> <span class="n">nodebranch_int_cont</span><span class="o">==</span><span class="s1">&#39;int&#39;</span><span class="p">:</span>
+            <span class="n">plotDF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span>
+        
+        
+        <span class="n">plotDF</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># won&#39;t work for a data source with lots of columns</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now let’s walk through using our nee tool and make sure we can get the same results. Pro tip: you can write as many docstrings as you want (and definitely should) but walk-through examples are worth a lot more to both you hours after you write the code and to the person who is picking up the code from you.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instantiate the class instance and pass in the circuit under test (DUT)</span>
+<span class="n">dc_sweep</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="c1">#get the created control dataframe this is `self.sweep_DF`</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>V_vs</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As stated we create a dataframe that holds all the things we can sweep that we have to fill out. Because we only simulate the results of sweeping one variable at a time this allows us to have some kind of ledger of things we want to sweep. To set the values we use the index and pandas <code class="docutils literal notranslate"><span class="pre">.at</span></code> accessor to give each row it’s starting, stopping, and step value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Idload&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>V_vs</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <td>0</td>
+      <td>10</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;V_vs&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>V_vs</th>
+      <td>0</td>
+      <td>10</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <td>0</td>
+      <td>10</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The thing about testing either code or our circuit is that to truly verify functionally it’s not good enough to test just what something is supposed to do but also test to make sure it shouldn’t do things we know it shouldn’t do. So let’s tell <code class="docutils literal notranslate"><span class="pre">dc_sweep</span></code> to do a simulation on a variable not in the control structure <code class="docutils literal notranslate"><span class="pre">dc_sweep.sweep_DF</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_sim</span><span class="p">(</span><span class="s1">&#39;Rload&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Variable: Rload is not in or able self.sweep_DF to be swept 
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we see that it indeed threw and caught a key error since <code class="docutils literal notranslate"><span class="pre">Rload</span></code> is not an index in <code class="docutils literal notranslate"><span class="pre">dc_sweep.sweep_D</span></code>F as we intended in <code class="docutils literal notranslate"><span class="pre">dc_sweep._make_sim_control</span></code>. If this was production code we would be looping all sorts of tests against this to verify this code’s performance before we even let it try to verify any circuits under test. But functional verification of code is not the goal of this book but is a subject the reader should study.
+Let’s now have it sweep the dummy load as we did manually and make sure we get the same results, as we should since we are using the same circuit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_sim</span><span class="p">(</span><span class="s1">&#39;Idload&#39;</span><span class="p">)</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N_1_[V]</th>
+      <th>V_vs_[A]</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>And indeed, we get what we got manually, now let us do this again for the internals. But since the internals were not simulated when we did this manually, we must use our EE knowledge to still do the sanity check. In this cause is obvious that the voltage through the current source that serves as our load should always be 30V where the sign is flipped because SPICE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_intsim</span><span class="p">(</span><span class="s1">&#39;Idload&#39;</span><span class="p">)</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @idload[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v_vs[p] power
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>V_vs[i]_[A]</th>
+      <th>V_vs[p]_[W]</th>
+      <th>Idload[c]_[A]</th>
+      <th>Idload[v]_[V]</th>
+      <th>Idload[p]_[W]</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>-0.0</td>
+      <td>-0.0</td>
+      <td>0.0</td>
+      <td>-30.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.1</td>
+      <td>3.0</td>
+      <td>0.1</td>
+      <td>-30.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.2</td>
+      <td>6.0</td>
+      <td>0.2</td>
+      <td>-30.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.3</td>
+      <td>9.0</td>
+      <td>0.3</td>
+      <td>-30.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.4</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>-30.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>9.6</td>
+      <td>288.0</td>
+      <td>9.6</td>
+      <td>-30.0</td>
+      <td>288.0</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>9.7</td>
+      <td>291.0</td>
+      <td>9.7</td>
+      <td>-30.0</td>
+      <td>291.0</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>9.8</td>
+      <td>294.0</td>
+      <td>9.8</td>
+      <td>-30.0</td>
+      <td>294.0</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>9.9</td>
+      <td>297.0</td>
+      <td>9.9</td>
+      <td>-30.0</td>
+      <td>297.0</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>10.0</td>
+      <td>300.0</td>
+      <td>10.0</td>
+      <td>-30.0</td>
+      <td>300.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>We clearly see <code class="docutils literal notranslate"><span class="pre">False</span></code> results so we need to sanity check these. When dealing with programmatic data analysis eyeball sanity checks are still an effort-saving practice.  So let’s isolate the failing rows real quick since that is part of the power of having Python interact with SPICE is this kind of data handling ease.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep_int_data</span><span class="o">=</span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span>
+<span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[A]_calc&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[p]_[W]&#39;</span><span class="p">]</span><span class="o">/-</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[v]_[V]&#39;</span><span class="p">])</span>
+<span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[A]_calc&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">dc_sweep_int_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">dc_sweep_int_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>V_vs[i]_[A]</th>
+      <th>V_vs[p]_[W]</th>
+      <th>Idload[c]_[A]</th>
+      <th>Idload[v]_[V]</th>
+      <th>Idload[p]_[W]</th>
+      <th>Idload[A]_calc</th>
+      <th>Test</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>-0.0</td>
+      <td>-0.0</td>
+      <td>0.0</td>
+      <td>-30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.1</td>
+      <td>3.0</td>
+      <td>0.1</td>
+      <td>-30.0</td>
+      <td>3.0</td>
+      <td>0.1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.2</td>
+      <td>6.0</td>
+      <td>0.2</td>
+      <td>-30.0</td>
+      <td>6.0</td>
+      <td>0.2</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.3</td>
+      <td>9.0</td>
+      <td>0.3</td>
+      <td>-30.0</td>
+      <td>9.0</td>
+      <td>0.3</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.4</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>-30.0</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>9.6</td>
+      <td>288.0</td>
+      <td>9.6</td>
+      <td>-30.0</td>
+      <td>288.0</td>
+      <td>9.6</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>9.7</td>
+      <td>291.0</td>
+      <td>9.7</td>
+      <td>-30.0</td>
+      <td>291.0</td>
+      <td>9.7</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>9.8</td>
+      <td>294.0</td>
+      <td>9.8</td>
+      <td>-30.0</td>
+      <td>294.0</td>
+      <td>9.8</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>9.9</td>
+      <td>297.0</td>
+      <td>9.9</td>
+      <td>-30.0</td>
+      <td>297.0</td>
+      <td>9.9</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>10.0</td>
+      <td>300.0</td>
+      <td>10.0</td>
+      <td>-30.0</td>
+      <td>300.0</td>
+      <td>10.0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>V_vs[i]_[A]</th>
+      <th>V_vs[p]_[W]</th>
+      <th>Idload[c]_[A]</th>
+      <th>Idload[v]_[V]</th>
+      <th>Idload[p]_[W]</th>
+      <th>Idload[A]_calc</th>
+      <th>Test</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2.3</th>
+      <td>2.3</td>
+      <td>69.0</td>
+      <td>2.3</td>
+      <td>-30.0</td>
+      <td>69.0</td>
+      <td>2.3</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3.9</th>
+      <td>3.9</td>
+      <td>117.0</td>
+      <td>3.9</td>
+      <td>-30.0</td>
+      <td>117.0</td>
+      <td>3.9</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4.9</th>
+      <td>4.9</td>
+      <td>147.0</td>
+      <td>4.9</td>
+      <td>-30.0</td>
+      <td>147.0</td>
+      <td>4.9</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5.7</th>
+      <td>5.7</td>
+      <td>171.0</td>
+      <td>5.7</td>
+      <td>-30.0</td>
+      <td>171.0</td>
+      <td>5.7</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6.5</th>
+      <td>6.5</td>
+      <td>195.0</td>
+      <td>6.5</td>
+      <td>-30.0</td>
+      <td>195.0</td>
+      <td>6.5</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7.3</th>
+      <td>7.3</td>
+      <td>219.0</td>
+      <td>7.3</td>
+      <td>-30.0</td>
+      <td>219.0</td>
+      <td>7.3</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>So why are these rows failing, while it helps to look at a single row since the display of a full table can hide information for presentation sakes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep_int_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V_vs[i]_[A]         10
+V_vs[p]_[W]        300
+Idload[c]_[A]       10
+Idload[v]_[V]      -30
+Idload[p]_[W]      300
+Idload[A]_calc      10
+Test              True
+Name: 9.99999999999998, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see instantly that the issue is that since SPICE uses things RK45 solvers and works with near arbitrarily small currents, it is going to report extremely precise values so that inputs, for lack of a better word, yield “jittery” results. So then we have to use some exploratory data analysis skills along with knowing when SPICE is giving us overkill answers to clarify this. Since we know SPICE is giving us overkill on the input and we don’t care in this simulation for any values beyond 4 decimals (really 2 decimals) so that applying <code class="docutils literal notranslate"><span class="pre">np.around</span></code> allows equal value reporting between our swept current and measured current.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep_int_data</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">dc_sweep_int_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[A]_calc&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[A]_calc&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Idload[A]_calc&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">dc_sweep_int_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">dc_sweep_int_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>V_vs[i]_[A]</th>
+      <th>V_vs[p]_[W]</th>
+      <th>Idload[c]_[A]</th>
+      <th>Idload[v]_[V]</th>
+      <th>Idload[p]_[W]</th>
+      <th>Idload[A]_calc</th>
+      <th>Test</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>-0.0</td>
+      <td>-0.0</td>
+      <td>0.0</td>
+      <td>-30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.1</td>
+      <td>3.0</td>
+      <td>0.1</td>
+      <td>-30.0</td>
+      <td>3.0</td>
+      <td>0.1</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.2</td>
+      <td>6.0</td>
+      <td>0.2</td>
+      <td>-30.0</td>
+      <td>6.0</td>
+      <td>0.2</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.3</td>
+      <td>9.0</td>
+      <td>0.3</td>
+      <td>-30.0</td>
+      <td>9.0</td>
+      <td>0.3</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.4</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>-30.0</td>
+      <td>12.0</td>
+      <td>0.4</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>9.6</td>
+      <td>288.0</td>
+      <td>9.6</td>
+      <td>-30.0</td>
+      <td>288.0</td>
+      <td>9.6</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>9.7</td>
+      <td>291.0</td>
+      <td>9.7</td>
+      <td>-30.0</td>
+      <td>291.0</td>
+      <td>9.7</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>9.8</td>
+      <td>294.0</td>
+      <td>9.8</td>
+      <td>-30.0</td>
+      <td>294.0</td>
+      <td>9.8</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>9.9</td>
+      <td>297.0</td>
+      <td>9.9</td>
+      <td>-30.0</td>
+      <td>297.0</td>
+      <td>9.9</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>10.0</td>
+      <td>300.0</td>
+      <td>10.0</td>
+      <td>-30.0</td>
+      <td>300.0</td>
+      <td>10.0</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="n">dc_sweep_int_data</span><span class="p">[</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>V_vs[i]_[A]</th>
+      <th>V_vs[p]_[W]</th>
+      <th>Idload[c]_[A]</th>
+      <th>Idload[v]_[V]</th>
+      <th>Idload[p]_[W]</th>
+      <th>Idload[A]_calc</th>
+      <th>Test</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And finally we need to test every future so lets make the quick plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_35_0.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_36_0.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="ideal-current-source">
+<h1>Ideal Current Source¶<a class="headerlink" href="#ideal-current-source" title="Permalink to this headline">¶</a></h1>
+<p>Since we are talking about ideal vs non-ideal sources, we should look at the current complement to the voltage case and use our new tool to automate as much as we can.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">cs</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;_cs&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_mA</span><span class="p">)</span>
+
+<span class="n">dummy_drop</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;ddrop&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">)</span>
+
+<span class="n">cs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
+<span class="c1">#ideal_rpar[1, 2]+=cs[&#39;n&#39;], gnd</span>
+<span class="n">dummy_drop</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">cs</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span> <span class="n">gnd</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I_cs 0 N_1 10mA
+Vddrop N_1 0 1V
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>I_cs</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Vddrop</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Vddrop&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_intsim</span><span class="p">(</span><span class="s1">&#39;Vddrop&#39;</span><span class="p">)</span>
+<span class="n">ideal_cur_res</span><span class="o">=</span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i_cs[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vddrop[p] power
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ideal_cur_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I_cs[c]_[A]</th>
+      <th>I_cs[v]_[V]</th>
+      <th>I_cs[p]_[W]</th>
+      <th>Vddrop[i]_[A]</th>
+      <th>Vddrop[p]_[W]</th>
+    </tr>
+    <tr>
+      <th>Vddrop</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.01</td>
+      <td>0.0</td>
+      <td>-0.000</td>
+      <td>-0.01</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>-0.001</td>
+      <td>-0.01</td>
+      <td>-0.001</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.01</td>
+      <td>0.2</td>
+      <td>-0.002</td>
+      <td>-0.01</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.01</td>
+      <td>0.3</td>
+      <td>-0.003</td>
+      <td>-0.01</td>
+      <td>-0.003</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.01</td>
+      <td>0.4</td>
+      <td>-0.004</td>
+      <td>-0.01</td>
+      <td>-0.004</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>0.01</td>
+      <td>9.6</td>
+      <td>-0.096</td>
+      <td>-0.01</td>
+      <td>-0.096</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>0.01</td>
+      <td>9.7</td>
+      <td>-0.097</td>
+      <td>-0.01</td>
+      <td>-0.097</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>0.01</td>
+      <td>9.8</td>
+      <td>-0.098</td>
+      <td>-0.01</td>
+      <td>-0.098</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>0.01</td>
+      <td>9.9</td>
+      <td>-0.099</td>
+      <td>-0.01</td>
+      <td>-0.099</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>0.01</td>
+      <td>10.0</td>
+      <td>-0.100</td>
+      <td>-0.01</td>
+      <td>-0.100</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>Before we get to the plot, let discuss something. There are two schools of thought when plotting things in EE. The first school is that the independent variable should be on the x-axis and the dependent variables should be on the y axis. The other school of thought is when comparing apples to oranges pick an axis convention and stick with it. In this book, we use both since it just a matter of context, and plots are cheap to make with a computer. For comparing voltage sources and current sources were going with the “apples to oranges” convention. But beware when doing this you need to make your axis labels explicit as to what are the independent and dependent variables for each plot that is made.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ideal_cur_res</span><span class="p">[</span><span class="s1">&#39;I_cs[c]_[A]&#39;</span><span class="p">],</span> <span class="n">ideal_cur_res</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Source Current [A]&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Load Voltage Drop [V]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ideal Current Source responce to a load voltage drop&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_43_0.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_43_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="first-testbench-element">
+<h1>First testbench element¶<a class="headerlink" href="#first-testbench-element" title="Permalink to this headline">¶</a></h1>
+<p>So first of all a physical testbench is setup with some way to probe signals into and out of a Device Under Test (DUT) where those signals are souced and read in by various instruments. The whole setup is called a test suite. Thus far we have been creating the test measurement tools with kladjlkadlfkjaldjk. We will get into test suite development when we combine a SPICE measurement,  analysis routine, along with a test bench built into a single tool. For now, let’s focus on creating testbenchs.</p>
+<p>The first testbenchs we are going to build are non-ideal sources. So why in the world would we want these. While ideal sources don’t exist outside of SPICE and SPICE ultimately doesn’t pay the bills, the physical PCB and Silicon produced and being able to be sold pays the bills. So you better verify to what degrees your circuits can deal with less than ideal sources. Now traditionally one would have to redraw parts of the circuit to convert the ideal source to non-ideal sources and then be careful that the elements that make a source non-ideal don’t get place and routed. And one would have to do this for every source, yuck! But this is Python so we can create a reusable way to generate non-ideal sources with functions or classes and then just deploy. When SKiDl gets the means to remove elements and connections the power to replace the ideal source with a non-ideal source and hook up any other sort of testbench will be immense.</p>
+<p>So how do we create a function that will do this magic of instantly producing a simple non-ideal source lets make a testbench a non-ideal voltage source and see.</p>
+<div class="section" id="non-ideal-voltage-source-testbench">
+<h2>Non-Ideal Voltage  Source Testbench¶<a class="headerlink" href="#non-ideal-voltage-source-testbench" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 3 real_dcVs subcircuit function</span>
+<span class="c1"># SKiDl subcirucit to create a dc voltage source with </span>
+<span class="c1"># added series resistor</span>
+
+
+<span class="nd">@subcircuit</span>
+<span class="k">def</span> <span class="nf">real_dcVs</span><span class="p">(</span><span class="n">global_ref</span><span class="p">,</span> <span class="n">pos_term</span><span class="p">,</span> <span class="n">neg_term</span><span class="p">,</span> <span class="n">starting_V</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">,</span> <span class="n">starting_R</span><span class="o">=</span><span class="mi">50</span><span class="nd">@u_Ohm</span><span class="p">,</span> 
+           <span class="n">return_internls</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SKiDl subcircuit to create a simple non-ideal DC voltage source</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        global_ref (str): reference to use for the base of the internal elements</span>
+<span class="sd">        </span>
+<span class="sd">        pos_term (SKiDl net or pin): positive terminal of the nonideal voltage source</span>
+<span class="sd">            to connect to the rest of the circuit</span>
+<span class="sd">        </span>
+<span class="sd">        neg_term (SKiDl net or pin): negative terminal of the nonideal voltage source</span>
+<span class="sd">            to connect to the rest of the circuit </span>
+<span class="sd">        </span>
+<span class="sd">        starting_V (float; 1; Volts):the intial DC voltage to set the internal ideal</span>
+<span class="sd">            the voltage source in this package to</span>
+<span class="sd">        </span>
+<span class="sd">        starting_R (float; 50; Ohm): the initial resistance to set the internal</span>
+<span class="sd">            serial resistance to the ideal voltage source in this subcircuit to</span>
+<span class="sd">        </span>
+<span class="sd">        return_internls (bool; False): If True return out the internal Voltage Source,</span>
+<span class="sd">            and Resistance objects in this package</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Returns it&#39;s self a SKiDl part element object and if `return_internls`</span>
+<span class="sd">        is True will return the internal voltage and resistance objects in that order </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;V_</span><span class="si">{global_ref}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="n">starting_V</span><span class="p">)</span>
+    <span class="n">rs</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;R_</span><span class="si">{global_ref}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">starting_R</span><span class="p">)</span>
+    
+    <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">rs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">neg_term</span>
+    <span class="n">rs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">pos_term</span>
+    
+    <span class="k">if</span> <span class="n">return_internls</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">vs</span><span class="p">,</span> <span class="n">rs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first line of code <code class="docutils literal notranslate"><span class="pre">&#64;subcircuit</span></code> is called a decorator and for our purposes, it just says to Python that whatever function we wite below the decorator is imbued with enhancements defined by <code class="docutils literal notranslate"><span class="pre">&#64;subcircuit</span></code> definition in SKiDl.</p>
+<p>Then for our function arguments, we use a lot of generic arguments for things like voltage, resistance, and the base name of the elements in our subcircuit. But for a subcircuit to be a subcircuit, it must connect to the rest of the circuit. So we need to have arguments that will act as pass-throughs for a net connection to be made to where we want our external terminals to be. In this case, we have two terminals. The positive one <code class="docutils literal notranslate"><span class="pre">pos_term</span></code> acts as the terminal to our positive output at the end of the subcircuit’s series resistors <code class="docutils literal notranslate"><span class="pre">rs</span></code>. And neg_term is the corresponding terminal to the negative side of the subcircuit’s <code class="docutils literal notranslate"><span class="pre">vs</span></code>. Now for this testbench subcircuit, we have also included a control <code class="docutils literal notranslate"><span class="pre">return_internls</span></code> to return the internal created objects so that we can grab them in python to have more refined control over them before we create the netlist. Whether we grab the internally created elements or not has no consequences on the final netlist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">dummy_load</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;dload&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_A</span><span class="p">);</span> <span class="n">dummy_load</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#invoke our subscript and for kicks have it return the internals to external variables</span>
+<span class="c1">#that could be fine-tuned outside of there invocation inside the subcircuit</span>
+<span class="n">real_vss</span><span class="p">,</span> <span class="n">real_vsr</span><span class="o">=</span><span class="n">real_dcVs</span><span class="p">(</span><span class="s1">&#39;real_vs&#39;</span><span class="p">,</span> <span class="n">dummy_load</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="n">gnd</span><span class="p">,</span> <span class="mi">30</span><span class="nd">@u_V</span><span class="p">,</span> <span class="mi">20</span><span class="nd">@u_Ohm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+
+<span class="n">dc_sweep</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+R_real_vs N_1 N_2 20Ohm
+V_real_vs N_1 0 30V
+Idload N_2 0 1A
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>V_real_vs</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#perform the simulation</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">get_skidl_spice_ref</span><span class="p">(</span><span class="n">dummy_load</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_sim</span><span class="p">(</span><span class="n">get_skidl_spice_ref</span><span class="p">(</span><span class="n">dummy_load</span><span class="p">))</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_50_0.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_50_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#collect the results </span>
+<span class="n">real_vs_data</span><span class="o">=</span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span>
+<span class="n">real_vs_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N_1_[V]</th>
+      <th>N_2_[V]</th>
+      <th>V_real_vs_[A]</th>
+    </tr>
+    <tr>
+      <th>Idload</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>30.0</td>
+      <td>30.0</td>
+      <td>-30.0</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>30.0</td>
+      <td>28.0</td>
+      <td>-28.0</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>30.0</td>
+      <td>26.0</td>
+      <td>-26.0</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>30.0</td>
+      <td>24.0</td>
+      <td>-24.0</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>30.0</td>
+      <td>22.0</td>
+      <td>-22.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>30.0</td>
+      <td>-162.0</td>
+      <td>162.0</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>30.0</td>
+      <td>-164.0</td>
+      <td>164.0</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>30.0</td>
+      <td>-166.0</td>
+      <td>166.0</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>30.0</td>
+      <td>-168.0</td>
+      <td>168.0</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>30.0</td>
+      <td>-170.0</td>
+      <td>170.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make the plot</span>
+<span class="n">niv_voltage</span><span class="o">=</span><span class="n">real_vs_data</span><span class="p">[</span><span class="n">node</span><span class="p">(</span><span class="n">dummy_load</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">]</span>
+<span class="n">niv_current</span><span class="o">=</span><span class="n">real_vs_data</span><span class="o">.</span><span class="n">index</span>
+<span class="c1">#plot the old ideal voltage source</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">iv_current</span><span class="p">,</span> <span class="n">iv_voltage</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ideal V Souce&#39;</span><span class="p">)</span>
+<span class="c1">#plot the newly found non-ideal voltage source</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">niv_current</span><span class="p">,</span> <span class="n">niv_voltage</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NON-Ideal V Souce&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Load Draw [A]&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Source Voltage [V]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Load Draw [A]&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Source Voltage [V]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ideal and Non-Ideal Voltage Source response to load&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Ideal and Non-Ideal Voltage Source response to load&#39;)
+</pre></div>
+</div>
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_52_1.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_52_1.png" />
+</div>
+</div>
+<p>And because of the scaling, we can’t really see that the ideal source is at 30V but by plotting the old and new data we can see what effect adding the serial resistance to make the voltage source non-ideal has done.</p>
+</div>
+<div class="section" id="non-ideal-current-source-testbench">
+<h2>Non-Ideal Current Source Testbench¶<a class="headerlink" href="#non-ideal-current-source-testbench" title="Permalink to this headline">¶</a></h2>
+<p>It’s typically a good idea if the investment is low enough to make the V-I dual to whatever you have made. So why not,  cause again this is code we can have on hand and call up whenever needed. Opposed to finding and redrawing every single source in a schematic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 3 real_dcIs subcircuit function</span>
+<span class="c1"># SKiDl subcirucit to create a dc current source with </span>
+<span class="c1"># added parallel resistor</span>
+
+<span class="nd">@subcircuit</span>
+<span class="k">def</span> <span class="nf">real_dcIs</span><span class="p">(</span><span class="n">global_ref</span><span class="p">,</span> <span class="n">pos_term</span><span class="p">,</span> <span class="n">neg_term</span><span class="p">,</span> <span class="n">starting_I</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_A</span><span class="p">,</span> <span class="n">starting_R</span><span class="o">=</span><span class="mi">50</span><span class="nd">@u_Ohm</span><span class="p">,</span> 
+           <span class="n">return_internls</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SKiDl subcircuit to create a simple non-ideal DC current source.</span>
+<span class="sd">    Where the positive terminal is to the top of the arrow of a schematically drawn</span>
+<span class="sd">    current source</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        global_ref (str): reference to use for the base of the internal elements</span>
+<span class="sd">        </span>
+<span class="sd">        pos_term (SKiDl net or pin): positive terminal of the nonideal voltage source</span>
+<span class="sd">            to connect to the rest of the circuit </span>
+<span class="sd">        </span>
+<span class="sd">        neg_term (SKiDl net or pin): negative terminal of the nonideal voltage source</span>
+<span class="sd">            to connect to the rest of the circuit </span>
+<span class="sd">        </span>
+<span class="sd">        starting_V (float; 1; Amps): the initial DC current to set the internal ideal</span>
+<span class="sd">            the current source in this package to</span>
+<span class="sd">        </span>
+<span class="sd">        starting_R (float; 50; Ohm): the initial resistance to set the internal</span>
+<span class="sd">            parral resistance to the ideal current source in this subcircuit to</span>
+<span class="sd">        </span>
+<span class="sd">        return_internls (bool; False): If True return out the internal Voltage Source,</span>
+<span class="sd">            and Resistance objects in this package</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Returns it&#39;s self a SKiDl part element object and if `return_internls`</span>
+<span class="sd">        is True will return the internal voltage and resistance objects in that order </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cs</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;I_</span><span class="si">{global_ref}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="n">starting_I</span><span class="p">)</span>
+    <span class="n">rp</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;R_</span><span class="si">{global_ref}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">starting_R</span><span class="p">)</span>
+    
+    <span class="n">cs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">|</span> <span class="n">rp</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">rp</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">pos_term</span><span class="p">,</span> <span class="n">neg_term</span>
+    
+    <span class="k">if</span> <span class="n">return_internls</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cs</span><span class="p">,</span> <span class="n">rp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="n">dummy_drop</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;ddrop&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">dummy_drop</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
+<span class="n">real_css</span><span class="p">,</span> <span class="n">real_csr</span><span class="o">=</span><span class="n">real_dcIs</span><span class="p">(</span><span class="s1">&#39;real_cs&#39;</span><span class="p">,</span> <span class="n">dummy_drop</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="n">gnd</span><span class="p">,</span> <span class="mi">10</span><span class="nd">@u_mA</span><span class="p">,</span> <span class="mi">10</span><span class="nd">@u_MOhm</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I_real_cs 0 N_2 10mA
+R_real_cs N_2 0 10MegOhm
+Vddrop N_2 0 1V
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc_sweep</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Vddrop&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span>
+<span class="n">dc_sweep</span><span class="o">.</span><span class="n">do_dc_intsim</span><span class="p">(</span><span class="s1">&#39;Vddrop&#39;</span><span class="p">)</span>
+<span class="n">nonideal_cur_res</span><span class="o">=</span><span class="n">dc_sweep</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span>
+<span class="n">nonideal_cur_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r_real_cs[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i_real_cs[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vddrop[p] power
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>I_real_cs[c]_[A]</th>
+      <th>I_real_cs[v]_[V]</th>
+      <th>I_real_cs[p]_[W]</th>
+      <th>R_real_cs[i]_[A]</th>
+      <th>R_real_cs[p]_[W]</th>
+      <th>Vddrop[i]_[A]</th>
+      <th>Vddrop[p]_[W]</th>
+    </tr>
+    <tr>
+      <th>Vddrop</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.01</td>
+      <td>0.0</td>
+      <td>-0.000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>-0.010000</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>-0.001</td>
+      <td>1.000000e-08</td>
+      <td>1.000000e-09</td>
+      <td>-0.010000</td>
+      <td>-0.001000</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.01</td>
+      <td>0.2</td>
+      <td>-0.002</td>
+      <td>2.000000e-08</td>
+      <td>4.000000e-09</td>
+      <td>-0.010000</td>
+      <td>-0.002000</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.01</td>
+      <td>0.3</td>
+      <td>-0.003</td>
+      <td>3.000000e-08</td>
+      <td>9.000000e-09</td>
+      <td>-0.010000</td>
+      <td>-0.003000</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.01</td>
+      <td>0.4</td>
+      <td>-0.004</td>
+      <td>4.000000e-08</td>
+      <td>1.600000e-08</td>
+      <td>-0.010000</td>
+      <td>-0.004000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.6</th>
+      <td>0.01</td>
+      <td>9.6</td>
+      <td>-0.096</td>
+      <td>9.600000e-07</td>
+      <td>9.216000e-06</td>
+      <td>-0.009999</td>
+      <td>-0.095991</td>
+    </tr>
+    <tr>
+      <th>9.7</th>
+      <td>0.01</td>
+      <td>9.7</td>
+      <td>-0.097</td>
+      <td>9.700000e-07</td>
+      <td>9.409000e-06</td>
+      <td>-0.009999</td>
+      <td>-0.096991</td>
+    </tr>
+    <tr>
+      <th>9.8</th>
+      <td>0.01</td>
+      <td>9.8</td>
+      <td>-0.098</td>
+      <td>9.800000e-07</td>
+      <td>9.604000e-06</td>
+      <td>-0.009999</td>
+      <td>-0.097990</td>
+    </tr>
+    <tr>
+      <th>9.9</th>
+      <td>0.01</td>
+      <td>9.9</td>
+      <td>-0.099</td>
+      <td>9.900000e-07</td>
+      <td>9.801000e-06</td>
+      <td>-0.009999</td>
+      <td>-0.098990</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>0.01</td>
+      <td>10.0</td>
+      <td>-0.100</td>
+      <td>1.000000e-06</td>
+      <td>1.000000e-05</td>
+      <td>-0.009999</td>
+      <td>-0.099990</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>And the only difference in our plotting for the current source as opposed to the voltage source is that instead of setting variables for each cases voltage and current we are just calling against the resulting dataframes which has some downside from a readability standpoint but is a better practice who can be clarified with comments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ideal_cur_res</span><span class="p">[</span><span class="s1">&#39;I_cs[c]_[A]&#39;</span><span class="p">],</span> <span class="n">ideal_cur_res</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ideal I Souce&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nonideal_cur_res</span><span class="p">[</span><span class="s1">&#39;Vddrop[i]_[A]&#39;</span><span class="p">],</span> <span class="n">nonideal_cur_res</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non Ideal I Source&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Source Current [A]&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Load Voltage Drop [V]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ideal and Non-Ideal Current Source responce to load&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_59_0.png" src="../_images/DC_3_PracticalSourcs_sweeps_subcirucirts_59_0.png" />
+</div>
+</div>
+<p>Because of the high parallel resistance inside the non-ideal current source, we see more of a translation than a tilting. Since is this reproducible code the reader should play with values and see what happens. After all, one of the goals of this book is showing how SPICE encapsulated with python can be used as an educational enhancement in teaching electronics</p>
+</div>
+<div class="section" id="citations">
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<p>[1] ALL ABOUT ELECTRONICS. “Ideal Voltage Source vs. Practical Voltage Source
+,” YouTube, Jan 18, 2017. [Video file]. Available: https://youtu.be/TRzpqHwb-5Y. [Accessed: Nov 30, 2020].</p>
+<p>[2] ALL ABOUT ELECTRONICS. “Ideal Current Source vs. Practical Current Source
+,” YouTube, Jan 21, 2017. [Video file]. Available: https://youtu.be/dTf1h_xhHng. [Accessed: Nov 30, 2020].</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./DC_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="DC_2_op_source_transform.html" title="previous page">Working with SKiDl elements</a>
+    <a class='right-next' id="next-link" href="DC_4_dependent_sources_and_tf.html" title="next page">Controlled Dependent Sources in SPICE</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

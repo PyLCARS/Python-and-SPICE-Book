@@ -1,0 +1,1863 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thevenin’s DC Equivalent Circuit &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Maximum Power Transfer Theorem" href="DC_6_DC_MaxPower_MaxEfficiency.html" />
+    <link rel="prev" title="Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/DC_1/DC_5_Thvenin_Norton.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_5_Thvenin_Norton.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/DC_1/DC_5_Thvenin_Norton.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Thevenin’s DC Equivalent Circuit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min">
+     Case 1: All independent source from “Thevenin’s Theorem Explained …” @~4:08 min
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#there-is-a-mistake-in-the-calculation-of-v-th-in-case-1">
+       There is a mistake in the calculation of V_th in case 1.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#finding-the-theivine-equivlint-manually">
+       Finding the Theivine Equivlint “Manually”
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-packaged-tool-find-theivine-equivlint-automatically">
+       Creating a packaged tool find Theivine Equivlint automatically
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min">
+     Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” @~6:59 min
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min">
+     Case 3: All dependent source from “Thevenin’s Theorem Explained …” @~11:51 min
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norton-s-theorem">
+   Norton’s Theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min">
+     Example 1: All independent source from “Norton’s Theorem Explained …” @~3:32 min
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#finding-the-northon-equivlint-manualy">
+       Finding the Northon Equivlint “Manualy”
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-packaged-tool-find-norton-equivlint-automatically">
+       Creating a packaged tool find Norton Equivlint automatically
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min">
+     Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” @~7:03 min
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min">
+     Example 3: All dependent source from “Norton’s Theorem Explained …” @~11:27 min
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#citations">
+     Citations:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>TODO:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Library import statements</span>
+
+<span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#can you say cheeky </span>
+<span class="kn">import</span> <span class="nn">PySpice</span> <span class="k">as</span> <span class="nn">pspice</span>
+<span class="c1">#becouse it&#39;s written by a kiwi you know</span>
+<span class="kn">import</span> <span class="nn">lcapy</span> <span class="k">as</span> <span class="nn">kiwi</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#notebook specific loading control statements </span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#tool to log notebook internals</span>
+<span class="c1">#https://github.com/jrjohansson/version_information</span>
+<span class="o">%</span><span class="k">load_ext</span> version_information
+<span class="o">%</span><span class="k">version_information</span> skidl, PySpice,lcapy, sympy, numpy, matplotlib, pandas, scipy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:27 2020 MST</td></tr></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">dc_ease</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="thevenins-dc-equivalent-circuit">
+<h1>Thevenin’s DC Equivalent Circuit<a class="headerlink" href="#thevenins-dc-equivalent-circuit" title="Permalink to this headline">¶</a></h1>
+<p>Thevenin’s Theorem (at DC), states that looking into any open port (two terminals sharing that same current) of a circuit that said open port, in the context of linear circuits. will appear as nothing more than a voltage source in series with a resistor. Where said voltage source is called the equivalent Thevenin voltage source that represents the summation of all voltages delivered to the open port. And the resistance in series of the Thevenin voltage source, the Thevenin resistance, is the resistance if all independent sources in our black box when removed. The brilliant thing about the Thevenin voltage and resistance is that the Thevenin Voltage is the open-circuit voltage and Thevenin resistance, via Nortons Theorem (the current dual to Thevenin theorem) is the ratio of the open-circuit voltage to short circuit current. Thus, giving us the hint to find the two equivalence via SPICE with ease</p>
+<div class="math notranslate nohighlight">
+\[ V_{th}=V_{oc}\]</div>
+<div class="math notranslate nohighlight">
+\[ R_{th}=\dfrac{V_{oc}}{I_{sc}}\]</div>
+<p>We can create an open circuit in SPICE in three ways.</p>
+<ol class="simple">
+<li><p>leave a port open, it works but is not a good idea due to stability issues that can occur</p></li>
+<li><p>fill in an open port with an exceptionally large resistor, if you need an open port this is the way to do it and not introduce stability issue</p></li>
+<li><p>An ideal current source has an infinite internal resistance even with zero current. This is why a dead battery creates an open,</p></li>
+</ol>
+<p>So if we say then the Thevenin resistance is<br />
+$<span class="math notranslate nohighlight">\( R_{th}=\dfrac{\Delta V}{ \Delta I}\)</span><span class="math notranslate nohighlight">\(
+than  the Thevenin resistance may be found via the slop. So that the voltage at the port of the Thevenin equivalent circuit with a load is given by 
+\)</span><span class="math notranslate nohighlight">\(V_{p}=R_{th}I_{p}+V_{th}\)</span>$
+And thus, we hook up a current source to the open port under test and sweep the current source to zero to find the Thevenin equivalency via linear regression.</p>
+<p>You may be asking yourself why we didn’t just use the spice Transfer function (.tf) to find the Thevenin equivalent circuit. While we can use .tf however, .tf really comes from two-port circuit representation that we will be deal with in AC circuits extensively. But without going down that rabbit hole now. One would have to use .tf for every independent source to the open port and then convert the gain from the source to figure out the Thevenin voltage equivalent looking into the port and apply superposition for each independent source. So yeah .tf has its usage as we will see but for finding the Thevenin and Norton circuit it’s not practical.</p>
+<p>When applying the Thevenin theorem to find the DC equivalent circuit there are in general three cases given the mixture of dependent and independent sources in the circuit that is being reduced. But for our sake with SPICE, we don’t care since we will always apply a 1A test current source. If the reader wishes to see how to analytically solve these three cases it is recommended to review the YT video from ALL ABOUT ELECTRONICS <a class="reference external" href="https://youtu.be/8udwPc5pCoA">“Thevenin’s Theorem Explained (With examples of Independent and Dependent Sources)”</a> where are test example for using SPICE are sourced.</p>
+<div class="section" id="case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min">
+<h2>Case 1: All independent source from “Thevenin’s Theorem Explained …” &#64;~4:08 min<a class="headerlink" href="#case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/8udwPc5pCoA?start=248"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="section" id="there-is-a-mistake-in-the-calculation-of-v-th-in-case-1">
+<h3>There is a mistake in the calculation of V_th in case 1.<a class="headerlink" href="#there-is-a-mistake-in-the-calculation-of-v-th-in-case-1" title="Permalink to this headline">¶</a></h3>
+<p>When calculating the voltage above it was show that the node voltage could be found by using KVL around the loop to find the loop current. But then that current is used to find the voltage at node A via a naive use of the voltage drop around the loop coming from the 10V source on the left through the 10 Ohm resistor on the left giving an incorrect result of 5V. This is due to the fact there are two sources in the loop and thus there is also a superimposed voltage cumming from the right 20V source and right resistor to node A. When attempting to find the voltage at a node it is preferable to use KCL at that node. Thus the correct answer for the Thevenin voltage with respect to node A (treating node B as ground) is given by</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{A-10}{10} +\dfrac{A-20}{10}=0\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{2A-30}{10}=0\]</div>
+<div class="math notranslate nohighlight">
+\[A=\dfrac{30}{2}=15[V]=V_{th}\]</div>
+</div>
+<div class="section" id="finding-the-theivine-equivlint-manually">
+<h3>Finding the Theivine Equivlint “Manually”<a class="headerlink" href="#finding-the-theivine-equivlint-manually" title="Permalink to this headline">¶</a></h3>
+<p>The following shows how we go about exploring a test setup before consulting the following to a wrap-up tool that we can deploy from a dozen or so lines of code to just two. We will use the already created tool from section adlkfakldjfkj so were not doing a DC sweep from scratch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create the test circuit from case 1 of ALL ABOUT ELECTRONICS Thevenin YT Video</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create nets, since the example has named nets for the ports under test we will</span>
+<span class="c1">#name the nets the same at those two nodes</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="c1">#create the 10-volt independent source on the left and connect it</span>
+<span class="n">vs10</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs10</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#creat the left 10ohm resistor on the left side of the T network</span>
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="c1"># were removing the center 40Ohm resistor since this is our LOAD resistor</span>
+<span class="c1">#but will keep the statement here in comments, because why not</span>
+<span class="c1">#rcenter=R(ref=&#39;center&#39;, value=40@u_Ohm); rcenter[1, 2]+=net_A, net_B</span>
+
+<span class="c1">#create the right 10ohm resistor on the right side of the T network</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_2</span>
+
+<span class="c1">#create the 20-volt independent source on the right and connect it</span>
+<span class="n">vs20</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;20&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">20</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs20</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#ne need a ground for SPICE so why not just force net B to ground</span>
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#port is at nodes A,B</span>
+
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V10 N1 0 10V
+V20 N2 0 20V
+Rleft N1 A 10Ohm
+Rright A N2 10Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">=</span><span class="n">circ</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+<span class="n">dc_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">operating_point</span><span class="p">()</span>
+<span class="n">dc_vals</span><span class="p">[</span><span class="n">node</span><span class="p">(</span><span class="n">net_A</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WaveForm a [15.]@V
+</pre></div>
+</div>
+</div>
+</div>
+<p>We add our test current source (<code class="docutils literal notranslate"><span class="pre">Ithev</span></code>) at the open port with a 1A test amount and regenerate the circuit’s netlist. Since reset has not been appended to the existing global circuit that was created in the cell above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ithev</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;Ithev&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_A</span><span class="p">);</span> <span class="n">ithev</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_B</span><span class="p">,</span> <span class="n">net_A</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V10 N1 0 10V
+V20 N2 0 20V
+Ithev 0 A 1A
+Rleft N1 A 10Ohm
+Rright A N2 10Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use our <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code> tool to conduct a sweep of <code class="docutils literal notranslate"><span class="pre">Ithev</span></code> from 0A to 1A by .1A to which gives use the <span class="math notranslate nohighlight">\(V_{oc}\)</span> that we need along with a simple test current for any dependent source and a step size that produces enough data point to perform a clear 1d regression to find <span class="math notranslate nohighlight">\(R_{th}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_theiv_test</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Ithev&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">clean_table</span><span class="p">()</span>
+<span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Ithev</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">do_dc_sim</span><span class="p">(</span><span class="s1">&#39;Ithev&#39;</span><span class="p">)</span>
+<span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_17_0.png" src="../_images/DC_5_Thvenin_Norton_17_0.png" />
+</div>
+</div>
+<p>So now taking out the results of the DC sweep which are stored in a pandas Dataframe we can easily filter the data and create a basic plot in 2 lines of code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thev_data</span><span class="o">=</span><span class="n">basic_theiv_test</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="s1">&#39;A_[V]&#39;</span><span class="p">]</span>
+<span class="n">thev_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;A_[V]&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_19_0.png" src="../_images/DC_5_Thvenin_Norton_19_0.png" />
+</div>
+</div>
+<p>From here we use Numpy’s  <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html"><code class="docutils literal notranslate"><span class="pre">polyfit</span></code></a> tool to perform our 1D regression of the data that will yield the slope, intercept which is our <span class="math notranslate nohighlight">\(R_{th}\)</span> and <span class="math notranslate nohighlight">\(V_{th}\)</span> equivalently</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rthev</span><span class="p">,</span> <span class="n">vthev</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">thev_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">thev_data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">rthev</span><span class="p">,</span> <span class="n">vthev</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_21_0.png" src="../_images/DC_5_Thvenin_Norton_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-packaged-tool-find-theivine-equivlint-automatically">
+<h3>Creating a packaged tool find Theivine Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-theivine-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
+<p>Since one of the goals of this book is to spare on Analog Design Verification and to do so Analog design verification needs to have smart test suites. So let then let’s take what we have just done and wrap it up into a single convenient tool that does all the work in three lines of code when we’re done.</p>
+<p>The process of doing this again is called abstraction, and to do abstraction we review what we did manually and then break down that process into automated usage.</p>
+<ol class="simple">
+<li><p>We created a circuit with an open port that is our DUT</p></li>
+<li><p>We added a 1A current source to said open port and generated the netlist to simulate against</p></li>
+<li><p>We performed a DC sweep of the added current source to zero</p></li>
+<li><p>We reduced that data from the sweep to just what was need to find <span class="math notranslate nohighlight">\(V_{th}\)</span> and <span class="math notranslate nohighlight">\(R_{th}\)</span></p></li>
+<li><p>We then feed the reduced data to <code class="docutils literal notranslate"><span class="pre">ployfit</span></code> to get <span class="math notranslate nohighlight">\(V_{th}\)</span> and <span class="math notranslate nohighlight">\(R_{th}\)</span></p></li>
+<li><p>And this wasn’t needed, but it nice to have, we create a graph of our data</p></li>
+</ol>
+<p>So then our abstraction response should be:</p>
+<ol class="simple">
+<li><p>This is creating the data, and since at the moment we can not remove elements from a SKiDl circuit we can not abstract this. But we have to tell the user to have an open port and tell our tool what nets make up the open port</p></li>
+<li><p>Since we are restricting this to a linear circuit undergoing a .dc sim we can always use a 1A source. Further, since this is for 1 port DUT that the user will always have prepared and SKiDl makes it trivial to this, yeah this is going to be automated</p></li>
+<li><p>We will reuse the machiner of dc_ease , more on this in a bit, but since we are only sweeping this one source, yeah easy automation</p></li>
+<li><p>SKiDl makes finding things the nodes and elements at our DUT’s test Port trivial, so yeah easy automation</p></li>
+<li><p>we just need to wrap this</p></li>
+<li><p>We don’t have to add this, but it’s always nicer to someone, even yourself in the future, to add nice built-in data displays</p></li>
+</ol>
+<p>So automating this is going to be straight forward, and to make it more straight forward we are going to use OOP to create our new tool as an inherited extension of the <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code> which means we don’t have to invoke <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code> inside our new tool and any changes made to <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code> propagate down the so-called inheritance stack. That doesn’t mean that inheritance guarantees that our new tool won’t break if changes are made to <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code>. Again this is not a book on Python programming that goes over the details of OOP and inheritance. But suffice to say it’s standard code development practice, and thus we should use it here as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 5 Thevenin class</span>
+<span class="c1"># class that is a automated testsuite for finding the </span>
+<span class="c1"># DC Thevenin voltage and resistince of a port</span>
+
+<span class="k">class</span> <span class="nc">Thevenin</span><span class="p">(</span><span class="n">dc_ease</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tool for finding the DC Thevenin equivalent voltage and resistance of a one port</span>
+<span class="sd">    linear circuit with an open test port. The DUT must contain all linear elements.</span>
+<span class="sd">    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc</span>
+<span class="sd">    SPICE simulation with SkiDl and pyspice</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_pos</span><span class="p">,</span> <span class="n">port_neg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A new instantiation unique to this class but utilizes `dc_ease` internally.</span>
+<span class="sd">        Will add a 1A current source to the open port and will then generate the netlist</span>
+<span class="sd">        to simulate against within this class</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            port_pos (SkiDl net): A SKiDl net that makes up the positive side of </span>
+<span class="sd">                the DUT&#39;s open port to test</span>
+<span class="sd">            </span>
+<span class="sd">            port_neg (SkiDl net): A SKiDl net that makes up the negative side of </span>
+<span class="sd">                the DUT&#39;s open port to test</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            adds a 1A test source: `self.ithev` and creates that netlist to test:</span>
+<span class="sd">            `self.circ_netlist_obj`</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            -add assertions so that only a SKiDl net obj can only be passed in</span>
+<span class="sd">            -add an assertion to see if the port is truly open</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1">#add a current source to get Thevenin at port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ithev</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;Ithev&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_A</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ithev</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">port_pos</span><span class="p">,</span> <span class="n">port_neg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ithev_ref</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev</span><span class="o">.</span><span class="n">ref</span>
+        
+       
+        <span class="c1">#call generate netlist to create circ like we would if using `dc_ease`</span>
+        <span class="c1">#by its self and simultaneously pass it into while invoking `dc_ease`&#39;s</span>
+        <span class="c1"># own instatation method</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">generate_netlist</span><span class="p">())</span>
+        <span class="c1">#print out the resulting circuit for debugging</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;circuit and Thevenin finding Isource&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">find_thev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        method to conduct the dc sweep of `self.ithev` automatically and find the </span>
+<span class="sd">        resulting Thevenin voltage and resistance</span>
+<span class="sd">        </span>
+<span class="sd">        Args: NONE</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            see `dc_ease`&#39;s `record_dc_nodebranch` for a full list of returns. But specifically will</span>
+<span class="sd">            return `self.thevenin_sweep_data` which is the pandas&#39; object with the</span>
+<span class="sd">            returned sweep data with only the necessary data for finding the Vth and Rth.</span>
+<span class="sd">            `self.rthev` and `self.vthev` which are Vth and Rth as floats respectively and</span>
+<span class="sd">            `self.thev_results` which is a panda dataframe presenting Vth and Rth in a table</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#set the sweep table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev_ref</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_table</span><span class="p">()</span>
+        
+        <span class="c1">#do the sweep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_dc_sim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev_ref</span><span class="p">)</span>
+        <span class="c1">#get the results </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_dc_nodebranch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev_ref</span><span class="p">)</span>
+        
+        <span class="c1">#reduce the data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thevenin_sweep_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="n">node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">]</span>
+        
+        <span class="c1">#perform the 1d polyfit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rthev</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vthev</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thevenin_sweep_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">thevenin_sweep_data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1">#make a pandas dataframe table, because it&#39;s the nice thing to do</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thev_results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rthev&#39;</span><span class="p">,</span> <span class="s1">&#39;Vthev&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">,</span> <span class="s1">&#39;Units&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thev_results</span><span class="p">[</span><span class="s1">&#39;Units&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[Ohm]&#39;</span><span class="p">,</span> <span class="s1">&#39;[V]&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thev_results</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rthev</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vthev</span><span class="p">]</span>
+        
+        
+    <span class="k">def</span> <span class="nf">display_thev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Auxiliary function to plot our Thevenin findings, useful for presentions</span>
+<span class="sd">        and debugging</span>
+<span class="sd">        </span>
+<span class="sd">        Args: None</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Creates a plot and with a table to the side with the Thevenin equivalent finding</span>
+<span class="sd">            with a table to the side summering our finding</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            - add a check to make sure self.find_thev has been done</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#create the plot &quot;canvas&quot;</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1">#make a line plot on canvas of sweep data </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thevenin_sweep_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">xlabel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev_ref</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ithev</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">,</span> 
+                                     <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        
+        <span class="c1">#create &quot;annotation&quot; to hold self.thev_results in and to display next to the plot</span>
+        <span class="n">Anotation</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Theven Port Results:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">thev_results</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+            <span class="n">Anotation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;   &#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{row.Index}</span><span class="s1">: </span><span class="si">{row.Values:.3f}</span><span class="s1"> </span><span class="si">{row.Units}</span><span class="s1">&#39;</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="n">Anotation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Anotation</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="n">Anotation</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Thevin current sweep results&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Reset and recreate the circuit above to use to test our new `Thevenin` finding tool against</span>
+<span class="c1">#create the test circuit from case 1 of ALL ABOUT ELECTRONICS Thevenin YT Video</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create nets, since the example has named nets for the ports under test we will</span>
+<span class="c1">#name the nets the same at those two nodes</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="c1">#create the 10-volt independent source on the left and connect it</span>
+<span class="n">vs10</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs10</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#creat the left 10ohm resistor on the left side of the T network</span>
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="c1"># We&#39;re removing the center 40Ohm resistor since this is our LOAD resistor</span>
+<span class="c1">#but will keep the statement here in comments, because why not</span>
+<span class="c1">#rcenter=R(ref=&#39;center&#39;, value=40@u_Ohm); rcenter[1, 2]+=net_A, net_B</span>
+
+<span class="c1">#create the right 10ohm resistor on the right side of the T network</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_2</span>
+
+<span class="c1">#create the 20-volt independent source on the right and connect it</span>
+<span class="n">vs20</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;20&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">20</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs20</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#ne need a ground for SPICE so why not just force net B to ground</span>
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#port is at nodes A,B</span>
+
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V10 N1 0 10V
+V20 N2 0 20V
+Rleft N1 A 10Ohm
+Rright A N2 10Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now we put our new tool <code class="docutils literal notranslate"><span class="pre">Thevenin</span></code> to work in finding the Thevenin equivalent circuits</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create an instance of Thevenin and feed it the open port from the test circuit</span>
+<span class="n">test</span><span class="o">=</span><span class="n">Thevenin</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+V10 N1 0 10V
+V20 N2 0 20V
+Ithev 0 A 1A
+Rleft N1 A 10Ohm
+Rright A N2 10Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#run the method to get the Thevenin values and display the Thevenin data </span>
+<span class="c1"># to verify functionality</span>
+<span class="n">test</span><span class="o">.</span><span class="n">find_thev</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">thevenin_sweep_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ithev
+0.0    15.0
+0.1    15.5
+0.2    16.0
+0.3    16.5
+0.4    17.0
+0.5    17.5
+0.6    18.0
+0.7    18.5
+0.8    19.0
+0.9    19.5
+1.0    20.0
+Name: A_[V], dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># and finally to the display utility out for a test drive</span>
+<span class="n">test</span><span class="o">.</span><span class="n">display_thev</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_28_0.png" src="../_images/DC_5_Thvenin_Norton_28_0.png" />
+</div>
+</div>
+<p>And thus we have reproduced what we did “manually” with our new tool Thevenin</p>
+</div>
+</div>
+<div class="section" id="case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min">
+<h2>Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” &#64;~6:59 min<a class="headerlink" href="#case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">419</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/8udwPc5pCoA?start=419"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cirucit from case 2</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span><span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span><span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">rvs</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;vs&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="nd">@u_kOhm</span><span class="p">);</span> <span class="n">rvs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="nd">@u_kOhm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#create the voltage-controlled voltage source</span>
+<span class="n">vcvs</span><span class="o">=</span><span class="n">E</span><span class="p">(</span><span class="n">gain</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#vcvs inputs; outputs</span>
+<span class="n">vcvs</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">;</span> <span class="n">vcvs</span><span class="p">[</span><span class="s1">&#39;op&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_kOhm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#force net_B to be ground</span>
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#port is at nodes A,B</span>
+
+<span class="c1">#add our test suite ` Thevenin ` and let it solve and show the results</span>
+<span class="n">ThevTest</span><span class="o">=</span><span class="n">Thevenin</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+<span class="n">ThevTest</span><span class="o">.</span><span class="n">find_thev</span><span class="p">()</span>
+<span class="n">ThevTest</span><span class="o">.</span><span class="n">display_thev</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+E1 N2 A A 0 3
+Ithev 0 A 1A
+V1 N1 0 5V
+Rleft N2 0 2kOhm
+Rright A 0 1kOhm
+Rvs N1 N2 2kOhm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<img alt="../_images/DC_5_Thvenin_Norton_32_2.png" src="../_images/DC_5_Thvenin_Norton_32_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min">
+<h2>Case 3: All dependent source from “Thevenin’s Theorem Explained …” &#64;~11:51 min<a class="headerlink" href="#case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">711</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/8udwPc5pCoA?start=711"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cirucit from case 3</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span><span class="n">net_Aprime</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;Ap&#39;</span><span class="p">);</span> <span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">rcs</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;cs&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">6</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rcs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_Aprime</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_Aprime</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="n">vamm</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;amm&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">0</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vamm</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_Aprime</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="c1">#create the voltage-controlled current source, let it know the current monter, and connect</span>
+<span class="n">vccs</span><span class="o">=</span><span class="n">H</span><span class="p">(</span><span class="n">gain</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="n">vamm</span><span class="o">.</span><span class="n">ref_prefix</span><span class="o">+</span><span class="n">vamm</span><span class="o">.</span><span class="n">ref</span><span class="p">);</span> <span class="n">vccs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+
+
+<span class="c1">#force net b to ground</span>
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#port is at nodes A,B</span>
+
+<span class="c1">#let the Thevenin find test sweep rip</span>
+<span class="n">ThevTest</span><span class="o">=</span><span class="n">Thevenin</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+<span class="n">ThevTest</span><span class="o">.</span><span class="n">find_thev</span><span class="p">()</span>
+<span class="n">ThevTest</span><span class="o">.</span><span class="n">display_thev</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+H1 N1 0 Vamm
+Ithev 0 A 1A
+Vamm Ap A 0V
+Rcs N1 Ap 6Ohm
+Rright Ap 0 4Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+<img alt="../_images/DC_5_Thvenin_Norton_35_2.png" src="../_images/DC_5_Thvenin_Norton_35_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="norton-s-theorem">
+<h1>Norton’s Theorem<a class="headerlink" href="#norton-s-theorem" title="Permalink to this headline">¶</a></h1>
+<p>Norton’s theorem is just the dual to Thevenin’s so that
+$<span class="math notranslate nohighlight">\(I_N=I_{sc}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(R_{th}=R_{N}=\dfrac{1}{G_N}=\dfrac{V_{oc}}{I_{sc}}\)</span>$</p>
+<p>And so to measure it with SPICE we just replace a current source at the open port with a Voltage source.
+You might wonder why would anyone measure the short circuit current since sorts are typically not a good thing if not outright dangerous. Though to be fair unintentional and or uncontrolled opens are just as dangerous. The reason steams to one of the goals in this book and that is to create testbenchs for SPICE that mimic test setups in the lab. And while measuring the Thevenin in the lab is typically more preferable since we can start from an open circuit using a load then move toward shorting the open and using interpolation to then infer the actual short without having to make a real short. Certain testing, especially with batteries will conduct tests with short circuits. So why not have a Python-SPICE testbench ready to go and proven out before it’s needed.</p>
+<div class="section" id="example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min">
+<h2>Example 1: All independent source from “Norton’s Theorem Explained …” &#64;~3:32 min<a class="headerlink" href="#example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">212</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/DdLA8rntWEY?start=212"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="section" id="finding-the-northon-equivlint-manualy">
+<h3>Finding the Northon Equivlint “Manualy”<a class="headerlink" href="#finding-the-northon-equivlint-manualy" title="Permalink to this headline">¶</a></h3>
+<p>So why are we gain going over the manual way when we know we’re just going to create a wrapped tool. Cause first of all there is a subtle detail in that when we use a voltage source we can choose to either use the internal current or the current from the ammeter trick. For illustration purposes, we choose to do with the internal one. The second reason is to illustrate the process of abstraction. And that is trying not to rush into it. Build up a suite of test cases to then let the abstraction come.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#cirucit from example 1 of Norton YT</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span><span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span><span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">cs</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">2</span><span class="nd">@u_A</span><span class="p">);</span> <span class="n">cs</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">+=</span> <span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">12</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="n">rvs</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;vs&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rvs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">rtop</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rtop</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+<span class="n">rbot</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;bot&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rbot</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#port is at nodes A,B</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 0 N1 2A
+V1 N2 0 12V
+Rbot 0 B 8Ohm
+Rright A B 5Ohm
+Rtop N1 A 8Ohm
+Rvs N1 N2 4Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add the voltage source at the open port nets and regenerate the netlist</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Vnort</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;Vnort&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">Vnort</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 0 N1 2A
+V1 N2 0 12V
+Vnort A B 1V
+Rbot 0 B 8Ohm
+Rright A B 5Ohm
+Rtop N1 A 8Ohm
+Rvs N1 N2 4Ohm
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>setup the dc sweep of the test voltage source</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_nort_test</span><span class="o">=</span><span class="n">dc_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">basic_nort_test</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Vnort&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">basic_nort_test</span><span class="o">.</span><span class="n">clean_table</span><span class="p">()</span>
+<span class="n">basic_nort_test</span><span class="o">.</span><span class="n">sweep_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Step</th>
+    </tr>
+    <tr>
+      <th>Element</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Vnort</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Run the simulation, where we are opting for the internal current for the test voltage source, for no other reason than to contrast with the Thevenin tool that was made above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">basic_nort_test</span><span class="o">.</span><span class="n">do_dc_intsim</span><span class="p">(</span><span class="s1">&#39;Vnort&#39;</span><span class="p">)</span>
+<span class="c1">#not doing a quick plot here because the number columns vs the resolution of </span>
+<span class="c1">#subplots does not go well</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rbot[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we are only interested in the recorded internal current of the test voltage source we will just grab that one column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get all the columns that were measured</span>
+<span class="n">basic_nort_test</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;I1[c]_[A]&#39;, &#39;I1[v]_[V]&#39;, &#39;I1[p]_[W]&#39;, &#39;V1[i]_[A]&#39;, &#39;V1[p]_[W]&#39;,
+       &#39;Vnort[i]_[A]&#39;, &#39;Vnort[p]_[W]&#39;, &#39;Rbot[i]_[A]&#39;, &#39;Rbot[p]_[W]&#39;,
+       &#39;Rright[i]_[A]&#39;, &#39;Rright[p]_[W]&#39;, &#39;Rtop[i]_[A]&#39;, &#39;Rtop[p]_[W]&#39;,
+       &#39;Rvs[i]_[A]&#39;, &#39;Rvs[p]_[W]&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#grap the one columne of data we care about </span>
+<span class="n">nort_data</span><span class="o">=</span><span class="n">basic_nort_test</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="p">[</span><span class="s1">&#39;Vnort[i]_[A]&#39;</span><span class="p">]</span>
+<span class="n">nort_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vnort
+0.0   -1.000
+0.1   -0.975
+0.2   -0.950
+0.3   -0.925
+0.4   -0.900
+0.5   -0.875
+0.6   -0.850
+0.7   -0.825
+0.8   -0.800
+0.9   -0.775
+1.0   -0.750
+Name: Vnort[i]_[A], dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do our linear fitting of the data noting that the slop will be the conductance so we need to flip it to get resistance, and don’t worry about the sign of the current as long as for this case the resistance is positive. Just recall our discussions thus far about the sign of currents in SPICE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cnort</span><span class="p">,</span> <span class="n">Inort</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">basic_nort_test</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">basic_nort_test</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="p">[</span><span class="s1">&#39;Vnort[i]_[A]&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Rnort</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Cnort</span>
+<span class="n">Cnort</span><span class="p">,</span> <span class="n">Inort</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_52_0.png" src="../_images/DC_5_Thvenin_Norton_52_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nort_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Vnort[i]_[A]&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/DC_5_Thvenin_Norton_53_0.png" src="../_images/DC_5_Thvenin_Norton_53_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-packaged-tool-find-norton-equivlint-automatically">
+<h3>Creating a packaged tool find Norton Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-norton-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
+<p>This is fairly self-explanatory if you have read how the Thevenin tool was made. The one thing to note here is that we didn’t do an inheritance from the Thevenin tool. The reason is that the Norton and Thevenin tools are in essence an evolutionary fork from <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+<span class="c1">#chapter 1 section 5 Norton class</span>
+<span class="c1"># class that is a automated testsuite for finding the </span>
+<span class="c1"># DC Norton current and resistince of a port</span>
+
+<span class="k">class</span> <span class="nc">Norton</span><span class="p">(</span><span class="n">dc_ease</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tool for finding the DC Norton equivalent current and resistance of a one port</span>
+<span class="sd">    linear circuit with an open test port. The DUT must contain all linear elements.</span>
+<span class="sd">    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc</span>
+<span class="sd">    SPICE simulation with SkiDl and pyspice</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_pos</span><span class="p">,</span> <span class="n">port_neg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A new instantiation unique to this class but utilizes `dc_ease` internally.</span>
+<span class="sd">        Will add a 1V voltage source to the open port and will then generate the netlist</span>
+<span class="sd">        to simulate against within this class</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            port_pos (SkiDl net): A SKiDl net that makes up the positive side of </span>
+<span class="sd">                the DUT&#39;s open port to test</span>
+<span class="sd">            </span>
+<span class="sd">            port_neg (SkiDl net): A SKiDl net that makes up the negative side of </span>
+<span class="sd">                the DUT&#39;s open port to test</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            adds a 1V test source: `self.vnort` and creates that netlist to test:</span>
+<span class="sd">            `self.circ_netlist_obj`</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            -add assertions to so that only a SKiDl net obj can only be passed in</span>
+<span class="sd">            -add an assertion to see if the port is truly open</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1">#add voltage source to get Norton at port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vnort</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;Vnort&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vnort</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">port_pos</span><span class="p">,</span> <span class="n">port_neg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort</span><span class="o">.</span><span class="n">ref</span>
+        
+       
+        <span class="c1">#call generate netlist to create circ like we would if using `dc_ease`</span>
+        <span class="c1">#by its self and simultaneously pass it into while invoking `dc_ease`&#39;s</span>
+        <span class="c1"># own instatation method</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">generate_netlist</span><span class="p">())</span>
+        <span class="c1">#print out the resulting circuit for debugging</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;circuit and Thevenin finding Isource&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">find_nort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        method to conduct the dc sweep of `self.ithev` automatically and find the </span>
+<span class="sd">        resulting Norton current and resistance</span>
+<span class="sd">        </span>
+<span class="sd">        Args: NONE</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            see `dc_ease`&#39;s `record_dc_internals` for a full list of returns. But specifically will</span>
+<span class="sd">            return `self.norton_sweep_data` which is the pandas&#39; object with the</span>
+<span class="sd">            returned sweep data with only the necessary data for finding the Vth and Rth.</span>
+<span class="sd">            `self.rnort` (`self.gnort`) and `self.inort` which are In and Rn as floats respectively and</span>
+<span class="sd">            `self.nort_results` which is a pandas dataframe presenting In and Rn in a table</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#set the sweep table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean_table</span><span class="p">()</span>
+        
+        <span class="c1">#do the sweep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">do_dc_intsim</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="p">)</span>
+        <span class="c1">#get the results </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_dc_internals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="p">)</span>
+        
+        <span class="c1">#reduce the data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norton_sweep_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsINT_DF</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="o">+</span><span class="s1">&#39;[i]_[A]&#39;</span><span class="p">]</span>
+        
+        <span class="c1">#perform the 1d polyfit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gnort</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inort</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norton_sweep_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">norton_sweep_data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#flip from conductance to resistance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnort</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">gnort</span>
+        
+        <span class="c1">#make a pandas dataframe table, because it&#39;s the nice thing to do</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nort_results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rnort&#39;</span><span class="p">,</span> <span class="s1">&#39;Inort&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">,</span> <span class="s1">&#39;Units&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nort_results</span><span class="p">[</span><span class="s1">&#39;Units&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[Ohm]&#39;</span><span class="p">,</span> <span class="s1">&#39;[A]&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nort_results</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rnort</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inort</span><span class="p">]</span>
+        
+        
+    <span class="k">def</span> <span class="nf">display_nort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Auxiliary function to plot our Norton findings, useful for presentions</span>
+<span class="sd">        and debugging</span>
+<span class="sd">        </span>
+<span class="sd">        Args: None</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Creates a plot and with a table to the side with the Norton equivalent finding</span>
+<span class="sd">            with a table to the side summering our finding</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            - add a check to make sure self.find_nort  has been done</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#create the plot &quot;canvas&quot;</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1">#make a line plot on canvas of sweep data </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norton_sweep_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">xlabel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vnort_ref</span><span class="o">+</span><span class="s1">&#39;[i]_[A]&#39;</span><span class="p">,</span> 
+                                     <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+        
+        <span class="c1">#create &quot;annotation&quot; to hold self.nort_results in and to display next to the plot</span>
+        <span class="n">Anotation</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Norton Port Results:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nort_results</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+            <span class="n">Anotation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;   &#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{row.Index}</span><span class="s1">: </span><span class="si">{row.Values:.3f}</span><span class="s1"> </span><span class="si">{row.Units}</span><span class="s1">&#39;</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="n">Anotation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Anotation</span><span class="p">)</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="n">Anotation</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Norten voltage sweep results&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#resuse of example 1 to test `Norton`</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span><span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span><span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">cs</span><span class="o">=</span><span class="n">I</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">2</span><span class="nd">@u_A</span><span class="p">);</span> <span class="n">cs</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">+=</span> <span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">12</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_2</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="n">rvs</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;vs&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rvs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_2</span>
+<span class="n">rtop</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rtop</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+<span class="n">rbot</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;bot&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rbot</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="c1">#port is at nodes A,B</span>
+
+<span class="c1"># instantiate Norton feeding it the port terminal nets</span>
+<span class="n">NortTest</span><span class="o">=</span><span class="n">Norton</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+<span class="c1">#Have it find Norton values</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">find_nort</span><span class="p">()</span>
+<span class="c1">#fancy display results</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">display_nort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+
+Unit is None for @rbot[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+I1 0 N1 2A
+V1 N2 0 12V
+Vnort A B 1V
+Rbot 0 B 8Ohm
+Rright A B 5Ohm
+Rtop N1 A 8Ohm
+Rvs N1 N2 4Ohm
+</pre></div>
+</div>
+<img alt="../_images/DC_5_Thvenin_Norton_56_8.png" src="../_images/DC_5_Thvenin_Norton_56_8.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min">
+<h2>Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” &#64;~7:03 min<a class="headerlink" href="#example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">423</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/DdLA8rntWEY?start=423"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cirucit from example 3</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="c1">#addedd a &#39;prime&#39; node to attache the current ammeter &#39;ix&#39; for the cccs</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_1prime</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1prime&#39;</span><span class="p">);</span> <span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1prime</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">rcenter</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="c1">#current ammeter &#39;ix&#39; for the cccs</span>
+<span class="n">vix</span><span class="o">=</span><span class="n">V</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;ix&#39;</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">0</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vix</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1prime</span><span class="p">,</span> <span class="n">net_1</span>
+
+<span class="c1">#create the cccs and give it the control</span>
+<span class="n">cccs</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">gain</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="n">vix</span><span class="o">.</span><span class="n">ref_prefix</span><span class="o">+</span><span class="n">vix</span><span class="o">.</span><span class="n">ref</span><span class="p">)</span>
+<span class="n">cccs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_A</span>
+
+<span class="c1">#force net_B to ground</span>
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="n">NortTest</span><span class="o">=</span><span class="n">Norton</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">find_nort</span><span class="p">()</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">display_nort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
+
+Unit is None for @rleft[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @f1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+F1 N1 A Vix 2
+V1 N1 0 10V
+Vnort A 0 1V
+Rcenter N1 A 5Ohm
+Vix N1 N1prime 0V
+Rleft N1prime 0 4Ohm
+</pre></div>
+</div>
+<img alt="../_images/DC_5_Thvenin_Norton_59_8.png" src="../_images/DC_5_Thvenin_Norton_59_8.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min">
+<h2>Example 3: All dependent source from “Norton’s Theorem Explained …” &#64;~11:27 min<a class="headerlink" href="#example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">687</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="500"
+    height="400"
+    src="https://www.youtube.com/embed/DdLA8rntWEY?start=687"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Cirucit from exsample 3</span>
+<span class="n">reset</span><span class="p">()</span>
+<span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_A</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">);</span> <span class="n">net_B</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="n">rleft</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rleft</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span>
+<span class="n">rcenter</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_1</span>
+<span class="n">rright</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">200</span><span class="nd">@u_Ohm</span><span class="p">);</span> <span class="n">rright</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="n">vccs</span><span class="o">=</span><span class="n">G</span><span class="p">(</span><span class="n">gain</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">vccs</span><span class="p">[</span><span class="s1">&#39;ip&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">;</span> <span class="n">vccs</span><span class="p">[</span><span class="s1">&#39;op&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">net_B</span>
+
+<span class="n">net_B</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="c1">#port is at nodes A, B</span>
+
+<span class="n">NortTest</span><span class="o">=</span><span class="n">Norton</span><span class="p">(</span><span class="n">net_A</span><span class="p">,</span> <span class="n">net_B</span><span class="p">)</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">find_nort</span><span class="p">()</span>
+<span class="n">NortTest</span><span class="o">.</span><span class="n">display_nort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B and 0) into B.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
+
+Unit is None for @rleft[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @g1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
+.title 
+G1 N1 0 A 0 0.1
+Vnort A 0 1V
+Rcenter A N1 50Ohm
+Rleft A 0 100Ohm
+Rright N1 0 200Ohm
+</pre></div>
+</div>
+<img alt="../_images/DC_5_Thvenin_Norton_62_7.png" src="../_images/DC_5_Thvenin_Norton_62_7.png" />
+</div>
+</div>
+</div>
+<div class="section" id="citations">
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<p>[1] ALL ABOUT ELECTRONICS. “Thevenin’s Theorem Explained (With examples of Independent and Dependent Sources),” YouTube, Apr 8, 2017. [Video file]. Available: https://youtu.be/8udwPc5pCoA. [Accessed: Nov 30, 2020].</p>
+<p>[2] ALL ABOUT ELECTRONICS. “Norton’s Theorem Explained (With examples of Independent and Dependent Sources),” YouTube, Feb 1, 2020. [Video file]. Available: https://youtu.be/DdLA8rntWEY. [Accessed: Nov 30, 2020].</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./DC_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="DC_4_dependent_sources_and_tf.html" title="previous page">Controlled Dependent Sources in SPICE</a>
+    <a class='right-next' id="next-link" href="DC_6_DC_MaxPower_MaxEfficiency.html" title="next page">Maximum Power Transfer Theorem</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

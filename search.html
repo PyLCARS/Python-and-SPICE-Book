@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Search &#8212; Python &amp; SPICE</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" />
+  <script src="searchindex.js" defer></script>
+  
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Python & SPICE</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="#" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="needed_libraries.html">
+   Dependency install instruction
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="DC_1/DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1/DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1 id="search-documentation">Search</h1>
+  <div id="fallback" class="admonition warning">
+  <script>$('#fallback').hide();</script>
+  <p>
+    Please activate JavaScript to enable the search
+    functionality.
+  </p>
+  </div>
+  <p>
+    From here you can search these documents. Enter your search
+    words into the box below and click "search". Note that the search
+    function will automatically search for all of the words. Pages
+    containing fewer words won't appear in the result list.
+  </p>
+  <form action="" method="get">
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" />
+    <input type="submit" value="search" />
+    <span id="search-progress" style="padding-left: 10px"></span>
+  </form>
+  
+  <div id="search-results">
+  
+  </div>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Steven K Armour (PyLCARS)<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -17,7 +17,7 @@
 # ```{toctree}
 # :hidden:
 # :titlesonly:
-# :numbered: 
+# 
 # 
 # DC_1_op_ohm
 # DC_2_op_source_transform

@@ -72,13 +72,3 @@
 # 
 # 5. And we will show how to extract high-level models using traditional real-world and AMI tools along with machine learning tools that Python is light years ahead of other traditional scientific programming languages of
 # 
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# needed_libraries
-# ```
-# 

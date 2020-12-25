@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>18. Maximum Power Transfer Theorem &#8212; Python &amp; SPICE</title>
+    <title>Maximum Power Transfer Theorem &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,7 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="16. Thevenin’s DC Equivalent Circuit" href="DC_5_Thvenin_Norton.html" />
+    <link rel="next" title="Chapter 2 AC simulations with Python and SPICE" href="../AC_2/AC_1.html" />
+    <link rel="prev" title="Thevenin’s DC Equivalent Circuit" href="DC_5_Thvenin_Norton.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -86,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="reference internal" href="DC_1.html">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -321,27 +446,27 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#max-power-delivered-vs-most-efficient-power-delivered">
-   18.1. Max Power Delivered vs Most Efficient Power Delivered
+   Max Power Delivered vs Most Efficient Power Delivered
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above">
-   18.2. Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above
+   Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min">
-   18.3. Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~4:47 min
+   Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~4:47 min
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min">
-   18.4. Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~8:46 min
+   Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” @ ~8:46 min
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#citations">
-   18.5. Citations:
+   Citations:
   </a>
  </li>
 </ul>
@@ -401,10 +526,10 @@
 <p>#tool to log notebook internals
 #https://github.com/jrjohansson/version_information</p>
 <div class="section" id="maximum-power-transfer-theorem">
-<h1><span class="section-number">18. </span>Maximum Power Transfer Theorem<a class="headerlink" href="#maximum-power-transfer-theorem" title="Permalink to this headline">¶</a></h1>
+<h1>Maximum Power Transfer Theorem<a class="headerlink" href="#maximum-power-transfer-theorem" title="Permalink to this headline">¶</a></h1>
 <p>The Maximum Power transfer theorem for DC states that when the Load is equal to the Thevenin resistance of the circuit(<span class="math notranslate nohighlight">\(R_{L}=R_{th}\)</span>) the power delivered to the load is maximized which is proven via taking the derivative of $<span class="math notranslate nohighlight">\(P=i^2 R_L=(\dfrac{V_{th}}{R_{th}+R_L})^2 R_L\)</span>$ and setting it to zero and solving. The details of which are given by ALL ABOUT ELECTRONICS in his YT video <a class="reference external" href="https://www.youtube.com/watch?v=RbII8o49Hvs">Maximum Power Transfer Theorem for DC Circuits (with Examples)</a>. But suffice to say we have already done the work to find this in the last two sections of this chapter by finding the Thevenin and Norton values of the circuit or when permitted using the .tf to find the DC transfer function which also gives us the input resistance. But here we want to show how to just sweep the load resistance itself (or any resistor in the circuit) and then find the peak in the resulting data that will give us the maximum power while also measuring the efficiency of the load where then we can find the ideal optimal load by finding the intersection of the two curves. We can do this by again utilizing the machinery we have developed to easily find the Thevenin and Norton equivalent circuits for circuits with multiple sources. Further, we want to then translate that semi-arbitrary value to a value we can use in the real world where the values you can get for a resistor are finite. So, let’s start with a theoretical model and then work with Examples 2 and 3 from ALL ABOUT ELECTRONICS video and develop a tool to automatically do all this for us.</p>
 <div class="section" id="max-power-delivered-vs-most-efficient-power-delivered">
-<h2><span class="section-number">18.1. </span>Max Power Delivered vs Most Efficient Power Delivered<a class="headerlink" href="#max-power-delivered-vs-most-efficient-power-delivered" title="Permalink to this headline">¶</a></h2>
+<h2>Max Power Delivered vs Most Efficient Power Delivered<a class="headerlink" href="#max-power-delivered-vs-most-efficient-power-delivered" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efficiency</span><span class="p">,</span> <span class="n">powerload</span><span class="p">,</span> <span class="n">powersource</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="n">Rth</span><span class="p">,</span> <span class="n">RL</span> <span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\eta, P_L, P_S, i, v, R_</span><span class="si">{th}</span><span class="s2">, R_L&quot;</span><span class="p">)</span>
@@ -670,10 +795,10 @@
 <p>So now the task at hand is to move beyond this ideal theoretical example to having SPICE find the values we need and then building a testbench class in python that will do the data analysis along with all the SPICE work we just showed automatically for nearly any DC circuit. Where AC circuits and circuits that rely on Transient circuit effects (think switch-mode power supplies) will have to be analyzed separately when we cross those bridges.</p>
 </div>
 <div class="section" id="cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above">
-<h2><span class="section-number">18.2. </span>Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above<a class="headerlink" href="#cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above" title="Permalink to this headline">¶</a></h2>
+<h2>Cannot move on due to the issue in pyspice that prevents sweeping anything but Current and Voltage Sources; see TODO above<a class="headerlink" href="#cannot-move-on-due-to-the-issue-in-pyspice-that-prevents-sweeping-anything-but-current-and-voltage-sources-see-todo-above" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min">
-<h2><span class="section-number">18.3. </span>Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~4:47 min<a class="headerlink" href="#example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min" title="Permalink to this headline">¶</a></h2>
+<h2>Example 2 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~4:47 min<a class="headerlink" href="#example-2-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-4-47-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;RbII8o49Hvs&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">287</span><span class="p">)</span>
@@ -734,7 +859,7 @@ Rtop N4 N3 4Ohm
 </div>
 </div>
 <div class="section" id="example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min">
-<h2><span class="section-number">18.4. </span>Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~8:46 min<a class="headerlink" href="#example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min" title="Permalink to this headline">¶</a></h2>
+<h2>Example 3 from “Maximum Power Transfer Theorem for DC Circuits (with Examples)” &#64; ~8:46 min<a class="headerlink" href="#example-3-from-maximum-power-transfer-theorem-for-dc-circuits-with-examples-8-46-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;RbII8o49Hvs&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">526</span><span class="p">)</span>
@@ -791,7 +916,7 @@ Rtest N1 N3 1Ohm
 </div>
 </div>
 <div class="section" id="citations">
-<h2><span class="section-number">18.5. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
 <p>[1] ALL ABOUT ELECTRONICS. “Maximum Power Transfer Theorem for DC Circuits (with Examples),” YouTube, May 20, 2017. [Video file]. Available: https://youtu.be/RbII8o49Hvs. [Accessed: Nov 30, 2020].</p>
 <p>[2] &#64;JustGlowing, “How to find the intersection of two functions,” The Glowing Python, 10-May-2011. [Online]. Available: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html. [Accessed: 20-Nov-2020].</p>
 </div>
@@ -825,7 +950,8 @@ Rtest N1 N3 1Ohm
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="DC_5_Thvenin_Norton.html" title="previous page"><span class="section-number">16. </span>Thevenin’s DC Equivalent Circuit</a>
+    <a class='left-prev' id="prev-link" href="DC_5_Thvenin_Norton.html" title="previous page">Thevenin’s DC Equivalent Circuit</a>
+    <a class='right-next' id="next-link" href="../AC_2/AC_1.html" title="next page">Chapter 2 AC simulations with Python and SPICE</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

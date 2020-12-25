@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>1. Getting started with Python &amp; SPICE, DC Operating Point Analysis &#8212; Python &amp; SPICE</title>
+    <title>Getting started with Python &amp; SPICE, DC Operating Point Analysis &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,7 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Working with SKiDl elements" href="DC_2_op_source_transform.html" />
+    <link rel="next" title="Working with SKiDl elements" href="DC_2_op_source_transform.html" />
     <link rel="prev" title="Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE" href="DC_1.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="reference internal" href="DC_1.html">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -322,19 +446,19 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
+   Getting started with Python &amp; SPICE, DC Operating Point Analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#building-a-circuit-to-produce-a-spice-netlist-with-skidl">
-     1.1. Building a circuit to produce a SPICE netlist with SKiDl¶
+     Building a circuit to produce a SPICE netlist with SKiDl¶
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spice-s-dc-operating-point-simulation-op">
-   2. SPICE’s DC Operating Point simulation
+   SPICE’s DC Operating Point simulation
    <code class="docutils literal notranslate">
     <span class="pre">
      .op
@@ -344,12 +468,12 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-brief-into-spice-simulation-automation-with-python">
-     2.1. A Brief into SPICE simulation automation with Python¶¶
+     A Brief into SPICE simulation automation with Python¶¶
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#citations">
-     2.2. Citations:
+     Citations:
     </a>
    </li>
   </ul>
@@ -370,7 +494,7 @@
 <li><p>clearfy language</p></li>
 </ul>
 <div class="section" id="getting-started-with-python-spice-dc-operating-point-analysis">
-<h1><span class="section-number">1. </span>Getting started with Python &amp; SPICE, DC Operating Point Analysis<a class="headerlink" href="#getting-started-with-python-spice-dc-operating-point-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>Getting started with Python &amp; SPICE, DC Operating Point Analysis<a class="headerlink" href="#getting-started-with-python-spice-dc-operating-point-analysis" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile DC_1_Codes.py</span>
@@ -410,7 +534,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Tue Dec 15 22:10:56 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:01 2020 MST</td></tr></table></div></div>
 </div>
 <p>#Starting simple with the basic three¶
 By the basic three, I mean the <code class="docutils literal notranslate"><span class="pre">Linear</span> <span class="pre">Independent</span> <span class="pre">Voltage</span> <span class="pre">Sources</span></code>, <code class="docutils literal notranslate"><span class="pre">Linear</span> <span class="pre">Independent</span> <span class="pre">Current</span> <span class="pre">Sources</span></code>, and <code class="docutils literal notranslate"><span class="pre">Resistors</span></code> as the three elements to start building primitive circuits. So what is an element, it’s SPICE terminology for any device or part that affects the voltage and or current in the circuit. To start with the only elements we are using in this section are Ideal Voltage Souces, Ideal Current Source, and ideal resistors. SPICE allows us to have some fairly fancy elements like semiconductor resistors, but let’s stick to the basics here.
@@ -434,7 +558,7 @@ The other part of any circuit is interconnections between the elements where the
 </div>
 <p>Again the purpose of the work isn’t to go over the analytical paper and pencil work, but in part show how to use Python &amp; SPICE to verify our results and go further with SPICE circuit simulation enhanced by being wrapping as much as we can in Python. And so we start our first foray by verifying the results of the example circuit at the ~10:30 mark of All ABOUT ELELCTRONINCS YT video on “Ohm’s Law”, a simple voltage source, and resistor.</p>
 <div class="section" id="building-a-circuit-to-produce-a-spice-netlist-with-skidl">
-<h2><span class="section-number">1.1. </span>Building a circuit to produce a SPICE netlist with SKiDl¶<a class="headerlink" href="#building-a-circuit-to-produce-a-spice-netlist-with-skidl" title="Permalink to this headline">¶</a></h2>
+<h2>Building a circuit to produce a SPICE netlist with SKiDl¶<a class="headerlink" href="#building-a-circuit-to-produce-a-spice-netlist-with-skidl" title="Permalink to this headline">¶</a></h2>
 <p>The first thing to understand is that we are building a global circuit here. SKiDl also has local circuits where all of the circuit is contained to an object. And we will work with those eventually but for now, we will work with the global circuit. Where the global circuit will automatically append to its self any SKiDl elements instantiate between calls of <code class="docutils literal notranslate"><span class="pre">reset()</span></code>. Therefore, we have to call <code class="docutils literal notranslate"><span class="pre">reset()</span></code> to clear out the global circuit to a blank slate before adding to it.
 Secondly, let’s delve into the three things that all SPICE netlist must-have.</p>
 <ol class="simple">
@@ -505,7 +629,7 @@ where <code class="docutils literal notranslate"><span class="pre">'p'</span></c
 </div>
 </div>
 <div class="section" id="spice-s-dc-operating-point-simulation-op">
-<h1><span class="section-number">2. </span>SPICE’s DC Operating Point simulation <code class="docutils literal notranslate"><span class="pre">.op</span></code><a class="headerlink" href="#spice-s-dc-operating-point-simulation-op" title="Permalink to this headline">¶</a></h1>
+<h1>SPICE’s DC Operating Point simulation <code class="docutils literal notranslate"><span class="pre">.op</span></code><a class="headerlink" href="#spice-s-dc-operating-point-simulation-op" title="Permalink to this headline">¶</a></h1>
 <p>This is the simplest of all simulations since it just produces results with everything being static. Now technically there is a .dc simulation that is coming up in this chapter  that gives the same results when set up a certain way. But that’s to come. And when using .dc simulation a series of operating point simulations are just being carried out in the background anyway. So let get in the habit of if we just need static value for a dc simulation we use operating point analysis.</p>
 <p>Also, what is the deal between AC and DC simulations? The main difference is that a DC simulation will ignore capacitors and inductors as opens and shorts respectively not only for true capacitor and inductor elements in the circuit but also all internal capacitors and inductors as part of an elements internal model.</p>
 <div class="cell docutils container">
@@ -657,7 +781,7 @@ Node N1 :n1
 </div>
 <p>So if we needed to measure the current at any other branches we would have to add a voltage source that would not affect our circuit via adding a 0V source in line. This trick is known as adding a SPICE ammeter. And as will be shown further SKiDl makes adding a SPICE ammeter trivial. Opposed to having to rework schematics to add one. For our first section introducing SKiDl, PySPICE, and SPICE this is enough. In the following sections of this chapter on DC SPICE simulations, we will get familiar enough with creating circuits with SKiDl and controlling SPICE with PySPICE. So to end this section let’s now introduce the power of automation SPICE with python.</p>
 <div class="section" id="a-brief-into-spice-simulation-automation-with-python">
-<h2><span class="section-number">2.1. </span>A Brief into SPICE simulation automation with Python¶¶<a class="headerlink" href="#a-brief-into-spice-simulation-automation-with-python" title="Permalink to this headline">¶</a></h2>
+<h2>A Brief into SPICE simulation automation with Python¶¶<a class="headerlink" href="#a-brief-into-spice-simulation-automation-with-python" title="Permalink to this headline">¶</a></h2>
 <p>In the work above we manually created the circuit, the simulation object, calling an operating point simulation against the simulation object, and finally, we semi-manually sorted through operating point simulation results. We chose here to create the circuit in SKiDL instead of a schematic capture tool. Because: one for small circuits it’s a lot faster, and two serves our usage of showing how to use SKiDl. And as we will come to see we can also encapsulate parts of circuits inside python functions and classes with SkiDl to then tag onto other circuits. We also manually created our circuit simulation object and then called a SPICE simulation against it. If you have never worked with any other SPICE interface before I can’t stress how powerful this is to just be able to call a SPICE simulation like that. And in fact, nothing is stopping us, save the requirements of any particular SPICE simulation, from calling a myriad of SPICE simulations against the simulation object. But every time we do one of these simulations we also have to handle the data that it produces. Above we walked through how data is returned for operating point analysis and had to do a fair bit of repetitive work to get the data back in not the most presentable of manors. So let rectify that and remove that burden by creating a class to handle performing the operating point simulation, collecting the results into pandas dataframe, and spitting out at the result. For this, the result is given below, as we continue through this book we will go over the creation of these tools in what is known as abstraction. Where being able to abstract and automate the simulation and reporting will truly showcase the power of integrating SPICE with Python</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -848,7 +972,7 @@ V1 N1 0 10V
 <p>As you can see we were able to just pass our <code class="docutils literal notranslate"><span class="pre">circ</span></code> object into our created <code class="docutils literal notranslate"><span class="pre">op_results_collect</span></code> tool and it created the simulation object, performed the operating point analysis, and collected all the data into a dataframe that is easy to read and can be stored to a variable and be analyzed by the rest of the Python scientific ecosystem all in one line.</p>
 </div>
 <div class="section" id="citations">
-<h2><span class="section-number">2.2. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
 <p>[1] ALL ABOUT ELECTRONICS. “Ohm’s law Explained
 ,” YouTube, Dec 17, 2016. [Video file]. Available: https://youtu.be/PV8CMZZKrB4. [Accessed: Nov 30, 2020].</p>
 <p>[2] ALL ABOUT ELECTRONICS. “Circuit terminology: Concept of Loop, Mesh, Node and Branch explained,” YouTube, Jan 24, 2017. [Video file]. Available: https://youtu.be/zUGaU4kZpag. [Accessed: Nov 30, 2020].</p>
@@ -884,7 +1008,7 @@ V1 N1 0 10V
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="DC_1.html" title="previous page">Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE</a>
-    <a class='right-next' id="next-link" href="DC_2_op_source_transform.html" title="next page"><span class="section-number">3. </span>Working with SKiDl elements</a>
+    <a class='right-next' id="next-link" href="DC_2_op_source_transform.html" title="next page">Working with SKiDl elements</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

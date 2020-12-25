@@ -49,5 +49,7 @@ get_ipython().run_line_magic('version_information', 'skidl, PySpice,lcapy, sympy
 # 
 # 
 # DC_1/DC_1
+# AC_2/AC_1
+# Appendix/skidl_2_pyspice_check
 # ```
 # 

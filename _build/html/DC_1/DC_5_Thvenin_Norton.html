@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>16. Thevenin’s DC Equivalent Circuit &#8212; Python &amp; SPICE</title>
+    <title>Thevenin’s DC Equivalent Circuit &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,8 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="18. Maximum Power Transfer Theorem" href="DC_6_DC_MaxPower_MaxEfficiency.html" />
-    <link rel="prev" title="9. Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
+    <link rel="next" title="Maximum Power Transfer Theorem" href="DC_6_DC_MaxPower_MaxEfficiency.html" />
+    <link rel="prev" title="Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -87,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="reference internal" href="DC_1.html">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -322,78 +446,78 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   16. Thevenin’s DC Equivalent Circuit
+   Thevenin’s DC Equivalent Circuit
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min">
-     16.1. Case 1: All independent source from “Thevenin’s Theorem Explained …” @~4:08 min
+     Case 1: All independent source from “Thevenin’s Theorem Explained …” @~4:08 min
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#there-is-a-mistake-in-the-calculation-of-v-th-in-case-1">
-       16.1.1. There is a mistake in the calculation of V_th in case 1.
+       There is a mistake in the calculation of V_th in case 1.
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#finding-the-theivine-equivlint-manually">
-       16.1.2. Finding the Theivine Equivlint “Manually”
+       Finding the Theivine Equivlint “Manually”
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#creating-a-packaged-tool-find-theivine-equivlint-automatically">
-       16.1.3. Creating a packaged tool find Theivine Equivlint automatically
+       Creating a packaged tool find Theivine Equivlint automatically
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min">
-     16.2. Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” @~6:59 min
+     Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” @~6:59 min
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min">
-     16.3. Case 3: All dependent source from “Thevenin’s Theorem Explained …” @~11:51 min
+     Case 3: All dependent source from “Thevenin’s Theorem Explained …” @~11:51 min
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#norton-s-theorem">
-   17. Norton’s Theorem
+   Norton’s Theorem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min">
-     17.1. Example 1: All independent source from “Norton’s Theorem Explained …” @~3:32 min
+     Example 1: All independent source from “Norton’s Theorem Explained …” @~3:32 min
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#finding-the-northon-equivlint-manualy">
-       17.1.1. Finding the Northon Equivlint “Manualy”
+       Finding the Northon Equivlint “Manualy”
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#creating-a-packaged-tool-find-norton-equivlint-automatically">
-       17.1.2. Creating a packaged tool find Norton Equivlint automatically
+       Creating a packaged tool find Norton Equivlint automatically
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min">
-     17.2. Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” @~7:03 min
+     Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” @~7:03 min
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min">
-     17.3. Example 3: All dependent source from “Norton’s Theorem Explained …” @~11:27 min
+     Example 3: All dependent source from “Norton’s Theorem Explained …” @~11:27 min
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#citations">
-     17.4. Citations:
+     Citations:
     </a>
    </li>
   </ul>
@@ -448,7 +572,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Tue Dec 15 22:11:23 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:27 2020 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -458,7 +582,7 @@
 </div>
 </div>
 <div class="section" id="thevenins-dc-equivalent-circuit">
-<h1><span class="section-number">16. </span>Thevenin’s DC Equivalent Circuit<a class="headerlink" href="#thevenins-dc-equivalent-circuit" title="Permalink to this headline">¶</a></h1>
+<h1>Thevenin’s DC Equivalent Circuit<a class="headerlink" href="#thevenins-dc-equivalent-circuit" title="Permalink to this headline">¶</a></h1>
 <p>Thevenin’s Theorem (at DC), states that looking into any open port (two terminals sharing that same current) of a circuit that said open port, in the context of linear circuits. will appear as nothing more than a voltage source in series with a resistor. Where said voltage source is called the equivalent Thevenin voltage source that represents the summation of all voltages delivered to the open port. And the resistance in series of the Thevenin voltage source, the Thevenin resistance, is the resistance if all independent sources in our black box when removed. The brilliant thing about the Thevenin voltage and resistance is that the Thevenin Voltage is the open-circuit voltage and Thevenin resistance, via Nortons Theorem (the current dual to Thevenin theorem) is the ratio of the open-circuit voltage to short circuit current. Thus, giving us the hint to find the two equivalence via SPICE with ease</p>
 <div class="math notranslate nohighlight">
 \[ V_{th}=V_{oc}\]</div>
@@ -478,7 +602,7 @@ And thus, we hook up a current source to the open port under test and sweep the 
 <p>You may be asking yourself why we didn’t just use the spice Transfer function (.tf) to find the Thevenin equivalent circuit. While we can use .tf however, .tf really comes from two-port circuit representation that we will be deal with in AC circuits extensively. But without going down that rabbit hole now. One would have to use .tf for every independent source to the open port and then convert the gain from the source to figure out the Thevenin voltage equivalent looking into the port and apply superposition for each independent source. So yeah .tf has its usage as we will see but for finding the Thevenin and Norton circuit it’s not practical.</p>
 <p>When applying the Thevenin theorem to find the DC equivalent circuit there are in general three cases given the mixture of dependent and independent sources in the circuit that is being reduced. But for our sake with SPICE, we don’t care since we will always apply a 1A test current source. If the reader wishes to see how to analytically solve these three cases it is recommended to review the YT video from ALL ABOUT ELECTRONICS <a class="reference external" href="https://youtu.be/8udwPc5pCoA">“Thevenin’s Theorem Explained (With examples of Independent and Dependent Sources)”</a> where are test example for using SPICE are sourced.</p>
 <div class="section" id="case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min">
-<h2><span class="section-number">16.1. </span>Case 1: All independent source from “Thevenin’s Theorem Explained …” &#64;~4:08 min<a class="headerlink" href="#case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min" title="Permalink to this headline">¶</a></h2>
+<h2>Case 1: All independent source from “Thevenin’s Theorem Explained …” &#64;~4:08 min<a class="headerlink" href="#case-1-all-independent-source-from-thevenin-s-theorem-explained-4-08-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">248</span><span class="p">)</span>
@@ -497,7 +621,7 @@ And thus, we hook up a current source to the open port under test and sweep the 
 </div></div>
 </div>
 <div class="section" id="there-is-a-mistake-in-the-calculation-of-v-th-in-case-1">
-<h3><span class="section-number">16.1.1. </span>There is a mistake in the calculation of V_th in case 1.<a class="headerlink" href="#there-is-a-mistake-in-the-calculation-of-v-th-in-case-1" title="Permalink to this headline">¶</a></h3>
+<h3>There is a mistake in the calculation of V_th in case 1.<a class="headerlink" href="#there-is-a-mistake-in-the-calculation-of-v-th-in-case-1" title="Permalink to this headline">¶</a></h3>
 <p>When calculating the voltage above it was show that the node voltage could be found by using KVL around the loop to find the loop current. But then that current is used to find the voltage at node A via a naive use of the voltage drop around the loop coming from the 10V source on the left through the 10 Ohm resistor on the left giving an incorrect result of 5V. This is due to the fact there are two sources in the loop and thus there is also a superimposed voltage cumming from the right 20V source and right resistor to node A. When attempting to find the voltage at a node it is preferable to use KCL at that node. Thus the correct answer for the Thevenin voltage with respect to node A (treating node B as ground) is given by</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{A-10}{10} +\dfrac{A-20}{10}=0\]</div>
@@ -507,7 +631,7 @@ And thus, we hook up a current source to the open port under test and sweep the 
 \[A=\dfrac{30}{2}=15[V]=V_{th}\]</div>
 </div>
 <div class="section" id="finding-the-theivine-equivlint-manually">
-<h3><span class="section-number">16.1.2. </span>Finding the Theivine Equivlint “Manually”<a class="headerlink" href="#finding-the-theivine-equivlint-manually" title="Permalink to this headline">¶</a></h3>
+<h3>Finding the Theivine Equivlint “Manually”<a class="headerlink" href="#finding-the-theivine-equivlint-manually" title="Permalink to this headline">¶</a></h3>
 <p>The following shows how we go about exploring a test setup before consulting the following to a wrap-up tool that we can deploy from a dozen or so lines of code to just two. We will use the already created tool from section adlkfakldjfkj so were not doing a DC sweep from scratch</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,7 +806,7 @@ Rright A N2 10Ohm
 </div>
 </div>
 <div class="section" id="creating-a-packaged-tool-find-theivine-equivlint-automatically">
-<h3><span class="section-number">16.1.3. </span>Creating a packaged tool find Theivine Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-theivine-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
+<h3>Creating a packaged tool find Theivine Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-theivine-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
 <p>Since one of the goals of this book is to spare on Analog Design Verification and to do so Analog design verification needs to have smart test suites. So let then let’s take what we have just done and wrap it up into a single convenient tool that does all the work in three lines of code when we’re done.</p>
 <p>The process of doing this again is called abstraction, and to do abstraction we review what we did manually and then break down that process into automated usage.</p>
 <ol class="simple">
@@ -866,6 +990,9 @@ Rright A N2 10Ohm
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
 V10 N1 0 10V
 V20 N2 0 20V
@@ -873,7 +1000,8 @@ Rleft N1 A 10Ohm
 Rright A N2 10Ohm
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -943,7 +1071,7 @@ Name: A_[V], dtype: float64
 </div>
 </div>
 <div class="section" id="case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min">
-<h2><span class="section-number">16.2. </span>Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” &#64;~6:59 min<a class="headerlink" href="#case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min" title="Permalink to this headline">¶</a></h2>
+<h2>Case 2: Mixture of independent and dependent source from “Thevenin’s Theorem Explained …” &#64;~6:59 min<a class="headerlink" href="#case-2-mixture-of-independent-and-dependent-source-from-thevenin-s-theorem-explained-6-59-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">419</span><span class="p">)</span>
@@ -1009,7 +1137,7 @@ Rvs N1 N2 2kOhm
 </div>
 </div>
 <div class="section" id="case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min">
-<h2><span class="section-number">16.3. </span>Case 3: All dependent source from “Thevenin’s Theorem Explained …” &#64;~11:51 min<a class="headerlink" href="#case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min" title="Permalink to this headline">¶</a></h2>
+<h2>Case 3: All dependent source from “Thevenin’s Theorem Explained …” &#64;~11:51 min<a class="headerlink" href="#case-3-all-dependent-source-from-thevenin-s-theorem-explained-11-51-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;8udwPc5pCoA&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">711</span><span class="p">)</span>
@@ -1055,12 +1183,6 @@ Rvs N1 N2 2kOhm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B and 0) into B.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
 .title 
 H1 N1 0 Vamm
@@ -1070,24 +1192,23 @@ Rcs N1 Ap 6Ohm
 Rright Ap 0 4Ohm
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 warnings found during netlist generation.
-0 errors found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_35_4.png" src="../_images/DC_5_Thvenin_Norton_35_4.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_35_2.png" src="../_images/DC_5_Thvenin_Norton_35_2.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="norton-s-theorem">
-<h1><span class="section-number">17. </span>Norton’s Theorem<a class="headerlink" href="#norton-s-theorem" title="Permalink to this headline">¶</a></h1>
+<h1>Norton’s Theorem<a class="headerlink" href="#norton-s-theorem" title="Permalink to this headline">¶</a></h1>
 <p>Norton’s theorem is just the dual to Thevenin’s so that
 $<span class="math notranslate nohighlight">\(I_N=I_{sc}\)</span><span class="math notranslate nohighlight">\(
 \)</span><span class="math notranslate nohighlight">\(R_{th}=R_{N}=\dfrac{1}{G_N}=\dfrac{V_{oc}}{I_{sc}}\)</span>$</p>
 <p>And so to measure it with SPICE we just replace a current source at the open port with a Voltage source.
 You might wonder why would anyone measure the short circuit current since sorts are typically not a good thing if not outright dangerous. Though to be fair unintentional and or uncontrolled opens are just as dangerous. The reason steams to one of the goals in this book and that is to create testbenchs for SPICE that mimic test setups in the lab. And while measuring the Thevenin in the lab is typically more preferable since we can start from an open circuit using a load then move toward shorting the open and using interpolation to then infer the actual short without having to make a real short. Certain testing, especially with batteries will conduct tests with short circuits. So why not have a Python-SPICE testbench ready to go and proven out before it’s needed.</p>
 <div class="section" id="example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min">
-<h2><span class="section-number">17.1. </span>Example 1: All independent source from “Norton’s Theorem Explained …” &#64;~3:32 min<a class="headerlink" href="#example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min" title="Permalink to this headline">¶</a></h2>
+<h2>Example 1: All independent source from “Norton’s Theorem Explained …” &#64;~3:32 min<a class="headerlink" href="#example-1-all-independent-source-from-norton-s-theorem-explained-3-32-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">212</span><span class="p">)</span>
@@ -1106,7 +1227,7 @@ You might wonder why would anyone measure the short circuit current since sorts 
 </div></div>
 </div>
 <div class="section" id="finding-the-northon-equivlint-manualy">
-<h3><span class="section-number">17.1.1. </span>Finding the Northon Equivlint “Manualy”<a class="headerlink" href="#finding-the-northon-equivlint-manualy" title="Permalink to this headline">¶</a></h3>
+<h3>Finding the Northon Equivlint “Manualy”<a class="headerlink" href="#finding-the-northon-equivlint-manualy" title="Permalink to this headline">¶</a></h3>
 <p>So why are we gain going over the manual way when we know we’re just going to create a wrapped tool. Cause first of all there is a subtle detail in that when we use a voltage source we can choose to either use the internal current or the current from the ammeter trick. For illustration purposes, we choose to do with the internal one. The second reason is to illustrate the process of abstraction. And that is trying not to rush into it. Build up a suite of test cases to then let the abstraction come.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1232,22 +1353,22 @@ Rvs N1 N2 4Ohm
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rbot[p] power
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
 </pre></div>
 </div>
 </div>
@@ -1321,7 +1442,7 @@ Name: Vnort[i]_[A], dtype: float64
 </div>
 </div>
 <div class="section" id="creating-a-packaged-tool-find-norton-equivlint-automatically">
-<h3><span class="section-number">17.1.2. </span>Creating a packaged tool find Norton Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-norton-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
+<h3>Creating a packaged tool find Norton Equivlint automatically<a class="headerlink" href="#creating-a-packaged-tool-find-norton-equivlint-automatically" title="Permalink to this headline">¶</a></h3>
 <p>This is fairly self-explanatory if you have read how the Thevenin tool was made. The one thing to note here is that we didn’t do an inheritance from the Thevenin tool. The reason is that the Norton and Thevenin tools are in essence an evolutionary fork from <code class="docutils literal notranslate"><span class="pre">dc_ease</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1482,22 +1603,22 @@ Name: Vnort[i]_[A], dtype: float64
 Unit is None for @rbot[p] power
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1517,7 +1638,7 @@ Rvs N1 N2 4Ohm
 </div>
 </div>
 <div class="section" id="example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min">
-<h2><span class="section-number">17.2. </span>Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” &#64;~7:03 min<a class="headerlink" href="#example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min" title="Permalink to this headline">¶</a></h2>
+<h2>Example 2: Mixture of independent and dependent source from “Norton’s Theorem Explained …” &#64;~7:03 min<a class="headerlink" href="#example-2-mixture-of-independent-and-dependent-source-from-norton-s-theorem-explained-7-03-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">423</span><span class="p">)</span>
@@ -1563,7 +1684,7 @@ Rvs N1 N2 4Ohm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B and 0) into B.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
@@ -1572,19 +1693,19 @@ Rvs N1 N2 4Ohm
 Unit is None for @rleft[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @f1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @f1[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1602,7 +1723,7 @@ Rleft N1prime 0 4Ohm
 </div>
 </div>
 <div class="section" id="example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min">
-<h2><span class="section-number">17.3. </span>Example 3: All dependent source from “Norton’s Theorem Explained …” &#64;~11:27 min<a class="headerlink" href="#example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min" title="Permalink to this headline">¶</a></h2>
+<h2>Example 3: All dependent source from “Norton’s Theorem Explained …” &#64;~11:27 min<a class="headerlink" href="#example-3-all-dependent-source-from-norton-s-theorem-explained-11-27-min" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;DdLA8rntWEY&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">687</span><span class="p">)</span>
@@ -1647,25 +1768,22 @@ Rleft N1prime 0 4Ohm
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B and 0) into B.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B and 0) into B.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 warnings found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
 0 errors found during netlist generation.
 
 Unit is None for @rleft[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @g1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1677,12 +1795,12 @@ Rleft A 0 100Ohm
 Rright N1 0 200Ohm
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_62_8.png" src="../_images/DC_5_Thvenin_Norton_62_8.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_62_7.png" src="../_images/DC_5_Thvenin_Norton_62_7.png" />
 </div>
 </div>
 </div>
 <div class="section" id="citations">
-<h2><span class="section-number">17.4. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
 <p>[1] ALL ABOUT ELECTRONICS. “Thevenin’s Theorem Explained (With examples of Independent and Dependent Sources),” YouTube, Apr 8, 2017. [Video file]. Available: https://youtu.be/8udwPc5pCoA. [Accessed: Nov 30, 2020].</p>
 <p>[2] ALL ABOUT ELECTRONICS. “Norton’s Theorem Explained (With examples of Independent and Dependent Sources),” YouTube, Feb 1, 2020. [Video file]. Available: https://youtu.be/DdLA8rntWEY. [Accessed: Nov 30, 2020].</p>
 </div>
@@ -1716,8 +1834,8 @@ Rright N1 0 200Ohm
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="DC_4_dependent_sources_and_tf.html" title="previous page"><span class="section-number">9. </span>Controlled Dependent Sources in SPICE</a>
-    <a class='right-next' id="next-link" href="DC_6_DC_MaxPower_MaxEfficiency.html" title="next page"><span class="section-number">18. </span>Maximum Power Transfer Theorem</a>
+    <a class='left-prev' id="prev-link" href="DC_4_dependent_sources_and_tf.html" title="previous page">Controlled Dependent Sources in SPICE</a>
+    <a class='right-next' id="next-link" href="DC_6_DC_MaxPower_MaxEfficiency.html" title="next page">Maximum Power Transfer Theorem</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

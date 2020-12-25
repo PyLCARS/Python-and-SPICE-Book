@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4. DC Sweeps &#8212; Python &amp; SPICE</title>
+    <title>DC Sweeps &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,8 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
-    <link rel="prev" title="3. Working with SKiDl elements" href="DC_2_op_source_transform.html" />
+    <link rel="next" title="Controlled Dependent Sources in SPICE" href="DC_4_dependent_sources_and_tf.html" />
+    <link rel="prev" title="Working with SKiDl elements" href="DC_2_op_source_transform.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -87,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="reference internal" href="DC_1.html">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -322,17 +446,17 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   4. DC Sweeps
+   DC Sweeps
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dc-load-sweep-of-an-ideal-voltage-source">
-   5. DC load sweep of an Ideal Voltage source
+   DC load sweep of an Ideal Voltage source
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-better-dc-sim-interaction">
-   6. A Better
+   A Better
    <code class="docutils literal notranslate">
     <span class="pre">
      .dc
@@ -343,27 +467,27 @@
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ideal-current-source">
-   7. Ideal Current Source¶
+   Ideal Current Source¶
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#first-testbench-element">
-   8. First testbench element¶
+   First testbench element¶
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-ideal-voltage-source-testbench">
-     8.1. Non-Ideal Voltage  Source Testbench¶
+     Non-Ideal Voltage  Source Testbench¶
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-ideal-current-source-testbench">
-     8.2. Non-Ideal Current Source Testbench¶
+     Non-Ideal Current Source Testbench¶
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#citations">
-     8.3. Citations:
+     Citations:
     </a>
    </li>
   </ul>
@@ -422,7 +546,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Tue Dec 15 22:11:05 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:10 2020 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -432,7 +556,7 @@
 </div>
 </div>
 <div class="section" id="dc-sweeps">
-<h1><span class="section-number">4. </span>DC Sweeps<a class="headerlink" href="#dc-sweeps" title="Permalink to this headline">¶</a></h1>
+<h1>DC Sweeps<a class="headerlink" href="#dc-sweeps" title="Permalink to this headline">¶</a></h1>
 <p>In the last two sections, we worked with SPICE operating point analysis (.op) which just gives us static values for everything in the circuit. While this is handy for getting values it’s not really that useful. What is more useful is seeing some kind of “dynamic” response of the circuit. If you know anything about SPICE you might be thinking of Transient simulations, but that is to come. Right now we want to look at the DC response of the circuit to some swept value in the circuit. To do this we use the DC simulation in ngspice (<code class="docutils literal notranslate"><span class="pre">.dc</span></code>) to shift the value of one of the elements in the circuit. Technically as of writing this ngspice (vs33) <code class="docutils literal notranslate"> <span class="pre">.dc</span></code> can sweep two values at the same time but the results are interlaced results and it’s just worth doing when we can pay a slight speed penalty for using python tools like xarray to look for relations resulting from N number of individual variable sweeps. (Also as of the time of writing this pyspice will not sweep anything other than voltage and current sources, this is on my list of things to fix since ngspice by its self can sweep more than just voltage and current sources)</p>
 <p>To illustrate DC sweeps and also to present SKiDl’s subcircuit feature (more on that below) we look at Ideal vs Non-Ideal sources response to load effects. The example circuits  are based on the examples from  ALL ABOUT ELECTRONICS “Ideal Voltage Source vs. Practical Voltage Source” and “Ideal Current Source vs. Practical Current Source” that gives a good review of ideal vs non-ideal sources</p>
 <div class="cell docutils container">
@@ -472,7 +596,7 @@
 </div>
 </div>
 <div class="section" id="dc-load-sweep-of-an-ideal-voltage-source">
-<h1><span class="section-number">5. </span>DC load sweep of an Ideal Voltage source<a class="headerlink" href="#dc-load-sweep-of-an-ideal-voltage-source" title="Permalink to this headline">¶</a></h1>
+<h1>DC load sweep of an Ideal Voltage source<a class="headerlink" href="#dc-load-sweep-of-an-ideal-voltage-source" title="Permalink to this headline">¶</a></h1>
 <p>So the first thing is we create a circuit just like we would for an operating point simulation previously. And even though we are going to be sweeping values in our elements we must give all elements initial values, even if they’re not in our sweep range.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -543,7 +667,7 @@ Idload N_1 0 1A
 </div>
 </div>
 <div class="section" id="a-better-dc-sim-interaction">
-<h1><span class="section-number">6. </span>A Better <code class="docutils literal notranslate"><span class="pre">.dc</span></code> Sim Interaction¶<a class="headerlink" href="#a-better-dc-sim-interaction" title="Permalink to this headline">¶</a></h1>
+<h1>A Better <code class="docutils literal notranslate"><span class="pre">.dc</span></code> Sim Interaction¶<a class="headerlink" href="#a-better-dc-sim-interaction" title="Permalink to this headline">¶</a></h1>
 <p>So as we saw that was tedious. And we have already abstracted operating point analysis away in the previous sections. So using what we leaned doing that abstraction combined with what we have just learned about how a <code class="docutils literal notranslate"><span class="pre">.dc</span></code> simulation works in contrast to a <code class="docutils literal notranslate"><span class="pre">.op</span></code> we can abstract via the following steps:</p>
 <ol class="simple">
 <li><p>create the ngspice simulation access object</p></li>
@@ -1113,10 +1237,10 @@ Let’s now have it sweep the dummy load as we did manually and make sure we get
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v_vs[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @idload[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @idload[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v_vs[p] power
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1775,7 +1899,7 @@ Name: 9.99999999999998, dtype: object
 </div>
 </div>
 <div class="section" id="ideal-current-source">
-<h1><span class="section-number">7. </span>Ideal Current Source¶<a class="headerlink" href="#ideal-current-source" title="Permalink to this headline">¶</a></h1>
+<h1>Ideal Current Source¶<a class="headerlink" href="#ideal-current-source" title="Permalink to this headline">¶</a></h1>
 <p>Since we are talking about ideal vs non-ideal sources, we should look at the current complement to the voltage case and use our new tool to automate as much as we can.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2025,12 +2149,12 @@ Vddrop N_1 0 1V
 </div>
 </div>
 <div class="section" id="first-testbench-element">
-<h1><span class="section-number">8. </span>First testbench element¶<a class="headerlink" href="#first-testbench-element" title="Permalink to this headline">¶</a></h1>
+<h1>First testbench element¶<a class="headerlink" href="#first-testbench-element" title="Permalink to this headline">¶</a></h1>
 <p>So first of all a physical testbench is setup with some way to probe signals into and out of a Device Under Test (DUT) where those signals are souced and read in by various instruments. The whole setup is called a test suite. Thus far we have been creating the test measurement tools with kladjlkadlfkjaldjk. We will get into test suite development when we combine a SPICE measurement,  analysis routine, along with a test bench built into a single tool. For now, let’s focus on creating testbenchs.</p>
 <p>The first testbenchs we are going to build are non-ideal sources. So why in the world would we want these. While ideal sources don’t exist outside of SPICE and SPICE ultimately doesn’t pay the bills, the physical PCB and Silicon produced and being able to be sold pays the bills. So you better verify to what degrees your circuits can deal with less than ideal sources. Now traditionally one would have to redraw parts of the circuit to convert the ideal source to non-ideal sources and then be careful that the elements that make a source non-ideal don’t get place and routed. And one would have to do this for every source, yuck! But this is Python so we can create a reusable way to generate non-ideal sources with functions or classes and then just deploy. When SKiDl gets the means to remove elements and connections the power to replace the ideal source with a non-ideal source and hook up any other sort of testbench will be immense.</p>
 <p>So how do we create a function that will do this magic of instantly producing a simple non-ideal source lets make a testbench a non-ideal voltage source and see.</p>
 <div class="section" id="non-ideal-voltage-source-testbench">
-<h2><span class="section-number">8.1. </span>Non-Ideal Voltage  Source Testbench¶<a class="headerlink" href="#non-ideal-voltage-source-testbench" title="Permalink to this headline">¶</a></h2>
+<h2>Non-Ideal Voltage  Source Testbench¶<a class="headerlink" href="#non-ideal-voltage-source-testbench" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
@@ -2306,7 +2430,7 @@ Idload N_2 0 1A
 <p>And because of the scaling, we can’t really see that the ideal source is at 30V but by plotting the old and new data we can see what effect adding the serial resistance to make the voltage source non-ideal has done.</p>
 </div>
 <div class="section" id="non-ideal-current-source-testbench">
-<h2><span class="section-number">8.2. </span>Non-Ideal Current Source Testbench¶<a class="headerlink" href="#non-ideal-current-source-testbench" title="Permalink to this headline">¶</a></h2>
+<h2>Non-Ideal Current Source Testbench¶<a class="headerlink" href="#non-ideal-current-source-testbench" title="Permalink to this headline">¶</a></h2>
 <p>It’s typically a good idea if the investment is low enough to make the V-I dual to whatever you have made. So why not,  cause again this is code we can have on hand and call up whenever needed. Opposed to finding and redrawing every single source in a schematic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2390,13 +2514,13 @@ Vddrop N_2 0 1V
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r_real_cs[p] power
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i_real_cs[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vddrop[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r_real_cs[p] power
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2571,7 +2695,7 @@ Vddrop N_2 0 1V
 <p>Because of the high parallel resistance inside the non-ideal current source, we see more of a translation than a tilting. Since is this reproducible code the reader should play with values and see what happens. After all, one of the goals of this book is showing how SPICE encapsulated with python can be used as an educational enhancement in teaching electronics</p>
 </div>
 <div class="section" id="citations">
-<h2><span class="section-number">8.3. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
 <p>[1] ALL ABOUT ELECTRONICS. “Ideal Voltage Source vs. Practical Voltage Source
 ,” YouTube, Jan 18, 2017. [Video file]. Available: https://youtu.be/TRzpqHwb-5Y. [Accessed: Nov 30, 2020].</p>
 <p>[2] ALL ABOUT ELECTRONICS. “Ideal Current Source vs. Practical Current Source
@@ -2607,8 +2731,8 @@ Vddrop N_2 0 1V
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="DC_2_op_source_transform.html" title="previous page"><span class="section-number">3. </span>Working with SKiDl elements</a>
-    <a class='right-next' id="next-link" href="DC_4_dependent_sources_and_tf.html" title="next page"><span class="section-number">9. </span>Controlled Dependent Sources in SPICE</a>
+    <a class='left-prev' id="prev-link" href="DC_2_op_source_transform.html" title="previous page">Working with SKiDl elements</a>
+    <a class='right-next' id="next-link" href="DC_4_dependent_sources_and_tf.html" title="next page">Controlled Dependent Sources in SPICE</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

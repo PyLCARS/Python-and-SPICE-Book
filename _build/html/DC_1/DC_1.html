@@ -56,7 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Getting started with Python &amp; SPICE, DC Operating Point Analysis" href="DC_1_op_ohm.html" />
+    <link rel="next" title="Getting started with Python &amp; SPICE, DC Operating Point Analysis" href="DC_1_op_ohm.html" />
     <link rel="prev" title="Dependency install instruction" href="../needed_libraries.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="current reference internal" href="#">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="current reference internal" href="#">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_4_dependent_sources_and_tf.html#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -362,7 +486,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../needed_libraries.html" title="previous page">Dependency install instruction</a>
-    <a class='right-next' id="next-link" href="DC_1_op_ohm.html" title="next page"><span class="section-number">1. </span>Getting started with Python &amp; SPICE, DC Operating Point Analysis</a>
+    <a class='right-next' id="next-link" href="DC_1_op_ohm.html" title="next page">Getting started with Python &amp; SPICE, DC Operating Point Analysis</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

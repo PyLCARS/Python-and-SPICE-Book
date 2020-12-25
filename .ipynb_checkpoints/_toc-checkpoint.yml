@@ -1,33 +1,18 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-#can not get parts working without some mixed level error
-#
+file: intro
+file: needed_libraries
+sections:
 
-- file: intro
-- file: needed_libraries
+- file: DC_1/DC_1
+  sections:
+  - file: DC_1/DC_1_op_ohm
+  - file: DC_1/DC_2_op_source_transform
+  - file: DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts
+  - file: DC_1/DC_4_dependent_sources_and_tf
+  - file: DC_1/DC_5_Thvenin_Norton
+  - file: DC_1/DC_6_DC_MaxPower_MaxEfficiency
 
-  chapters:
-  - file: DC_1/DC_1
-    numbered: true
-    sections:
-    
-      - file: DC_1/DC_1_op_ohm
-      - file: DC_1/DC_2_op_source_transform
-      - file: DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts
-      - file: DC_1/DC_4_dependent_sources_and_tf
-      - file: DC_1/DC_5_Thvenin_Norton
-      - file: DC_1/DC_6_DC_MaxPower_MaxEfficiency
-    
-    #chapters inprogress/future list
-    #Transient_3
-    #Noise_4
-    #Sensitivity_5
-    #Distortion_6
-    #Diodes_7
-    #BJTs_8
-    #FETs_9
-    #OpAmps_10
-    
-    chapters:
-    - file: Appendex/skidl_2_pyspice_check
+- file: AC_2/AC_1
+  sections:
+  - file: AC_2/AC_1_One-Two-Three_Phase_AC
+
+- file: Appendix/skidl_2_pyspice_check

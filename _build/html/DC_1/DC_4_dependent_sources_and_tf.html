@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>9. Controlled Dependent Sources in SPICE &#8212; Python &amp; SPICE</title>
+    <title>Controlled Dependent Sources in SPICE &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,8 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="16. Thevenin’s DC Equivalent Circuit" href="DC_5_Thvenin_Norton.html" />
-    <link rel="prev" title="4. DC Sweeps" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html" />
+    <link rel="next" title="Thevenin’s DC Equivalent Circuit" href="DC_5_Thvenin_Norton.html" />
+    <link rel="prev" title="DC Sweeps" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -87,135 +87,259 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Welcome to the book “Python &amp; SPICE”
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
   <a class="reference internal" href="../needed_libraries.html">
    Dependency install instruction
   </a>
  </li>
+</ul>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="../needed_libraries.html#book-specific-code">
-   Book Specific Code
+  <a class="reference internal" href="DC_1.html">
+   Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2 current active collapsible-parent">
-    <a class="reference internal" href="DC_1.html">
-     Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html">
+     Getting started with Python &amp; SPICE, DC Operating Point Analysis
     </a>
-    <ul class="current collapse-ul">
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html">
-       1. Getting started with Python &amp; SPICE, DC Operating Point Analysis
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
-       2. SPICE’s DC Operating Point simulation
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .op
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_2_op_source_transform.html">
-       3. Working with SKiDl elements
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
-       4. DC Sweeps
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
-       5. DC load sweep of an Ideal Voltage source
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
-       6. A Better
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         .dc
-        </span>
-       </code>
-       Sim Interaction¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
-       7. Ideal Current Source¶
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
-       8. First testbench element¶
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       9. Controlled Dependent Sources in SPICE
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#ccvs">
-       10. CCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#enter-the-spice-transfer-function">
-       11. Enter the SPICE transfer function
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#lcapy">
-       12. LCAPY
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#vcvs">
-       13. VCVS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#cccs">
-       14. CCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="#vccs">
-       15. VCCS
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html">
-       16. Thevenin’s DC Equivalent Circuit
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
-       17. Norton’s Theorem
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
-       18. Maximum Power Transfer Theorem
-      </a>
-     </li>
-    </ul>
-    <i class="fas fa-chevron-down">
-    </i>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_1_op_ohm.html#spice-s-dc-operating-point-simulation-op">
+     SPICE’s DC Operating Point simulation
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .op
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_2_op_source_transform.html">
+     Working with SKiDl elements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html">
+     DC Sweeps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#dc-load-sweep-of-an-ideal-voltage-source">
+     DC load sweep of an Ideal Voltage source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#a-better-dc-sim-interaction">
+     A Better
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .dc
+      </span>
+     </code>
+     Sim Interaction¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#ideal-current-source">
+     Ideal Current Source¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html#first-testbench-element">
+     First testbench element¶
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Controlled Dependent Sources in SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#ccvs">
+     CCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#enter-the-spice-transfer-function">
+     Enter the SPICE transfer function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#lcapy">
+     LCAPY
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#vcvs">
+     VCVS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#cccs">
+     CCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#vccs">
+     VCCS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html">
+     Thevenin’s DC Equivalent Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_5_Thvenin_Norton.html#norton-s-theorem">
+     Norton’s Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="DC_6_DC_MaxPower_MaxEfficiency.html">
+     Maximum Power Transfer Theorem
+    </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../AC_2/AC_1.html">
+   Chapter 2 AC simulations with Python and SPICE
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html">
+   Checking tool
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#basic-elements">
+   Basic Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-sinusoidalmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SinusoidalMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-pulsemixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PulseMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-exponentialmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ExponentialMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-piecewiselinearmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PieceWiseLinearMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-singlefrequencyfmmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     SingleFrequencyFMMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-amplitudemodulatedmixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     AmplitudeModulatedMixin
+    </span>
+   </code>
+   Based
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Appendix/skidl_2_pyspice_check.html#highlevel-elements-randommixin-based">
+   Highlevel Elements
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     RandomMixin
+    </span>
+   </code>
+   Based
+  </a>
  </li>
 </ul>
 
@@ -322,49 +446,49 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   9. Controlled Dependent Sources in SPICE
+   Controlled Dependent Sources in SPICE
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ccvs">
-   10. CCVS
+   CCVS
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#enter-the-spice-transfer-function">
-   11. Enter the SPICE transfer function
+   Enter the SPICE transfer function
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#using-tf">
-     11.1. Using .tf
+     Using .tf
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lcapy">
-   12. LCAPY
+   LCAPY
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vcvs">
-   13. VCVS
+   VCVS
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cccs">
-   14. CCCS
+   CCCS
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#vccs">
-   15. VCCS
+   VCCS
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#citations">
-     15.1. Citations:
+     Citations:
     </a>
    </li>
   </ul>
@@ -423,7 +547,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Tue Dec 15 22:11:12 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:16 2020 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,7 +557,7 @@
 </div>
 </div>
 <div class="section" id="controlled-dependent-sources-in-spice">
-<h1><span class="section-number">9. </span>Controlled Dependent Sources in SPICE<a class="headerlink" href="#controlled-dependent-sources-in-spice" title="Permalink to this headline">¶</a></h1>
+<h1>Controlled Dependent Sources in SPICE<a class="headerlink" href="#controlled-dependent-sources-in-spice" title="Permalink to this headline">¶</a></h1>
 <p>Since we have current and voltage sources and can read voltage and current then there are naturally four linearly dependent controlled souces. And all four of them have their own quirkiness in implementing them in SPICE. We will here go over all four of them starting with the example from ALL ABOUT ELECTRONICS’ “Independent and Dependent (Controlled) Sources” with the rest being examples created by this author.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -454,7 +578,7 @@
 </div>
 </div>
 <div class="section" id="ccvs">
-<h1><span class="section-number">10. </span>CCVS<a class="headerlink" href="#ccvs" title="Permalink to this headline">¶</a></h1>
+<h1>CCVS<a class="headerlink" href="#ccvs" title="Permalink to this headline">¶</a></h1>
 <p>A Current-Controlled-Voltage-Souce (CCVS) is a source that reads the current through an element and then scales with a gain [V/A], which has the special name transresistance, owing to the units, to the dependent voltage source. Where to measure for the current controlled part we read the current through the element via a series ammeter with polarity opposite to the direction of the current flow we wish to measure. It is functionally equivalent to a Shunt-Shunt feedback circuit. Alais we still do not have a fundamental circuit element that acts as a CCVS. So as ALL ABOUT ELECTRONICS showed we have to build VCVS out of an assembly of fundamental circuit elements. We construct the following example circuit contain a CCVS, analyze it. We will measure the circuit first by doing a dc sweep of the voltage source to try to understand the transresistance gain of the circuit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -557,19 +681,19 @@ Vvs N_4 N_3 5V
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vvs[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r2[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r5[p] power
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @h1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r2[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r10[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @h1[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r5[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/DC_1/DC_1_Codes.py:628: UserWarning: Tight layout not applied. tight_layout cannot make axes height small enough to accommodate all axes decorations
@@ -1081,7 +1205,7 @@ Vvs N_4 N_3 5V
 </div>
 </div>
 <div class="section" id="enter-the-spice-transfer-function">
-<h1><span class="section-number">11. </span>Enter the SPICE transfer function<a class="headerlink" href="#enter-the-spice-transfer-function" title="Permalink to this headline">¶</a></h1>
+<h1>Enter the SPICE transfer function<a class="headerlink" href="#enter-the-spice-transfer-function" title="Permalink to this headline">¶</a></h1>
 <p>Why isn’t it 2; because we are looking at the effect of the whole circuit on the output node and input current. So what we need is a way to find the transfer function in a more controlled manner, enter the .tf. The transfer function is not misnamed. Normally we think Transfer function in EE we think of something with information about poles and zeros. While we will get that in the next chapter with .pz but here where still in DC. And so recalling that a transfer function also has a fundamental gain “<span class="math notranslate nohighlight">\(K\)</span>” called in terms of circuit’s DC gain or intrinsic gain. That is what .tf measures along with the input and output resistance. However, .tf is one of the most mysterious and honestly pain the butt SPICE analysis. But besides finding <span class="math notranslate nohighlight">\(K\)</span> .tf also gives us the DC resistance (so pure resistance only) of the input and output of the measurement. For a refresher for the importance of this see ALL ABOUT ELECTRONICS video on “What is Impedance? The Input Impedance and Output Impedance Explained”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1102,7 +1226,7 @@ Vvs N_4 N_3 5V
 </div>
 <p>I will say that that the rules of thumb about the input impedance being as high as possible and the output impedance being as low as possible are based on basic limit analysis for voltage. For in real applications we pull and source as much voltage and current as is optimal for both the source and to meet the load operating requirements. We will discuss this in much further detail as we proceed in this book.</p>
 <div class="section" id="using-tf">
-<h2><span class="section-number">11.1. </span>Using .tf<a class="headerlink" href="#using-tf" title="Permalink to this headline">¶</a></h2>
+<h2>Using .tf<a class="headerlink" href="#using-tf" title="Permalink to this headline">¶</a></h2>
 <p>In order to use this .tf we must measure from a single source. Then to measure an output voltage we can tell it the output node pair via <code class="docutils literal notranslate"><span class="pre">V(&lt;node1&gt;,</span> <span class="pre">&lt;node2&gt;)</span></code> or give it another single voltage source. In the case of measuring the output current, we must give it a voltage source to get the current from via the SPICE ammeter trick. Lets now apply this to our CCVS example</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1954,11 +2078,11 @@ Vvs N_5 N_4 5V
 </div>
 </div>
 <div class="section" id="lcapy">
-<h1><span class="section-number">12. </span>LCAPY<a class="headerlink" href="#lcapy" title="Permalink to this headline">¶</a></h1>
+<h1>LCAPY<a class="headerlink" href="#lcapy" title="Permalink to this headline">¶</a></h1>
 <p>Lcapy is the work of a new zealand profices at the unverity of cantupry, hence the ailes of kiwi since we done want clashing names spice with cirucit as it allies in it’s docs. Lcapy is not a cirucit simulator insted its one part linear anyliticl cirucit anylsis tool and one part schmitcs drawing tool via a wrarping of LaTeX’s alsdkjflj cirucit drawing tool. In this section we will just use is schmatic draing features. Though it’s ability to perform clautiona agines netlist via anylistc genrating the modfied nodal matrix (wich is part of what SPICE does) are also of great value.</p>
 </div>
 <div class="section" id="vcvs">
-<h1><span class="section-number">13. </span>VCVS<a class="headerlink" href="#vcvs" title="Permalink to this headline">¶</a></h1>
+<h1>VCVS<a class="headerlink" href="#vcvs" title="Permalink to this headline">¶</a></h1>
 <p>A Voltage-Controled-Voltage-Souce (VCVS) is a souce that reads the differintal voltage between two nodes and then scales that gain [V/V] to the depenetet voltage souce. It is funtinaly equivlint to a Sereis-Shunt feedback cirucit. Alais we still do not have a fundmental cirucit elelemtn that acts as a VCVS. So as ALL ABOUT ELELCTRONICS showed we have to build VCVS out of assemply of fundmantal cirucit elelemtns. We constuct the fillowing exsample ciricut contina a vcvs, anylize it and show its sshmatic with lacapy just below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2065,7 +2189,7 @@ Vvs 1 0 50V
 </div>
 </div>
 <div class="section" id="cccs">
-<h1><span class="section-number">14. </span>CCCS<a class="headerlink" href="#cccs" title="Permalink to this headline">¶</a></h1>
+<h1>CCCS<a class="headerlink" href="#cccs" title="Permalink to this headline">¶</a></h1>
 <p>A Current-Contorled-Current-Source (CCCS) is a source that read the current throgh an element and then scales that gain [A/A] to the dependent current souce. Where agin for any current controled souce we read the current throught the element via a sereis ammeater with pollary opbisite to the direction of the current flow we wish to meassure. It is funtinaly equivlint to a Shunt-Series feedback cirucit. And as ALL ABOUT ELELCTICS alluded to this is equivlint to the small signal behavior of a BJT. We constuct the fillowing exsample ciricut contina a CCCS, anylize it and show its sshmatic with lacapy just below. Note that for .tf to meassure current it must have an ammeter to read from so we will add a SPICE ammeater to the output side of our cirucit</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2200,7 +2324,7 @@ Vsens 0 N_1 0V
 </div>
 </div>
 <div class="section" id="vccs">
-<h1><span class="section-number">15. </span>VCCS<a class="headerlink" href="#vccs" title="Permalink to this headline">¶</a></h1>
+<h1>VCCS<a class="headerlink" href="#vccs" title="Permalink to this headline">¶</a></h1>
 <p>A Voltage-Controled-Current-Souce (VCCS) is a souce that reads the differintal voltage between two nodes and then scales that gain [A/V], wich has a special name called the transconductance becouse of the units,  to the depenetet current souce. It is funtinaly equivlint to a Sereis-series feedback cirucit. And as ALL ABOUT ELECTROINCS  alluded to a VCCS is the linear aproxmation for the small signal behavior of a FET. We constuct the fillowing exsample ciricut contina a VCCS, anylize it and show its sshmatic with lacapy just below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2324,7 +2448,7 @@ Vvs 1 0 50V
 </div>
 <p>These are realy basic examples primarly to show how to envoke depented souce in SKiDl and SPICE and secondaly show the usage of the .tf. I say secondaryl cause agian .tf will show it real value later on when dealing with transistors.</p>
 <div class="section" id="citations">
-<h2><span class="section-number">15.1. </span>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
+<h2>Citations:<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h2>
 <p>[1] ALL ABOUT ELECTRONICS. “Independent and Dependent (Controlled) Sources
 ,” YouTube, Feb 3, 2017. [Video file]. Available: https://youtu.be/SfKw8bHk7-o. [Accessed: Nov 30, 2020].</p>
 <p>[2] ALL ABOUT ELECTRONICS. “What is Impedance? The Input Impedance and Output Impedance Explained,” YouTube, Jun 28, 2018. [Video file]. Available: https://youtu.be/7jw2_x8dyQ8. [Accessed: Nov 30, 2020].</p>
@@ -2359,8 +2483,8 @@ Vvs 1 0 50V
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html" title="previous page"><span class="section-number">4. </span>DC Sweeps</a>
-    <a class='right-next' id="next-link" href="DC_5_Thvenin_Norton.html" title="next page"><span class="section-number">16. </span>Thevenin’s DC Equivalent Circuit</a>
+    <a class='left-prev' id="prev-link" href="DC_3_PracticalSourcs_sweeps_subcirucirts.html" title="previous page">DC Sweeps</a>
+    <a class='right-next' id="next-link" href="DC_5_Thvenin_Norton.html" title="next page">Thevenin’s DC Equivalent Circuit</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

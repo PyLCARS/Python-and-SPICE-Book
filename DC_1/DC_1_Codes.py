@@ -9,11 +9,11 @@ import lcapy as kiwi
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import warnings
 
 from IPython.display import YouTubeVideo, display
 
 import traceback
+import warnings
 
 #chapter 1 section 1 op_results_collect class
 #used for basic operating point simulation analysis, does not support internal parameters
@@ -114,6 +114,7 @@ class op_results_collect():
         return self.results_df
  
  
+
 #chapter 1 section 2 get_skidl_spice_ref function
 #used for getting the name of the element as it would appear in a
 #generated netlist
@@ -130,7 +131,12 @@ def get_skidl_spice_ref(skidle_element):
         error if `skidle_element` is not a SKiDl part
     
     """
-    assert repr(type(skidle_element))=="<class 'skidl.part.Part'>", '`skidle_element` must be a SKiDl part'
+    #need to do this for now since in newer version skidl parts class is skidl.Part
+    # older is skidl.part
+    if repr(type(skidle_element))=="<class 'skidl.part.Part'>":
+            assert repr(type(skidle_element))=="<class 'skidl.part.Part'>", '`skidle_element` must be a SKiDl part'
+    else:
+        assert repr(type(skidle_element))=="<class 'skidl.Part.Part'>", '`skidle_element` must be a SKiDl part'
     
     if skidle_element.ref_prefix!=skidle_element.ref[0]:
         return skidle_element.ref_prefix+skidle_element.ref
@@ -360,6 +366,7 @@ class op_internal_ivp():
             print('.op sim internal parmter results')
             display(self.results_df)
 
+
 #chapter 1 section 3 dc_ease class
 # class to perform easily perform DC sweep simulations
 #gets both branch currents/node voltages and also internal parameters
@@ -506,6 +513,9 @@ class dc_ease():
             `self.dc_resultsNB_DF` which is a pandas dataframe with the index being the sweep and the columns being
             the node voltages and branch currents from any available voltage sources
             
+        TODO:
+            get the current in any current sources
+            
         """
         self.dc_resultsNB_DF=pd.DataFrame(index=self.dc_vals.sweep.as_ndarray())
         
@@ -521,7 +531,7 @@ class dc_ease():
         #get the current from any voltage sources:
         for cm in self.circ_netlist_obj.element_names:
             if 'V'==cm[0]:
-                self.dc_resultsNB_DF[cm+'_[A]']=-self.dc_vals[n].as_ndarray()
+                self.dc_resultsNB_DF[cm+'_[A]']=-self.dc_vals[cm].as_ndarray()
     
     def do_dc_intsim(self, varible):
         """
@@ -1048,125 +1058,6 @@ class easy_tf():
                 warnings.warn(f'unexspected addintal outputs `{k, v}`')
     
         
-#chapter 1 section 5 Thevenin class
-# class that is a automated testsuite for finding the 
-# DC Thevenin voltage and resistince of a port
-
-class Thevenin(dc_ease):
-    """
-    Tool for finding the DC Thevenin equivalent voltage and resistance of a one port
-    linear circuit with an open test port. The DUT must contain all linear elements.
-    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc
-    SPICE simulation with SkiDl and pyspice
-    """
-    
-    def __init__(self, port_pos, port_neg):
-        """
-        A new instantiation unique to this class but utilizes `dc_ease` internally.
-        Will add a 1A current source to the open port and will then generate the netlist
-        to simulate against within this class
-        
-        Args:
-            port_pos (SkiDl net): A SKiDl net that makes up the positive side of 
-                the DUT's open port to test
-            
-            port_neg (SkiDl net): A SKiDl net that makes up the negative side of 
-                the DUT's open port to test
-        
-        Returns:
-            adds a 1A test source: `self.ithev` and creates that netlist to test:
-            `self.circ_netlist_obj`
-        
-        TODO:
-            -add assertions so that only a SKiDl net obj can only be passed in
-            -add an assertion to see if the port is truly open
-        """
-        
-        #add a current source to get Thevenin at port
-        self.ithev=I(ref='Ithev', dc_value=1@u_A)
-        self.ithev['n', 'p']+=port_pos, port_neg
-        self.ithev_ref=self.ithev.ref
-        
-       
-        #call generate netlist to create circ like we would if using `dc_ease`
-        #by its self and simultaneously pass it into while invoking `dc_ease`'s
-        # own instatation method
-        super().__init__(generate_netlist())
-        #print out the resulting circuit for debugging
-        print('circuit and Thevenin finding Isource')
-        print(self.circ_netlist_obj)
-    
-    
-    def find_thev(self):
-        """
-        method to conduct the dc sweep of `self.ithev` automatically and find the 
-        resulting Thevenin voltage and resistance
-        
-        Args: NONE
-        
-        Returns:
-            see `dc_ease`'s `record_dc_nodebranch` for a full list of returns. But specifically will
-            return `self.thevenin_sweep_data` which is the pandas' object with the
-            returned sweep data with only the necessary data for finding the Vth and Rth.
-            `self.rthev` and `self.vthev` which are Vth and Rth as floats respectively and
-            `self.thev_results` which is a panda dataframe presenting Vth and Rth in a table
-        
-        TODO:
-            
-        """
-        #set the sweep table
-        self.sweep_DF.at[self.ithev_ref]=[0, 1, 0.1]
-        self.clean_table()
-        
-        #do the sweep
-        self.do_dc_sim(self.ithev_ref)
-        #get the results 
-        self.record_dc_nodebranch(self.ithev_ref)
-        
-        #reduce the data
-        self.thevenin_sweep_data=self.dc_resultsNB_DF[node(self.ithev['n'])+'_[V]']
-        
-        #perform the 1d polyfit
-        self.rthev, self.vthev=np.polyfit(self.thevenin_sweep_data.index, self.thevenin_sweep_data.values, 1)
-        
-        #make a pandas dataframe table, because it's the nice thing to do
-        self.thev_results=pd.DataFrame(index=['Rthev', 'Vthev'], columns=['Values', 'Units'])
-        self.thev_results['Units']=['[Ohm]', '[V]']
-        self.thev_results['Values']=[self.rthev, self.vthev]
-        
-        
-    def display_thev(self):
-        """
-        Auxiliary function to plot our Thevenin findings, useful for presentions
-        and debugging
-        
-        Args: None
-        
-        Returns:
-            Creates a plot and with a table to the side with the Thevenin equivalent finding
-            with a table to the side summering our finding
-        
-        TODO:
-            - add a check to make sure self.find_thev has been done
-            
-        """
-        #create the plot "canvas"
-        fig, axis=plt.subplots(nrows=1, ncols=1)
-        
-        #make a line plot on canvas of sweep data 
-        self.thevenin_sweep_data.plot(grid=True, 
-        xlabel=self.ithev_ref+'_[A]', ylabel=node(self.ithev['n'])+'_[V]', 
-                                     ax=axis)
-        
-        #create "annotation" to hold self.thev_results in and to display next to the plot
-        Anotation=['Theven Port Results:\n']
-        for row in self.thev_results.itertuples():
-            Anotation.append('   '+f'{row.Index}: {row.Values:.3f} {row.Units}' +'\n')
-        
-        Anotation=''.join(Anotation)
-
-        fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
-        fig.suptitle('Thevin current sweep results')
 
 #chapter 1 section 5 Norton class
 # class that is a automated testsuite for finding the 
@@ -1290,31 +1181,122 @@ class Norton(dc_ease):
         fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
         fig.suptitle('Norten voltage sweep results')
 
-#chapter 1 section 6 findIntersection function
-#Assist function to find the intersection of two functions
+#chapter 1 section 5 Thevenin class
+# class that is a automated testsuite for finding the 
+# DC Thevenin voltage and resistince of a port
 
-#from https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html 
-#load fslove from scipy's optimize module
-from scipy.optimize import fsolve
+class Thevenin(dc_ease):
+    """
+    Tool for finding the DC Thevenin equivalent voltage and resistance of a one port
+    linear circuit with an open test port. The DUT must contain all linear elements.
+    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc
+    SPICE simulation with SkiDl and pyspice
+    """
+    
+    def __init__(self, port_pos, port_neg):
+        """
+        A new instantiation unique to this class but utilizes `dc_ease` internally.
+        Will add a 1A current source to the open port and will then generate the netlist
+        to simulate against within this class
+        
+        Args:
+            port_pos (SkiDl net): A SKiDl net that makes up the positive side of 
+                the DUT's open port to test
+            
+            port_neg (SkiDl net): A SKiDl net that makes up the negative side of 
+                the DUT's open port to test
+        
+        Returns:
+            adds a 1A test source: `self.ithev` and creates that netlist to test:
+            `self.circ_netlist_obj`
+        
+        TODO:
+            -add assertions so that only a SKiDl net obj can only be passed in
+            -add an assertion to see if the port is truly open
+        """
+        
+        #add a current source to get Thevenin at port
+        self.ithev=I(ref='Ithev', dc_value=1@u_A)
+        self.ithev['n', 'p']+=port_pos, port_neg
+        self.ithev_ref=self.ithev.ref
+        
+       
+        #call generate netlist to create circ like we would if using `dc_ease`
+        #by its self and simultaneously pass it into while invoking `dc_ease`'s
+        # own instatation method
+        super().__init__(generate_netlist())
+        #print out the resulting circuit for debugging
+        print('circuit and Thevenin finding Isource')
+        print(self.circ_netlist_obj)
+    
+    
+    def find_thev(self):
+        """
+        method to conduct the dc sweep of `self.ithev` automatically and find the 
+        resulting Thevenin voltage and resistance
+        
+        Args: NONE
+        
+        Returns:
+            see `dc_ease`'s `record_dc_nodebranch` for a full list of returns. But specifically will
+            return `self.thevenin_sweep_data` which is the pandas' object with the
+            returned sweep data with only the necessary data for finding the Vth and Rth.
+            `self.rthev` and `self.vthev` which are Vth and Rth as floats respectively and
+            `self.thev_results` which is a panda dataframe presenting Vth and Rth in a table
+        
+        TODO:
+            
+        """
+        #set the sweep table
+        self.sweep_DF.at[self.ithev_ref]=[0, 1, 0.1]
+        self.clean_table()
+        
+        #do the sweep
+        self.do_dc_sim(self.ithev_ref)
+        #get the results 
+        self.record_dc_nodebranch(self.ithev_ref)
+        
+        #reduce the data
+        self.thevenin_sweep_data=self.dc_resultsNB_DF[node(self.ithev['n'])+'_[V]']
+        
+        #perform the 1d polyfit
+        self.rthev, self.vthev=np.polyfit(self.thevenin_sweep_data.index, self.thevenin_sweep_data.values, 1)
+        
+        #make a pandas dataframe table, because it's the nice thing to do
+        self.thev_results=pd.DataFrame(index=['Rthev', 'Vthev'], columns=['Values', 'Units'])
+        self.thev_results['Units']=['[Ohm]', '[V]']
+        self.thev_results['Values']=[self.rthev, self.vthev]
+        
+        
+    def display_thev(self):
+        """
+        Auxiliary function to plot our Thevenin findings, useful for presentions
+        and debugging
+        
+        Args: None
+        
+        Returns:
+            Creates a plot and with a table to the side with the Thevenin equivalent finding
+            with a table to the side summering our finding
+        
+        TODO:
+            - add a check to make sure self.find_thev has been done
+            
+        """
+        #create the plot "canvas"
+        fig, axis=plt.subplots(nrows=1, ncols=1)
+        
+        #make a line plot on canvas of sweep data 
+        self.thevenin_sweep_data.plot(grid=True, 
+        xlabel=self.ithev_ref+'_[A]', ylabel=node(self.ithev['n'])+'_[V]', 
+                                     ax=axis)
+        
+        #create "annotation" to hold self.thev_results in and to display next to the plot
+        Anotation=['Theven Port Results:\n']
+        for row in self.thev_results.itertuples():
+            Anotation.append('   '+f'{row.Index}: {row.Values:.3f} {row.Units}' +'\n')
+        
+        Anotation=''.join(Anotation)
 
-#helper function to find the intersection of two functions with an initial guess
-def findIntersection(fun1,fun2,x0):
-    """
-    Aid function to find the intersection point of two curves
-    from: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html 
-    
-    Args:
-        func1(function or class): the first function whose curve is 
-            used to find the intersection of the two curves
-        
-        func2(function or class): the second function whose curve is 
-            used to find the intersection of the two curves
-        
-        x0 (float); initial guess of the intersection of the two functions
-    
-    Returns:
-        Returns array of float that are the intersections of the two functions, 
-        this is not very robust and thus one should read `fsolve`'s documentation 
-        for caveats  of usage
-    """
-    return fsolve(lambda x : fun1(x) - fun2(x),x0)
+        fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
+        fig.suptitle('Thevin current sweep results')

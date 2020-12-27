@@ -15,4 +15,13 @@ sections:
   sections:
   - file: AC_2/AC_1_One-Two-Three_Phase_AC
 
+#Transient_3
+#Noise_4
+#Sensitivity_5
+#Distortion_6
+#Diodes_7
+#BJTs_8
+#FETs_9
+#OpAmps_10
+
 - file: Appendix/skidl_2_pyspice_check

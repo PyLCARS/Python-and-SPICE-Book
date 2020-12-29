@@ -397,11 +397,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/PyLCARS/Python-and-SPICE-Book"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_2_op_source_transform.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/PyLCARS/Python-and-SPICE-Book/issues/new?title=Issue%20on%20page%20%2FDC_1/DC_2_op_source_transform.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -422,7 +422,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/DC_1/DC_2_op_source_transform.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/PyLCARS/Python-and-SPICE-Book/master?urlpath=tree/docs/DC_1/DC_2_op_source_transform.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -563,7 +563,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:06 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Mon Dec 28 15:59:05 2020 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -878,6 +878,16 @@ Vs_8 N_2 N_3 8V
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vs_2_f_Is_2
+.title 
+R1 0 N_1 6Ohm
+R2 0 N_1 12Ohm
+R3 N_3 N_2 12Ohm
+Is_4_f_Vs_4 N_1 0 0.6666666666666666A
+Vs_2_f_Is_2 N_3 0 24.0V
+Vs_8 N_1 N_2 8V
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iridium/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:43: UserWarning: New current source values: 0.6666666666666666 [A] with max aviabel power 2.6666666666666665 [W] 
  transformed creation statment will be like:
  `(gnd &amp; &lt;eq_cs&gt;[&#39;n&#39;, &#39;p&#39;] | &lt;vs_ser_res&gt;)` 
@@ -887,18 +897,6 @@ Vs_8 N_2 N_3 8V
 `(gnd &amp; &lt;eq_vs&gt;[&#39;n&#39;, &#39;p&#39;] &amp; &lt;cs_par_res&gt;)`
 
 No errors or warnings found during netlist generation.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vs_2_f_Is_2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-R1 0 N_1 6Ohm
-R2 0 N_1 12Ohm
-R3 N_3 N_2 12Ohm
-Is_4_f_Vs_4 N_1 0 0.6666666666666666A
-Vs_2_f_Is_2 N_3 0 24.0V
-Vs_8 N_1 N_2 8V
 </pre></div>
 </div>
 <div class="output text_html"><div>

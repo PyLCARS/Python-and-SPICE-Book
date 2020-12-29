@@ -137,6 +137,7 @@ plt.title('Ideal Voltage Source response to any load')
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 3 dc_ease class
 # class to perform easily perform DC sweep simulations
 #gets both branch currents/node voltages and also internal parameters
@@ -149,6 +150,7 @@ class dc_ease():
     TODO:
         make so that it can iterate over all filled in entries in `self.sweep_DF` and
         exports data to xarray
+        
         
     """
     def __init__(self, circ_netlist_obj):
@@ -283,6 +285,9 @@ class dc_ease():
             `self.dc_resultsNB_DF` which is a pandas dataframe with the index being the sweep and the columns being
             the node voltages and branch currents from any available voltage sources
             
+        TODO:
+            get the current in any current sources
+            
         """
         self.dc_resultsNB_DF=pd.DataFrame(index=self.dc_vals.sweep.as_ndarray())
         
@@ -298,7 +303,7 @@ class dc_ease():
         #get the current from any voltage sources:
         for cm in self.circ_netlist_obj.element_names:
             if 'V'==cm[0]:
-                self.dc_resultsNB_DF[cm+'_[A]']=-self.dc_vals[n].as_ndarray()
+                self.dc_resultsNB_DF[cm+'_[A]']=-self.dc_vals[cm].as_ndarray()
     
     def do_dc_intsim(self, varible):
         """
@@ -581,6 +586,7 @@ plt.title('Ideal Current Source responce to a load voltage drop');
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 3 real_dcVs subcircuit function
 # SKiDl subcirucit to create a dc voltage source with 
 # added series resistor
@@ -690,6 +696,7 @@ plt.title('Ideal and Non-Ideal Voltage Source response to load')
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 3 real_dcIs subcircuit function
 # SKiDl subcirucit to create a dc current source with 
 # added parallel resistor
@@ -775,3 +782,9 @@ plt.title('Ideal and Non-Ideal Current Source responce to load');
 # 
 # [2] ALL ABOUT ELECTRONICS. "Ideal Current Source vs. Practical Current Source
 # ," YouTube, Jan 21, 2017. [Video file]. Available: https://youtu.be/dTf1h_xhHng. [Accessed: Nov 30, 2020].
+
+# In[ ]:
+
+
+
+

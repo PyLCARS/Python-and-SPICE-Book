@@ -195,6 +195,7 @@ rthev, vthev
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 5 Thevenin class
 # class that is a automated testsuite for finding the 
 # DC Thevenin voltage and resistince of a port
@@ -563,6 +564,7 @@ nort_data.plot(ylabel='Vnort[i]_[A]', grid=True);
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 5 Norton class
 # class that is a automated testsuite for finding the 
 # DC Norton current and resistince of a port

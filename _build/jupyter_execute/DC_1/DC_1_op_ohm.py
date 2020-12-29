@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 from IPython.display import YouTubeVideo, display
 
 import traceback
+import warnings
 
 
 # In[2]:
@@ -222,6 +223,7 @@ print(f'Current at vs: {-dc_vals[vs.ref].as_ndarray()} A')
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 1 op_results_collect class
 #used for basic operating point simulation analysis, does not support internal parameters
 

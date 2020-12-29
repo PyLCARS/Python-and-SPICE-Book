@@ -4,6 +4,7 @@
 # IN PROGRESS
 # 
 # TODO:
+# - look into ngspice interanls and realy verfiy that there are no eqivlincys to dc internlas with .ac sims 
 # - add sympy to subcirucit classes
 # - add ac sim tool; try to do an inhertince from last section
 # - add rl complimeint filters
@@ -14,38 +15,6 @@
 # - discues L->C passive conversion
 
 # In[1]:
-
-
-class ac_ease():
-    def __init__(self, circ_netlist_obj):
-        self.circ_netlist_obj=circ_netlist_obj
-        self._build_table()
-    
-    def _build_table(self):
-        self.fsweep_DF=pd.DataFrame(columns=['Start_freq', 'Stop_Freq', 'SamplingInc', 'StepType'])
-        self.fsweep_DF.at[len(self.fsweep_DF)]=[.1@u_Hz, 120@u_GHz, 10, 'decade']
-
-    def ac_sweep_setup(self, Start_freq, Stop_Freq, SamplingInc, StepType, display=False):
-        """
-        TODO:
-            -add assertions and translations for StepType
-            -add force change of 0Hz to .01Hz and warning for sweeps other then linear
-            -add display action
-        """
-        self.fsweep_DF.at[0]=[Start_freq, Stop_Freq, SamplingInc, StepType]
-    
-    def _make_sim_control(self):
-        pass
-    
-    def do_ac_sim(self):
-        pass
-    
-    def record_ac_nodebranch(self):
-        pass
-        
-
-
-# In[2]:
 
 
 #%%writefile AC_2_Codes.py
@@ -64,10 +33,14 @@ import matplotlib.pyplot as plt
 from IPython.display import YouTubeVideo, display
 
 import traceback
+import warnings
 
 
-# In[3]:
+# In[2]:
 
+
+from DC_1_Codes import get_skidl_spice_ref
+#from AC_2_Codes import 
 
 #notebook specific loading control statements 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -81,13 +54,13 @@ get_ipython().run_line_magic('version_information', 'skidl, PySpice,lcapy, sympy
 
 # ## The low pass filter from ALL ABOUT ELECTRONICS "RC Low Pass Filter Explained"  @~ 8:35min
 
-# In[4]:
+# In[3]:
 
 
 YouTubeVideo('_2L0l-E1Wx0', width=500, height=400, start=515)
 
 
-# In[5]:
+# In[4]:
 
 
 class rc_lowpass():
@@ -147,20 +120,20 @@ class rc_lowpass():
     
 
 
-# In[6]:
+# In[5]:
 
 
 lowpassF=rc_lowpass(C_value=.1@u_uF, R_value=1@u_kOhm)
 lowpassF.draw_me()
 
 
-# In[7]:
+# In[6]:
 
 
 reset()
 net_1=Net('N1'); net_2=Net('N2'); 
 
-vs=SINEV(amplitude=10@u_V, frequency=2@u_kHz)
+vs=SINEV(ac_magnitude=10@u_V, dc_value=10@u_V)
 vs['p', 'n']+=net_1, gnd
 lowpassF.SKiDl(net_1, gnd, net_2, gnd)
 
@@ -171,19 +144,241 @@ circ=generate_netlist()
 print(circ)
 
 
+# In[7]:
+
+
+class ac_ease():
+    """
+    TODO:
+        - independ current sources can have there AC current meassued via 
+        `@I<name>[acreal]` & `@I<name>[acrimag]` not shure if this is usefull
+        also trying via the sensivity 
+        - to some serioues testing with ngspice directly to verfiy that internal
+        parmters are as limited as they apear to be with .ac
+        
+    """
+    def __init__(self, circ_netlist_obj):
+        self.circ_netlist_obj=circ_netlist_obj
+        self._build_table()
+        
+        #dic of allowed AC sweep types
+        self.allowed_steptypes_map={'linear':'lin', 'decade':'dec', 'octave': 'oct'}
+
+    
+    def _build_table(self):
+        self.fsweep_DF=pd.DataFrame(columns=['Start_freq', 'Stop_Freq', 'SamplingInc', 'StepType'])
+        self.fsweep_DF.at[len(self.fsweep_DF)]=[.1@u_Hz, 120@u_GHz, 10, 'decade']
+
+    def ac_sweep_setup(self, Start_freq, Stop_Freq, SamplingInc, StepType, display=False):
+        """
+        TODO:
+            -add display action
+        """
+        #check for allwed step types
+        assert StepType in self.allowed_steptypes_map.keys(),  f"{StepType} is not allowed"
+        #force start to non zero if sweep not linear
+        if StepType != 'linear':
+            if float(Start_freq)==0:
+                warnings.warn('"linear" is only sweep type that can start at 0Hz,\n setting starting frequancy to 1e-1Hz')
+                Start_freq=1e-1@u_Hz
+                
+                
+        
+        self.fsweep_DF.at[0]=[Start_freq, Stop_Freq, SamplingInc, StepType]
+    
+    def _make_sim_control(self):
+        
+        #check the control table struct
+        assert (self.fsweep_DF.columns==['Start_freq', 'Stop_Freq', 'SamplingInc', 'StepType']).all(), 'Contorl Table Column structer has been altered'
+        
+        #will probily change this down the road
+        assert len(self.fsweep_DF)==1, 'there should only be one entry in the control table'
+        
+        #check the sweep type
+        self.fsweep_DF['StepType'][0] in self.allowed_steptypes_map.keys(), f"{self.fsweep_DF['StepType'][0]} is not allowed"
+        
+        #force start to non zero if sweep not linear
+        if self.fsweep_DF['StepType'][0] != 'linear':
+            if float(self.fsweep_DF['Start_freq'][0])==0:
+                warnings.warn('"linear" is only sweep type that can start at 0Hz,\n setting starting frequancy to 1e-1Hz')
+                self.fsweep_DF.at[0, 'Start_freq']=1e-1@u_Hz
+        
+        self.ac_control={
+            'start_frequency':self.fsweep_DF.at[0, 'Start_freq'], 
+            'stop_frequency':self.fsweep_DF.at[0, 'Stop_Freq'], 
+            'number_of_points':self.fsweep_DF.at[0, 'SamplingInc'],
+            'variation': self.allowed_steptypes_map[self.fsweep_DF.at[0, 'StepType']]
+        }
+        
+        
+        
+    
+    def do_ac_sim(self):
+        self._make_sim_control()
+        self.sim=self.circ_netlist_obj.simulator()
+        self.ac_vals=self.sim.ac(**self.ac_control)
+        
+        self.record_ac_nodebranch()
+
+    
+    def record_ac_nodebranch(self):
+        self.ac_resultsNB_DF=pd.DataFrame(index=self.ac_vals.frequency.as_ndarray())
+        self.ac_resultsNB_DF.index.name='freq[Hz]'
+        
+        #get the node voltages
+        for n in self.circ_netlist_obj.node_names:
+            if n=='0':
+                continue
+            self.ac_resultsNB_DF[n+'_[V]']=self.ac_vals[n].as_ndarray()
+        
+        #get the current from any voltage sourcs
+        for cm in self.circ_netlist_obj.element_names:
+            if 'V'==cm[0]:
+                self.ac_resultsNB_DF[cm+'_[A]']=-self.ac_vals[cm].as_ndarray()
+        
+
+
 # In[8]:
 
 
-sim=circ.simulator()
+ac_sweep=ac_ease(circ)
+ac_sweep.do_ac_sim()
+ac_sweep.ac_resultsNB_DF
 
 
 # In[9]:
 
 
-ac_vals=sim.ac(start_frequency=.1@u_Hz, stop_frequency=1@u_MHz, number_of_points=10, variation='dec')
+data=ac_sweep.ac_resultsNB_DF
+data.copy()
 
 
 # In[10]:
+
+
+data['power_[W]']=data['N1_[V]']*data['V1_[A]']
+data
+
+
+# In[11]:
+
+
+data.columns[0]
+
+
+# In[12]:
+
+
+def dB_convert(x):
+    if ['[W]', '[VAR]', '[VA]'] in x.name:
+        return 10*np.log10(x)
+    elif ['[V]', '[A]'] in x.name:
+        return 20*np.log10(x)
+
+
+# In[13]:
+
+
+data.apply(lambda x: 10*np.log10(x) if x.name in ['[W]', '[VAR]', '[VA]'] else 20*np.log10(x), axis=0)
+
+
+# In[14]:
+
+
+data.map(dB_convert)
+
+
+# In[14]:
+
+
+10*np.log10(data['power_[W]'])
+
+
+# In[17]:
+
+
+20*np.log10(data['N1_[V]'])
+
+
+# In[16]:
+
+
+repr(type(data))=="<class 'pandas.core.frame.DataFrame'>"
+
+
+# In[ ]:
+
+
+#remove later
+angle_phase_unwrap= lambda x: np.rad2deg(np.unwrap(np.angle(x)))
+
+
+# In[ ]:
+
+
+class ac_analysis:
+    
+    def __init__(self, ac_sim_raw_DF):
+        #write asserts for ac_sim_DF
+        assert repr(type(ac_sim_raw_DF))=="<class 'pandas.core.frame.DataFrame'>", '`ac_sim_raw_DF` must be a dataframe'
+        self.ac_sim_raw_DF=ac_sim_raw_DF
+    
+    def make_real_imag(self):
+        self.ac_sim_real_DF=self.ac_sim_real_DF.apply(np.real, axis=0)
+        
+        self.ac_sim_imag_DF=self.ac_sim_imag_DF.apply(np.imag, axis=0)
+        
+    
+    def make_mag_phase(self, deg=True, phase_unwrap=True):
+        self.ac_sim_mag_DF=self.ac_sim_raw_DF.apply(np.abs, axis=1)
+        if phase_unwrap!=True:
+            self.ac_sim_phase_DF=self.ac_sim_raw_DF.apply(np.angle, axis=1, deg=deg)
+        else:
+            self.ac_sim_phase_DF=self.ac_sim_raw_DF.apply(angle_phase_unwrap, axis=0)
+    
+    def make_time_domain(self):
+        pass
+    
+    
+        
+
+
+# In[ ]:
+
+
+class bode_plots:
+    pass
+
+
+# In[ ]:
+
+
+# .ac will not record current
+#ac_sweep.ac_vals['I1']
+
+
+# In[ ]:
+
+
+ac_sweep.fsweep_DF.at[0, 'Start_freq']=0
+ac_sweep.fsweep_DF
+
+
+# In[ ]:
+
+
+sim=circ.simulator()
+
+
+# In[ ]:
+
+
+#ac_vals=sim.ac(start_frequency=1e-1@u_Hz, stop_frequency=120@u_GHz, number_of_points=10, variation='dec')
+ac_vals=sim.ac(start_frequency=0@u_Hz, stop_frequency=10e3@u_Hz, number_of_points=10000, variation='lin')
+#=sim.ac(start_frequency=1e-1@u_Hz, stop_frequency=1@u_THz, number_of_points=10, variation='oct')
+
+
+# In[ ]:
 
 
 v_i=ac_vals[node(net_1)]
@@ -191,22 +386,28 @@ v_o=ac_vals[node(net_2)]
 f=ac_vals.frequency
 
 
-# In[11]:
+# In[ ]:
 
 
-plt.semilogx(f, 20*np.log10(np.abs(v_o)))
+plt.semilogx(f, 10*np.log10(np.abs(v_o)))
 plt.twinx()
 plt.semilogx(f, np.rad2deg(np.unwrap(np.angle(v_o))), color='g')
 
 
-# In[12]:
+# In[ ]:
+
+
+v_i
+
+
+# In[ ]:
 
 
 v_o_time=np.fft.fftshift(np.fft.ifft(v_o))
 plt.plot(np.abs(v_o_time))
 
 
-# In[13]:
+# In[ ]:
 
 
 #pz_vals=sim.pole_zero(node(net_1), node(gnd), node(net_2), node(gnd), 'vol', 'pz')
@@ -217,13 +418,13 @@ plt.plot(np.abs(v_o_time))
 # The eqivlint RL filter to the above RC filter may be found via the equivlint time consitnc of the RC and RL implemntaiotn such that time constance must mach ie:
 # $$RC=\tau_{RC}=\tau_{RL}=L/R$$
 
-# In[14]:
+# In[ ]:
 
 
 (1e3)**2 *.1e-9
 
 
-# In[15]:
+# In[ ]:
 
 
 class rl_lowpass():
@@ -283,14 +484,14 @@ class rl_lowpass():
     
 
 
-# In[16]:
+# In[ ]:
 
 
 rl_l=rl_lowpass(L_value=(1e3)**2 *.1e-9 @u_H, R_value=1e3)
 rl_l.draw_me()
 
 
-# In[17]:
+# In[ ]:
 
 
 reset()
@@ -307,19 +508,19 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[18]:
+# In[ ]:
 
 
 sim=circ.simulator()
 
 
-# In[19]:
+# In[ ]:
 
 
 ac_vals=sim.ac(start_frequency=1@u_Hz, stop_frequency=2@u_MHz, number_of_points=10, variation='dec')
 
 
-# In[20]:
+# In[ ]:
 
 
 v_i=ac_vals[node(net_1)]
@@ -327,7 +528,7 @@ v_o=ac_vals[node(net_2)]
 f=ac_vals.frequency
 
 
-# In[21]:
+# In[ ]:
 
 
 plt.semilogx(f, 20*np.log10(np.abs(v_o)))
@@ -335,7 +536,7 @@ plt.twinx()
 plt.semilogx(f, np.rad2deg(np.unwrap(np.angle(v_o))), color='g')
 
 
-# In[22]:
+# In[ ]:
 
 
 v_o_time=np.fft.fftshift(np.fft.ifft(v_o))
@@ -344,13 +545,13 @@ plt.plot(np.abs(v_o_time))
 
 # ## The high pass filter from ALL ABOUT ELECTRONICS "RC High Pass Filter Explained"  @~ 7:57min
 
-# In[23]:
+# In[ ]:
 
 
 YouTubeVideo('9Dx0b0ukNAM', width=500, height=400, start=477)
 
 
-# In[24]:
+# In[ ]:
 
 
 class rc_highpass():
@@ -410,14 +611,14 @@ class rc_highpass():
     
 
 
-# In[25]:
+# In[ ]:
 
 
 highpassF=rc_highpass(C_value=1.5@u_nF, R_value=10@u_kOhm)
 highpassF.draw_me()
 
 
-# In[26]:
+# In[ ]:
 
 
 reset()
@@ -434,19 +635,19 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[27]:
+# In[ ]:
 
 
 sim=circ.simulator()
 
 
-# In[28]:
+# In[ ]:
 
 
 ac_vals=sim.ac(start_frequency=1@u_Hz, stop_frequency=1@u_MHz, number_of_points=10, variation='dec')
 
 
-# In[29]:
+# In[ ]:
 
 
 v_i=ac_vals[node(net_1)]
@@ -454,7 +655,7 @@ v_o=ac_vals[node(net_2)]
 f=ac_vals.frequency
 
 
-# In[30]:
+# In[ ]:
 
 
 plt.semilogx(f, 20*np.log10(np.abs(v_o)))
@@ -462,7 +663,7 @@ plt.twinx()
 plt.semilogx(f, np.rad2deg(np.unwrap(np.angle(v_o))), color='g')
 
 
-# In[31]:
+# In[ ]:
 
 
 v_o_time=np.fft.fftshift(np.fft.ifft(v_o))
@@ -471,7 +672,7 @@ plt.plot(np.abs(v_o_time))
 
 # ## RL Highpass
 
-# In[32]:
+# In[ ]:
 
 
 class rl_highpass():
@@ -531,20 +732,20 @@ class rl_highpass():
     
 
 
-# In[33]:
+# In[ ]:
 
 
 (10e3)**2 *1.5e-9
 
 
-# In[34]:
+# In[ ]:
 
 
 rl_h=rl_highpass(L_value=(10e3)**2 *1.5e-9 @u_H, R_value=10@u_kOhm)
 rl_h.draw_me()
 
 
-# In[35]:
+# In[ ]:
 
 
 reset()
@@ -561,19 +762,19 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[36]:
+# In[ ]:
 
 
 sim=circ.simulator()
 
 
-# In[37]:
+# In[ ]:
 
 
 ac_vals=sim.ac(start_frequency=1@u_Hz, stop_frequency=1@u_MHz, number_of_points=10, variation='dec')
 
 
-# In[38]:
+# In[ ]:
 
 
 v_i=ac_vals[node(net_1)]
@@ -581,7 +782,7 @@ v_o=ac_vals[node(net_2)]
 f=ac_vals.frequency
 
 
-# In[39]:
+# In[ ]:
 
 
 plt.semilogx(f, 20*np.log10(np.abs(v_o)))
@@ -589,7 +790,7 @@ plt.twinx()
 plt.semilogx(f, np.rad2deg(np.unwrap(np.angle(v_o))), color='g')
 
 
-# In[40]:
+# In[ ]:
 
 
 v_o_time=np.fft.fftshift(np.fft.ifft(v_o))
@@ -600,13 +801,13 @@ plt.plot(np.abs(v_o_time))
 
 # ## The band pass filter from ALL ABOUT ELECTRONICS "Band Pass Filter and Band Stop Filter Explained"  @~ 4:03min
 
-# In[41]:
+# In[ ]:
 
 
 YouTubeVideo('dmPIydL0lyM', width=500, height=400, start=243)
 
 
-# In[42]:
+# In[ ]:
 
 
 reset()
@@ -626,19 +827,19 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[43]:
+# In[ ]:
 
 
 sim=circ.simulator()
 
 
-# In[44]:
+# In[ ]:
 
 
 ac_vals=sim.ac(start_frequency=1@u_Hz, stop_frequency=50@u_MHz, number_of_points=10, variation='dec')
 
 
-# In[45]:
+# In[ ]:
 
 
 v_i=ac_vals[node(net_1)]
@@ -646,7 +847,7 @@ v_o=ac_vals[node(net_3)]
 f=ac_vals.frequency
 
 
-# In[46]:
+# In[ ]:
 
 
 plt.semilogx(f, 20*np.log10(np.abs(v_o)))
@@ -654,7 +855,7 @@ plt.twinx()
 plt.semilogx(f, np.rad2deg(np.unwrap(np.angle(v_o))), color='g')
 
 
-# In[47]:
+# In[ ]:
 
 
 v_o_time=np.fft.fftshift(np.fft.ifft(v_o))

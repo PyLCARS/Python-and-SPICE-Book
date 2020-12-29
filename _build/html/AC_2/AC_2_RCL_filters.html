@@ -500,6 +500,7 @@
   <p>IN PROGRESS</p>
 <p>TODO:</p>
 <ul class="simple">
+<li><p>look into ngspice interanls and realy verfiy that there are no eqivlincys to dc internlas with .ac sims</p></li>
 <li><p>add sympy to subcirucit classes</p></li>
 <li><p>add ac sim tool; try to do an inhertince from last section</p></li>
 <li><p>add rl complimeint filters</p></li>
@@ -509,39 +510,6 @@
 <li><p>add filter desighn tool and filter cirucit generation tool</p></li>
 <li><p>discues L-&gt;C passive conversion</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ac_ease</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circ_netlist_obj</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">=</span><span class="n">circ_netlist_obj</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_build_table</span><span class="p">()</span>
-    
-    <span class="k">def</span> <span class="nf">_build_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Start_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;Stop_Freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SamplingInc&#39;</span><span class="p">,</span> <span class="s1">&#39;StepType&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="nd">@u_Hz</span><span class="p">,</span> <span class="mi">120</span><span class="nd">@u_GHz</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;decade&#39;</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">ac_sweep_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Start_freq</span><span class="p">,</span> <span class="n">Stop_Freq</span><span class="p">,</span> <span class="n">SamplingInc</span><span class="p">,</span> <span class="n">StepType</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        TODO:</span>
-<span class="sd">            -add assertions and translations for StepType</span>
-<span class="sd">            -add force change of 0Hz to .01Hz and warning for sweeps other then linear</span>
-<span class="sd">            -add display action</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">Start_freq</span><span class="p">,</span> <span class="n">Stop_Freq</span><span class="p">,</span> <span class="n">SamplingInc</span><span class="p">,</span> <span class="n">StepType</span><span class="p">]</span>
-    
-    <span class="k">def</span> <span class="nf">_make_sim_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-    
-    <span class="k">def</span> <span class="nf">do_ac_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-    
-    <span class="k">def</span> <span class="nf">record_ac_nodebranch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-        
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile AC_2_Codes.py</span>
@@ -560,6 +528,7 @@
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
 
 <span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 </pre></div>
 </div>
 </div>
@@ -571,7 +540,10 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#notebook specific loading control statements </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
+<span class="c1">#from AC_2_Codes import </span>
+
+<span class="c1">#notebook specific loading control statements </span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="c1">#tool to log notebook internals</span>
 <span class="c1">#https://github.com/jrjohansson/version_information</span>
@@ -581,7 +553,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:51:34 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Mon Dec 28 15:58:46 2020 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="basic-passive-filters">
 <h1>Basic Passive Filters<a class="headerlink" href="#basic-passive-filters" title="Permalink to this headline">¶</a></h1>
@@ -673,7 +645,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_8_0.png" src="../_images/AC_2_RCL_filters_8_0.png" />
+<img alt="../_images/AC_2_RCL_filters_7_0.png" src="../_images/AC_2_RCL_filters_7_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -681,7 +653,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
 <span class="n">net_1</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N1&#39;</span><span class="p">);</span> <span class="n">net_2</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;N2&#39;</span><span class="p">);</span> 
 
-<span class="n">vs</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">amplitude</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="mi">2</span><span class="nd">@u_kHz</span><span class="p">)</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">,</span> <span class="n">dc_value</span><span class="o">=</span><span class="mi">10</span><span class="nd">@u_V</span><span class="p">)</span>
 <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span>
 <span class="n">lowpassF</span><span class="o">.</span><span class="n">SKiDl</span><span class="p">(</span><span class="n">net_1</span><span class="p">,</span> <span class="n">gnd</span><span class="p">,</span> <span class="n">net_2</span><span class="p">,</span> <span class="n">gnd</span><span class="p">)</span>
 
@@ -697,10 +669,737 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
 C1 N2 0 0.1uF
 R1 N1 N2 1kOhm
-V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
+V1 N1 0 DC 0V AC 10V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ac_ease</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TODO:</span>
+<span class="sd">        - independ current sources can have there AC current meassued via </span>
+<span class="sd">        `@I&lt;name&gt;[acreal]` &amp; `@I&lt;name&gt;[acrimag]` not shure if this is usefull</span>
+<span class="sd">        also trying via the sensivity </span>
+<span class="sd">        - to some serioues testing with ngspice directly to verfiy that internal</span>
+<span class="sd">        parmters are as limited as they apear to be with .ac</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circ_netlist_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">=</span><span class="n">circ_netlist_obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_table</span><span class="p">()</span>
+        
+        <span class="c1">#dic of allowed AC sweep types</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_steptypes_map</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linear&#39;</span><span class="p">:</span><span class="s1">&#39;lin&#39;</span><span class="p">,</span> <span class="s1">&#39;decade&#39;</span><span class="p">:</span><span class="s1">&#39;dec&#39;</span><span class="p">,</span> <span class="s1">&#39;octave&#39;</span><span class="p">:</span> <span class="s1">&#39;oct&#39;</span><span class="p">}</span>
+
+    
+    <span class="k">def</span> <span class="nf">_build_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Start_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;Stop_Freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SamplingInc&#39;</span><span class="p">,</span> <span class="s1">&#39;StepType&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="nd">@u_Hz</span><span class="p">,</span> <span class="mi">120</span><span class="nd">@u_GHz</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;decade&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">ac_sweep_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Start_freq</span><span class="p">,</span> <span class="n">Stop_Freq</span><span class="p">,</span> <span class="n">SamplingInc</span><span class="p">,</span> <span class="n">StepType</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO:</span>
+<span class="sd">            -add display action</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#check for allwed step types</span>
+        <span class="k">assert</span> <span class="n">StepType</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_steptypes_map</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>  <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{StepType}</span><span class="s2"> is not allowed&quot;</span>
+        <span class="c1">#force start to non zero if sweep not linear</span>
+        <span class="k">if</span> <span class="n">StepType</span> <span class="o">!=</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">Start_freq</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;&quot;linear&quot; is only sweep type that can start at 0Hz,</span><span class="se">\n</span><span class="s1"> setting starting frequancy to 1e-1Hz&#39;</span><span class="p">)</span>
+                <span class="n">Start_freq</span><span class="o">=</span><span class="mf">1e-1</span><span class="nd">@u_Hz</span>
+                
+                
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">Start_freq</span><span class="p">,</span> <span class="n">Stop_Freq</span><span class="p">,</span> <span class="n">SamplingInc</span><span class="p">,</span> <span class="n">StepType</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">_make_sim_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="c1">#check the control table struct</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">columns</span><span class="o">==</span><span class="p">[</span><span class="s1">&#39;Start_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;Stop_Freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SamplingInc&#39;</span><span class="p">,</span> <span class="s1">&#39;StepType&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s1">&#39;Contorl Table Column structer has been altered&#39;</span>
+        
+        <span class="c1">#will probily change this down the road</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;there should only be one entry in the control table&#39;</span>
+        
+        <span class="c1">#check the sweep type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">[</span><span class="s1">&#39;StepType&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_steptypes_map</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{self.fsweep_DF[&#39;StepType&#39;][0]}</span><span class="s2"> is not allowed&quot;</span>
+        
+        <span class="c1">#force start to non zero if sweep not linear</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">[</span><span class="s1">&#39;StepType&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="p">[</span><span class="s1">&#39;Start_freq&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;&quot;linear&quot; is only sweep type that can start at 0Hz,</span><span class="se">\n</span><span class="s1"> setting starting frequancy to 1e-1Hz&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Start_freq&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1e-1</span><span class="nd">@u_Hz</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_control</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;start_frequency&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Start_freq&#39;</span><span class="p">],</span> 
+            <span class="s1">&#39;stop_frequency&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Stop_Freq&#39;</span><span class="p">],</span> 
+            <span class="s1">&#39;number_of_points&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SamplingInc&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;variation&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_steptypes_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;StepType&#39;</span><span class="p">]]</span>
+        <span class="p">}</span>
+        
+        
+        
+    
+    <span class="k">def</span> <span class="nf">do_ac_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_sim_control</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_vals</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">ac</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_control</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_ac_nodebranch</span><span class="p">()</span>
+
+    
+    <span class="k">def</span> <span class="nf">record_ac_nodebranch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_vals</span><span class="o">.</span><span class="n">frequency</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;freq[Hz]&#39;</span>
+        
+        <span class="c1">#get the node voltages</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="s1">&#39;_[V]&#39;</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_vals</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+        
+        <span class="c1">#get the current from any voltage sourcs</span>
+        <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;V&#39;</span><span class="o">==</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span><span class="p">[</span><span class="n">cm</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span><span class="p">]</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_vals</span><span class="p">[</span><span class="n">cm</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ac_sweep</span><span class="o">=</span><span class="n">ac_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">ac_sweep</span><span class="o">.</span><span class="n">do_ac_sim</span><span class="p">()</span>
+<span class="n">ac_sweep</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N2_[V]</th>
+      <th>N1_[V]</th>
+      <th>V1_[A]</th>
+    </tr>
+    <tr>
+      <th>freq[Hz]</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.000000e-01</th>
+      <td>1.000000e+01-6.283185e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>3.947842e-11+6.283185e-07j</td>
+    </tr>
+    <tr>
+      <th>1.258925e-01</th>
+      <td>1.000000e+01-7.910061e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>6.256907e-11+7.910062e-07j</td>
+    </tr>
+    <tr>
+      <th>1.584893e-01</th>
+      <td>1.000000e+01-9.958177e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>9.916530e-11+9.958178e-07j</td>
+    </tr>
+    <tr>
+      <th>1.995262e-01</th>
+      <td>1.000000e+01-1.253660e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.571664e-10+1.253660e-06j</td>
+    </tr>
+    <tr>
+      <th>2.511886e-01</th>
+      <td>1.000000e+01-1.578265e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>2.490920e-10+1.578265e-06j</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3.981072e+10</th>
+      <td>1.598234e-14-3.997791e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.997792e-10j</td>
+    </tr>
+    <tr>
+      <th>5.011872e+10</th>
+      <td>1.008417e-14-3.175559e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.175559e-10j</td>
+    </tr>
+    <tr>
+      <th>6.309573e+10</th>
+      <td>6.362683e-15-2.522436e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.522436e-10j</td>
+    </tr>
+    <tr>
+      <th>7.943283e+10</th>
+      <td>4.014581e-15-2.003642e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.003642e-10j</td>
+    </tr>
+    <tr>
+      <th>1.000000e+11</th>
+      <td>2.533030e-15-1.591549e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+1.591549e-10j</td>
+    </tr>
+  </tbody>
+</table>
+<p>121 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">ac_sweep</span><span class="o">.</span><span class="n">ac_resultsNB_DF</span>
+<span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N2_[V]</th>
+      <th>N1_[V]</th>
+      <th>V1_[A]</th>
+    </tr>
+    <tr>
+      <th>freq[Hz]</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.000000e-01</th>
+      <td>1.000000e+01-6.283185e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>3.947842e-11+6.283185e-07j</td>
+    </tr>
+    <tr>
+      <th>1.258925e-01</th>
+      <td>1.000000e+01-7.910061e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>6.256907e-11+7.910062e-07j</td>
+    </tr>
+    <tr>
+      <th>1.584893e-01</th>
+      <td>1.000000e+01-9.958177e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>9.916530e-11+9.958178e-07j</td>
+    </tr>
+    <tr>
+      <th>1.995262e-01</th>
+      <td>1.000000e+01-1.253660e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.571664e-10+1.253660e-06j</td>
+    </tr>
+    <tr>
+      <th>2.511886e-01</th>
+      <td>1.000000e+01-1.578265e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>2.490920e-10+1.578265e-06j</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3.981072e+10</th>
+      <td>1.598234e-14-3.997791e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.997792e-10j</td>
+    </tr>
+    <tr>
+      <th>5.011872e+10</th>
+      <td>1.008417e-14-3.175559e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.175559e-10j</td>
+    </tr>
+    <tr>
+      <th>6.309573e+10</th>
+      <td>6.362683e-15-2.522436e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.522436e-10j</td>
+    </tr>
+    <tr>
+      <th>7.943283e+10</th>
+      <td>4.014581e-15-2.003642e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.003642e-10j</td>
+    </tr>
+    <tr>
+      <th>1.000000e+11</th>
+      <td>2.533030e-15-1.591549e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+1.591549e-10j</td>
+    </tr>
+  </tbody>
+</table>
+<p>121 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;power_[W]&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;N1_[V]&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;V1_[A]&#39;</span><span class="p">]</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N2_[V]</th>
+      <th>N1_[V]</th>
+      <th>V1_[A]</th>
+      <th>power_[W]</th>
+    </tr>
+    <tr>
+      <th>freq[Hz]</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.000000e-01</th>
+      <td>1.000000e+01-6.283185e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>3.947842e-11+6.283185e-07j</td>
+      <td>0.000000+0.000006j</td>
+    </tr>
+    <tr>
+      <th>1.258925e-01</th>
+      <td>1.000000e+01-7.910061e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>6.256907e-11+7.910062e-07j</td>
+      <td>0.000000+0.000008j</td>
+    </tr>
+    <tr>
+      <th>1.584893e-01</th>
+      <td>1.000000e+01-9.958177e-04j</td>
+      <td>10.000000+0.000000j</td>
+      <td>9.916530e-11+9.958178e-07j</td>
+      <td>0.000000+0.000010j</td>
+    </tr>
+    <tr>
+      <th>1.995262e-01</th>
+      <td>1.000000e+01-1.253660e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.571664e-10+1.253660e-06j</td>
+      <td>0.000000+0.000013j</td>
+    </tr>
+    <tr>
+      <th>2.511886e-01</th>
+      <td>1.000000e+01-1.578265e-03j</td>
+      <td>10.000000+0.000000j</td>
+      <td>2.490920e-10+1.578265e-06j</td>
+      <td>0.000000+0.000016j</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3.981072e+10</th>
+      <td>1.598234e-14-3.997791e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.997792e-10j</td>
+      <td>0.100000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>5.011872e+10</th>
+      <td>1.008417e-14-3.175559e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+3.175559e-10j</td>
+      <td>0.100000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>6.309573e+10</th>
+      <td>6.362683e-15-2.522436e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.522436e-10j</td>
+      <td>0.100000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>7.943283e+10</th>
+      <td>4.014581e-15-2.003642e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+2.003642e-10j</td>
+      <td>0.100000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>1.000000e+11</th>
+      <td>2.533030e-15-1.591549e-07j</td>
+      <td>10.000000+0.000000j</td>
+      <td>1.000000e-02+1.591549e-10j</td>
+      <td>0.100000+0.000000j</td>
+    </tr>
+  </tbody>
+</table>
+<p>121 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;N2_[V]&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dB_convert</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">[</span><span class="s1">&#39;[W]&#39;</span><span class="p">,</span> <span class="s1">&#39;[VAR]&#39;</span><span class="p">,</span> <span class="s1">&#39;[VA]&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">[</span><span class="s1">&#39;[V]&#39;</span><span class="p">,</span> <span class="s1">&#39;[A]&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;[W]&#39;</span><span class="p">,</span> <span class="s1">&#39;[VAR]&#39;</span><span class="p">,</span> <span class="s1">&#39;[VA]&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>N2_[V]</th>
+      <th>N1_[V]</th>
+      <th>V1_[A]</th>
+      <th>power_[W]</th>
+    </tr>
+    <tr>
+      <th>freq[Hz]</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.000000e-01</th>
+      <td>20.000000-0.000546j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-124.036407+13.643218j</td>
+      <td>-104.036407+13.643218j</td>
+    </tr>
+    <tr>
+      <th>1.258925e-01</th>
+      <td>20.000000-0.000687j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-122.036407+13.643076j</td>
+      <td>-102.036400+13.643076j</td>
+    </tr>
+    <tr>
+      <th>1.584893e-01</th>
+      <td>20.000000-0.000865j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-120.036400+13.642899j</td>
+      <td>-100.036400+13.642899j</td>
+    </tr>
+    <tr>
+      <th>1.995262e-01</th>
+      <td>20.000000-0.001089j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-118.036407+13.642674j</td>
+      <td>-98.036407+13.642674j</td>
+    </tr>
+    <tr>
+      <th>2.511886e-01</th>
+      <td>20.000000-0.001371j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-116.036407+13.642393j</td>
+      <td>-96.036407+13.642393j</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3.981072e+10</th>
+      <td>-127.963600-13.643763j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-40.000000+0.000000j</td>
+      <td>-20.000000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>5.011872e+10</th>
+      <td>-129.963593-13.643763j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-40.000000+0.000000j</td>
+      <td>-20.000000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>6.309573e+10</th>
+      <td>-131.963608-13.643764j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-40.000000+0.000000j</td>
+      <td>-20.000000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>7.943283e+10</th>
+      <td>-133.963608-13.643764j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-40.000000+0.000000j</td>
+      <td>-20.000000+0.000000j</td>
+    </tr>
+    <tr>
+      <th>1.000000e+11</th>
+      <td>-135.963608-13.643764j</td>
+      <td>20.000000+0.000000j</td>
+      <td>-40.000000+0.000000j</td>
+      <td>-20.000000+0.000000j</td>
+    </tr>
+  </tbody>
+</table>
+<p>121 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">dB_convert</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="n">a5ad0e96e12f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">dB_convert</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/generic.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5137</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info_axis</span><span class="o">.</span><span class="n">_can_hold_identifiers_and_holds_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5138</span>                 <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">5139</span>             <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5140</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5141</span>     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="ne">AttributeError</span>: &#39;DataFrame&#39; object has no attribute &#39;map&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;power_[W]&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq[Hz]
+1.000000e-01   -52.018204+6.821609j
+1.258925e-01   -51.018200+6.821538j
+1.584893e-01   -50.018200+6.821449j
+1.995262e-01   -49.018204+6.821337j
+2.511886e-01   -48.018204+6.821197j
+                       ...         
+3.981072e+10   -10.000000+0.000000j
+5.011872e+10   -10.000000+0.000000j
+6.309573e+10   -10.000000+0.000000j
+7.943283e+10   -10.000000+0.000000j
+1.000000e+11   -10.000000+0.000000j
+Name: power_[W], Length: 121, dtype: complex64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;N1_[V]&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freq[Hz]
+1.000000e-01    20.000000+0.000000j
+1.258925e-01    20.000000+0.000000j
+1.584893e-01    20.000000+0.000000j
+1.995262e-01    20.000000+0.000000j
+2.511886e-01    20.000000+0.000000j
+                       ...         
+3.981072e+10    20.000000+0.000000j
+5.011872e+10    20.000000+0.000000j
+6.309573e+10    20.000000+0.000000j
+7.943283e+10    20.000000+0.000000j
+1.000000e+11    20.000000+0.000000j
+Name: N1_[V], Length: 121, dtype: complex64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">repr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="o">==</span><span class="s2">&quot;&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#remove later</span>
+<span class="n">angle_phase_unwrap</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ac_analysis</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ac_sim_raw_DF</span><span class="p">):</span>
+        <span class="c1">#write asserts for ac_sim_DF</span>
+        <span class="k">assert</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ac_sim_raw_DF</span><span class="p">))</span><span class="o">==</span><span class="s2">&quot;&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;&quot;</span><span class="p">,</span> <span class="s1">&#39;`ac_sim_raw_DF` must be a dataframe&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_raw_DF</span><span class="o">=</span><span class="n">ac_sim_raw_DF</span>
+    
+    <span class="k">def</span> <span class="nf">make_real_imag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_real_DF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_real_DF</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_imag_DF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_imag_DF</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+    
+    <span class="k">def</span> <span class="nf">make_mag_phase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">phase_unwrap</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_mag_DF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_raw_DF</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">phase_unwrap</span><span class="o">!=</span><span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_phase_DF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_raw_DF</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_phase_DF</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_raw_DF</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">angle_phase_unwrap</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">make_time_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+    
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">bode_plots</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># .ac will not record current</span>
+<span class="c1">#ac_sweep.ac_vals[&#39;I1&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ac_sweep</span><span class="o">.</span><span class="n">fsweep_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Start_freq&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">ac_sweep</span><span class="o">.</span><span class="n">fsweep_DF</span>
 </pre></div>
 </div>
 </div>
@@ -714,7 +1413,9 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ac_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">ac</span><span class="p">(</span><span class="n">start_frequency</span><span class="o">=.</span><span class="mi">1</span><span class="nd">@u_Hz</span><span class="p">,</span> <span class="n">stop_frequency</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_MHz</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">variation</span><span class="o">=</span><span class="s1">&#39;dec&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ac_vals=sim.ac(start_frequency=1e-1@u_Hz, stop_frequency=120@u_GHz, number_of_points=10, variation=&#39;dec&#39;)</span>
+<span class="n">ac_vals</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">ac</span><span class="p">(</span><span class="n">start_frequency</span><span class="o">=</span><span class="mi">0</span><span class="nd">@u_Hz</span><span class="p">,</span> <span class="n">stop_frequency</span><span class="o">=</span><span class="mf">10e3</span><span class="nd">@u_Hz</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">variation</span><span class="o">=</span><span class="s1">&#39;lin&#39;</span><span class="p">)</span>
+<span class="c1">#=sim.ac(start_frequency=1e-1@u_Hz, stop_frequency=1@u_THz, number_of_points=10, variation=&#39;oct&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -730,23 +1431,18 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">v_o</span><span class="p">))),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_i</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820b7bfb10&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_13_3.png" src="../_images/AC_2_RCL_filters_13_3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -755,12 +1451,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o_time</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820b487510&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_14_1.png" src="../_images/AC_2_RCL_filters_14_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -780,9 +1470,6 @@ $<span class="math notranslate nohighlight">\(RC=\tau_{RC}=\tau_{RL}=L/R\)</span
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">1e3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*.</span><span class="mf">1e-9</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_17_0.png" src="../_images/AC_2_RCL_filters_17_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -853,9 +1540,6 @@ $<span class="math notranslate nohighlight">\(RC=\tau_{RC}=\tau_{RL}=L/R\)</span
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_19_0.png" src="../_images/AC_2_RCL_filters_19_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -871,17 +1555,6 @@ $<span class="math notranslate nohighlight">\(RC=\tau_{RC}=\tau_{RL}=L/R\)</span
 
 <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-L1 N1 N2 0.0001H
-R1 N2 0 1000.0
-V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -917,18 +1590,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820b378cd0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_24_3.png" src="../_images/AC_2_RCL_filters_24_3.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -936,12 +1597,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o_time</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820b159c50&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_25_1.png" src="../_images/AC_2_RCL_filters_25_1.png" />
 </div>
 </div>
 </div>
@@ -953,16 +1608,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="500"
-    height="400"
-    src="https://www.youtube.com/embed/9Dx0b0ukNAM?start=477"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1032,9 +1677,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_29_0.png" src="../_images/AC_2_RCL_filters_29_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1050,17 +1692,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 2kHz 0s 0Hz)
 
 <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N1 N2 1.5nF
-R1 N2 0 10kOhm
-V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -1096,18 +1727,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820b3ee890&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_34_3.png" src="../_images/AC_2_RCL_filters_34_3.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1115,12 +1734,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o_time</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820af3b9d0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_35_1.png" src="../_images/AC_2_RCL_filters_35_1.png" />
 </div>
 </div>
 </div>
@@ -1193,9 +1806,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_38_0.png" src="../_images/AC_2_RCL_filters_38_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1203,9 +1813,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 <span class="n">rl_h</span><span class="o">.</span><span class="n">draw_me</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/AC_2_RCL_filters_39_0.png" src="../_images/AC_2_RCL_filters_39_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1222,17 +1829,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 
 <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-L1 N2 0 0.15H
-R1 N1 N2 10kOhm
-V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -1268,18 +1864,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820ae94cd0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_44_3.png" src="../_images/AC_2_RCL_filters_44_3.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1287,12 +1871,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o_time</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820ac39610&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_45_1.png" src="../_images/AC_2_RCL_filters_45_1.png" />
 </div>
 </div>
 </div>
@@ -1307,16 +1885,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="500"
-    height="400"
-    src="https://www.youtube.com/embed/dmPIydL0lyM?start=243"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1335,19 +1903,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 
 <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N1 N2 1.5nF
-C2 N3 0 1.5nF
-R1 N2 0 10kOhm
-R2 N2 N3 1kOhm
-V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -1383,18 +1938,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Should be unit less
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820abc0c10&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_53_3.png" src="../_images/AC_2_RCL_filters_53_3.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1402,12 +1945,6 @@ V1 N1 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">v_o_time</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f820aa8bad0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/AC_2_RCL_filters_54_1.png" src="../_images/AC_2_RCL_filters_54_1.png" />
 </div>
 </div>
 </div>

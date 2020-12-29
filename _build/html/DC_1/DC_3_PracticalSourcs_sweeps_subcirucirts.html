@@ -546,7 +546,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Dec 24 16:52:10 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Mon Dec 28 15:59:08 2020 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -681,6 +681,7 @@ Idload N_1 0 1A
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+
 <span class="c1">#chapter 1 section 3 dc_ease class</span>
 <span class="c1"># class to perform easily perform DC sweep simulations</span>
 <span class="c1">#gets both branch currents/node voltages and also internal parameters</span>
@@ -693,6 +694,7 @@ Idload N_1 0 1A
 <span class="sd">    TODO:</span>
 <span class="sd">        make so that it can iterate over all filled in entries in `self.sweep_DF` and</span>
 <span class="sd">        exports data to xarray</span>
+<span class="sd">        </span>
 <span class="sd">        </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circ_netlist_obj</span><span class="p">):</span>
@@ -827,6 +829,9 @@ Idload N_1 0 1A
 <span class="sd">            `self.dc_resultsNB_DF` which is a pandas dataframe with the index being the sweep and the columns being</span>
 <span class="sd">            the node voltages and branch currents from any available voltage sources</span>
 <span class="sd">            </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            get the current in any current sources</span>
+<span class="sd">            </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="o">.</span><span class="n">sweep</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">())</span>
         
@@ -842,7 +847,7 @@ Idload N_1 0 1A
         <span class="c1">#get the current from any voltage sources:</span>
         <span class="k">for</span> <span class="n">cm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
             <span class="k">if</span> <span class="s1">&#39;V&#39;</span><span class="o">==</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="n">cm</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span><span class="p">]</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dc_resultsNB_DF</span><span class="p">[</span><span class="n">cm</span><span class="o">+</span><span class="s1">&#39;_[A]&#39;</span><span class="p">]</span><span class="o">=-</span><span class="bp">self</span><span class="o">.</span><span class="n">dc_vals</span><span class="p">[</span><span class="n">cm</span><span class="p">]</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()</span>
     
     <span class="k">def</span> <span class="nf">do_dc_intsim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">varible</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1171,27 +1176,27 @@ Let’s now have it sweep the dummy load as we did manually and make sure we get
     <tr>
       <th>0.0</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>-0.0</td>
     </tr>
     <tr>
       <th>0.1</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>0.1</td>
     </tr>
     <tr>
       <th>0.2</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>0.2</td>
     </tr>
     <tr>
       <th>0.3</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>0.4</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>0.4</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1201,27 +1206,27 @@ Let’s now have it sweep the dummy load as we did manually and make sure we get
     <tr>
       <th>9.6</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>9.6</td>
     </tr>
     <tr>
       <th>9.7</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>9.7</td>
     </tr>
     <tr>
       <th>9.8</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>9.8</td>
     </tr>
     <tr>
       <th>9.9</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>9.9</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>10.0</td>
     </tr>
   </tbody>
 </table>
@@ -2158,6 +2163,7 @@ Vddrop N_1 0 1V
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+
 <span class="c1">#chapter 1 section 3 real_dcVs subcircuit function</span>
 <span class="c1"># SKiDl subcirucit to create a dc voltage source with </span>
 <span class="c1"># added series resistor</span>
@@ -2223,13 +2229,13 @@ Vddrop N_1 0 1V
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
 R_real_vs N_1 N_2 20Ohm
 V_real_vs N_1 0 30V
 Idload N_2 0 1A
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2334,31 +2340,31 @@ Idload N_2 0 1A
       <th>0.0</th>
       <td>30.0</td>
       <td>30.0</td>
-      <td>-30.0</td>
+      <td>-0.0</td>
     </tr>
     <tr>
       <th>0.1</th>
       <td>30.0</td>
       <td>28.0</td>
-      <td>-28.0</td>
+      <td>0.1</td>
     </tr>
     <tr>
       <th>0.2</th>
       <td>30.0</td>
       <td>26.0</td>
-      <td>-26.0</td>
+      <td>0.2</td>
     </tr>
     <tr>
       <th>0.3</th>
       <td>30.0</td>
       <td>24.0</td>
-      <td>-24.0</td>
+      <td>0.3</td>
     </tr>
     <tr>
       <th>0.4</th>
       <td>30.0</td>
       <td>22.0</td>
-      <td>-22.0</td>
+      <td>0.4</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2370,31 +2376,31 @@ Idload N_2 0 1A
       <th>9.6</th>
       <td>30.0</td>
       <td>-162.0</td>
-      <td>162.0</td>
+      <td>9.6</td>
     </tr>
     <tr>
       <th>9.7</th>
       <td>30.0</td>
       <td>-164.0</td>
-      <td>164.0</td>
+      <td>9.7</td>
     </tr>
     <tr>
       <th>9.8</th>
       <td>30.0</td>
       <td>-166.0</td>
-      <td>166.0</td>
+      <td>9.8</td>
     </tr>
     <tr>
       <th>9.9</th>
       <td>30.0</td>
       <td>-168.0</td>
-      <td>168.0</td>
+      <td>9.9</td>
     </tr>
     <tr>
       <th>10.0</th>
       <td>30.0</td>
       <td>-170.0</td>
-      <td>170.0</td>
+      <td>10.0</td>
     </tr>
   </tbody>
 </table>
@@ -2435,6 +2441,7 @@ Idload N_2 0 1A
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a DC_1_Codes.py</span>
+
 <span class="c1">#chapter 1 section 3 real_dcIs subcircuit function</span>
 <span class="c1"># SKiDl subcirucit to create a dc current source with </span>
 <span class="c1"># added parallel resistor</span>
@@ -2517,10 +2524,10 @@ Vddrop N_2 0 1V
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r_real_cs[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i_real_cs[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vddrop[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vddrop[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i_real_cs[p] power
 </pre></div>
 </div>
 <div class="output text_html"><div>

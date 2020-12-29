@@ -329,3 +329,9 @@ print(circ)
 # [1] ALL ABOUT ELECTRONICS. "Maximum Power Transfer Theorem for DC Circuits (with Examples)," YouTube, May 20, 2017. [Video file]. Available: https://youtu.be/RbII8o49Hvs. [Accessed: Nov 30, 2020].
 # 
 # [2] @JustGlowing, “How to find the intersection of two functions,” The Glowing Python, 10-May-2011. [Online]. Available: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html. [Accessed: 20-Nov-2020].
+
+# In[ ]:
+
+
+
+

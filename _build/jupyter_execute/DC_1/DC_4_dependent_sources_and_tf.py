@@ -195,6 +195,7 @@ for k,v in dc_tf.nodes.items():
 
 
 #%%writefile -a DC_1_Codes.py
+
 #chapter 1 section 4 easy_tf class
 # class to make using the SPICE .tf function so much less of a pain
 # has methods to all four case usages

@@ -56,7 +56,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Checking tool" href="../Appendix/skidl_2_pyspice_check.html" />
+    <link rel="next" title="Basic Passive Filters" href="AC_2_RCL_filters.html" />
     <link rel="prev" title="Chapter 2 AC simulations with Python and SPICE" href="AC_1.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -248,6 +248,26 @@
       \(\Delta\)
      </span>
      Topology
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2_RCL_filters.html">
+     Basic Passive Filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2_RCL_filters.html#first-order-cascade-filter">
+     First Order Cascade filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2_RCL_filters.html#second-order-filters-and-resonators">
+     Second-Order Filters and resonators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2_RCL_filters.html#all-pass-filters">
+     All Pass filters
     </a>
    </li>
   </ul>
@@ -570,7 +590,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Mon Dec 28 15:58:22 2020 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Sun Jan 10 17:06:23 2021 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="capacitors-and-inductors">
 <h1>Capacitors and Inductors<a class="headerlink" href="#capacitors-and-inductors" title="Permalink to this headline">¶</a></h1>
@@ -615,7 +635,7 @@ Recalling that to invoke a resistor</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="n">N1</span> <span class="n">N2</span> <span class="mi">1</span><span class="n">H</span>
 </pre></div>
 </div>
-<p>So there is no real difference except for a major subtle detail of convention. Notice that the capacitor was connected to the netlist via a polarity port statement <code class="docutils literal notranslate"><span class="pre">c1['p',</span> <span class="pre">'n']+=net_1,</span> <span class="pre">net_2</span></code>  whereas the resistor and inductor were connected with just numbering. While technically SKiDl doesn’t care if we use numbers or named terminals as long as there a one-to-one mapping inside SKiDl (see the appendix adlkfjaldjkfkj and or look at <a class="reference external" href="https://github.com/xesscorp/skidl/blob/master/skidl/libs/pyspice_sklib.py">skidl/skidl/libs/pyspice_sklib.py</a>) The reason for the difference is because ~99% of resistors in the world are unpolarized and ~90% of all inductor are also unpolarized. Whereas more than 50% of capacitors are polarized. And when you pass DC (or otherwise) in the reviser polarization of a capacitor you can degrade if  not let lose the magic black smoke as it were. (insert an image of popped and budged electrolytic caps ) So to prevent that in this book at least</p>
+<p>So there is no real difference except for a major subtle detail of convention. Notice that the capacitor was connected to the netlist via a polarity port statement <code class="docutils literal notranslate"><span class="pre">c1['p',</span> <span class="pre">'n']+=net_1,</span> <span class="pre">net_2</span></code>  whereas the resistor and inductor were connected with just numbering. While technically SKiDl doesn’t care if we use numbers or named terminals as long as there a one-to-one mapping inside SKiDl (see the appendix adlkfjaldjkfkj and or look at <a class="reference external" href="https://github.com/xesscorp/skidl/blob/master/skidl/libs/pyspice_sklib.py">skidl/skidl/libs/pyspice_sklib.py</a>) The reason for the difference is because ~99% of resistors in the world are unpolarized and ~90% of all inductor are also unpolarized. That being said when dealing with coupled inductors (transformers, ect) the “dot” goes to the first terminal, more on this in section adlkfalkjdfkj.  Whereas more than 50% of capacitors are polarized. And when you pass DC (or otherwise) in the reviser polarization of a capacitor you can degrade if  not let lose the magic black smoke as it were. (insert an image of popped and budged electrolytic caps ) So to prevent that in this book at least</p>
 <p>In this section, we are just going to start working with AC circuits in SPICE. And we’re going to start simple, but with something that is very poorly talked about and this is multiphase power circuits. Where only going to be scratching the surface of how to simulate these types of circuits in SPICE. And more often than not a lot of these multiphase circuits are driving motors. So below we have a crud model of a single armature of induction motor from an <a class="reference external" href="https://electronics.stackexchange.com/questions/234290/using-a-single-phase-induction-motor-equivalent-circuit-in-ltspice">electronics StackOverflow  quarry</a> that will work well enough for these demonstrations. As it turns out getting a macro model of an electrical motor is no small feet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4763,52 +4783,52 @@ Rneu_chassie N_8 0 1e+16Ohm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (A_ and a) into A_.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (a and A_) into a.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (b and B_) into b.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (B_ and b) into B_.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (c and C_) into c.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (C_ and c) into C_.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-VAB A_ N_7 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
-VBC b N_8 DC 0V AC 120V -119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
-VCA c N_9 DC 0V AC 120V 119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
-L1 b N_10 0.10063694267515924H
+VAB a N_7 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+VBC B_ N_8 DC 0V AC 120V -119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
+VCA C_ N_9 DC 0V AC 120V 119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 B_ N_10 0.10063694267515924H
 L10 N_21 N_22 0.013821656050955413H
 L11 N_20 N_6 0.10063694267515924H
 L12 N_23 N_24 0.013821656050955413H
 L2 N_11 N_12 0.013821656050955413H
 L3 N_10 N_2 0.10063694267515924H
 L4 N_13 N_14 0.013821656050955413H
-L5 c N_15 0.10063694267515924H
+L5 C_ N_15 0.10063694267515924H
 L6 N_16 N_17 0.013821656050955413H
 L7 N_15 N_4 0.10063694267515924H
 L8 N_18 N_19 0.013821656050955413H
-L9 A_ N_20 0.10063694267515924H
-R1 N_2 c 0Ohm
-R10 b N_11 0.8Ohm
+L9 a N_20 0.10063694267515924H
+R1 N_2 C_ 0Ohm
+R10 B_ N_11 0.8Ohm
 R11 N_12 N_10 442.0Ohm
 R12 N_10 N_13 0.8Ohm
 R13 N_14 N_2 442.0Ohm
-R14 c N_16 0.8Ohm
+R14 C_ N_16 0.8Ohm
 R15 N_17 N_15 442.0Ohm
 R16 N_15 N_18 0.8Ohm
 R17 N_19 N_4 442.0Ohm
-R18 A_ N_21 0.8Ohm
+R18 a N_21 0.8Ohm
 R19 N_22 N_20 442.0Ohm
-R2 N_4 A_ 0Ohm
+R2 N_4 a 0Ohm
 R20 N_20 N_23 0.8Ohm
 R21 N_24 N_6 442.0Ohm
-R3 N_6 b 0Ohm
-Rabwire N_7 b 0Ohm
-Raopen A_ 0 1e+16Ohm
-Rbcwire N_8 c 0Ohm
-Rbopen b 0 1e+16Ohm
-Rcawire N_9 A_ 0Ohm
-Rcopen c 0 1e+16Ohm
+R3 N_6 B_ 0Ohm
+Rabwire N_7 B_ 0Ohm
+Raopen a 0 1e+16Ohm
+Rbcwire N_8 C_ 0Ohm
+Rbopen B_ 0 1e+16Ohm
+Rcawire N_9 a 0Ohm
+Rcopen C_ 0 1e+16Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 warnings found during netlist generation.
@@ -4833,17 +4853,17 @@ Rcopen c 0 1e+16Ohm
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABPhase_Source&#39;: 
-  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
      Pin AB/1/p,+,plus,anode,A/PASSIVE
-     Pin AB/2/n,C,-,m,negative,cathode,neg,minus,K/PASSIVE,
+     Pin AB/2/n,m,minus,cathode,-,negative,neg,K,C/PASSIVE,
  &#39;BCPhase_Source&#39;: 
-  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
      Pin BC/1/p,+,plus,anode,A/PASSIVE
-     Pin BC/2/n,C,-,m,negative,cathode,neg,minus,K/PASSIVE,
+     Pin BC/2/n,m,minus,cathode,-,negative,neg,K,C/PASSIVE,
  &#39;CAPhase_Source&#39;: 
-  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
      Pin CA/1/p,+,plus,anode,A/PASSIVE
-     Pin CA/2/n,C,-,m,negative,cathode,neg,minus,K/PASSIVE}
+     Pin CA/2/n,m,minus,cathode,-,negative,neg,K,C/PASSIVE}
 </pre></div>
 </div>
 </div>
@@ -5714,7 +5734,7 @@ Rcopen c 0 1e+16Ohm
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="AC_1.html" title="previous page">Chapter 2 AC simulations with Python and SPICE</a>
-    <a class='right-next' id="next-link" href="../Appendix/skidl_2_pyspice_check.html" title="next page">Checking tool</a>
+    <a class='right-next' id="next-link" href="AC_2_RCL_filters.html" title="next page">Basic Passive Filters</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -44,10 +44,28 @@ for nb in notebooks:
     
     #uncommment to use
     #!jupyter nbconvert --to html {ipynb}
-    #!pandoc -s {html} -o {docx}
+    
+    get_ipython().system('jupyter nbconvert --clear-output --to html {ipynb}')
+    #!jupyter nbconvert --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_cell_tags="['remove_output']" --to html {ipynb}
+    
+    get_ipython().system('pandoc -s {html} -o {docx}')
     
     
 
+
+# # note to self to work building book and github page
+# build book:
+# be looking at this folder not in it 
+# ```
+# jupyter-book build Python-and-SPICE-Book/
+# ```
+# 
+# 
+# build book site:
+# be inside the top repo
+# ```
+# ghp-import -n -p -c https://pylcars.github.io/Python-and-SPICE-Book/docs -f _build/html
+# ```
 
 # In[ ]:
 

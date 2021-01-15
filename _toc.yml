@@ -13,8 +13,10 @@ sections:
 
 - file: AC_2/AC_1
   sections:
-  - file: AC_2/AC_1_One-Two-Three_Phase_AC
+  - file: AC_2/AC_1_One-Two-Three_Phase_AC.ipynb
   - file: AC_2/AC_2_RCL_filters
+# - file: AC_2/AC_3_CoupledMag Havnt started
+  - file: AC_2/AC_4_PZ
 
 #Transient_3
 #Noise_4

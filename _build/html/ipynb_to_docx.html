@@ -207,48 +207,6 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html">
-     Capacitors and Inductors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
-     AC Sources
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
-     <span class="math notranslate nohighlight">
-      \(V_{max}\)
-     </span>
-     ,  Fourier terms, and RMS¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
-     Single Phase Cirucit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
-     Two-Phase System¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
-     Three Phase Four Wire Y (Star) Topology ¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
-     Three Phase Three Wire
-     <span class="math notranslate nohighlight">
-      \(\Delta\)
-     </span>
-     Topology
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="AC_2/AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -266,6 +224,41 @@
    <li class="toctree-l2">
     <a class="reference internal" href="AC_2/AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html">
+     What is PZ anylsis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#pz-analysis-of-an-rc-lowpass-filter">
+     PZ analysis of an RC lowpass filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#pz-ease">
+     PZ ease
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#pole-zero-analysis-of-a-series-band-reject-filter">
+     Pole-Zero analysis of a Series Band Reject filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#pole-zero-analysis-of-a-lattice-all-pass-filter">
+     Pole-Zero analysis of a lattice All-Pass filter¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+     Add the Razavi T-coil after the previous magnetic section is done¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_2/AC_4_PZ.html#citations">
+     Citations
     </a>
    </li>
   </ul>
@@ -508,7 +501,9 @@
  PosixPath(&#39;DC_1/DC_5_Thvenin_Norton.ipynb&#39;),
  PosixPath(&#39;DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb&#39;),
  PosixPath(&#39;Diodes_7/Diodes_1_Chartiztion.ipynb&#39;),
- PosixPath(&#39;Diodes_7/Diodes_2_Clipers.ipynb&#39;)]
+ PosixPath(&#39;Diodes_7/Diodes_2_Clipers.ipynb&#39;),
+ PosixPath(&quot;Sensitivity_5/Sensitivity_1_ngspice&#39;s.ipynb&quot;),
+ PosixPath(&#39;Sensitivity_5/Sensitivity_2_with_Python.ipynb&#39;)]
 </pre></div>
 </div>
 </div>
@@ -538,287 +533,37 @@
     <span class="c1">#uncommment to use</span>
     <span class="c1">#!jupyter nbconvert --to html {ipynb}</span>
     
-    <span class="o">!</span>jupyter nbconvert --clear-output --to html <span class="o">{</span>ipynb<span class="o">}</span>
+    <span class="c1">#testing these but these have yet to yield what I want</span>
+    <span class="c1">#!jupyter nbconvert --clear-output --to html {ipynb}</span>
     <span class="c1">#!jupyter nbconvert --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_cell_tags=&quot;[&#39;remove_output&#39;]&quot; --to html {ipynb}</span>
     
-    <span class="o">!</span>pandoc -s <span class="o">{</span>html<span class="o">}</span> -o <span class="o">{</span>docx<span class="o">}</span>
-    
-    
+    <span class="c1">#!pandoc -s {html} -o {docx}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./intro.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-[NbConvertApp] Converting notebook ./intro.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 15588 bytes to ./intro.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./ipynb_to_docx.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./ipynb_to_docx.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 11100 bytes to ./ipynb_to_docx.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./needed_libraries.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./needed_libraries.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 7080 bytes to ./needed_libraries.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_1.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-[NbConvertApp] Converting notebook ./AC_2/AC_1.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 686 bytes to ./AC_2/AC_1.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_1.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_1_One-Two-Three_Phase_AC.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_1_One-Two-Three_Phase_AC.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 1400290 bytes to ./AC_2/AC_1_One-Two-Three_Phase_AC.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_1_One-Two-Three_Phase_AC.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_2_RCL_filters.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_2_RCL_filters.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 1809884 bytes to ./AC_2/AC_2_RCL_filters.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_2_RCL_filters.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_3_CoupledMag.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_3_CoupledMag.ipynb to notebook
-[NbConvertApp] Writing 1393 bytes to ./AC_2/AC_3_CoupledMag.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_3_CoupledMag.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_4_PZ.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_4_PZ.ipynb to notebook
-[NbConvertApp] Writing 1393 bytes to ./AC_2/AC_4_PZ.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_4_PZ.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_5_twoports.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_5_twoports.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 1393 bytes to ./AC_2/AC_5_twoports.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_5_twoports.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./AC_2/AC_6_S_transmissionlines.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./AC_2/AC_6_S_transmissionlines.ipynb to notebook
-[NbConvertApp] Writing 1393 bytes to ./AC_2/AC_6_S_transmissionlines.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./AC_2/AC_6_S_transmissionlines.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./Appendix/skidl_2_pyspice_check.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./Appendix/skidl_2_pyspice_check.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 56416 bytes to ./Appendix/skidl_2_pyspice_check.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./Appendix/skidl_2_pyspice_check.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_1.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./DC_1/DC_1.ipynb to notebook
-[NbConvertApp] Writing 843 bytes to ./DC_1/DC_1.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_1.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_1_op_ohm.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./DC_1/DC_1_op_ohm.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 70780 bytes to ./DC_1/DC_1_op_ohm.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_1_op_ohm.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_2_op_source_transform.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./DC_1/DC_2_op_source_transform.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 28575 bytes to ./DC_1/DC_2_op_source_transform.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_2_op_source_transform.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 272300 bytes to ./DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_4_dependent_sources_and_tf.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./DC_1/DC_4_dependent_sources_and_tf.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 304832 bytes to ./DC_1/DC_4_dependent_sources_and_tf.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_4_dependent_sources_and_tf.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_5_Thvenin_Norton.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-[NbConvertApp] Converting notebook ./DC_1/DC_5_Thvenin_Norton.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 366477 bytes to ./DC_1/DC_5_Thvenin_Norton.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_5_Thvenin_Norton.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-[NbConvertApp] Converting notebook ./DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 195834 bytes to ./DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./DC_1/DC_6_DC_MaxPower_MaxEfficiency.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./Diodes_7/Diodes_1_Chartiztion.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./Diodes_7/Diodes_1_Chartiztion.ipynb to notebook
-[NbConvertApp] Writing 1396 bytes to ./Diodes_7/Diodes_1_Chartiztion.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./Diodes_7/Diodes_1_Chartiztion.html: openBinaryFile: does not exist (No such file or directory)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>./Diodes_7/Diodes_2_Clipers.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] WARNING | Config option `template_path` not recognized by `NotebookExporter`.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook ./Diodes_7/Diodes_2_Clipers.ipynb to notebook
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Writing 17259 bytes to ./Diodes_7/Diodes_2_Clipers.ipynb
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandoc: ./Diodes_7/Diodes_2_Clipers.html: openBinaryFile: does not exist (No such file or directory)
+./ipynb_to_docx.ipynb
+./needed_libraries.ipynb
+./AC_2/AC_1.ipynb
+./AC_2/AC_1_One-Two-Three_Phase_AC.ipynb
+./AC_2/AC_2_RCL_filters.ipynb
+./AC_2/AC_3_CoupledMag.ipynb
+./AC_2/AC_4_PZ.ipynb
+./AC_2/AC_5_twoports.ipynb
+./AC_2/AC_6_S_transmissionlines.ipynb
+./Appendix/skidl_2_pyspice_check.ipynb
+./DC_1/DC_1.ipynb
+./DC_1/DC_1_op_ohm.ipynb
+./DC_1/DC_2_op_source_transform.ipynb
+./DC_1/DC_3_PracticalSourcs_sweeps_subcirucirts.ipynb
+./DC_1/DC_4_dependent_sources_and_tf.ipynb
+./DC_1/DC_5_Thvenin_Norton.ipynb
+./DC_1/DC_6_DC_MaxPower_MaxEfficiency.ipynb
+./Diodes_7/Diodes_1_Chartiztion.ipynb
+./Diodes_7/Diodes_2_Clipers.ipynb
+./Sensitivity_5/Sensitivity_1_ngspice&#39;s.ipynb
+./Sensitivity_5/Sensitivity_2_with_Python.ipynb
 </pre></div>
 </div>
 </div>

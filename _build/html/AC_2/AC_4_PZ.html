@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>&lt;no title&gt; &#8212; Python &amp; SPICE</title>
+    <title>What is PZ anylsis &#8212; Python &amp; SPICE</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,6 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Checking tool" href="../Appendix/skidl_2_pyspice_check.html" />
+    <link rel="prev" title="Basic Passive Filters" href="AC_2_RCL_filters.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -90,7 +92,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="../DC_1/DC_1.html">
    Chapter 1 DC Simulations and Basic DC Elements with Python and SPICE
@@ -201,53 +203,11 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="AC_1.html">
    Chapter 2 AC simulations with Python and SPICE
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html">
-     Capacitors and Inductors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#ac-sources">
-     AC Sources
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
-     <span class="math notranslate nohighlight">
-      \(V_{max}\)
-     </span>
-     ,  Fourier terms, and RMS¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
-     Single Phase Cirucit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
-     Two-Phase System¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
-     Three Phase Four Wire Y (Star) Topology ¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
-     Three Phase Three Wire
-     <span class="math notranslate nohighlight">
-      \(\Delta\)
-     </span>
-     Topology
-    </a>
-   </li>
+  <ul class="current collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="AC_2_RCL_filters.html">
      Basic Passive Filters
@@ -266,6 +226,41 @@
    <li class="toctree-l2">
     <a class="reference internal" href="AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     What is PZ anylsis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#pz-analysis-of-an-rc-lowpass-filter">
+     PZ analysis of an RC lowpass filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#pz-ease">
+     PZ ease
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#pole-zero-analysis-of-a-series-band-reject-filter">
+     Pole-Zero analysis of a Series Band Reject filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#pole-zero-analysis-of-a-lattice-all-pass-filter">
+     Pole-Zero analysis of a lattice All-Pass filter¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+     Add the Razavi T-coil after the previous magnetic section is done¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#citations">
+     Citations
     </a>
    </li>
   </ul>
@@ -461,7 +456,75 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            <ul class="simple nav section-nav flex-column">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What is PZ anylsis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pz-analysis-of-an-rc-lowpass-filter">
+   PZ analysis of an RC lowpass filter
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tf-does-not-get-k">
+     .tf does not get
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pz-ease">
+   PZ ease
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-when-k-1">
+     Results when
+     <span class="math notranslate nohighlight">
+      \(K=1\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results-with-proper-k">
+     Results with Proper
+     <span class="math notranslate nohighlight">
+      \(K\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asking-too-much-from-pz">
+     Asking too much from .pz
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pole-zero-analysis-of-a-series-band-reject-filter">
+   Pole-Zero analysis of a Series Band Reject filter
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pole-zero-analysis-of-a-lattice-all-pass-filter">
+   Pole-Zero analysis of a lattice All-Pass filter¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+   Add the Razavi T-coil after the previous magnetic section is done¶
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#citations">
+   Citations
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -473,7 +536,1912 @@
         
               <div>
                 
-  <p>To Start</p>
+  <p>TODO:</p>
+<p>R1</p>
+<ul class="simple">
+<li><p>get the Nyquist plot axis dimensions issue when <span class="math notranslate nohighlight">\(k=1\)</span> fixed</p></li>
+<li><p>figure out the failing of .pz with active elements</p></li>
+</ul>
+<p>R2</p>
+<ul class="simple">
+<li><p>make the frequency analysis stuff happen</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skidl.pyspice</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#can you say cheeky </span>
+<span class="kn">import</span> <span class="nn">PySpice</span> <span class="k">as</span> <span class="nn">pspice</span>
+<span class="c1">#becouse it&#39;s written by a kiwi you know</span>
+<span class="kn">import</span> <span class="nn">lcapy</span> <span class="k">as</span> <span class="nn">kiwi</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">zpk2tf</span> <span class="k">as</span> <span class="n">scipy_zpk2tf</span>
+
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: KICAD_SYMBOL_DIR environment variable is missing, so the default KiCad symbol libraries won&#39;t be searched.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span><span class="p">,</span> <span class="n">easy_tf</span>
+<span class="kn">from</span> <span class="nn">AC_2_Codes</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+
+<span class="c1">#notebook specific loading control statements </span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#tool to log notebook internals</span>
+<span class="c1">#https://github.com/jrjohansson/version_information</span>
+<span class="o">%</span><span class="k">load_ext</span> version_information
+<span class="o">%</span><span class="k">version_information</span> skidl, PySpice,lcapy, sympy, numpy, matplotlib, pandas, scipy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:35:09 2021 MST</td></tr></table></div></div>
+</div>
+<div class="section" id="what-is-pz-anylsis">
+<h1>What is PZ anylsis<a class="headerlink" href="#what-is-pz-anylsis" title="Permalink to this headline">¶</a></h1>
+<p>Pole-Zero analysis (.pz)does exactly what it says it does. It analysis the circuit between two ports and will return all the poles and or zero between the ports and that’s it. That means with the resulting poles and zeros we can reconstruct the transfer function between the ports up to the gain term that is $<span class="math notranslate nohighlight">\(H(s)_{true}\propto \dfrac{\prod_n (s-a_n)}{\prod_m (s-b_m)}\)</span><span class="math notranslate nohighlight">\( where \)</span>a_n<span class="math notranslate nohighlight">\( are the zeros and \)</span>b_n<span class="math notranslate nohighlight">\( are the poles. Again this can't be stressed enough .pz does not recover the &quot;gain&quot; term \)</span>K$ that would turn the proportionality into an equality.</p>
+<p>So what use is it? While that depends on what stage of the design cycle you’re in and what is being analyzed. So for RLC elements, it’s just going to tell us the poles and zeros where we know that the poles and zero do not move. But for active devices such as BJTs, FETs, etc we could cycle the .pz analysis and see how the .pz locations move with the bias. And while .pz is limited from a verification standpoint seeing as it will just confirm the pole-zero locations that should have been set in the design stage it can be of use when performing reverse engineering on an unknown circuit. Further during the design stage or when analyzing an unknown circuit the lack of <span class="math notranslate nohighlight">\(K\)</span> is not a total handicap. Since even without <span class="math notranslate nohighlight">\(K\)</span> we can perform root-locus analysis or we can sweep <span class="math notranslate nohighlight">\(K\)</span> while comparing the resulting transfer function response to an .ac simulation to then determine <span class="math notranslate nohighlight">\(K\)</span> when reverse engineering an unknown design.</p>
+<p>So then let’s go ahead and start looking at .pz and what we can do with that data.</p>
+</div>
+<div class="section" id="pz-analysis-of-an-rc-lowpass-filter">
+<h1>PZ analysis of an RC lowpass filter<a class="headerlink" href="#pz-analysis-of-an-rc-lowpass-filter" title="Permalink to this headline">¶</a></h1>
+<p>For this first use case, we will use the RC lowpass filter that we developed in the last section bassed on the work of ALL ABOUT ELECTRONICS</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instatate the rc_lowpass filter to </span>
+<span class="n">lowpassF</span><span class="o">=</span><span class="n">rc_lowpass</span><span class="p">(</span><span class="n">C_value</span><span class="o">=.</span><span class="mi">1</span><span class="nd">@u_uF</span><span class="p">,</span> <span class="n">R_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_kOhm</span><span class="p">)</span>
+<span class="n">lowpassF</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_5_0.png" src="../_images/AC_4_PZ_5_0.png" />
+</div>
+</div>
+<p>Lets then get the voltage transfer function for this filter topology</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_rcl_gen</span><span class="o">=</span><span class="n">lowpassF</span><span class="o">.</span><span class="n">get_tf</span><span class="p">(</span><span class="n">with_values</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span> <span class="n">H_rcl_gen</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{C R \left(s + \frac{1}{C R}\right)}\]</div>
+</div>
+</div>
+<p>The voltage transfer function for this topology shows that it has a single pole and the following gain term <span class="math notranslate nohighlight">\(K\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_rcl_gen</span><span class="o">.</span><span class="n">K</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{C R}\]</div>
+</div>
+</div>
+<p>Real quickly how lcapy is getting the full voltage-transfer function is based on</p>
+<ol class="simple">
+<li><p>Generating the symbolic Modified nodal analysis in the Laplace domain</p></li>
+<li><p>extracting the so-called Two-Port admittance parameters <span class="math notranslate nohighlight">\(Y\)</span> from the Modified nodal analysis matrix</p></li>
+<li><p>finding the port 1 to port 2 voltage transfer function via $<span class="math notranslate nohighlight">\(H_v(s)=\dfrac{Y_{21}}{Y_{22}}\)</span>$ Which is just one way of doing it. Where more on two-port network theory and SPICE acquisition will be shown in the remaining sections of this chapter.</p></li>
+</ol>
+<p>Lets now get the transfer function for this instinacs of the rc lowpass topology and isolate its <span class="math notranslate nohighlight">\(K\)</span> term</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_rcl</span><span class="o">=</span><span class="n">lowpassF</span><span class="o">.</span><span class="n">get_tf</span><span class="p">(</span><span class="n">with_values</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ZPK</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span> <span class="n">H_rcl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{10000}{s + 10000}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#K should always be real or where in trouble</span>
+<span class="n">K_rcl</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">H_rcl</span><span class="o">.</span><span class="n">K</span><span class="o">.</span><span class="n">cval</span><span class="p">);</span> <span class="n">K_rcl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_12_0.png" src="../_images/AC_4_PZ_12_0.png" />
+</div>
+</div>
+<p>As with any SPICE simulation we have to instantiate our DUT in a circuit. However unlike DC’s .tf we do not actually have to have any supplies but since we are also going be comparing the .ac simulation to what .pz we need a full circuit with a source to perform the .ac simulation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create the nets</span>
+<span class="n">net_in</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">);</span> <span class="n">net_out</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;Out&#39;</span><span class="p">);</span> 
+
+<span class="c1">#create a 1V AC test source and attache to nets</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">,</span> <span class="n">dc_offset</span><span class="o">=</span><span class="mi">5</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_in</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#attaceh term_0 to net_in and term_2 to net_out per scikit-rf convention all </span>
+<span class="c1">#other terminals are grounded</span>
+<span class="n">lowpassF</span><span class="o">.</span><span class="n">SKiDl</span><span class="p">(</span><span class="n">net_in</span><span class="p">,</span> <span class="n">gnd</span><span class="p">,</span> <span class="n">net_out</span><span class="p">,</span> <span class="n">gnd</span><span class="p">)</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+C1 Out 0 0.1uF
+R1 In Out 1kOhm
+V1 In 0 DC 5V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_responce</span><span class="o">=</span><span class="n">qfilter_explorer</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="s1">&#39;RC Low Pass Filter Responce&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start_freq</th>
+      <th>Stop_Freq</th>
+      <th>SamplingInc</th>
+      <th>StepType</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.1 Hz</td>
+      <td>1 GHz</td>
+      <td>20</td>
+      <td>decade</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/AC_4_PZ_15_1.png" src="../_images/AC_4_PZ_15_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#this is the full filter tf response in comparison to the .ac sim</span>
+<span class="n">filter_responce</span><span class="o">.</span><span class="n">symbolic_tf</span><span class="p">(</span><span class="n">lowpassF</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_16_0.png" src="../_images/AC_4_PZ_16_0.png" />
+</div>
+</div>
+<div class="section" id="tf-does-not-get-k">
+<h2>.tf does not get <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#tf-does-not-get-k" title="Permalink to this headline">¶</a></h2>
+<p>Lets be clear about this .tf will not yield <span class="math notranslate nohighlight">\(K\)</span> in the generic case. It might get lucky but recalling that in DC simulations capcitors are treated as non existing elements there is no way that .tf will recover the <span class="math notranslate nohighlight">\(K\)</span> for this topology where <span class="math notranslate nohighlight">\(K=\dfrac{1}{RC}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">=</span><span class="n">easy_tf</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dc_voltage_gain</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">net_out</span><span class="p">),</span> <span class="n">node</span><span class="p">(</span><span class="n">gnd</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">vg_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>loc</th>
+      <th>value</th>
+      <th>units</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Output_resistance</th>
+      <td>(Out-0)</td>
+      <td>1000</td>
+      <td>[Ohm]</td>
+    </tr>
+    <tr>
+      <th>Input_resistance</th>
+      <td>V1</td>
+      <td>1e+20</td>
+      <td>[Ohm]</td>
+    </tr>
+    <tr>
+      <th>DC_Vgain</th>
+      <td>(Out-0)/V1</td>
+      <td>1</td>
+      <td>[V/V]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="pz-ease">
+<h1>PZ ease<a class="headerlink" href="#pz-ease" title="Permalink to this headline">¶</a></h1>
+<p>The following class like the rest in this book makes using the SPICE analysis easier and enhance it with the power of Python. But real quick let’s look at the ngspice call for .pz (typically found in chapter 15 section 3)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">pz</span> <span class="n">node1</span> <span class="n">node2</span> <span class="n">node3</span> <span class="n">node4</span> <span class="o">&lt;</span><span class="n">transfer_type</span><span class="p">(</span><span class="s1">&#39;vol&#39;</span><span class="o">/</span><span class="s1">&#39;cur&#39;</span><span class="p">)</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">analysis_type</span><span class="p">(</span><span class="s1">&#39;pz&#39;</span><span class="o">/</span><span class="s1">&#39;zer&#39;</span><span class="o">/</span><span class="s1">&#39;pol&#39;</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This differs from .tf in DC analysis where we had to specify a source for the input, where instead the input port terminals are specified by <code class="docutils literal notranslate"><span class="pre">node1</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">node2</span></code> which are the positive and negative terminals respectively. And similarly, the output port terminals are specified by <code class="docutils literal notranslate"><span class="pre">node3</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">node4</span></code>. Since .pz only requires the specification of the terminals to define the two-port network we can take advantage of this to look just at sat the feedback (aka <span class="math notranslate nohighlight">\(\beta\)</span>) network in circuits containing feedback structures.</p>
+<p>Following the node arguments are the transfer type argument where if <code class="docutils literal notranslate"><span class="pre">vol</span></code> is used we are acquiring the poles and or zeros of voltage transfer function</p>
+<div class="math notranslate nohighlight">
+\[H_v(s)=\dfrac{V_o}{V_i}\]</div>
+<p>else, if <code class="docutils literal notranslate"><span class="pre">cur</span></code> is used we are acquiring the Transimpedance (aka Transfer Impedance)
+$<span class="math notranslate nohighlight">\(H_F(s)=\dfrac{V_o}{I_i}\)</span>$
+, were again when using .pz we are only acquiring the poles and or zeros that make up the respective transfer function not the transfer function as a whole.</p>
+<p>Finlay the last argument <code class="docutils literal notranslate"><span class="pre">analysis_type</span></code> controls what we are acquiring from the .pz analysis. While typically we leave it as <code class="docutils literal notranslate"><span class="pre">pz</span></code> to get both the poles and zeros there are times it might not be possible to get both or the poles and zero have to be acquired separately. Where in that case we can use <code class="docutils literal notranslate"><span class="pre">pol</span></code> to get just the poles and <code class="docutils literal notranslate"><span class="pre">zer</span></code> to get just the zeros</p>
+<p>Below the class, <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> is designed to perform the .pz analysis with additional methods to analyze the results. And in both it’s instantiation and in serval of its methods, the value of <span class="math notranslate nohighlight">\(K\)</span> can be feed into it if known.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile -a AC_2_Codes.py</span>
+<span class="c1">#chapteer 2 section 4 pz_ease class</span>
+<span class="c1">#class to perform .pz simulations with a bit more grace </span>
+<span class="c1">#with some additional built-in analysis tools</span>
+
+<span class="k">class</span> <span class="nc">pz_ease</span><span class="p">(</span><span class="n">ac_representation_tool</span><span class="p">,</span> <span class="n">eecomplex_plot_templets</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circ_netlist_obj</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class to perform Pole Zero (.pz) SPICE simulation with grace</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            circ_netlist_obj (pyspice.Spice.Netlist.Circuit): the Netlist circuit produced </span>
+<span class="sd">                from SKiDl&#39;s `generate_netlist()`</span>
+<span class="sd">            </span>
+<span class="sd">            K (float/int; 1): the gain; must be manually put in or found from .tf analysis</span>
+<span class="sd">        </span>
+<span class="sd">        Returns: </span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">=</span><span class="n">circ_netlist_obj</span>
+        
+        <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">==</span><span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">K</span><span class="p">)</span><span class="o">==</span><span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;K must be a float or int&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">=</span><span class="n">K</span>
+        
+        
+        <span class="c1">#dic of allowed pz control statements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allowed_control_statments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;voltage&#39;</span><span class="p">:</span><span class="s1">&#39;vol&#39;</span><span class="p">,</span> <span class="s1">&#39;current&#39;</span><span class="p">:</span><span class="s1">&#39;cur&#39;</span><span class="p">,</span>
+                                       <span class="s1">&#39;pole-zero&#39;</span><span class="p">:</span><span class="s1">&#39;pz&#39;</span><span class="p">,</span> <span class="s1">&#39;zeros&#39;</span><span class="p">:</span><span class="s1">&#39;zer&#39;</span><span class="p">,</span> <span class="s1">&#39;poles&#39;</span><span class="p">:</span><span class="s1">&#39;pol&#39;</span><span class="p">}</span>
+
+    
+    <span class="k">def</span> <span class="nf">pz_def_ports</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port_0_pos_term</span><span class="p">,</span> <span class="n">port_0_neg_term</span><span class="p">,</span> <span class="n">port_1_pos_term</span><span class="p">,</span> <span class="n">port_1_neg_term</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to set the Port terminals for the two-port section of the circuit under test</span>
+<span class="sd">        where all inputs must be nodes in the circuit under test</span>
+<span class="sd">        </span>
+<span class="sd">        Terminals:</span>
+<span class="sd">        port_0_pos_term, port_0_neg_term, port_1_pos_term, port_1_neg_term</span>
+<span class="sd">        </span>
+<span class="sd">        Port &amp; Terminals are defined via:</span>
+<span class="sd">        ```</span>
+<span class="sd">                        Left_Port - Two-Port Section under Test - Right_Port</span>
+<span class="sd">                                        +-------------+  </span>
+<span class="sd">        Postive Port0   port_0_pos_term-| DUT Section |-port_1_pos_term     Postive Port1</span>
+<span class="sd">        Negtive Port0   port_0_neg_term-|             |-port_1_neg_term     Negtive Port1</span>
+<span class="sd">                                        +-------------+</span>
+<span class="sd">        ```</span>
+<span class="sd">        Args:</span>
+<span class="sd">            display_table (bool; False): when true will display the generated `self.control_df` below</span>
+<span class="sd">                this method call in a jupyter notebook like environment</span>
+<span class="sd">            </span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Settings are recoded in `self.control_df` rows: `&#39;port_0_terms+-&#39;` &amp; `&#39;port_1_terms+-&#39;`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="n">port_0_pos_term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{port_0_pos_term}</span><span class="s1">` is not a node in the circuit under test&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_0_pos_term</span><span class="o">=</span><span class="n">port_0_pos_term</span>
+        
+        <span class="k">assert</span> <span class="n">port_0_neg_term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{port_0_neg_term}</span><span class="s1">` is not a node in the circuit under test&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_0_neg_term</span><span class="o">=</span><span class="n">port_0_neg_term</span>
+        
+        <span class="k">assert</span> <span class="n">port_1_pos_term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{port_1_pos_term}</span><span class="s1">` is not a node in the circuit under test&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_1_pos_term</span><span class="o">=</span><span class="n">port_1_pos_term</span>
+        
+        <span class="k">assert</span> <span class="n">port_1_neg_term</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">node_names</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{port_1_neg_term}</span><span class="s1">` is not a node in the circuit under test&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port_1_neg_term</span><span class="o">=</span><span class="n">port_1_neg_term</span>
+        
+        <span class="c1">#record the results in table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_control_table</span><span class="p">(</span><span class="n">display_table</span><span class="p">)</span>
+        
+    
+    <span class="k">def</span> <span class="nf">pz_mode_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tf_type</span><span class="o">=</span><span class="s1">&#39;voltage&#39;</span><span class="p">,</span> <span class="n">pz_acu</span><span class="o">=</span><span class="s1">&#39;pole-zero&#39;</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to set the pole-zero analysis controls</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            tf_type (str; &#39;voltage&#39;): the tf for wich the poles and zeros fit to</span>
+<span class="sd">                if `voltage` the tf is of the form V_o/V_i else if `current` in the form of</span>
+<span class="sd">                V_o/I_i</span>
+<span class="sd">            </span>
+<span class="sd">            pz_acu (str; &#39;pole-zero&#39;): if `pole-zero` will attempt to get all the poles and zeros for the</span>
+<span class="sd">                specfied transfer function; else if `zeros` or `poles` will get just the respective zeros</span>
+<span class="sd">                or poles </span>
+<span class="sd">            </span>
+<span class="sd">            display_table (bool; False): when true will display the generated `self.control_df` below</span>
+<span class="sd">                this method call in a jupyter notebook like environment</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Settings are recoded in `self.control_df` rows: `&#39;tf_type&#39;` &amp; `&#39;acqui_mode&#39;`</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">tf_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_control_statments</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{tf_type}</span><span class="s1">` is not `voltage` or `current`&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tf_type</span><span class="o">=</span><span class="n">tf_type</span>
+        
+        <span class="k">assert</span> <span class="n">pz_acu</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowed_control_statments</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{pz_acu}</span><span class="s1">` is not `pole-zero` or `poles` or `zeros`&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pz_acu</span><span class="o">=</span><span class="n">pz_acu</span>
+        
+        <span class="c1">#record the results in table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_control_table</span><span class="p">(</span><span class="n">display_table</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_build_control_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Internal method to build a pz control table to display pz simulation settings</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            display_table (bool; True): when true will display the generated `self.control_df` below</span>
+<span class="sd">                this method call in a jupyter notebook like environment</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            creates dataframe table `self.control_df` that records pz simulation controls</span>
+<span class="sd">            if `display_table` is true will force showing under jupyter notebook cell</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> 
+                                     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tf_type&#39;</span><span class="p">,</span> 
+                                            <span class="s1">&#39;acqui_mode&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;port_0_terms+-&#39;</span><span class="p">,</span>
+                                            <span class="s1">&#39;port_1_terms+-&#39;</span>
+                                           <span class="p">])</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;tf_type&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;tf_type&#39;</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tf_type</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;pz_acu&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;acqui_mode&#39;</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_acu</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;port_0_pos_term&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;port_0_neg_term&#39;</span><span class="p">)</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;port_0_terms+-&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">port_0_pos_term</span><span class="p">,</span>  <span class="bp">self</span><span class="o">.</span><span class="n">port_0_neg_term</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;port_1_pos_term&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;port_1_neg_term&#39;</span><span class="p">)</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;port_1_terms+-&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">port_1_pos_term</span><span class="p">,</span>  <span class="bp">self</span><span class="o">.</span><span class="n">port_1_neg_term</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pz_sim_control&#39;</span>
+        
+        <span class="k">if</span> <span class="n">display_table</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_df</span><span class="p">)</span>
+        
+    
+    <span class="k">def</span> <span class="nf">do_pz_sim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to perform the pole-zero simulation based on values stored in self.control_df</span>
+<span class="sd">        If the simulation does not converge will give a warning with a basic debug action</span>
+<span class="sd">        but will set `self.pz_values` to empty dict.</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            - add simulation kwargs</span>
+<span class="sd">            - flush out exception handling</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">attriputs_to_check</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;port_0_pos_term&#39;</span><span class="p">,</span> <span class="s1">&#39;port_0_neg_term&#39;</span><span class="p">,</span> <span class="s1">&#39;port_1_pos_term&#39;</span><span class="p">,</span> <span class="s1">&#39;port_1_neg_term&#39;</span><span class="p">,</span> 
+                           <span class="s1">&#39;tf_type&#39;</span><span class="p">,</span> <span class="s1">&#39;pz_acu&#39;</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">attriputs_to_check</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="n">pz_is_go</span><span class="o">=</span><span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pz_is_go</span><span class="o">=</span><span class="kc">False</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{i}</span><span class="s1"> has not been set; pole-zero simulation will not procdede till set&#39;</span><span class="p">)</span>
+                
+        <span class="k">if</span> <span class="n">pz_is_go</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">circ_netlist_obj</span><span class="o">.</span><span class="n">simulator</span><span class="p">()</span>
+            <span class="c1">#I cant catch the warning when it hangs so going to have to do this</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pz_values</span><span class="o">=</span><span class="p">{}</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pz_values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">polezero</span><span class="p">(</span>
+                    <span class="n">node1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port_0_pos_term</span><span class="p">,</span> 
+                    <span class="n">node2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port_0_neg_term</span><span class="p">,</span> 
+                    <span class="n">node3</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port_1_pos_term</span><span class="p">,</span> 
+                    <span class="n">node4</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">port_1_neg_term</span><span class="p">,</span> 
+                    <span class="n">tf_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed_control_statments</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tf_type</span><span class="p">],</span> 
+                    <span class="n">pz_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allowed_control_statments</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_acu</span><span class="p">]</span>
+                <span class="p">)</span>
+                
+                <span class="bp">self</span><span class="o">.</span><span class="n">_record_pz_results</span><span class="p">(</span><span class="n">display_table</span><span class="p">)</span>
+            
+            <span class="k">except</span> <span class="n">pspice</span><span class="o">.</span><span class="n">Spice</span><span class="o">.</span><span class="n">NgSpice</span><span class="o">.</span><span class="n">Shared</span><span class="o">.</span><span class="n">NgSpiceCommandError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pz_values</span><span class="o">=</span><span class="p">{}</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;PZ analysis did not converge with the current setting:</span>
+<span class="s2">                start by changing the tf type (self.tf_type) and pz acusisiton type (self.pz_acu) &quot;&quot;&quot;</span><span class="p">)</span>
+            
+    
+    <span class="k">def</span> <span class="nf">_record_pz_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Internal method to record the PZ results to a dataframe</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            display_table (bool; True): when true will display the generated `self.control_df` below</span>
+<span class="sd">                this method call in a jupyter notebook like environment</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            creates dataframe table `self.pz_results_DF` that records pz simulation results</span>
+<span class="sd">            if `display_table` is true will force showing under jupyter notebook cell</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Values&#39;</span><span class="p">])</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_values</span><span class="p">,</span> <span class="s1">&#39;nodes&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pz_values</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="p">)]</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">as_ndarray</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">display_table</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="p">)</span>
+            
+        
+    <span class="k">def</span> <span class="nf">get_pz_sym_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dec_round</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overload_K</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to get the symbolic transfer function via lacpy</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            dec_round (int; None): contorl to `np.around`&#39;s `decimals` argument</span>
+<span class="sd">                if left `None` np.around will not be used</span>
+<span class="sd">            </span>
+<span class="sd">            overload_K (float/int; None): if not `None` will overload the DC</span>
+<span class="sd">                gain constant stored in `self.K`</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            if `self.pz_results_DF` exists return the symbolic transfer function in the s</span>
+<span class="sd">            dominan in `self.sym_tf`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">overload_K</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">overload_K</span><span class="p">)</span><span class="o">==</span><span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">overload_K</span><span class="p">)</span><span class="o">==</span><span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;K must be a float or int&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">=</span><span class="n">overload_K</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;pz_results_DF&#39;</span><span class="p">)</span><span class="o">!=</span><span class="kc">True</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;no poles/zero recorded run `self.do_pz_sim`&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s1">&#39;zero&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]:</span>
+                    <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]))</span>
+                <span class="k">elif</span> <span class="s1">&#39;pole&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]:</span>
+                    <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">poles_A</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]))</span>
+            
+            <span class="k">if</span> <span class="n">dec_round</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+                <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">dec_round</span><span class="p">)</span>
+                <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">poles_A</span><span class="p">,</span> <span class="n">dec_round</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">zeros_B</span><span class="o">=</span><span class="n">zeros_B</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">poles_A</span><span class="o">=</span><span class="n">poles_A</span>
+            <span class="c1">#wish I didn&#39;t have to do this</span>
+            <span class="n">zeros_B</span><span class="o">=</span><span class="n">zeros_B</span><span class="o">.</span><span class="n">tolist</span><span class="p">();</span> <span class="n">poles_A</span><span class="o">=</span><span class="n">poles_A</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  
+            
+            <span class="c1">#use lcapy to get the symbolic tf </span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">=</span><span class="n">kiwi</span><span class="o">.</span><span class="n">zp2tf</span><span class="p">(</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">poles_A</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span>
+            <span class="c1">#use simplify because if in pzk it does weird things with j that</span>
+            <span class="c1">#lambdfy has issues with</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+            
+    <span class="k">def</span> <span class="nf">plot_pz_loc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unitcircle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        uses lcapy&#39;s `plot_pole_zero` in https://github.com/mph-/lcapy/blob/6e42983d6b77954e694057d61045bd73d17b4616/lcapy/plot.py#L12</span>
+<span class="sd">        to plot the poles and zero locations on a Nyquist chart</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            axs (list of matplotlib axis; None): If left None will create a new plot, else must </span>
+<span class="sd">                be a list of matplotlib subplots axis to be added to where the first entry</span>
+<span class="sd">                will be the magnitude axis, and the second will be the phase axis</span>
+<span class="sd">            </span>
+<span class="sd">            title (str; &#39;&#39;): Subplot title string</span>
+<span class="sd">            </span>
+<span class="sd">            unitcircle (bool; False): when True will plot the unit circle on the resulting plot</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Returns a real-imag with Poles and Zero map, and if an axis was passed to `ax` will be modified</span>
+<span class="sd">            with the pole-zero map</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">axs</span><span class="o">=</span><span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;sym_tf&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get symbolic transfer function from `self.get_pz_sym_tf`</span>
+<span class="s2">            thus you will get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">unitcircle</span><span class="o">=</span><span class="n">unitcircle</span><span class="p">,</span> 
+                         <span class="c1">#wish there be a better way to do this</span>
+                        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&#39;X&#39;=pole; &#39;O&#39;=zero&quot;</span><span class="p">)</span>
+        
+        <span class="n">axs</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Real&#39;</span><span class="p">);</span> <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Imag&#39;</span><span class="p">)</span>
+        
+        <span class="n">axs</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">title</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="n">title</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Pole-Zero locations plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+
+    
+    
+    <span class="k">def</span> <span class="nf">plot_3d_laplce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates 3d plots of the Laplace space of the transfer function, one for the mag</span>
+<span class="sd">        the other for the phase in degrees unwrapped</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">                title (str; &#39;&#39;): Subplot title string</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            returns a 3d plot with the left subplot being the  mag and the right being the phase</span>
+<span class="sd">        </span>
+<span class="sd">        TODO:</span>
+<span class="sd">            - get the freaking color bar into a clean location when working with 3d plots</span>
+<span class="sd">            - merge phase as color into mag see the physics video by eugene on Laplace </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;sym_tf&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get symbolic transfer function from `self.get_pz_sym_tf`</span>
+<span class="s2">            thus you will get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+        
+        <span class="c1">#import the additnal matplotlib featuers for 3d</span>
+        <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+        <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+        
+        <span class="c1">#stole this off lcapy&#39;s plot_pole_zero</span>
+        <span class="c1">#https://github.com/mph-/lcapy/blob/7c4225f2159aa33398dac481041ed538169b7058/lcapy/plot.py</span>
+        
+        
+        <span class="c1">#check self.sys_tf is good to be used</span>
+        <span class="n">sys_tf_syms</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">symbols</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys_tf_syms</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span> <span class="ow">in</span> <span class="n">sys_tf_syms</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="s1">&#39;trasfer function must be laplce form and only have `s` as a free symbol&#39;</span>
+
+        <span class="c1">#lambdfy the tf</span>
+        <span class="n">sys_tf_lam</span><span class="o">=</span><span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">kiwi</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">canonical</span><span class="p">(),</span> <span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="n">dummify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1">#get the plot bounds</span>
+        <span class="c1">#stole this off lcapy&#39;s plot_pole_zero</span>
+        <span class="c1">#https://github.com/mph-/lcapy/blob/7c4225f2159aa33398dac481041ed538169b7058/lcapy/plot.py</span>
+
+        <span class="n">poles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">poles</span><span class="p">()</span>
+        <span class="n">zeros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">cval</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">poles</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">z</span><span class="o">.</span><span class="n">cval</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">zeros</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Cannot get poles and zeros of `self.sym_tf&#39;</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">p</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+        <span class="n">x_min</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">x_max</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">y_min</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">imag</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">y_max</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">imag</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+        <span class="n">x_extra</span><span class="p">,</span> <span class="n">y_extra</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span>
+
+        <span class="c1"># This needs tweaking for better bounds.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">x_extra</span><span class="p">,</span> <span class="n">y_extra</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">),</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x_extra</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x_extra</span> <span class="o">+=</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="n">y_extra</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">y_extra</span> <span class="o">+=</span> <span class="mf">1.0</span>
+
+        <span class="n">x_min</span> <span class="o">-=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x_extra</span>
+        <span class="n">x_max</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">x_extra</span>
+        <span class="n">y_min</span> <span class="o">-=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">y_extra</span>
+        <span class="n">y_max</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">y_extra</span>
+
+        <span class="c1">#the input domain</span>
+        <span class="n">RealRange</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="n">ImagRange</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">sr</span><span class="p">,</span> <span class="n">si</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">RealRange</span><span class="p">,</span> <span class="n">ImagRange</span><span class="p">)</span>
+        <span class="n">s_num</span><span class="o">=</span><span class="n">sr</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">si</span>
+
+        <span class="c1">#plot this</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        
+        <span class="c1">#mag 3d plot</span>
+        <span class="n">ax3d_mag</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+        <span class="n">XmagPlot</span><span class="o">=</span><span class="n">ax3d_mag</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">si</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sys_tf_lam</span><span class="p">(</span><span class="n">s_num</span><span class="p">)),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                 <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax3d_mag</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">);</span> <span class="n">ax3d_mag</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$j\omega$&#39;</span><span class="p">),</span> <span class="n">ax3d_mag</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$|X|$&#39;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">XmagPlot</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="c1">#phase 3d plot</span>
+        <span class="n">ax3d_phase</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+        <span class="n">XphasePlot</span><span class="o">=</span><span class="n">ax3d_phase</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">si</span><span class="p">,</span> <span class="n">angle_phase_unwrap</span><span class="p">(</span><span class="n">sys_tf_lam</span><span class="p">(</span><span class="n">s_num</span><span class="p">)),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                 <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">,</span> <span class="n">antialiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax3d_phase</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">);</span> <span class="n">ax3d_phase</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$j\omega$&#39;</span><span class="p">),</span> <span class="n">ax3d_phase</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$ang(X)$&#39;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">XphasePlot</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="n">title</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="n">title</span>
+        <span class="n">ax3d_mag</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;3D Mag Laplace plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+        <span class="n">ax3d_phase</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;3D Phase_deg Laplace plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+
+    
+    
+    <span class="k">def</span> <span class="nf">scipy_pzk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dec_round</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overload_K</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method to create to generate the Numerator (a) and Denominator (b)</span>
+<span class="sd">        arrays to use within the scipy signal framework see </span>
+<span class="sd">        https://docs.scipy.org/doc/scipy/reference/signal.html</span>
+<span class="sd">        &amp;</span>
+<span class="sd">        https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.zpk2tf.html#scipy.signal.zpk2tf</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            dec_round (int; None): contorl to `np.around`&#39;s `decimals` argument</span>
+<span class="sd">                if left `None` np.around will not be used</span>
+<span class="sd">            </span>
+<span class="sd">            overload_K (float/int; None): if not `None` will overload the DC</span>
+<span class="sd">                gain constant stored in `self.K`</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            if `self.pz_results_DF` exists tries to return the coefficients for an lti</span>
+<span class="sd">            filter for use in scipy&#39;s signal library in a dictionary in `self.scipy_tfcoef`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">overload_K</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">overload_K</span><span class="p">)</span><span class="o">==</span><span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">overload_K</span><span class="p">)</span><span class="o">==</span><span class="nb">int</span><span class="p">),</span> <span class="s1">&#39;K must be a float or int&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="o">=</span><span class="n">overload_K</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;pz_results_DF&#39;</span><span class="p">)</span><span class="o">!=</span><span class="kc">True</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;no poles/zero recorded run `self.do_pz_sim`&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pz_results_DF</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="k">if</span> <span class="s1">&#39;zero&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]:</span>
+                    <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]))</span>
+                <span class="k">elif</span> <span class="s1">&#39;pole&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]:</span>
+                    <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">poles_A</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Values&#39;</span><span class="p">]))</span>
+            
+            <span class="k">if</span> <span class="n">dec_round</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+                <span class="n">zeros_B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">dec_round</span><span class="p">)</span>
+                <span class="n">poles_A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">poles_A</span><span class="p">,</span> <span class="n">dec_round</span><span class="p">)</span>
+                
+            <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">scipy_zpk2tf</span><span class="p">(</span><span class="n">zeros_B</span><span class="p">,</span> <span class="n">poles_A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scipy_tfcoef</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">get_sym_freq_resp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freq_vec</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        method to get the symbolic transfer function  response </span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            freq_vec (numpy array or pandas series; None): frequencies</span>
+<span class="sd">            to generate results from the generated symbolic transfer function</span>
+<span class="sd">            if `None` will come up with a freancy vector inside via `np.logspace(-1, 12, 12*10*10)`</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            will store frequency vector as the index in `self.pz_symresults_DF`</span>
+<span class="sd">            where the response of the symbolic transfer function will be stored</span>
+<span class="sd">            in `self.pz_symresults_DF[&#39;pzk_symres_[V]&#39;]` from there will</span>
+<span class="sd">            use the inheritance from `ac_representation_tool` to then </span>
+<span class="sd">            generate `self.ac_sim_real_DF[&#39;pzk_symres_[V]&#39;], self.ac_sim_imag_DF[&#39;pzk_symres_[V]&#39;]`, ect</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;sym_tf&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get symbolic transfer function from `self.get_pz_sym_tf`</span>
+<span class="s2">            thus you will get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+            
+        <span class="k">if</span> <span class="n">freq_vec</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">freq_vec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">pz_symresults_DF</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">freq_vec</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pz_symresults_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;freq[Hz]&#39;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">pz_symresults_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V]&#39;</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">frequency_response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pz_symresults_DF</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;complex&#39;</span><span class="p">)</span>
+        
+        <span class="n">ac_representation_tool</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pz_symresults_DF</span><span class="p">)</span>
+        
+        <span class="c1">#just make the reps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_real_imag</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_mag_phase</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">plot_nyquist_with_pz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">unitcircle</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        plotting utility to plot the pole-zero location on top of a Nyquist</span>
+<span class="sd">        a plot of the response of the symbolic transfer function</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ax (matplotlib axis; None): If left None will create a new plot, else must</span>
+<span class="sd">                be a matplotlib subplot axis to be added to</span>
+<span class="sd">            </span>
+<span class="sd">            title (str; &#39;&#39;): Subplot title string</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Returns a Nyquist plot with the pole-zero locations superimposed on top of, </span>
+<span class="sd">            and if an axis was passed to `ax` will be modified</span>
+<span class="sd">            </span>
+<span class="sd">            </span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">axs</span><span class="o">=</span><span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ac_sim_real_DF&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get the real imag data from `self.get_sym_freq_resp`, </span>
+<span class="s2">            you get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_sym_freq_resp</span><span class="p">()</span>
+        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">nyquist_plot_templet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_real_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V]&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_imag_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V]&#39;</span><span class="p">],</span> 
+                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_pz_loc</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">,</span> <span class="n">unitcircle</span><span class="o">=</span><span class="n">unitcircle</span><span class="p">)</span>
+
+        
+        <span class="k">if</span> <span class="n">title</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="n">title</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Nyquist with Pole-Zero locations plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+    
+    <span class="k">def</span> <span class="nf">plot_bode_from_pz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        plotting utility to plot single mag and phase on a single bode plot </span>
+<span class="sd">        for the response of the symbolic transfer function</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ax (matplotlib axis; None): If left None will create a new plot, else must</span>
+<span class="sd">                be a matplotlib subplot axis to be added to</span>
+<span class="sd">            </span>
+<span class="sd">            title (str; &#39;&#39;): Subplot title string</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Returns a bode plot from the symbolic transfer function, </span>
+<span class="sd">            and if an axis was passed to `ax` will be modified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">axs</span><span class="o">=</span><span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ac_sim_real_DF&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get the mag phase data from `self.get_sym_freq_resp`, </span>
+<span class="s2">            you get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_sym_freq_resp</span><span class="p">()</span>
+        
+        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">bode_plot_one_templet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_mag_DF</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_mag_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V][dB]&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_phase_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V][deg]&#39;</span><span class="p">],</span> 
+                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">title</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="n">title</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Bode plot from Pole-Zero anylsis plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+    
+    <span class="k">def</span> <span class="nf">plot_nichols_from_pz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        plotting utility to plot the Nichols chart</span>
+<span class="sd">        for the response of the symbolic transfer function</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ax (matplotlib axis; None): If left None will create a new plot, else must</span>
+<span class="sd">                be a matplotlib subplot axis to be added to</span>
+<span class="sd">            </span>
+<span class="sd">            title (str; &#39;&#39;): Subplot title string</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Returns a Nichols chart plot from the symbolic transfer function, </span>
+<span class="sd">            and if an axis was passed to `ax` will be modified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">axs</span><span class="o">=</span><span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;ac_sim_real_DF&#39;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;Trying to get the mag phase data from `self.get_sym_freq_resp`, </span>
+<span class="s2">            you get what you get&quot;&quot;&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_sym_freq_resp</span><span class="p">()</span>
+        
+        
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">nichols_plot_templet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_mag_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V][dB]&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ac_sim_phase_DF</span><span class="p">[</span><span class="s1">&#39;pzk_symres_[V][deg]&#39;</span><span class="p">],</span> 
+                           <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">title</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="n">title</span>
+        <span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Nichols plot from Pole-Zero anylsis plot</span><span class="si">{title}</span><span class="s1">&#39;</span><span class="p">);</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> we instantiate it by passing in the circuit under test at the time of creation. The instantiation has another argument to pass in <span class="math notranslate nohighlight">\(K\)</span> if known <em>a prior</em> if just the moment we will leave <span class="math notranslate nohighlight">\(K=1\)</span> to demonstrate what .pz and <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> can do when <span class="math notranslate nohighlight">\(K\)</span> is not known</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">=</span><span class="n">pz_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>next, we define the port terminals and set the control for the voltage transfer function and to get both poles and zero which is the default case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">pz_def_ports</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;Out&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">pz_mode_set</span><span class="p">(</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>pz_sim_control</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tf_type</th>
+      <td>voltage</td>
+    </tr>
+    <tr>
+      <th>acqui_mode</th>
+      <td>pole-zero</td>
+    </tr>
+    <tr>
+      <th>port_0_terms+-</th>
+      <td>[In, 0]</td>
+    </tr>
+    <tr>
+      <th>port_1_terms+-</th>
+      <td>[Out, 0]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And so now we run the .pz simulation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">do_pz_sim</span><span class="p">(</span><span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Type</th>
+      <th>Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>pole(1)</td>
+      <td>(-10000+0j)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="results-when-k-1">
+<h2>Results when <span class="math notranslate nohighlight">\(K=1\)</span><a class="headerlink" href="#results-when-k-1" title="Permalink to this headline">¶</a></h2>
+<p>And we see that we get the pole that we know exists with the value we expect. So now then we can feed the results into Lcapy’s zp2tf to generate the symbolic transfer function. Where we will keep <span class="math notranslate nohighlight">\(K=1\)</span> for the moment</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+<span class="n">H_pzk1</span><span class="o">=</span><span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="p">;</span> <span class="n">H_pzk1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{s + 10000.0}\]</div>
+</div>
+</div>
+<p>We can now plot the pole zero locations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_pz_loc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_32_0.png" src="../_images/AC_4_PZ_32_0.png" />
+</div>
+</div>
+<p>Generate the 3d plot of the Laplace domain response of this filter. Where the Laplace variable <span class="math notranslate nohighlight">\(s\)</span> is equal to
+$<span class="math notranslate nohighlight">\(s=\sigma +j\omega\)</span><span class="math notranslate nohighlight">\(
+where \)</span>j\omega<span class="math notranslate nohighlight">\( is the angular frequency response and when \)</span>\sigma<span class="math notranslate nohighlight">\( is zero \)</span>s<span class="math notranslate nohighlight">\( gives yields the Fourier transform response of the system. Otherwise \)</span>\sigma=1/\tau$ the decay response of the system. For more info review the section <a class="reference external" href="https://control.com/textbook/ac-electricity/transfer-function-analysis/">“Transfer Function Analysis”</a> from the controls book at https://control.com/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_3d_laplce</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_34_0.png" src="../_images/AC_4_PZ_34_0.png" />
+</div>
+</div>
+<p>We then can get the symbolic transfer function’s frequency response and view the Nyquist interpretation over the poles and zeros. Though when <span class="math notranslate nohighlight">\(K=1\)</span> this can have issues in the plotting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pz.plot_nyquist_with_pz()</span>
+<span class="c1">#dont get why this is not working with K=1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As well as plotting the symbolic transfer function’s Bode and Nichols plot interpretation of its response.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_bode_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iridium/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:522: UserWarning: Trying to get the mag phase data from `self.get_sym_freq_resp`, 
+            you get what you get
+</pre></div>
+</div>
+<img alt="../_images/AC_4_PZ_38_1.png" src="../_images/AC_4_PZ_38_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nichols_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_39_0.png" src="../_images/AC_4_PZ_39_0.png" />
+</div>
+</div>
+<p>And finally, besides generating the symbolic transfer function, pz_ease can also use scipy’s signal module to generate a dictionary containing the transfer functions numerator and denominator terms from the pole zeros and <span class="math notranslate nohighlight">\(K\)</span> to the use within the scipy signal module or in the python controls library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">scipy_pzk</span><span class="p">();</span> <span class="n">pz</span><span class="o">.</span><span class="n">scipy_tfcoef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;b&#39;: array([1.]), &#39;a&#39;: array([1.e+00, 1.e+04])}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="results-with-proper-k">
+<h2>Results with Proper <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#results-with-proper-k" title="Permalink to this headline">¶</a></h2>
+<p>Now giggle and grin lets see what our lowpass filtes full transfer function responce looks like when we know <span class="math notranslate nohighlight">\(K\)</span> using the SPICE estracted poles and zeros from .pz anylsis. Where after overriding the <span class="math notranslate nohighlight">\(K\)</span> in <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> we need to rerun <code class="docutils literal notranslate"><span class="pre">pz_ease.get_sym_freq_resp()</span></code> to regenerate the symploic transfer functions respnonce for the new sympolic transfer function found after <span class="math notranslate nohighlight">\(K\)</span> what overridden</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">(</span><span class="n">overload_K</span><span class="o">=</span><span class="n">K_rcl</span><span class="p">)</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">get_sym_freq_resp</span><span class="p">()</span>
+<span class="n">H_pzk1</span><span class="o">=</span><span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="p">;</span> <span class="n">H_pzk1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{10000}{s + 10000.0}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_3d_laplce</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_44_0.png" src="../_images/AC_4_PZ_44_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># figure out this strange matplotlib value error</span>
+<span class="c1">#pz.plot_nyquist_with_pz()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_bode_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_46_0.png" src="../_images/AC_4_PZ_46_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nichols_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_47_0.png" src="../_images/AC_4_PZ_47_0.png" />
+</div>
+</div>
+<p>The results show that with an appropriate value of <span class="math notranslate nohighlight">\(K\)</span> set we get the value that matches the .ac simulation results.</p>
+</div>
+<div class="section" id="asking-too-much-from-pz">
+<h2>Asking too much from .pz<a class="headerlink" href="#asking-too-much-from-pz" title="Permalink to this headline">¶</a></h2>
+<p>Lets now see what happens when .pz does not work</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">pz_mode_set</span><span class="p">(</span><span class="n">pz_acu</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">do_pz_sim</span><span class="p">(</span><span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>pz_sim_control</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tf_type</th>
+      <td>voltage</td>
+    </tr>
+    <tr>
+      <th>acqui_mode</th>
+      <td>zeros</td>
+    </tr>
+    <tr>
+      <th>port_0_terms+-</th>
+      <td>[In, 0]</td>
+    </tr>
+    <tr>
+      <th>port_1_terms+-</th>
+      <td>[Out, 0]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: There are no vectors currently active.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iridium/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:181: UserWarning: PZ analysis did not converge with the current setting:
+                start by changing the tf type (self.tf_type) and pz acusisiton type (self.pz_acu) 
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this first error case, the pyspice ngspice wrapper catches the ngspice error that in this case, we know is due from trying to calculate zeros from a circuit we know does not have any zeros. We can also run into cases where instead of throwing a blatant error ngspice will throw a warning when it cant converge to a solution. In which case at the moment <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> won’t display the warning but will set <code class="docutils literal notranslate"><span class="pre">pz_ease.pz_values</span></code> to an empty dictionary.</p>
+</div>
+</div>
+<div class="section" id="pole-zero-analysis-of-a-series-band-reject-filter">
+<h1>Pole-Zero analysis of a Series Band Reject filter<a class="headerlink" href="#pole-zero-analysis-of-a-series-band-reject-filter" title="Permalink to this headline">¶</a></h1>
+<p>Here we get the pole-zero analysis results of one of the filter examples from the previous section where we know that the transfer function has a zero coefficient term in its numerator to demonstrate the utility of <code class="docutils literal notranslate"><span class="pre">pz_ease</span></code> to formulate the transfer function form the .pz results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate the rlc_bandstop filter</span>
+<span class="n">bandstopRLC_s</span><span class="o">=</span><span class="n">rlc_series_bandstop</span><span class="p">(</span><span class="n">L_value</span><span class="o">=</span><span class="mf">8.33e-5</span><span class="nd">@u_H</span><span class="p">,</span> <span class="n">C_value</span><span class="o">=</span><span class="mf">2.7e-7</span><span class="nd">@u_F</span><span class="p">,</span> <span class="n">R_value</span><span class="o">=</span><span class="mi">50</span><span class="nd">@u_Ohm</span><span class="p">)</span>
+<span class="n">bandstopRLC_s</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_53_0.png" src="../_images/AC_4_PZ_53_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_rlcs_bs</span><span class="o">=</span><span class="n">bandstopRLC_s</span><span class="o">.</span><span class="n">get_tf</span><span class="p">(</span><span class="n">with_values</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ZPK</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ratfloat</span><span class="p">();</span> <span class="n">H_rlcs_bs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s^{2} + 44462229336.1789}{s^{2} + 600240.096038415 s + 44462229336.1789}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K_rlcs_bs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">H_rlcs_bs</span><span class="o">.</span><span class="n">K</span><span class="o">.</span><span class="n">cval</span><span class="p">);</span> <span class="n">K_rlcs_bs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_55_0.png" src="../_images/AC_4_PZ_55_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create the nets</span>
+<span class="n">net_in</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">);</span> <span class="n">net_out</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;Out&#39;</span><span class="p">);</span> 
+
+<span class="c1">#create a 1V AC test source and attache to nets</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_in</span><span class="p">,</span> <span class="n">gnd</span>
+
+<span class="c1">#attaceh term_0 to net_in and term_2 to net_out per scikit-rf convention all </span>
+<span class="c1">#other terminals are grounded</span>
+<span class="n">bandstopRLC_s</span><span class="o">.</span><span class="n">SKiDl</span><span class="p">(</span><span class="n">net_in</span><span class="p">,</span> <span class="n">gnd</span><span class="p">,</span> <span class="n">net_out</span><span class="p">,</span> <span class="n">gnd</span><span class="p">)</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+C1 N_1 0 2.7e-07
+L1 Out N_1 8.33e-05H
+R1 In Out 50Ohm
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_responce</span><span class="o">=</span><span class="n">qfilter_explorer</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="s1">&#39;RLC Series Bandstop Filter Responce&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start_freq</th>
+      <th>Stop_Freq</th>
+      <th>SamplingInc</th>
+      <th>StepType</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.1 Hz</td>
+      <td>1 GHz</td>
+      <td>20</td>
+      <td>decade</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/AC_4_PZ_57_1.png" src="../_images/AC_4_PZ_57_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_responce</span><span class="o">.</span><span class="n">symbolic_tf</span><span class="p">(</span><span class="n">bandstopRLC_s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_58_0.png" src="../_images/AC_4_PZ_58_0.png" />
+</div>
+</div>
+<p>Where again we will invoke the .tf of this function to show that .tf will not give us <span class="math notranslate nohighlight">\(K\)</span> reliably only in this case serendipitously. So don’t rely on it for finding <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">=</span><span class="n">easy_tf</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dc_voltage_gain</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">node</span><span class="p">(</span><span class="n">net_out</span><span class="p">),</span> <span class="n">node</span><span class="p">(</span><span class="n">gnd</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">vg_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>loc</th>
+      <th>value</th>
+      <th>units</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Output_resistance</th>
+      <td>(Out-0)</td>
+      <td>50</td>
+      <td>[Ohm]</td>
+    </tr>
+    <tr>
+      <th>Input_resistance</th>
+      <td>V1</td>
+      <td>1e+20</td>
+      <td>[Ohm]</td>
+    </tr>
+    <tr>
+      <th>DC_Vgain</th>
+      <td>(Out-0)/V1</td>
+      <td>1</td>
+      <td>[V/V]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Then getting the .pz results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">=</span><span class="n">pz_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K_rlcs_bs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">pz_def_ports</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;Out&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">pz_mode_set</span><span class="p">(</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pz</span><span class="o">.</span><span class="n">do_pz_sim</span><span class="p">(</span><span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>pz_sim_control</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tf_type</th>
+      <td>voltage</td>
+    </tr>
+    <tr>
+      <th>acqui_mode</th>
+      <td>pole-zero</td>
+    </tr>
+    <tr>
+      <th>port_0_terms+-</th>
+      <td>[In, 0]</td>
+    </tr>
+    <tr>
+      <th>port_1_terms+-</th>
+      <td>[Out, 0]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Type</th>
+      <th>Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>zero(2)</td>
+      <td>-210860.69j</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>zero(1)</td>
+      <td>210860.69j</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>pole(2)</td>
+      <td>(-86555.51+0j)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>pole(1)</td>
+      <td>(-513684.6+0j)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Where the resulting transfer function the .pz anylsis is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">canonical</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1.0 s^{2} + 44462229532.9727}{1.0 s^{2} + 600240.1015625 s + 44462230867.489}\]</div>
+</div>
+</div>
+<p>and recaling the anylsitical transfer function as the reference</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H_rlcs_bs</span><span class="o">.</span><span class="n">ratfloat</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{s^{2} + 44462229336.1789}{s^{2} + 600240.096038415 s + 44462229336.1789}\]</div>
+</div>
+</div>
+<p>We can then look at the error, wich given the size of the coefficients is small</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#numerator error</span>
+<span class="n">N_error</span><span class="o">=</span><span class="n">H_rlcs_bs</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">canonical</span><span class="p">()</span><span class="o">.</span><span class="n">N</span>
+<span class="n">D_error</span><span class="o">=</span><span class="n">H_rlcs_bs</span><span class="o">.</span><span class="n">D</span><span class="o">-</span><span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="o">.</span><span class="n">canonical</span><span class="p">()</span><span class="o">.</span><span class="n">D</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Numerator Delta: </span><span class="si">{N_error}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Denomator Delta: </span><span class="si">{D_error}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerator Delta: -196.793739318848
+Denomator Delta: -0.00552408467046916*s - 1531.31009674072
+</pre></div>
+</div>
+</div>
+</div>
+<p>The so the results for scipy signal the .pz aquared pole-zeros yields</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">scipy_pzk</span><span class="p">();</span> <span class="n">pz</span><span class="o">.</span><span class="n">scipy_tfcoef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;b&#39;: array([1.00000000e+00, 0.00000000e+00, 4.44622295e+10]),
+ &#39;a&#39;: array([1.00000000e+00, 6.00240102e+05, 4.44622309e+10])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_3d_laplce</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_73_0.png" src="../_images/AC_4_PZ_73_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nyquist_with_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iridium/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:491: UserWarning: Trying to get the real imag data from `self.get_sym_freq_resp`, 
+            you get what you get
+</pre></div>
+</div>
+<img alt="../_images/AC_4_PZ_74_1.png" src="../_images/AC_4_PZ_74_1.png" />
+</div>
+</div>
+<p>Note that because of the larger space of the poles of zero for this system under test the results of the frequency response is concentrated around (0,0) and shows up as a blip.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_bode_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_76_0.png" src="../_images/AC_4_PZ_76_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nichols_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_77_0.png" src="../_images/AC_4_PZ_77_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="pole-zero-analysis-of-a-lattice-all-pass-filter">
+<h1>Pole-Zero analysis of a lattice All-Pass filter¶<a class="headerlink" href="#pole-zero-analysis-of-a-lattice-all-pass-filter" title="Permalink to this headline">¶</a></h1>
+<p>We also know that from the previous section that the lcapy generated transfer function was not correct to the .ac simulation results (properly due to this authors lcapy usage error) Thus let’s take a look at what .pz gives us</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instatate the all-pass lattice filter to </span>
+<span class="n">allpasslat_lf</span><span class="o">=</span><span class="n">lc_balanced_allpass_lowfreq_lattice_filt</span><span class="p">()</span>
+<span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance conflict 0.2761423749153966 vs 1.0 in horizontal graph for WWanon2 between nodes (2_2) and (2), due to incompatible sizes
+</pre></div>
+</div>
+<img alt="../_images/AC_4_PZ_79_1.png" src="../_images/AC_4_PZ_79_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get this filters abstract transfer function</span>
+<span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">get_tf</span><span class="p">(</span><span class="n">with_values</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ZPK</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1 - s^{2}}{s^{2} + 1}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+<span class="c1">#create the nets; the last one is needed to deal with singularity issues when dealing with lattice circuits and ground</span>
+<span class="n">net_in</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">);</span> <span class="n">net_out</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;Out&#39;</span><span class="p">);</span> <span class="n">net_outlower</span><span class="o">=</span><span class="n">Net</span><span class="p">(</span><span class="s1">&#39;Out2&#39;</span><span class="p">)</span>
+<span class="c1">#create a 1V AC test source and attache to nets</span>
+<span class="n">vs</span><span class="o">=</span><span class="n">SINEV</span><span class="p">(</span><span class="n">ac_magnitude</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_V</span><span class="p">);</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">net_in</span><span class="p">,</span> <span class="n">gnd</span>
+<span class="c1">#net_in+=dummy_1[2]</span>
+
+<span class="c1">#attaceh term_0 to net_in and term_2 to net_out per scikit-rf convention all </span>
+<span class="c1">#other terminals are grounded</span>
+<span class="c1">#but need to add dummy resistors to deal with singular issues and get solvable matric</span>
+<span class="n">dummy_botin</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">)</span>
+<span class="n">dummy_botin</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
+
+<span class="n">dummy_botout</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="s1">&#39;dummy&#39;</span><span class="p">)</span>
+<span class="n">dummy_botout</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
+<span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">SKiDl</span><span class="p">(</span><span class="n">net_in</span><span class="p">,</span> <span class="n">dummy_botin</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">net_out</span><span class="p">,</span> <span class="n">dummy_botout</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+C1 Out N_1 1
+C2 In N_2 1
+L1 In Out 1H
+L2 N_1 N_2 1H
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+Rdummy 0 N_1 0
+Rdummy_1 N_2 0 0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_responce</span><span class="o">=</span><span class="n">qfilter_explorer</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="s1">&#39;LC All-Pass Low Frequcy Lattice Filter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Start_freq</th>
+      <th>Stop_Freq</th>
+      <th>SamplingInc</th>
+      <th>StepType</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.1 Hz</td>
+      <td>1 GHz</td>
+      <td>20</td>
+      <td>decade</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/AC_4_PZ_82_1.png" src="../_images/AC_4_PZ_82_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filter_responce</span><span class="o">.</span><span class="n">symbolic_tf</span><span class="p">(</span><span class="n">allpasslat_lf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_83_0.png" src="../_images/AC_4_PZ_83_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">=</span><span class="n">pz_ease</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">pz_def_ports</span><span class="p">(</span><span class="s1">&#39;In&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;Out&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+<span class="n">pz</span><span class="o">.</span><span class="n">pz_mode_set</span><span class="p">(</span> <span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pz</span><span class="o">.</span><span class="n">do_pz_sim</span><span class="p">(</span><span class="n">display_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+    </tr>
+    <tr>
+      <th>pz_sim_control</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tf_type</th>
+      <td>voltage</td>
+    </tr>
+    <tr>
+      <th>acqui_mode</th>
+      <td>pole-zero</td>
+    </tr>
+    <tr>
+      <th>port_0_terms+-</th>
+      <td>[In, 0]</td>
+    </tr>
+    <tr>
+      <th>port_1_terms+-</th>
+      <td>[Out, 0]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning: Pole-zero iteration limit reached; giving up after 282 trials
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Type</th>
+      <th>Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>zero(3)</td>
+      <td>(-0.002000004+0j)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>zero(2)</td>
+      <td>(-499.999-500j)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>zero(1)</td>
+      <td>(-499.999+500j)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>pole(4)</td>
+      <td>(-0.000499999-0.9999994j)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>pole(3)</td>
+      <td>(-0.000499999+0.9999994j)</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>pole(2)</td>
+      <td>(-0.002000004+0j)</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>pole(1)</td>
+      <td>(-999.999+0j)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">scipy_pzk</span><span class="p">();</span> <span class="n">pz</span><span class="o">.</span><span class="n">scipy_tfcoef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;b&#39;: array([1.00000000e+00, 9.99999986e+02, 5.00000993e+05, 1.00000001e+03]),
+ &#39;a&#39;: array([1.00000000e+00, 1.00000202e+03, 4.00000013e+00, 1.00000208e+03,
+        2.00000022e+00])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">get_pz_sym_tf</span><span class="p">()</span>
+<span class="n">H</span><span class="o">=</span><span class="n">pz</span><span class="o">.</span><span class="n">sym_tf</span><span class="p">;</span> <span class="n">H</span><span class="o">.</span><span class="n">canonical</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1.0 s^{2} + 999.997985839844 s + 499998.992920936}{1.0 s^{3} + 1000.00002343545 s^{2} + 1.99999603336759 s + 999.998081344856}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_3d_laplce</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_88_0.png" src="../_images/AC_4_PZ_88_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nyquist_with_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iridium/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:491: UserWarning: Trying to get the real imag data from `self.get_sym_freq_resp`, 
+            you get what you get
+</pre></div>
+</div>
+<img alt="../_images/AC_4_PZ_89_1.png" src="../_images/AC_4_PZ_89_1.png" />
+</div>
+</div>
+<p>Where now looking at the Bode and Nichols charts generated from the .pz analysis we see they are almost identical to what was gotten to the .ac analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_bode_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_91_0.png" src="../_images/AC_4_PZ_91_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pz</span><span class="o">.</span><span class="n">plot_nichols_from_pz</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/AC_4_PZ_92_0.png" src="../_images/AC_4_PZ_92_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+<h1>Add the Razavi T-coil after the previous magnetic section is done¶<a class="headerlink" href="#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="citations">
+<h1>Citations<a class="headerlink" href="#citations" title="Permalink to this headline">¶</a></h1>
+<p>[1] T. Kuphardt, Lessons In Industrial Instrumentation :, Version 2.30. [online], 2018, Chapter 5 Section “Transfer Function Analysis”. Available: https://control.com/textbook/ac-electricity/transfer-function-analysis/. [Accessed: 10- Jan- 2021].</p>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -503,6 +2471,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="AC_2_RCL_filters.html" title="previous page">Basic Passive Filters</a>
+    <a class='right-next' id="next-link" href="../Appendix/skidl_2_pyspice_check.html" title="next page">Checking tool</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

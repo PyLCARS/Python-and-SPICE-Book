@@ -209,48 +209,6 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
-     Capacitors and Inductors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
-     AC Sources
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
-     <span class="math notranslate nohighlight">
-      \(V_{max}\)
-     </span>
-     ,  Fourier terms, and RMS¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
-     Single Phase Cirucit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
-     Two-Phase System¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
-     Three Phase Four Wire Y (Star) Topology ¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
-     Three Phase Three Wire
-     <span class="math notranslate nohighlight">
-      \(\Delta\)
-     </span>
-     Topology
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -268,6 +226,41 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html">
+     What is PZ anylsis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#pz-analysis-of-an-rc-lowpass-filter">
+     PZ analysis of an RC lowpass filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#pz-ease">
+     PZ ease
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#pole-zero-analysis-of-a-series-band-reject-filter">
+     Pole-Zero analysis of a Series Band Reject filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#pole-zero-analysis-of-a-lattice-all-pass-filter">
+     Pole-Zero analysis of a lattice All-Pass filter¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+     Add the Razavi T-coil after the previous magnetic section is done¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_4_PZ.html#citations">
+     Citations
     </a>
    </li>
   </ul>
@@ -592,7 +585,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Sun Jan 10 17:08:42 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:36:01 2021 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1136,6 +1129,9 @@ Name: A_[V], dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
 .title 
 E1 N2 A A 0 3
@@ -1146,10 +1142,11 @@ Rright A 0 1kOhm
 Rvs N1 N2 2kOhm
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_32_2.png" src="../_images/DC_5_Thvenin_Norton_32_2.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_32_3.png" src="../_images/DC_5_Thvenin_Norton_32_3.png" />
 </div>
 </div>
 </div>
@@ -1200,6 +1197,9 @@ Rvs N1 N2 2kOhm
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
 .title 
 H1 N1 0 Vamm
@@ -1209,10 +1209,11 @@ Rcs N1 Ap 6Ohm
 Rright Ap 0 4Ohm
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_35_2.png" src="../_images/DC_5_Thvenin_Norton_35_2.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_35_3.png" src="../_images/DC_5_Thvenin_Norton_35_3.png" />
 </div>
 </div>
 </div>
@@ -1370,6 +1371,15 @@ Rvs N1 N2 4Ohm
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rvs[p] power
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
 </pre></div>
 </div>
@@ -1377,15 +1387,6 @@ Rvs N1 N2 4Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
 </div>
@@ -1621,6 +1622,15 @@ Name: Vnort[i]_[A], dtype: float64
 Unit is None for @rvs[p] power
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+</pre></div>
+</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
 </pre></div>
 </div>
@@ -1628,15 +1638,6 @@ Unit is None for @rvs[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rtop[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @i1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1702,28 +1703,24 @@ Rvs N1 N2 4Ohm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
-0 errors found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 
-Unit is None for @vnort[p] power
+Unit is None for @vix[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vnort[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rleft[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @f1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @v1[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rleft[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1736,7 +1733,7 @@ Vix N1 N1prime 0V
 Rleft N1prime 0 4Ohm
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_59_8.png" src="../_images/DC_5_Thvenin_Norton_59_8.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_59_7.png" src="../_images/DC_5_Thvenin_Norton_59_7.png" />
 </div>
 </div>
 </div>
@@ -1783,21 +1780,25 @@ Rleft N1prime 0 4Ohm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (0 and B) into 0.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 warnings found during netlist generation.
+0 errors found during netlist generation.
 
 Unit is None for @vnort[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rleft[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @g1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rleft[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rcenter[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @rright[p] power
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit and Thevenin finding Isource
@@ -1809,7 +1810,7 @@ Rleft A 0 100Ohm
 Rright N1 0 200Ohm
 </pre></div>
 </div>
-<img alt="../_images/DC_5_Thvenin_Norton_62_6.png" src="../_images/DC_5_Thvenin_Norton_62_6.png" />
+<img alt="../_images/DC_5_Thvenin_Norton_62_7.png" src="../_images/DC_5_Thvenin_Norton_62_7.png" />
 </div>
 </div>
 </div>

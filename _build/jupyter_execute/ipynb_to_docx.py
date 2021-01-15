@@ -45,12 +45,11 @@ for nb in notebooks:
     #uncommment to use
     #!jupyter nbconvert --to html {ipynb}
     
-    get_ipython().system('jupyter nbconvert --clear-output --to html {ipynb}')
+    #testing these but these have yet to yield what I want
+    #!jupyter nbconvert --clear-output --to html {ipynb}
     #!jupyter nbconvert --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_cell_tags="['remove_output']" --to html {ipynb}
     
-    get_ipython().system('pandoc -s {html} -o {docx}')
-    
-    
+    #!pandoc -s {html} -o {docx}
 
 
 # # note to self to work building book and github page

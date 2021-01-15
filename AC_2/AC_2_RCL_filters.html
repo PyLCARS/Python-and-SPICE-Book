@@ -56,8 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Checking tool" href="../Appendix/skidl_2_pyspice_check.html" />
-    <link rel="prev" title="Capacitors and Inductors" href="AC_1_One-Two-Three_Phase_AC.html" />
+    <link rel="next" title="What is PZ anylsis" href="AC_4_PZ.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="AC_1_One-Two-Three_Phase_AC.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -208,48 +208,6 @@
    Chapter 2 AC simulations with Python and SPICE
   </a>
   <ul class="current collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html">
-     Capacitors and Inductors
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#ac-sources">
-     AC Sources
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
-     <span class="math notranslate nohighlight">
-      \(V_{max}\)
-     </span>
-     ,  Fourier terms, and RMS¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
-     Single Phase Cirucit
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
-     Two-Phase System¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
-     Three Phase Four Wire Y (Star) Topology ¶
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
-     Three Phase Three Wire
-     <span class="math notranslate nohighlight">
-      \(\Delta\)
-     </span>
-     Topology
-    </a>
-   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Basic Passive Filters
@@ -268,6 +226,41 @@
    <li class="toctree-l2">
     <a class="reference internal" href="#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html">
+     What is PZ anylsis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#pz-analysis-of-an-rc-lowpass-filter">
+     PZ analysis of an RC lowpass filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#pz-ease">
+     PZ ease
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#pole-zero-analysis-of-a-series-band-reject-filter">
+     Pole-Zero analysis of a Series Band Reject filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#pole-zero-analysis-of-a-lattice-all-pass-filter">
+     Pole-Zero analysis of a lattice All-Pass filter¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#add-the-razavi-t-coil-after-the-previous-magnetic-section-is-done">
+     Add the Razavi T-coil after the previous magnetic section is done¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_4_PZ.html#citations">
+     Citations
     </a>
    </li>
   </ul>
@@ -671,7 +664,7 @@ equivalencies to dc internals with .ac sims</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.70</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Sun Jan 10 17:06:46 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:34:05 2021 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="basic-passive-filters">
 <h1>Basic Passive Filters<a class="headerlink" href="#basic-passive-filters" title="Permalink to this headline">¶</a></h1>
@@ -6042,7 +6035,7 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance conflict 0.2761423749153966 vs 1.0 in horizontal graph for Wanon2 between nodes (2_2) and (2), due to incompatible sizes
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distance conflict 0.2761423749153966 vs 1.0 in horizontal graph for WWanon2 between nodes (2_2) and (2), due to incompatible sizes
 </pre></div>
 </div>
 <img alt="../_images/AC_2_RCL_filters_158_1.png" src="../_images/AC_2_RCL_filters_158_1.png" />
@@ -6203,8 +6196,44 @@ Rdummy_1 N_2 0 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\left\{ 1 : C_{1} \left(V_{1} - V_{2}\right) + \frac{V_{1} - V_{3}}{L_{2} s^{2}} = 0, \  2 : C_{1} \left(- V_{1} + V_{2}\right) + \frac{V_{2}}{L_{1} s^{2}} = 0, \  3 : C_{2} V_{3} + \frac{- V_{1} + V_{3}}{L_{2} s^{2}} = 0\right\}\]</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">126</span><span class="o">-</span><span class="mi">2419374</span><span class="n">f2f5d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">n</span><span class="o">=</span><span class="n">kiwi</span><span class="o">.</span><span class="n">NodalAnalysis</span><span class="p">(</span><span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">schematic</span><span class="o">.</span><span class="n">laplace</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n</span><span class="o">.</span><span class="n">nodal_equations</span><span class="p">()</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py</span> in <span class="ni">__init__</span><span class="nt">(self, cct, node_prefix)</span>
+<span class="nn">     64         self._y = matrix([val for key, val</span> in <span class="ni">self._unknowns.items</span><span class="nt">() if key != &#39;0&#39;])</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> 
+<span class="ne">---&gt; </span><span class="mi">66</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_equations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_equations</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> 
+<span class="g g-Whitespace">     </span><span class="mi">68</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py</span> in <span class="ni">_make_equations</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>                     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Component </span><span class="si">%s</span><span class="s1"> does not have node </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elt</span><span class="p">,</span> <span class="n">node</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">126</span>                     <span class="n">result</span> <span class="o">+=</span> <span class="n">elt</span><span class="o">.</span><span class="n">cpt</span><span class="o">.</span><span class="n">i_equation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_unknowns</span><span class="p">[</span><span class="n">n1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unknowns</span><span class="p">[</span><span class="n">n2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>                 <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="o">=</span> <span class="n">result</span><span class="p">,</span> <span class="n">expr</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/oneport.py</span> in <span class="ni">i_equation</span><span class="nt">(self, v, kind)</span>
+<span class="g g-Whitespace">    </span><span class="mi">889</span>         <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;super&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">890</span>             <span class="k">return</span> <span class="n">SuperpositionCurrent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">expr</span><span class="p">(</span><span class="n">Derivative</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span> <span class="n">t</span><span class="p">)))</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">891</span>         <span class="k">return</span> <span class="n">SuperpositionCurrent</span><span class="p">(</span><span class="n">SuperpositionVoltage</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Z</span><span class="o">.</span><span class="n">_selectexpr</span><span class="p">(</span><span class="n">kind</span><span class="p">))</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span> 
+<span class="g g-Whitespace">    </span><span class="mi">893</span>     <span class="k">def</span> <span class="nf">v_equation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/expr.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="n">expr1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">637</span>             <span class="n">a</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span>             <span class="k">raise</span>
+
+<span class="ne">AttributeError</span>: &#39;Mul&#39; object has no attribute &#39;_selectexpr&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="citations">
@@ -6246,8 +6275,8 @@ Rdummy_1 N_2 0 0
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="AC_1_One-Two-Three_Phase_AC.html" title="previous page">Capacitors and Inductors</a>
-    <a class='right-next' id="next-link" href="../Appendix/skidl_2_pyspice_check.html" title="next page">Checking tool</a>
+    <a class='left-prev' id="prev-link" href="AC_1_One-Two-Three_Phase_AC.html" title="previous page">&lt;no title&gt;</a>
+    <a class='right-next' id="next-link" href="AC_4_PZ.html" title="next page">What is PZ anylsis</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

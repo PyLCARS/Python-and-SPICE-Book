@@ -2,7 +2,7 @@
 
 Jupyter Book built upon individual Jupyter notebooks contained in this repo
 
-The book as a single HTML is located at: [need to add]
+The book as a single HTML is located at: https://pylcars.github.io/Python-and-SPICE-Book/intro.html
 
 ## License:
 This Book and all it's code is licensed under the **MIT License*

@@ -17,21 +17,46 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-data.map(dB_convert)
+allpasslat_lf.lcapy_self(False, False)
+n=kiwi.NodalAnalysis(allpasslat_lf.schematic.laplace())
+n.nodal_equations()
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m<ipython-input-14-a5ad0e96e12f>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mdata[0m[0;34m.[0m[0mmap[0m[0;34m([0m[0mdB_convert[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/generic.py[0m in [0;36m__getattr__[0;34m(self, name)[0m
-[1;32m   5137[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0m_info_axis[0m[0;34m.[0m[0m_can_hold_identifiers_and_holds_name[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   5138[0m                 [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 5139[0;31m             [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   5140[0m [0;34m[0m[0m
-[1;32m   5141[0m     [0;32mdef[0m [0m__setattr__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m:[0m [0mstr[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-126-2419374f2f5d>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mallpasslat_lf[0m[0;34m.[0m[0mlcapy_self[0m[0;34m([0m[0;32mFalse[0m[0;34m,[0m [0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mn[0m[0;34m=[0m[0mkiwi[0m[0;34m.[0m[0mNodalAnalysis[0m[0;34m([0m[0mallpasslat_lf[0m[0;34m.[0m[0mschematic[0m[0;34m.[0m[0mlaplace[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mn[0m[0;34m.[0m[0mnodal_equations[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'map'
-AttributeError: 'DataFrame' object has no attribute 'map'
+[0;32m~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py[0m in [0;36m__init__[0;34m(self, cct, node_prefix)[0m
+[1;32m     64[0m         [0mself[0m[0;34m.[0m[0m_y[0m [0;34m=[0m [0mmatrix[0m[0;34m([0m[0;34m[[0m[0mval[0m [0;32mfor[0m [0mkey[0m[0;34m,[0m [0mval[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_unknowns[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0mkey[0m [0;34m!=[0m [0;34m'0'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     65[0m [0;34m[0m[0m
+[0;32m---> 66[0;31m         [0mself[0m[0;34m.[0m[0m_equations[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_make_equations[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     67[0m [0;34m[0m[0m
+[1;32m     68[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py[0m in [0;36m_make_equations[0;34m(self)[0m
+[1;32m    124[0m                     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    125[0m                         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m'Component %s does not have node %s'[0m [0;34m%[0m [0;34m([0m[0melt[0m[0;34m,[0m [0mnode[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 126[0;31m                     [0mresult[0m [0;34m+=[0m [0melt[0m[0;34m.[0m[0mcpt[0m[0;34m.[0m[0mi_equation[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_unknowns[0m[0;34m[[0m[0mn1[0m[0;34m][0m [0;34m-[0m [0mself[0m[0;34m.[0m[0m_unknowns[0m[0;34m[[0m[0mn2[0m[0;34m][0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mkind[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    127[0m                 [0mlhs[0m[0;34m,[0m [0mrhs[0m [0;34m=[0m [0mresult[0m[0;34m,[0m [0mexpr[0m[0;34m([0m[0;36m0[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    128[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/lcapy/oneport.py[0m in [0;36mi_equation[0;34m(self, v, kind)[0m
+[1;32m    889[0m         [0;32mif[0m [0mkind[0m [0;32min[0m [0;34m([0m[0;34m't'[0m[0;34m,[0m [0;34m'time'[0m[0;34m,[0m [0;34m'super'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    890[0m             [0;32mreturn[0m [0mSuperpositionCurrent[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mC[0m [0;34m*[0m [0mexpr[0m[0;34m([0m[0mDerivative[0m[0;34m([0m[0mv[0m[0;34m.[0m[0mexpr[0m[0;34m,[0m [0mt[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m.[0m[0mselect[0m[0;34m([0m[0mkind[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 891[0;31m         [0;32mreturn[0m [0mSuperpositionCurrent[0m[0;34m([0m[0mSuperpositionVoltage[0m[0;34m([0m[0mv[0m[0;34m)[0m[0;34m.[0m[0mselect[0m[0;34m([0m[0mkind[0m[0;34m)[0m [0;34m/[0m [0mself[0m[0;34m.[0m[0m_Z[0m[0;34m.[0m[0m_selectexpr[0m[0;34m([0m[0mkind[0m[0;34m)[0m[0;34m)[0m[0;34m.[0m[0mselect[0m[0;34m([0m[0mkind[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    892[0m [0;34m[0m[0m
+[1;32m    893[0m     [0;32mdef[0m [0mv_equation[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mi[0m[0;34m,[0m [0mkind[0m[0;34m=[0m[0;34m't'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/lcapy/expr.py[0m in [0;36m__getattr__[0;34m(self, attr)[0m
+[1;32m    635[0m         [0mexpr1[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mexpr[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    636[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 637[0;31m             [0ma[0m [0;34m=[0m [0mgetattr[0m[0;34m([0m[0mexpr1[0m[0;34m,[0m [0mattr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    638[0m         [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    639[0m             [0;32mraise[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'Mul' object has no attribute '_selectexpr'
+AttributeError: 'Mul' object has no attribute '_selectexpr'
 

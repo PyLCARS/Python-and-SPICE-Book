@@ -1,0 +1,4 @@
+.title 
+C1 Out 0 0.1uF
+R1 In Out 1kOhm
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)

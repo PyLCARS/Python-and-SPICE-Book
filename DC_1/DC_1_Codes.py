@@ -114,7 +114,6 @@ class op_results_collect():
         return self.results_df
  
  
-
 #chapter 1 section 2 get_skidl_spice_ref function
 #used for getting the name of the element as it would appear in a
 #generated netlist
@@ -124,25 +123,19 @@ def get_skidl_spice_ref(skidle_element):
     Helper function to retrieve SKiDL element name as appears in the final netlist
     
     Args:
-        skidle_element (skidl.Part.Part): SKiDl part to get the netlist name from
+        skidle_element (skidl.part.Part): SKiDl part to get the netlist name from
     
     Returns:
         returns a string with the netlist name of `skidle_element`, or throws an
         error if `skidle_element` is not a SKiDl part
     
     """
-    #need to do this for now since in newer version skidl parts class is skidl.Part
-    # older is skidl.part
-    if repr(type(skidle_element))=="<class 'skidl.part.Part'>":
-            assert repr(type(skidle_element))=="<class 'skidl.part.Part'>", '`skidle_element` must be a SKiDl part'
-    else:
-        assert repr(type(skidle_element))=="<class 'skidl.Part.Part'>", '`skidle_element` must be a SKiDl part'
+    assert repr(type(skidle_element))=="<class 'skidl.part.Part'>", '`skidle_element` must be a SKiDl part'
     
     if skidle_element.ref_prefix!=skidle_element.ref[0]:
         return skidle_element.ref_prefix+skidle_element.ref
     else:
         return skidle_element.ref
-
 #chapter 1 section 2 dc_cs2vs function
 #creates a voltage source element to the current source based on the 
 #value if the input DC current element and it's parallel resistor
@@ -188,7 +181,6 @@ def dc_cs2vs(dc_cs, cs_par_res):
     warnings.warn(f"""New voltage source values: {new_vs_val} [V] with max aviabel power {old_maxpower} [W] \n transformed creation statment will be like: \n`(gnd & <eq_vs>['n', 'p'] & <cs_par_res>)`""")
     
     return eq_vs
-
 #chapter 1 section 2 dc_vs2cs function
 #creats current source element to the voltage source based on the 
 #value if the input DC current element and it's series resistor
@@ -233,7 +225,6 @@ def dc_vs2cs(dc_vs, vs_ser_res):
     warnings.warn(f"""New current source values: {new_cs_val} [A] with max aviabel power {old_maxpower} [W] \n transformed creation statment will be like:\n `(gnd & <eq_cs>['n', 'p'] | <vs_ser_res>)` \n""")
     
     return eq_cs
-
 #chapter 1 section 2 op_internal_ivp class
 # class to get both the branch currents and node voltages,
 # along with the internal parameters values for 
@@ -379,6 +370,363 @@ class dc_ease():
     TODO:
         make so that it can iterate over all filled in entries in `self.sweep_DF` and
         exports data to xarray
+        
+        
+    """
+    def __init__(self, circ_netlist_obj):
+        """
+        Class to perform DC (.dc) SPICE simulation with some grace; only does single variable
+        and is currently limited to what variable pyspice supports
+        
+        Args:
+            circ_netlist_obj (pspice.Spice.Netlist.Circuit): the Netlist circuit produced 
+                from SKiDl's `generate_netlist()`
+        
+        Returns: 
+            creates a table of variables that could be swept in `self.sweep_DF`
+            this table will still need to be filled out for a single variable to be swept
+        
+        TODO: add kwargs to pass to sim creation
+
+        """
+        #need to add assertions for op_sim_circ ==pspice.Spice.Netlist.Circuit
+        self.circ_netlist_obj=circ_netlist_obj
+        
+        self._build_table()
+    
+    def _build_table(self):
+        """
+        protected method to create `self.sweep_DF` dataframe of all things in the
+        the circuit that can be swept; currently that is only voltage and current sources
+        
+        TODO:
+            -when pyspice accepts more things to sweep add them below
+        """
+        
+        self.sweep_DF=pd.DataFrame(columns=['Element', 'Start', 'Stop', 'Step'])
+        
+        for e in self.circ_netlist_obj.element_names:
+            if e[0] in ['V', 'I']:
+                self.sweep_DF.at[len(self.sweep_DF), 'Element']=e
+        
+        #convert ELmenet to index
+        self.sweep_DF.set_index('Element', drop=True, append=False, inplace=True, verify_integrity=False)
+    
+
+        
+    def clean_table(self):
+        """
+        Helper method to clean `self.sweep_DF` of any rows that are not to going to be swept
+        """
+        self.sweep_DF.dropna(axis=0, how='any', inplace=True)
+        
+    def addback_elements_2table(self):
+        """
+        Helper method to return empty rows to `self.sweep_DF` to manually then add sweep info to
+        uses `self._build_table` to rebuild the table
+        """
+        for e in self.circ_netlist_obj.element_names:
+            if e not in self.sweep_DF.index:
+                self.sweep_DF.at[e, :]=np.nan
+    
+    #so ngspice is only 2d sweeps and so need figurer this out to do 2d sets
+    #but will, for now, do sets of 1d
+    #def _make_sim_control(self):
+    #    self.clean_table()
+    #    
+    #    #for now dc sim through pyspice only support voltage and current sources
+    #    self.dc_contorl={row[0]: slice(row[1], row[2], row[3]) for row in self.sweep_DF.itertuples() if row[0][0] in ['V', 'I']}
+    
+    
+    def _make_sim_control(self, varible):
+        """
+        Internal method to extract the row information to the .dc kargs and slice argument
+        
+        Args:
+            varible (str): the index in `self.sweep_DF` to exstract the info from
+            
+        Returns:
+            `self.dc_contorl` what is feed into the .dc to do the simulation for a single var
+            
+        """
+        #clean the table
+        self.clean_table()
+        #get the location of the variable's index
+        try:
+            row=self.sweep_DF.index.get_loc(varible)
+            #get said row
+            row=self.sweep_DF.iloc[row]
+            #need to fix this in pyspice to make it fully ngspice capale
+            if row.name[0] not in ['I', 'V']:
+                raise KeyError
+            
+            #build the control
+            self.dc_contorl={row.name:slice(row.Start, row.Stop, row.Step)}
+            
+            return 0
+            
+        except KeyError:
+            print(f' Variable: {varible} is not in or able self.sweep_DF to be swept ')
+            
+            return 1
+    
+    def do_dc_sim(self, varible):
+        """
+        Does a standard Branch and Node .dc simulation for a single filled out row in `self.sweep_DF`
+        
+        Args:
+            variable (str): the index in `self.sweep_DF` that corresponds to the thing to sweep in the .dc simulation
+        
+        Returns: 
+            raw results are stored in `self.dc_vals`, processed results are automatically stored in 
+            `self.dc_resultsNB_DF` via `self.record_dc_nodebranch`
+        """
+        
+        
+        if self._make_sim_control(varible)==0:
+            self.sim=self.circ_netlist_obj.simulator()
+            self.dc_vals=self.sim.dc(**self.dc_contorl)
+            
+            self.record_dc_nodebranch(varible)
+        
+        else:
+            pass
+                
+        
+    
+    def record_dc_nodebranch(self, varible):
+        """ 
+        Helper method to put .dc node branch results into a dataframe where the index is the  variable
+        
+        Args:
+            variable (str): used to set the index name
+        
+        Returns:
+            `self.dc_resultsNB_DF` which is a pandas dataframe with the index being the sweep and the columns being
+            the node voltages and branch currents from any available voltage sources
+            
+        TODO:
+            get the current in any current sources
+            
+        """
+        self.dc_resultsNB_DF=pd.DataFrame(index=self.dc_vals.sweep.as_ndarray())
+        
+        self.dc_resultsNB_DF.index.name=varible
+        
+        #get node voltages:
+        
+        for n in self.circ_netlist_obj.node_names:
+            if n=='0':
+                continue
+            self.dc_resultsNB_DF[n+'_[V]']=self.dc_vals[n].as_ndarray()
+        
+        #get the current from any voltage sources:
+        for cm in self.circ_netlist_obj.element_names:
+            if 'V'==cm[0]:
+                self.dc_resultsNB_DF[cm+'_[A]']=-self.dc_vals[cm].as_ndarray()
+    
+    def do_dc_intsim(self, varible):
+        """
+        Does a .dc simulation the internal variables for  a single filled out row in `self.sweep_DF`
+        Right now the internal variables gathered are:
+        current, voltage power for: VCCS VCVS, CCVS, CCCS, Independent current source 
+        current and power for Resistors and independent voltage sources
+        
+        Args:
+            variable (str): the index in `self.sweep_DF` that corresponds to the thing to sweep in the .dc simulation
+        
+        Returns: 
+            raw results are stored in `self.dc_resultsINT_DF`, processed results are automatically stored in 
+            `self.dc_resultsNB_DF` via `self.record_dc_internals`
+        """
+        
+        
+        self.save_internals=[]
+        
+        for e in self.circ_netlist_obj.element_names:
+            if e[0]=='R':
+                self.save_internals+=[f'@{e}[i]', f'@{e}[p]']
+            
+            elif e[0]=='I':
+                self.save_internals+=[f'@{e}[c]', f'@{e}[v]', f'@{e}[p]']
+            
+            elif e[0]=='V':
+                self.save_internals+=[f'@{e}[i]', f'@{e}[p]']
+            
+            elif e[0] in ['F', 'H', 'G', 'E']:
+                self.save_internals+=[f'@{e}[i]', f'@{e}[v]', f'@{e}[p]']
+        
+        if self._make_sim_control(varible)==0:
+            self.sim=self.circ_netlist_obj.simulator()
+            self.sim.save_internal_parameters(*self.save_internals)
+            self.dc_vals=self.sim.dc(**self.dc_contorl)
+            
+            self.record_dc_internals(varible)
+    
+    def record_dc_internals(self, varible):
+        """ 
+        Helper method to put .dc internal variable results into a dataframe where the index is the  variable
+        
+        Args:
+            variable (str): used to set the index name
+        
+        Returns:
+            `self.dc_resultsINT_DF` which is a pandas dataframe with the index being the sweep and the columns being
+            the saved internal variables
+            
+        """
+        self.dc_resultsINT_DF=pd.DataFrame(index=self.dc_vals.sweep.as_ndarray())
+        self.dc_resultsINT_DF.index.name=varible
+
+        
+        for i in self.save_internals:
+            if i[1]=='I' and i[-2]=='c':
+                result_name=i[1:]+'_[A]'
+            
+            elif i[-2]=='i':
+                result_name=i[1:]+'_[A]'
+            
+            elif i[-2]=='v':
+                result_name=i[1:]+'_[V]'
+            
+            elif i[-2]=='p':
+                result_name=i[1:]+'_[W]'
+            
+            #deal with the fliped current for voltage sources even internally
+            if i[1]=='V' and i[-2]=='i':
+                self.dc_resultsINT_DF[result_name]=-self.dc_vals[i].as_ndarray()
+            else:
+                self.dc_resultsINT_DF[result_name]=self.dc_vals[i].as_ndarray()
+            
+    
+    def quick_plot(self, nodebranch_int_cont='nb'):
+        """
+        Creates a quick plot of all columns with respect to the index for the data stored in 
+        `self.dc_resultsNB_DF` or `self.dc_resultsINT_DF`. Note that for larger cirucits
+        these plots can have a ridicules number of subplots so yeah there is a reason for this
+        methods name
+        
+        Args:
+            nodebranch_int_cont (str; 'nb'): control word for wither to plot the node branch data ('nb')
+                or the internal data ('int')
+        
+        Returns:
+            Creates a rudimentary plot sharing a common x axis correspond the index
+            for the data source and subplot row for each column in the data source
+        
+        """
+        
+        assert nodebranch_int_cont in ['nb', 'int'], f'{nodebranch_int_cont} in not a allowed control statment'
+        #add a check for existence
+        
+        if nodebranch_int_cont=='nb':
+            plotDF=self.dc_resultsNB_DF
+        elif nodebranch_int_cont=='int':
+            plotDF=self.dc_resultsINT_DF
+        
+        
+        plotDF.plot(subplots=True, sharex=True, grid=True)
+        # won't work for a data source with lots of columns
+        plt.tight_layout()
+
+#chapter 1 section 3 real_dcVs subcircuit function
+# SKiDl subcirucit to create a dc voltage source with 
+# added series resistor
+
+
+@subcircuit
+def real_dcVs(global_ref, pos_term, neg_term, starting_V=1@u_V, starting_R=50@u_Ohm, 
+           return_internls=False):
+    """
+    SKiDl subcircuit to create a simple non-ideal DC voltage source
+    
+    Args:
+        global_ref (str): reference to use for the base of the internal elements
+        
+        pos_term (SKiDl net or pin): positive terminal of the nonideal voltage source
+            to connect to the rest of the circuit
+        
+        neg_term (SKiDl net or pin): negative terminal of the nonideal voltage source
+            to connect to the rest of the circuit 
+        
+        starting_V (float; 1; Volts):the intial DC voltage to set the internal ideal
+            the voltage source in this package to
+        
+        starting_R (float; 50; Ohm): the initial resistance to set the internal
+            serial resistance to the ideal voltage source in this subcircuit to
+        
+        return_internls (bool; False): If True return out the internal Voltage Source,
+            and Resistance objects in this package
+    
+    Returns:
+        Returns it's self a SKiDl part element object and if `return_internls`
+        is True will return the internal voltage and resistance objects in that order 
+    """
+    vs=V(ref=f'V_{global_ref}', dc_value=starting_V)
+    rs=R(ref=f'R_{global_ref}', value=starting_R)
+    
+    vs['p', 'n']+=rs[1], neg_term
+    rs[2]+=pos_term
+    
+    if return_internls:
+        return vs, rs
+
+#chapter 1 section 3 real_dcIs subcircuit function
+# SKiDl subcirucit to create a dc current source with 
+# added parallel resistor
+
+@subcircuit
+def real_dcIs(global_ref, pos_term, neg_term, starting_I=1@u_A, starting_R=50@u_Ohm, 
+           return_internls=False):
+    """
+    SKiDl subcircuit to create a simple non-ideal DC current source.
+    Where the positive terminal is to the top of the arrow of a schematically drawn
+    current source
+    
+    Args:
+        global_ref (str): reference to use for the base of the internal elements
+        
+        pos_term (SKiDl net or pin): positive terminal of the nonideal voltage source
+            to connect to the rest of the circuit 
+        
+        neg_term (SKiDl net or pin): negative terminal of the nonideal voltage source
+            to connect to the rest of the circuit 
+        
+        starting_V (float; 1; Amps): the initial DC current to set the internal ideal
+            the current source in this package to
+        
+        starting_R (float; 50; Ohm): the initial resistance to set the internal
+            parral resistance to the ideal current source in this subcircuit to
+        
+        return_internls (bool; False): If True return out the internal Voltage Source,
+            and Resistance objects in this package
+    
+    Returns:
+        Returns it's self a SKiDl part element object and if `return_internls`
+        is True will return the internal voltage and resistance objects in that order 
+    """
+    cs=I(ref=f'I_{global_ref}', dc_value=starting_I)
+    rp=R(ref=f'R_{global_ref}', value=starting_R)
+    
+    cs['p', 'n'] | rp[2, 1]
+    rp[1, 2]+=pos_term, neg_term
+    
+    if return_internls:
+        return cs, rp
+
+#chapter 1 section 3 dc_ease class
+# class to perform easily perform DC sweep simulations
+#gets both branch currents/node voltages and also internal parameters
+
+class dc_ease():
+    """
+    Class to perform DC (.dc) SPICE simulation with some grace; only does single variable
+    and is currently limited to what +variable pyspice supports
+    
+    TODO:
+        make so that it can iterate over all filled in entries in `self.sweep_DF` and
+        exports data to xarray
+        
         
     """
     def __init__(self, circ_netlist_obj):
@@ -1059,6 +1407,126 @@ class easy_tf():
     
         
 
+#chapter 1 section 5 Thevenin class
+# class that is a automated testsuite for finding the 
+# DC Thevenin voltage and resistince of a port
+
+class Thevenin(dc_ease):
+    """
+    Tool for finding the DC Thevenin equivalent voltage and resistance of a one port
+    linear circuit with an open test port. The DUT must contain all linear elements.
+    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc
+    SPICE simulation with SkiDl and pyspice
+    """
+    
+    def __init__(self, port_pos, port_neg):
+        """
+        A new instantiation unique to this class but utilizes `dc_ease` internally.
+        Will add a 1A current source to the open port and will then generate the netlist
+        to simulate against within this class
+        
+        Args:
+            port_pos (SkiDl net): A SKiDl net that makes up the positive side of 
+                the DUT's open port to test
+            
+            port_neg (SkiDl net): A SKiDl net that makes up the negative side of 
+                the DUT's open port to test
+        
+        Returns:
+            adds a 1A test source: `self.ithev` and creates that netlist to test:
+            `self.circ_netlist_obj`
+        
+        TODO:
+            -add assertions so that only a SKiDl net obj can only be passed in
+            -add an assertion to see if the port is truly open
+        """
+        
+        #add a current source to get Thevenin at port
+        self.ithev=I(ref='Ithev', dc_value=1@u_A)
+        self.ithev['n', 'p']+=port_pos, port_neg
+        self.ithev_ref=self.ithev.ref
+        
+       
+        #call generate netlist to create circ like we would if using `dc_ease`
+        #by its self and simultaneously pass it into while invoking `dc_ease`'s
+        # own instatation method
+        super().__init__(generate_netlist())
+        #print out the resulting circuit for debugging
+        print('circuit and Thevenin finding Isource')
+        print(self.circ_netlist_obj)
+    
+    
+    def find_thev(self):
+        """
+        method to conduct the dc sweep of `self.ithev` automatically and find the 
+        resulting Thevenin voltage and resistance
+        
+        Args: NONE
+        
+        Returns:
+            see `dc_ease`'s `record_dc_nodebranch` for a full list of returns. But specifically will
+            return `self.thevenin_sweep_data` which is the pandas' object with the
+            returned sweep data with only the necessary data for finding the Vth and Rth.
+            `self.rthev` and `self.vthev` which are Vth and Rth as floats respectively and
+            `self.thev_results` which is a panda dataframe presenting Vth and Rth in a table
+        
+        TODO:
+            
+        """
+        #set the sweep table
+        self.sweep_DF.at[self.ithev_ref]=[0, 1, 0.1]
+        self.clean_table()
+        
+        #do the sweep
+        self.do_dc_sim(self.ithev_ref)
+        #get the results 
+        self.record_dc_nodebranch(self.ithev_ref)
+        
+        #reduce the data
+        self.thevenin_sweep_data=self.dc_resultsNB_DF[node(self.ithev['n'])+'_[V]']
+        
+        #perform the 1d polyfit
+        self.rthev, self.vthev=np.polyfit(self.thevenin_sweep_data.index, self.thevenin_sweep_data.values, 1)
+        
+        #make a pandas dataframe table, because it's the nice thing to do
+        self.thev_results=pd.DataFrame(index=['Rthev', 'Vthev'], columns=['Values', 'Units'])
+        self.thev_results['Units']=['[Ohm]', '[V]']
+        self.thev_results['Values']=[self.rthev, self.vthev]
+        
+        
+    def display_thev(self):
+        """
+        Auxiliary function to plot our Thevenin findings, useful for presentions
+        and debugging
+        
+        Args: None
+        
+        Returns:
+            Creates a plot and with a table to the side with the Thevenin equivalent finding
+            with a table to the side summering our finding
+        
+        TODO:
+            - add a check to make sure self.find_thev has been done
+            
+        """
+        #create the plot "canvas"
+        fig, axis=plt.subplots(nrows=1, ncols=1)
+        
+        #make a line plot on canvas of sweep data 
+        self.thevenin_sweep_data.plot(grid=True, 
+        xlabel=self.ithev_ref+'_[A]', ylabel=node(self.ithev['n'])+'_[V]', 
+                                     ax=axis)
+        
+        #create "annotation" to hold self.thev_results in and to display next to the plot
+        Anotation=['Theven Port Results:\n']
+        for row in self.thev_results.itertuples():
+            Anotation.append('   '+f'{row.Index}: {row.Values:.3f} {row.Units}' +'\n')
+        
+        Anotation=''.join(Anotation)
+
+        fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
+        fig.suptitle('Thevin current sweep results')
+
 #chapter 1 section 5 Norton class
 # class that is a automated testsuite for finding the 
 # DC Norton current and resistince of a port
@@ -1180,123 +1648,31 @@ class Norton(dc_ease):
 
         fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
         fig.suptitle('Norten voltage sweep results')
+#chapter 1 section 6 findIntersection function
+#Assist function to find the intersection of two functions
 
-#chapter 1 section 5 Thevenin class
-# class that is a automated testsuite for finding the 
-# DC Thevenin voltage and resistince of a port
+#from https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html 
+#load fslove from scipy's optimize module
+from scipy.optimize import fsolve
 
-class Thevenin(dc_ease):
+#helper function to find the intersection of two functions with an initial guess
+def findIntersection(fun1,fun2,x0):
     """
-    Tool for finding the DC Thevenin equivalent voltage and resistance of a one port
-    linear circuit with an open test port. The DUT must contain all linear elements.
-    This class inheritance from the class `dc_ease` which is a tool to wrap and conduct .dc
-    SPICE simulation with SkiDl and pyspice
+    Aid function to find the intersection point of two curves
+    from: https://glowingpython.blogspot.com/2011/05/hot-to-find-intersection-of-two.html 
+    
+    Args:
+        func1(function or class): the first function whose curve is 
+            used to find the intersection of the two curves
+        
+        func2(function or class): the second function whose curve is 
+            used to find the intersection of the two curves
+        
+        x0 (float); initial guess of the intersection of the two functions
+    
+    Returns:
+        Returns array of float that are the intersections of the two functions, 
+        this is not very robust and thus one should read `fsolve`'s documentation 
+        for caveats  of usage
     """
-    
-    def __init__(self, port_pos, port_neg):
-        """
-        A new instantiation unique to this class but utilizes `dc_ease` internally.
-        Will add a 1A current source to the open port and will then generate the netlist
-        to simulate against within this class
-        
-        Args:
-            port_pos (SkiDl net): A SKiDl net that makes up the positive side of 
-                the DUT's open port to test
-            
-            port_neg (SkiDl net): A SKiDl net that makes up the negative side of 
-                the DUT's open port to test
-        
-        Returns:
-            adds a 1A test source: `self.ithev` and creates that netlist to test:
-            `self.circ_netlist_obj`
-        
-        TODO:
-            -add assertions so that only a SKiDl net obj can only be passed in
-            -add an assertion to see if the port is truly open
-        """
-        
-        #add a current source to get Thevenin at port
-        self.ithev=I(ref='Ithev', dc_value=1@u_A)
-        self.ithev['n', 'p']+=port_pos, port_neg
-        self.ithev_ref=self.ithev.ref
-        
-       
-        #call generate netlist to create circ like we would if using `dc_ease`
-        #by its self and simultaneously pass it into while invoking `dc_ease`'s
-        # own instatation method
-        super().__init__(generate_netlist())
-        #print out the resulting circuit for debugging
-        print('circuit and Thevenin finding Isource')
-        print(self.circ_netlist_obj)
-    
-    
-    def find_thev(self):
-        """
-        method to conduct the dc sweep of `self.ithev` automatically and find the 
-        resulting Thevenin voltage and resistance
-        
-        Args: NONE
-        
-        Returns:
-            see `dc_ease`'s `record_dc_nodebranch` for a full list of returns. But specifically will
-            return `self.thevenin_sweep_data` which is the pandas' object with the
-            returned sweep data with only the necessary data for finding the Vth and Rth.
-            `self.rthev` and `self.vthev` which are Vth and Rth as floats respectively and
-            `self.thev_results` which is a panda dataframe presenting Vth and Rth in a table
-        
-        TODO:
-            
-        """
-        #set the sweep table
-        self.sweep_DF.at[self.ithev_ref]=[0, 1, 0.1]
-        self.clean_table()
-        
-        #do the sweep
-        self.do_dc_sim(self.ithev_ref)
-        #get the results 
-        self.record_dc_nodebranch(self.ithev_ref)
-        
-        #reduce the data
-        self.thevenin_sweep_data=self.dc_resultsNB_DF[node(self.ithev['n'])+'_[V]']
-        
-        #perform the 1d polyfit
-        self.rthev, self.vthev=np.polyfit(self.thevenin_sweep_data.index, self.thevenin_sweep_data.values, 1)
-        
-        #make a pandas dataframe table, because it's the nice thing to do
-        self.thev_results=pd.DataFrame(index=['Rthev', 'Vthev'], columns=['Values', 'Units'])
-        self.thev_results['Units']=['[Ohm]', '[V]']
-        self.thev_results['Values']=[self.rthev, self.vthev]
-        
-        
-    def display_thev(self):
-        """
-        Auxiliary function to plot our Thevenin findings, useful for presentions
-        and debugging
-        
-        Args: None
-        
-        Returns:
-            Creates a plot and with a table to the side with the Thevenin equivalent finding
-            with a table to the side summering our finding
-        
-        TODO:
-            - add a check to make sure self.find_thev has been done
-            
-        """
-        #create the plot "canvas"
-        fig, axis=plt.subplots(nrows=1, ncols=1)
-        
-        #make a line plot on canvas of sweep data 
-        self.thevenin_sweep_data.plot(grid=True, 
-        xlabel=self.ithev_ref+'_[A]', ylabel=node(self.ithev['n'])+'_[V]', 
-                                     ax=axis)
-        
-        #create "annotation" to hold self.thev_results in and to display next to the plot
-        Anotation=['Theven Port Results:\n']
-        for row in self.thev_results.itertuples():
-            Anotation.append('   '+f'{row.Index}: {row.Values:.3f} {row.Units}' +'\n')
-        
-        Anotation=''.join(Anotation)
-
-        fig.text(1.1,.4, Anotation, fontsize=14, transform=fig.transFigure)
-        fig.suptitle('Thevin current sweep results')
+    return fsolve(lambda x : fun1(x) - fun2(x),x0)

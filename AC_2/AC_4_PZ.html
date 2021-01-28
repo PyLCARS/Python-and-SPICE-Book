@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Checking tool" href="../Appendix/skidl_2_pyspice_check.html" />
-    <link rel="prev" title="Basic Passive Filters" href="AC_2_RCL_filters.html" />
+    <link rel="prev" title="Mutual Inductance and SPICE" href="AC_3_CoupledMag.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -209,6 +209,48 @@
   </a>
   <ul class="current collapse-ul">
    <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -226,6 +268,36 @@
    <li class="toctree-l2">
     <a class="reference internal" href="AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#citations">
+     Citations
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -577,7 +649,11 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span><span class="p">,</span> <span class="n">easy_tf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import dc code from parral folder</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;../DC_1/&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span><span class="p">,</span> <span class="n">easy_tf</span>
+
 <span class="kn">from</span> <span class="nn">AC_2_Codes</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">sym</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
@@ -592,7 +668,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:35:09 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:39:39 2021 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="what-is-pz-anylsis">
 <h1>What is PZ anylsis<a class="headerlink" href="#what-is-pz-anylsis" title="Permalink to this headline">¶</a></h1>
@@ -689,9 +765,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 In 0 DC 5V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 C1 Out 0 0.1uF
 R1 In Out 1kOhm
-V1 In 0 DC 5V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -1774,10 +1850,10 @@ where \)</span>j\omega<span class="math notranslate nohighlight">\( is the angul
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N_1 0 2.7e-07
-L1 Out N_1 8.33e-05H
-R1 In Out 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out N_1 8.33e-05H
+C1 N_1 0 2.7e-07
+R1 In Out 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2169,13 +2245,13 @@ Denomator Delta: -0.00552408467046916*s - 1531.31009674072
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out N_1 1
-C2 In N_2 1
-L1 In Out 1H
-L2 N_1 N_2 1H
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 Rdummy 0 N_1 0
 Rdummy_1 N_2 0 0
+L1 In Out 1H
+L2 N_1 N_2 1H
+C1 Out N_1 1
+C2 In N_2 1
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2471,7 +2547,7 @@ Rdummy_1 N_2 0 0
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="AC_2_RCL_filters.html" title="previous page">Basic Passive Filters</a>
+    <a class='left-prev' id="prev-link" href="AC_3_CoupledMag.html" title="previous page">Mutual Inductance and SPICE</a>
     <a class='right-next' id="next-link" href="../Appendix/skidl_2_pyspice_check.html" title="next page">Checking tool</a>
 
     </div>

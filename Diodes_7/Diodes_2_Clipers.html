@@ -207,6 +207,48 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -224,6 +266,36 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#citations">
+     Citations
     </a>
    </li>
    <li class="toctree-l2">
@@ -506,7 +578,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:36:17 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:40:58 2021 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -521,39 +593,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">303</span>                     <span class="n">path</span> <span class="o">=</span> <span class="n">pyspice</span><span class="p">[</span><span class="s2">&quot;lib&quot;</span><span class="p">][</span><span class="n">model</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: &#39;lib&#39;
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">29</span><span class="n">be18072af7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">vs</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="n">gnd</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">gnd</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">(</span><span class="n">libs</span><span class="o">=</span><span class="s1">&#39;SpiceLib&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/circuit.py</span> in <span class="ni">generate_netlist</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">489</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">490</span>             <span class="n">gen_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_gen_netlist_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tool</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">491</span>             <span class="n">netlist</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Pass any remaining arguments.</span>
-<span class="g g-Whitespace">    </span><span class="mi">492</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="n">log_and_raise</span><span class="p">(</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>                         <span class="c1"># Read the default SPICE libraries.</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>                         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">lib_search_paths</span><span class="p">[</span><span class="n">SPICE</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">309</span>                             <span class="n">default_libs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SpiceLibrary</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> 
-<span class="g g-Whitespace">    </span><span class="mi">311</span>                     <span class="c1"># Search for the model in the default libraries.</span>
-
-<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;recurse&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+.include /mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/Diodes_7/SpiceLib/1N4148.lib
+D1 N_1 0 1N4148
+V1 N_1 0 1V
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>
@@ -580,39 +626,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">303</span>                     <span class="n">path</span> <span class="o">=</span> <span class="n">pyspice</span><span class="p">[</span><span class="s2">&quot;lib&quot;</span><span class="p">][</span><span class="n">model</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: &#39;lib&#39;
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">66</span><span class="n">a03a0416b4</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-<span class="g g-Whitespace">     </span><span class="mi">14</span> 
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">circ</span><span class="o">=</span><span class="n">generate_netlist</span><span class="p">(</span><span class="n">libs</span><span class="o">=</span><span class="s1">&#39;SpiceLib&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="nb">print</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/circuit.py</span> in <span class="ni">generate_netlist</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">489</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">490</span>             <span class="n">gen_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_gen_netlist_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tool</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">491</span>             <span class="n">netlist</span> <span class="o">=</span> <span class="n">gen_func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Pass any remaining arguments.</span>
-<span class="g g-Whitespace">    </span><span class="mi">492</span>         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="n">log_and_raise</span><span class="p">(</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/skidl/tools/spice.py</span> in <span class="ni">_gen_netlist_</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>                         <span class="c1"># Read the default SPICE libraries.</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>                         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">lib_search_paths</span><span class="p">[</span><span class="n">SPICE</span><span class="p">]:</span>
-<span class="ne">--&gt; </span><span class="mi">309</span>                             <span class="n">default_libs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SpiceLibrary</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> 
-<span class="g g-Whitespace">    </span><span class="mi">311</span>                     <span class="c1"># Search for the model in the default libraries.</span>
-
-<span class="ne">TypeError</span>: __init__() got an unexpected keyword argument &#39;recurse&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+.include /mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/Diodes_7/SpiceLib/2N2222A.lib
+Q1 N_1 N_2 0 2n2222a
+V1 N_3 0 5V
+R1 N_4 N_2 5kOhm
+R2 N_2 N_3 25kOhm
+R3 N_1 N_3 1kOhm
+V2 N_4 0 DC 0V AC 1V 0.0rad SIN(0V 0.01V 1kHz 0s 0Hz)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
 </pre></div>
 </div>
 </div>

@@ -207,6 +207,48 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -224,6 +266,36 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#citations">
+     Citations
     </a>
    </li>
    <li class="toctree-l2">
@@ -511,12 +583,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:36:20 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:41:09 2021 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instatate the rc_lowpass filter to </span>
-<span class="n">lowpassF</span><span class="o">=</span><span class="n">rc_lowpass</span><span class="p">(</span><span class="n">C_value</span><span class="o">=.</span><span class="mi">1</span><span class="nd">@u_uF</span><span class="p">,</span> <span class="n">R_value</span><span class="o">=</span><span class="mi">1</span><span class="nd">@u_kOhm</span><span class="p">)</span>
+<span class="n">lowpassF</span><span class="o">=</span><span class="n">rlc_parallel_highpass</span><span class="p">()</span>
 <span class="n">lowpassF</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -545,9 +617,10 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out 0 0.1uF
-R1 In Out 1kOhm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out 0 1H
+C1 In Out 1
+R1 Out 0 1Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -610,21 +683,23 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;v1&#39;: WaveForm v1 [1.]@V,
- &#39;r1_scale&#39;: WaveForm r1_scale [-0.]@V,
- &#39;r1_bv_max&#39;: WaveForm r1_bv_max [-0.]@V,
- &#39;r1_m&#39;: WaveForm r1_m [-0.]@V,
- &#39;r1_w&#39;: WaveForm r1_w [-0.]@V,
- &#39;r1_l&#39;: WaveForm r1_l [-0.]@V,
- &#39;r1&#39;: WaveForm r1 [-0.]@V,
- &#39;r1:ef&#39;: WaveForm r1:ef [-0.]@V,
- &#39;r1:wf&#39;: WaveForm r1:wf [-0.]@V,
- &#39;r1:lf&#39;: WaveForm r1:lf [-0.]@V,
- &#39;r1:bv_max&#39;: WaveForm r1:bv_max [-0.]@V,
- &#39;c1_scale&#39;: WaveForm c1_scale [-0.]@V,
- &#39;c1_bv_max&#39;: WaveForm c1_bv_max [-0.]@V,
- &#39;c1_m&#39;: WaveForm c1_m [-0.]@V,
- &#39;c1:bv_max&#39;: WaveForm c1:bv_max [-0.]@V}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;v1&#39;: WaveForm v1 [0.]@V,
+ &#39;r1_scale&#39;: WaveForm r1_scale [0.]@V,
+ &#39;r1_bv_max&#39;: WaveForm r1_bv_max [0.]@V,
+ &#39;r1_m&#39;: WaveForm r1_m [0.]@V,
+ &#39;r1_w&#39;: WaveForm r1_w [0.]@V,
+ &#39;r1_l&#39;: WaveForm r1_l [0.]@V,
+ &#39;r1&#39;: WaveForm r1 [0.]@V,
+ &#39;r1:ef&#39;: WaveForm r1:ef [0.]@V,
+ &#39;r1:wf&#39;: WaveForm r1:wf [0.]@V,
+ &#39;r1:lf&#39;: WaveForm r1:lf [0.]@V,
+ &#39;r1:bv_max&#39;: WaveForm r1:bv_max [0.]@V,
+ &#39;l1_scale&#39;: WaveForm l1_scale [-0.]@V,
+ &#39;l1_m&#39;: WaveForm l1_m [-0.]@V,
+ &#39;c1_scale&#39;: WaveForm c1_scale [0.]@V,
+ &#39;c1_bv_max&#39;: WaveForm c1_bv_max [0.]@V,
+ &#39;c1_m&#39;: WaveForm c1_m [0.]@V,
+ &#39;c1:bv_max&#39;: WaveForm c1:bv_max [0.]@V}
 </pre></div>
 </div>
 </div>
@@ -645,8 +720,34 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circ</span><span class="o">.</span><span class="n">element_names</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="../_images/Sensitivity_1_ngspice's_12_0.png" src="../_images/Sensitivity_1_ngspice's_12_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>odict_keys([&#39;V1&#39;, &#39;L1&#39;, &#39;C1&#39;, &#39;R1&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">circ</span><span class="o">.</span><span class="n">element_names</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1
+l1
+c1
+r1
+</pre></div>
+</div>
 </div>
 </div>
 

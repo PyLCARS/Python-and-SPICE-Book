@@ -56,8 +56,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="What is PZ anylsis" href="AC_4_PZ.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="AC_1_One-Two-Three_Phase_AC.html" />
+    <link rel="next" title="Mutual Inductance and SPICE" href="AC_3_CoupledMag.html" />
+    <link rel="prev" title="Capacitors and Inductors" href="AC_1_One-Two-Three_Phase_AC.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -208,6 +208,48 @@
    Chapter 2 AC simulations with Python and SPICE
   </a>
   <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Basic Passive Filters
@@ -226,6 +268,36 @@
    <li class="toctree-l2">
     <a class="reference internal" href="#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#citations">
+     Citations
     </a>
    </li>
    <li class="toctree-l2">
@@ -649,7 +721,10 @@ equivalencies to dc internals with .ac sims</p></li>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import dc code from parral folder</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;../DC_1/&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
 <span class="c1">#from AC_2_Codes import </span>
 
 <span class="n">sym</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
@@ -664,7 +739,7 @@ equivalencies to dc internals with .ac sims</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:34:05 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:37:57 2021 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="basic-passive-filters">
 <h1>Basic Passive Filters<a class="headerlink" href="#basic-passive-filters" title="Permalink to this headline">¶</a></h1>
@@ -940,9 +1015,9 @@ equivalencies to dc internals with .ac sims</p></li>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 C1 Out 0 0.1uF
 R1 In Out 1kOhm
-V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -1214,8 +1289,8 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Out_[V]</th>
       <th>In_[V]</th>
+      <th>Out_[V]</th>
       <th>V1_[A]</th>
     </tr>
     <tr>
@@ -1228,32 +1303,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <tbody>
     <tr>
       <th>1.000000e-01</th>
-      <td>1.000000-0.000063j</td>
       <td>1.000000+0.000000j</td>
+      <td>1.000000-0.000063j</td>
       <td>3.947842e-12+6.283185e-08j</td>
     </tr>
     <tr>
       <th>1.258925e-01</th>
-      <td>1.000000-0.000079j</td>
       <td>1.000000+0.000000j</td>
+      <td>1.000000-0.000079j</td>
       <td>6.256907e-12+7.910062e-08j</td>
     </tr>
     <tr>
       <th>1.584893e-01</th>
-      <td>1.000000-0.000100j</td>
       <td>1.000000+0.000000j</td>
+      <td>1.000000-0.000100j</td>
       <td>9.916529e-12+9.958178e-08j</td>
     </tr>
     <tr>
       <th>1.995262e-01</th>
-      <td>1.000000-0.000125j</td>
       <td>1.000000+0.000000j</td>
+      <td>1.000000-0.000125j</td>
       <td>1.571664e-11+1.253660e-07j</td>
     </tr>
     <tr>
       <th>2.511886e-01</th>
-      <td>1.000000-0.000158j</td>
       <td>1.000000+0.000000j</td>
+      <td>1.000000-0.000158j</td>
       <td>2.490920e-11+1.578265e-07j</td>
     </tr>
     <tr>
@@ -1264,32 +1339,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
     </tr>
     <tr>
       <th>3.981072e+07</th>
-      <td>0.000000-0.000040j</td>
       <td>1.000000+0.000000j</td>
+      <td>0.000000-0.000040j</td>
       <td>1.000000e-03+3.997791e-08j</td>
     </tr>
     <tr>
       <th>5.011872e+07</th>
-      <td>0.000000-0.000032j</td>
       <td>1.000000+0.000000j</td>
+      <td>0.000000-0.000032j</td>
       <td>1.000000e-03+3.175559e-08j</td>
     </tr>
     <tr>
       <th>6.309574e+07</th>
-      <td>0.000000-0.000025j</td>
       <td>1.000000+0.000000j</td>
+      <td>0.000000-0.000025j</td>
       <td>1.000000e-03+2.522436e-08j</td>
     </tr>
     <tr>
       <th>7.943282e+07</th>
-      <td>0.000000-0.000020j</td>
       <td>1.000000+0.000000j</td>
+      <td>0.000000-0.000020j</td>
       <td>1.000000e-03+2.003642e-08j</td>
     </tr>
     <tr>
       <th>1.000000e+08</th>
-      <td>0.000000-0.000016j</td>
       <td>1.000000+0.000000j</td>
+      <td>0.000000-0.000016j</td>
       <td>1.000000e-03+1.591549e-08j</td>
     </tr>
   </tbody>
@@ -1439,8 +1514,8 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Out_[V]</th>
       <th>In_[V]</th>
+      <th>Out_[V]</th>
       <th>V1_[A]</th>
     </tr>
     <tr>
@@ -1453,32 +1528,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <tbody>
     <tr>
       <th>1.000000e-01</th>
-      <td>1.000000e+00</td>
       <td>1.0</td>
+      <td>1.000000e+00</td>
       <td>3.947842e-12</td>
     </tr>
     <tr>
       <th>1.258925e-01</th>
-      <td>1.000000e+00</td>
       <td>1.0</td>
+      <td>1.000000e+00</td>
       <td>6.256907e-12</td>
     </tr>
     <tr>
       <th>1.584893e-01</th>
-      <td>1.000000e+00</td>
       <td>1.0</td>
+      <td>1.000000e+00</td>
       <td>9.916529e-12</td>
     </tr>
     <tr>
       <th>1.995262e-01</th>
-      <td>1.000000e+00</td>
       <td>1.0</td>
+      <td>1.000000e+00</td>
       <td>1.571664e-11</td>
     </tr>
     <tr>
       <th>2.511886e-01</th>
-      <td>1.000000e+00</td>
       <td>1.0</td>
+      <td>1.000000e+00</td>
       <td>2.490920e-11</td>
     </tr>
     <tr>
@@ -1489,32 +1564,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
     </tr>
     <tr>
       <th>3.981072e+07</th>
-      <td>1.598234e-09</td>
       <td>1.0</td>
+      <td>1.598234e-09</td>
       <td>1.000000e-03</td>
     </tr>
     <tr>
       <th>5.011872e+07</th>
-      <td>1.008417e-09</td>
       <td>1.0</td>
+      <td>1.008417e-09</td>
       <td>1.000000e-03</td>
     </tr>
     <tr>
       <th>6.309574e+07</th>
-      <td>6.362683e-10</td>
       <td>1.0</td>
+      <td>6.362683e-10</td>
       <td>1.000000e-03</td>
     </tr>
     <tr>
       <th>7.943282e+07</th>
-      <td>4.014581e-10</td>
       <td>1.0</td>
+      <td>4.014581e-10</td>
       <td>1.000000e-03</td>
     </tr>
     <tr>
       <th>1.000000e+08</th>
-      <td>2.533030e-10</td>
       <td>1.0</td>
+      <td>2.533030e-10</td>
       <td>1.000000e-03</td>
     </tr>
   </tbody>
@@ -1548,8 +1623,8 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Out_[V][dB]</th>
       <th>In_[V][dB]</th>
+      <th>Out_[V][dB]</th>
       <th>V1_[A][dB]</th>
     </tr>
     <tr>
@@ -1562,32 +1637,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
   <tbody>
     <tr>
       <th>1.000000e-01</th>
-      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>-144.036407</td>
     </tr>
     <tr>
       <th>1.258925e-01</th>
-      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>-142.036407</td>
     </tr>
     <tr>
       <th>1.584893e-01</th>
-      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>-140.036407</td>
     </tr>
     <tr>
       <th>1.995262e-01</th>
-      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>-138.036407</td>
     </tr>
     <tr>
       <th>2.511886e-01</th>
-      <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
       <td>-136.036407</td>
     </tr>
     <tr>
@@ -1598,32 +1673,32 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
     </tr>
     <tr>
       <th>3.981072e+07</th>
-      <td>-87.963600</td>
       <td>0.0</td>
+      <td>-87.963600</td>
       <td>-60.000000</td>
     </tr>
     <tr>
       <th>5.011872e+07</th>
-      <td>-89.963600</td>
       <td>0.0</td>
+      <td>-89.963600</td>
       <td>-60.000000</td>
     </tr>
     <tr>
       <th>6.309574e+07</th>
-      <td>-91.963593</td>
       <td>0.0</td>
+      <td>-91.963593</td>
       <td>-60.000000</td>
     </tr>
     <tr>
       <th>7.943282e+07</th>
-      <td>-93.963593</td>
       <td>0.0</td>
+      <td>-93.963593</td>
       <td>-60.000000</td>
     </tr>
     <tr>
       <th>1.000000e+08</th>
-      <td>-95.963593</td>
       <td>0.0</td>
+      <td>-95.963593</td>
       <td>-60.000000</td>
     </tr>
   </tbody>
@@ -2374,9 +2449,9 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 L1 In Out 0.0001H
 R1 Out 0 1000.0
-V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2689,9 +2764,9 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 C1 In Out 1.5nF
 R1 Out 0 10kOhm
-V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2989,9 +3064,9 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 L1 Out 0 0.15H
 R1 In Out 10kOhm
-V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -3099,11 +3174,11 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 In Inter 1.5nF
-C2 Out 0 1.5nF
-R1 Inter 0 10kOhm
-R2 Inter Out 1kOhm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
+C1 In Inter 1.5nF
+R1 Inter 0 10kOhm
+C2 Out 0 1.5nF
+R2 Inter Out 1kOhm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -3524,10 +3599,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 10V 10kHz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out 0 2.7e-07
-L1 N_1 Out 8.33e-05H
-R1 In N_1 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 N_1 Out 8.33e-05H
+C1 Out 0 2.7e-07
+R1 In N_1 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -3828,10 +3903,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N_1 Out 2.7e-07
-L1 Out 0 8.33e-05H
-R1 In N_1 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out 0 8.33e-05H
+C1 N_1 Out 2.7e-07
+R1 In N_1 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -4133,10 +4208,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N_1 Out 2.7e-07
-L1 In N_1 8.33e-05H
-R1 Out 0 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 In N_1 8.33e-05H
+C1 N_1 Out 2.7e-07
+R1 Out 0 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -4438,10 +4513,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 N_1 0 2.7e-07
-L1 Out N_1 8.33e-05H
-R1 In Out 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out N_1 8.33e-05H
+C1 N_1 0 2.7e-07
+R1 In Out 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -4817,10 +4892,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out 0 3.33e-08
-L1 In Out 0.000675H
-R1 Out 0 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 In Out 0.000675H
+C1 Out 0 3.33e-08
+R1 Out 0 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -5125,10 +5200,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 In Out 3.33e-08
-L1 Out 0 0.000675H
-R1 Out 0 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out 0 0.000675H
+C1 In Out 3.33e-08
+R1 Out 0 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -5433,10 +5508,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out 0 3.33e-08
-L1 Out 0 0.000675H
-R1 In Out 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 Out 0 0.000675H
+C1 Out 0 3.33e-08
+R1 In Out 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -5747,10 +5822,10 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 In Out 3.33e-08
-L1 In Out 0.000675H
-R1 Out 0 50Ohm
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
+L1 In Out 0.000675H
+C1 In Out 3.33e-08
+R1 Out 0 50Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -6091,13 +6166,13 @@ V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-C1 Out N_1 1
-C2 In N_2 1
-L1 In Out 1H
-L2 N_1 N_2 1H
 V1 In 0 DC 0V AC 1V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 Rdummy 0 N_1 0
 Rdummy_1 N_2 0 0
+L1 In Out 1H
+L2 N_1 N_2 1H
+C1 Out N_1 1
+C2 In N_2 1
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -6190,50 +6265,15 @@ Rdummy_1 N_2 0 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="n">n</span><span class="o">=</span><span class="n">kiwi</span><span class="o">.</span><span class="n">NodalAnalysis</span><span class="p">(</span><span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">schematic</span><span class="o">.</span><span class="n">laplace</span><span class="p">())</span>
+<span class="c1">#also wont convert to laplace</span>
+<span class="n">n</span><span class="o">=</span><span class="n">kiwi</span><span class="o">.</span><span class="n">NodalAnalysis</span><span class="p">(</span><span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">schematic</span><span class="p">)</span>
 <span class="n">n</span><span class="o">.</span><span class="n">nodal_equations</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">126</span><span class="o">-</span><span class="mi">2419374</span><span class="n">f2f5d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">lcapy_self</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">n</span><span class="o">=</span><span class="n">kiwi</span><span class="o">.</span><span class="n">NodalAnalysis</span><span class="p">(</span><span class="n">allpasslat_lf</span><span class="o">.</span><span class="n">schematic</span><span class="o">.</span><span class="n">laplace</span><span class="p">())</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n</span><span class="o">.</span><span class="n">nodal_equations</span><span class="p">()</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py</span> in <span class="ni">__init__</span><span class="nt">(self, cct, node_prefix)</span>
-<span class="nn">     64         self._y = matrix([val for key, val</span> in <span class="ni">self._unknowns.items</span><span class="nt">() if key != &#39;0&#39;])</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> 
-<span class="ne">---&gt; </span><span class="mi">66</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_equations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_equations</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> 
-<span class="g g-Whitespace">     </span><span class="mi">68</span> 
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/nodalanalysis.py</span> in <span class="ni">_make_equations</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span>                     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Component </span><span class="si">%s</span><span class="s1"> does not have node </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elt</span><span class="p">,</span> <span class="n">node</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">126</span>                     <span class="n">result</span> <span class="o">+=</span> <span class="n">elt</span><span class="o">.</span><span class="n">cpt</span><span class="o">.</span><span class="n">i_equation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_unknowns</span><span class="p">[</span><span class="n">n1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unknowns</span><span class="p">[</span><span class="n">n2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">kind</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span>                 <span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span> <span class="o">=</span> <span class="n">result</span><span class="p">,</span> <span class="n">expr</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span> 
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/oneport.py</span> in <span class="ni">i_equation</span><span class="nt">(self, v, kind)</span>
-<span class="g g-Whitespace">    </span><span class="mi">889</span>         <span class="k">if</span> <span class="n">kind</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;super&#39;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">890</span>             <span class="k">return</span> <span class="n">SuperpositionCurrent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">*</span> <span class="n">expr</span><span class="p">(</span><span class="n">Derivative</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">expr</span><span class="p">,</span> <span class="n">t</span><span class="p">)))</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">891</span>         <span class="k">return</span> <span class="n">SuperpositionCurrent</span><span class="p">(</span><span class="n">SuperpositionVoltage</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Z</span><span class="o">.</span><span class="n">_selectexpr</span><span class="p">(</span><span class="n">kind</span><span class="p">))</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">892</span> 
-<span class="g g-Whitespace">    </span><span class="mi">893</span>     <span class="k">def</span> <span class="nf">v_equation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">):</span>
-
-<span class="nn">~/anaconda3/lib/python3.7/site-packages/lcapy/expr.py</span> in <span class="ni">__getattr__</span><span class="nt">(self, attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">635</span>         <span class="n">expr1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr</span>
-<span class="g g-Whitespace">    </span><span class="mi">636</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">637</span>             <span class="n">a</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">expr1</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">638</span>         <span class="k">except</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span>             <span class="k">raise</span>
-
-<span class="ne">AttributeError</span>: &#39;Mul&#39; object has no attribute &#39;_selectexpr&#39;
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\left\{ 1 : C_{1} \frac{d}{d t} \left(V_{1}(t) - V_{2}(t)\right) + \frac{\int\limits_{-\infty}^{t} \left(V_{1}(\tau) - V_{3}(\tau)\right)\, d\tau}{L_{2}} = 0, \  2 : C_{1} \frac{d}{d t} \left(- V_{1}(t) + V_{2}(t)\right) + \frac{\int\limits_{-\infty}^{t} V_{2}(\tau)\, d\tau}{L_{1}} = 0, \  3 : C_{2} \frac{d}{d t} V_{3}(t) + \frac{\int\limits_{-\infty}^{t} \left(- V_{1}(\tau) + V_{3}(\tau)\right)\, d\tau}{L_{2}} = 0\right\}\]</div>
 </div>
 </div>
 <div class="section" id="citations">
@@ -6275,8 +6315,8 @@ Rdummy_1 N_2 0 0
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="AC_1_One-Two-Three_Phase_AC.html" title="previous page">&lt;no title&gt;</a>
-    <a class='right-next' id="next-link" href="AC_4_PZ.html" title="next page">What is PZ anylsis</a>
+    <a class='left-prev' id="prev-link" href="AC_1_One-Two-Three_Phase_AC.html" title="previous page">Capacitors and Inductors</a>
+    <a class='right-next' id="next-link" href="AC_3_CoupledMag.html" title="next page">Mutual Inductance and SPICE</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -109,14 +109,14 @@ def get_skidl_spice_ref(skidle_element):
     Helper function to retrieve SKiDL element name as appears in the final netlist
     
     Args:
-        skidle_element (skidl.Part.Part): SKiDl part to get the netlist name from
+        skidle_element (skidl.part.Part): SKiDl part to get the netlist name from
     
     Returns:
         returns a string with the netlist name of `skidle_element`, or throws an
         error if `skidle_element` is not a SKiDl part
     
     """
-    assert repr(type(skidle_element))=="<class 'skidl.Part.Part'>", '`skidle_element` must be a SKiDl part'
+    assert repr(type(skidle_element))=="<class 'skidl.part.Part'>", '`skidle_element` must be a SKiDl part'
     
     if skidle_element.ref_prefix!=skidle_element.ref[0]:
         return skidle_element.ref_prefix+skidle_element.ref
@@ -283,7 +283,7 @@ pre_tf_res
 # For now, just know internal parameters have a string calls of `<Elelement name>@[<internal paamamater>]` that is passed to a PySPICE simulation objects `.save_internal_parameters` method and then are returned in the results as the original string call to the results super dictionary.
 # 
 
-# In[ ]:
+# In[12]:
 
 
 #%%writefile -a DC_1_Codes.py
@@ -422,7 +422,7 @@ class op_internal_ivp():
 
 # ### pre transform_internals
 
-# In[ ]:
+# In[13]:
 
 
 reset()
@@ -443,7 +443,7 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[ ]:
+# In[14]:
 
 
 preop_ivp_sim=op_internal_ivp(circ)
@@ -453,7 +453,7 @@ pre_ivp_res
 
 # ### post transform internals
 
-# In[ ]:
+# In[15]:
 
 
 reset()
@@ -478,7 +478,7 @@ circ=generate_netlist()
 print(circ)
 
 
-# In[ ]:
+# In[16]:
 
 
 postop_ivp_sim=op_internal_ivp(circ)
@@ -490,14 +490,14 @@ post_ivp_res
 # Since our results are stored in Pandas dataframes we can make use of the power of Pandas to do data analysis to get insight into what is going on. Where below we get a merger of the two dataframes side by side for all the elements that remained the same in the circuit pre and post-transformation. And we then follow that up with color-coding of what values remained the same between the pre and post-transformation of the circuit
 # 
 
-# In[ ]:
+# In[17]:
 
 
 pre_post_comp=pd.concat([pre_ivp_res, post_ivp_res], join='inner',  axis='columns', keys=['Pre', 'Post'])
 pre_post_comp
 
 
-# In[ ]:
+# In[18]:
 
 
 def color_results(row):    

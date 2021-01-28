@@ -17,6 +17,7 @@
 # 
 # AC_1_One-Two-Three_Phase_AC.ipynb
 # AC_2_RCL_filters
+# AC_3_CoupledMag
 # AC_4_PZ
 # ```
 # 

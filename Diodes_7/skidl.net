@@ -1,2 +1,8 @@
 .title 
-
+.include /mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/Diodes_7/SpiceLib/2N2222A.lib
+Q1 N_1 N_2 0 2n2222a
+V1 N_3 0 5V
+R1 N_4 N_2 5kOhm
+R2 N_2 N_3 25kOhm
+R3 N_1 N_3 1kOhm
+V2 N_4 0 DC 0V AC 1V 0.0rad SIN(0V 0.01V 1kHz 0s 0Hz)

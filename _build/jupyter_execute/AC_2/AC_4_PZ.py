@@ -39,7 +39,11 @@ import warnings
 # In[2]:
 
 
+#import dc code from parral folder
+import sys
+sys.path.insert(1, '../DC_1/')
 from DC_1_Codes import get_skidl_spice_ref, easy_tf
+
 from AC_2_Codes import *
 
 sym.init_printing()

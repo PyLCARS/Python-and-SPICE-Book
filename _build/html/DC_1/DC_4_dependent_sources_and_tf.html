@@ -209,6 +209,48 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html">
+     Capacitors and Inductors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#ac-sources">
+     AC Sources
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#v-max-fourier-terms-and-rms">
+     <span class="math notranslate nohighlight">
+      \(V_{max}\)
+     </span>
+     ,  Fourier terms, and RMS¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#single-phase-cirucit">
+     Single Phase Cirucit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#two-phase-system">
+     Two-Phase System¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-four-wire-y-star-topology">
+     Three Phase Four Wire Y (Star) Topology ¶
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_1_One-Two-Three_Phase_AC.html#three-phase-three-wire-delta-topology">
+     Three Phase Three Wire
+     <span class="math notranslate nohighlight">
+      \(\Delta\)
+     </span>
+     Topology
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html">
      Basic Passive Filters
     </a>
@@ -226,6 +268,36 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../AC_2/AC_2_RCL_filters.html#all-pass-filters">
      All Pass filters
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../AC_2/AC_3_CoupledMag.html#citations">
+     Citations
     </a>
    </li>
    <li class="toctree-l2">
@@ -560,7 +632,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:35:49 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:40:24 2021 MST</td></tr></table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -617,12 +689,12 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-R10 N_4 0 10Ohm
-R2 N_3 N_1 2Ohm
 R5 N_2 N_3 5Ohm
-H1 N_2 0 Vix 2
-Vix N_1 0 0V
+R2 N_3 N_1 2Ohm
+R10 N_4 0 10Ohm
 Vvs N_4 N_3 5V
+Vix N_1 0 0V
+H1 N_2 0 Vix 2
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -691,25 +763,25 @@ Vvs N_4 N_3 5V
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r5[p] power
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r10[p] power
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vix[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @vvs[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r2[p] power
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r10[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r5[p] power
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @h1[p] power
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/DC_1/DC_1_Codes.py:638: UserWarning: Tight layout not applied. tight_layout cannot make axes height small enough to accommodate all axes decorations
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit is None for @r2[p] power
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/mnt/c/Users/strin/Insync/string12oil@gmail.com/Google Drive/MyProjects/python-spice/Python-and-SPICE-Book/DC_1/DC_1_Codes.py:986: UserWarning: Tight layout not applied. tight_layout cannot make axes height small enough to accommodate all axes decorations
   plt.tight_layout()
 </pre></div>
 </div>
@@ -742,12 +814,12 @@ Vvs N_4 N_3 5V
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>N_4_[V]</th>
+      <th>N_2_[V]</th>
       <th>N_3_[V]</th>
       <th>N_1_[V]</th>
-      <th>N_2_[V]</th>
-      <th>Vix_[A]</th>
+      <th>N_4_[V]</th>
       <th>Vvs_[A]</th>
+      <th>Vix_[A]</th>
     </tr>
     <tr>
       <th>Vvs</th>
@@ -771,91 +843,91 @@ Vvs N_4 N_3 5V
     </tr>
     <tr>
       <th>1.0</th>
-      <td>0.833333</td>
+      <td>-0.166667</td>
       <td>-0.166667</td>
       <td>0.0</td>
-      <td>-0.166667</td>
+      <td>0.833333</td>
       <td>0.083333</td>
       <td>0.083333</td>
     </tr>
     <tr>
       <th>2.0</th>
-      <td>1.666667</td>
+      <td>-0.333333</td>
       <td>-0.333333</td>
       <td>0.0</td>
-      <td>-0.333333</td>
+      <td>1.666667</td>
       <td>0.166667</td>
       <td>0.166667</td>
     </tr>
     <tr>
       <th>3.0</th>
-      <td>2.500000</td>
+      <td>-0.500000</td>
       <td>-0.500000</td>
       <td>0.0</td>
-      <td>-0.500000</td>
+      <td>2.500000</td>
       <td>0.250000</td>
       <td>0.250000</td>
     </tr>
     <tr>
       <th>4.0</th>
-      <td>3.333333</td>
+      <td>-0.666667</td>
       <td>-0.666667</td>
       <td>0.0</td>
-      <td>-0.666667</td>
+      <td>3.333333</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>5.0</th>
-      <td>4.166667</td>
+      <td>-0.833333</td>
       <td>-0.833333</td>
       <td>0.0</td>
-      <td>-0.833333</td>
+      <td>4.166667</td>
       <td>0.416667</td>
       <td>0.416667</td>
     </tr>
     <tr>
       <th>6.0</th>
-      <td>5.000000</td>
+      <td>-1.000000</td>
       <td>-1.000000</td>
       <td>0.0</td>
-      <td>-1.000000</td>
+      <td>5.000000</td>
       <td>0.500000</td>
       <td>0.500000</td>
     </tr>
     <tr>
       <th>7.0</th>
-      <td>5.833333</td>
+      <td>-1.166667</td>
       <td>-1.166667</td>
       <td>0.0</td>
-      <td>-1.166667</td>
+      <td>5.833333</td>
       <td>0.583333</td>
       <td>0.583333</td>
     </tr>
     <tr>
       <th>8.0</th>
-      <td>6.666667</td>
+      <td>-1.333333</td>
       <td>-1.333333</td>
       <td>0.0</td>
-      <td>-1.333333</td>
+      <td>6.666667</td>
       <td>0.666667</td>
       <td>0.666667</td>
     </tr>
     <tr>
       <th>9.0</th>
-      <td>7.500000</td>
+      <td>-1.500000</td>
       <td>-1.500000</td>
       <td>0.0</td>
-      <td>-1.500000</td>
+      <td>7.500000</td>
       <td>0.750000</td>
       <td>0.750000</td>
     </tr>
     <tr>
       <th>10.0</th>
-      <td>8.333333</td>
+      <td>-1.666667</td>
       <td>-1.666667</td>
       <td>0.0</td>
-      <td>-1.666667</td>
+      <td>8.333333</td>
       <td>0.833333</td>
       <td>0.833333</td>
     </tr>
@@ -888,19 +960,19 @@ Vvs N_4 N_3 5V
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>R10[i]_[A]</th>
-      <th>R10[p]_[W]</th>
-      <th>R2[i]_[A]</th>
-      <th>R2[p]_[W]</th>
       <th>R5[i]_[A]</th>
       <th>R5[p]_[W]</th>
+      <th>R2[i]_[A]</th>
+      <th>R2[p]_[W]</th>
+      <th>R10[i]_[A]</th>
+      <th>R10[p]_[W]</th>
+      <th>Vvs[i]_[A]</th>
+      <th>Vvs[p]_[W]</th>
+      <th>Vix[i]_[A]</th>
+      <th>Vix[p]_[W]</th>
       <th>H1[i]_[A]</th>
       <th>H1[v]_[V]</th>
       <th>H1[p]_[W]</th>
-      <th>Vix[i]_[A]</th>
-      <th>Vix[p]_[W]</th>
-      <th>Vvs[i]_[A]</th>
-      <th>Vvs[p]_[W]</th>
     </tr>
     <tr>
       <th>Vvs</th>
@@ -922,179 +994,179 @@ Vvs N_4 N_3 5V
   <tbody>
     <tr>
       <th>0.0</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
       <td>-0.000000</td>
       <td>-0.0</td>
-      <td>-0.000000</td>
-      <td>-0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1.0</th>
-      <td>0.083333</td>
-      <td>0.069444</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.083333</td>
       <td>0.013889</td>
-      <td>0.0</td>
+      <td>0.083333</td>
+      <td>0.069444</td>
+      <td>0.083333</td>
+      <td>0.083333</td>
+      <td>0.083333</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-0.166667</td>
       <td>-0.0</td>
-      <td>0.083333</td>
-      <td>0.0</td>
-      <td>0.083333</td>
-      <td>0.083333</td>
     </tr>
     <tr>
       <th>2.0</th>
-      <td>0.166667</td>
-      <td>0.277778</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.166667</td>
       <td>0.055556</td>
-      <td>0.0</td>
+      <td>0.166667</td>
+      <td>0.277778</td>
+      <td>0.166667</td>
+      <td>0.333333</td>
+      <td>0.166667</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-0.333333</td>
       <td>-0.0</td>
-      <td>0.166667</td>
-      <td>0.0</td>
-      <td>0.166667</td>
-      <td>0.333333</td>
     </tr>
     <tr>
       <th>3.0</th>
-      <td>0.250000</td>
-      <td>0.625000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.250000</td>
       <td>0.125000</td>
-      <td>0.0</td>
+      <td>0.250000</td>
+      <td>0.625000</td>
+      <td>0.250000</td>
+      <td>0.750000</td>
+      <td>0.250000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-0.500000</td>
       <td>-0.0</td>
-      <td>0.250000</td>
-      <td>0.0</td>
-      <td>0.250000</td>
-      <td>0.750000</td>
     </tr>
     <tr>
       <th>4.0</th>
-      <td>0.333333</td>
-      <td>1.111111</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.333333</td>
       <td>0.222222</td>
-      <td>0.0</td>
+      <td>0.333333</td>
+      <td>1.111111</td>
+      <td>0.333333</td>
+      <td>1.333333</td>
+      <td>0.333333</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-0.666667</td>
       <td>-0.0</td>
-      <td>0.333333</td>
-      <td>0.0</td>
-      <td>0.333333</td>
-      <td>1.333333</td>
     </tr>
     <tr>
       <th>5.0</th>
-      <td>0.416667</td>
-      <td>1.736111</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.416667</td>
       <td>0.347222</td>
-      <td>0.0</td>
+      <td>0.416667</td>
+      <td>1.736111</td>
+      <td>0.416667</td>
+      <td>2.083333</td>
+      <td>0.416667</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-0.833333</td>
       <td>-0.0</td>
-      <td>0.416667</td>
-      <td>0.0</td>
-      <td>0.416667</td>
-      <td>2.083333</td>
     </tr>
     <tr>
       <th>6.0</th>
-      <td>0.500000</td>
-      <td>2.500000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.500000</td>
       <td>0.500000</td>
-      <td>0.0</td>
+      <td>0.500000</td>
+      <td>2.500000</td>
+      <td>0.500000</td>
+      <td>3.000000</td>
+      <td>0.500000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-1.000000</td>
       <td>-0.0</td>
-      <td>0.500000</td>
-      <td>0.0</td>
-      <td>0.500000</td>
-      <td>3.000000</td>
     </tr>
     <tr>
       <th>7.0</th>
-      <td>0.583333</td>
-      <td>3.402778</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.583333</td>
       <td>0.680556</td>
-      <td>0.0</td>
+      <td>0.583333</td>
+      <td>3.402778</td>
+      <td>0.583333</td>
+      <td>4.083333</td>
+      <td>0.583333</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-1.166667</td>
       <td>-0.0</td>
-      <td>0.583333</td>
-      <td>0.0</td>
-      <td>0.583333</td>
-      <td>4.083333</td>
     </tr>
     <tr>
       <th>8.0</th>
-      <td>0.666667</td>
-      <td>4.444444</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.666667</td>
       <td>0.888889</td>
-      <td>0.0</td>
+      <td>0.666667</td>
+      <td>4.444444</td>
+      <td>0.666667</td>
+      <td>5.333333</td>
+      <td>0.666667</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-1.333333</td>
       <td>-0.0</td>
-      <td>0.666667</td>
-      <td>0.0</td>
-      <td>0.666667</td>
-      <td>5.333333</td>
     </tr>
     <tr>
       <th>9.0</th>
-      <td>0.750000</td>
-      <td>5.625000</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.750000</td>
       <td>1.125000</td>
-      <td>0.0</td>
+      <td>0.750000</td>
+      <td>5.625000</td>
+      <td>0.750000</td>
+      <td>6.750000</td>
+      <td>0.750000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-1.500000</td>
       <td>-0.0</td>
-      <td>0.750000</td>
-      <td>0.0</td>
-      <td>0.750000</td>
-      <td>6.750000</td>
     </tr>
     <tr>
       <th>10.0</th>
-      <td>0.833333</td>
-      <td>6.944444</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>-0.833333</td>
       <td>1.388889</td>
-      <td>0.0</td>
+      <td>0.833333</td>
+      <td>6.944444</td>
+      <td>0.833333</td>
+      <td>8.333333</td>
+      <td>0.833333</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-1.666667</td>
       <td>-0.0</td>
-      <td>0.833333</td>
-      <td>0.0</td>
-      <td>0.833333</td>
-      <td>8.333333</td>
     </tr>
   </tbody>
 </table>
@@ -1269,13 +1341,13 @@ Vvs N_4 N_3 5V
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-R10 N_5 0 10Ohm
-R2 N_4 N_2 2Ohm
 R5 N_3 N_4 5Ohm
-H1 N_3 0 Vix 2
-Vix N_2 N_1 0V
-Itest_source N_1 0 1A
+R2 N_4 N_2 2Ohm
+R10 N_5 0 10Ohm
 Vvs N_5 N_4 5V
+Vix N_2 N_1 0V
+H1 N_3 0 Vix 2
+Itest_source N_1 0 1A
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -1871,13 +1943,13 @@ Transfer_function [0.]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-R10 N_5 0 10Ohm
-R2 N_4 N_2 2Ohm
 R5 N_3 N_4 5Ohm
-H1 N_3 0 Vix 2
-Vix N_2 N_1 0V
-Itest_source N_1 0 1A
+R2 N_4 N_2 2Ohm
+R10 N_5 0 10Ohm
 Vvs N_5 N_4 5V
+Vix N_2 N_1 0V
+H1 N_3 0 Vix 2
+Itest_source N_1 0 1A
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2122,12 +2194,12 @@ Vvs N_5 N_4 5V
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Vvs 1 0 50V
 R1 1 2 1kOhm
 R2 2 0 2kOhm
 R3 3 4 500Ohm
-E1 3 0 2 0 5
 Ropen 4 0 1e+16
-Vvs 1 0 50V
+E1 3 0 2 0 5
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2241,14 +2313,14 @@ Vvs 1 0 50V
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+I1 0 1 20mA
 R1 1 0 50
 R2 1 N_1 75
 R3 2 0 75
 R4 2 0 50
-I1 0 1 20mA
-F_Ai N_2 0 Vsens 12
-Vout_amm 2 N_2 0V
 Vsens 0 N_1 0V
+Vout_amm 2 N_2 0V
+F_Ai N_2 0 Vsens 12
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2371,13 +2443,13 @@ Vsens 0 N_1 0V
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+Vvs 1 0 50V
 R1 1 2 1kOhm
 R2 2 0 2kOhm
 R3 3 0 75
 R4 3 N_1 50
 G_Gm 0 3 2 0 0.5
 Vammeater N_1 0 0
-Vvs 1 0 50V
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.

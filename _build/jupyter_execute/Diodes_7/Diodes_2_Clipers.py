@@ -46,7 +46,7 @@ circ=generate_netlist(libs='SpiceLib')
 print(circ)
 
 
-# In[5]:
+# In[4]:
 
 
 reset()

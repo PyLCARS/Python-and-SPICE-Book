@@ -42,6 +42,9 @@ import warnings
 # In[2]:
 
 
+#import dc code from parral folder
+import sys
+sys.path.insert(1, '../DC_1/')
 from DC_1_Codes import get_skidl_spice_ref
 #from AC_2_Codes import 
 
@@ -4174,7 +4177,8 @@ filter_responce.symbolic_tf(allpasslat_lf)
 
 
 allpasslat_lf.lcapy_self(False, False)
-n=kiwi.NodalAnalysis(allpasslat_lf.schematic.laplace())
+#also wont convert to laplace
+n=kiwi.NodalAnalysis(allpasslat_lf.schematic)
 n.nodal_equations()
 
 

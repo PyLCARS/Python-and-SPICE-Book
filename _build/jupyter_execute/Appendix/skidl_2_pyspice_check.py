@@ -61,6 +61,8 @@ def netlist_comp_check(skidl_netlist, pyspice_netlist):
 # # Basic Elements
 
 # ## A            | XSPICE code model (not checked)
+# Will check XSPICE elements in seperate (to be done) section in the appendx 
+# 
 # PySpice/PySpice/Spice/BasicElement.py; (need to find):
 # 
 # skidl/skidl/libs/pyspice_sklib.py; name="A"
@@ -375,8 +377,8 @@ netlist_comp_check(skidl_circ, pyspice_circ)
 # KXXXXXXX LYYYYYYY LZZZZZZZ value
 # 
 # ### Notes
-# - need to get daves help on using K inside skidl
 # - the inductors must already exsist for pyspice to work
+# - K can exspect any value not just in the 0-.99 range; this needs to be fixed down in pyspice
 
 # In[27]:
 
@@ -389,8 +391,7 @@ skidl_L1['p', 'n']+=net_1, net_2
 skidl_L2=L(ref='2', value=5, m=5, temp=5, dtemp=5, ic=5)
 skidl_L2['p', 'n']+=net_1, net_2
 
-#need to find out how to use this
-#skidl_K=K()
+skidl_K=K(ind1=skidl_L1, ind2=skidl_L2, coupling=5)
 skidl_circ=generate_netlist()
 print(skidl_circ)
 

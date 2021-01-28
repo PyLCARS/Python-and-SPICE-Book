@@ -27,11 +27,15 @@ import matplotlib.pyplot as plt
 from IPython.display import YouTubeVideo, display
 
 import traceback
+import warnings
 
 
 # In[2]:
 
 
+#import dc code from parral folder
+import sys
+sys.path.insert(1, '../DC_1/')
 from DC_1_Codes import get_skidl_spice_ref
 #notebook specific loading control statements 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -130,6 +134,9 @@ class single_arm_mod():
         r1=R(value=0.8@u_Ohm)
         l2=L(value=4.34/314@u_H)
         r2=R(value=2.21/.005@u_Ohm)
+        
+        #dummy R for dealing with loop issues
+        #rd=R(value=0@u_Ohm)
 
         #bottom loop elements
         l3=L(value=31.6/314@u_H)
@@ -138,7 +145,7 @@ class single_arm_mod():
         r4=R(value=2.21/.005@u_Ohm)
 
         #conect terminal loop
-        P & l1['p', 'n']  & l3['p', 'n'] & N
+        P & l1['p', 'n']   & l3['p', 'n'] & N
 
         #connect top loop
         l1['p'] & r1 & l2 & r2 & l1['n']

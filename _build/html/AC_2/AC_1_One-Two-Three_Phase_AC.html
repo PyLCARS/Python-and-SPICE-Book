@@ -271,6 +271,36 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html">
+     Mutual Inductance and SPICE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#series-mutual-inductance">
+     Series Mutual inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#parallel-mutual-inductance">
+     Parallel Mutual Inductance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#purposely-designed-mutual-inductive-element-the-razivi-t-coil">
+     Purposely designed Mutual Inductive Element; The Razivi T-Coil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#transformers">
+     Transformers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="AC_3_CoupledMag.html#citations">
+     Citations
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="AC_4_PZ.html">
      What is PZ anylsis
     </a>
@@ -603,6 +633,7 @@
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span><span class="p">,</span> <span class="n">display</span>
 
 <span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 </pre></div>
 </div>
 </div>
@@ -614,7 +645,10 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import dc code from parral folder</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;../DC_1/&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">DC_1_Codes</span> <span class="kn">import</span> <span class="n">get_skidl_spice_ref</span>
 <span class="c1">#notebook specific loading control statements </span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="c1">#tool to log notebook internals</span>
@@ -625,7 +659,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Fri Jan 15 01:51:17 2021 MST</td></tr></table></div></div>
+<div class="output text_html"><table><tr><th>Software</th><th>Version</th></tr><tr><td>Python</td><td>3.7.6 64bit [GCC 7.3.0]</td></tr><tr><td>IPython</td><td>7.12.0</td></tr><tr><td>OS</td><td>Linux 4.19.104 microsoft standard x86_64 with debian bullseye sid</td></tr><tr><td>skidl</td><td>0.0.31.dev0</td></tr><tr><td>PySpice</td><td>1.4.3</td></tr><tr><td>lcapy</td><td>0.75.dev0</td></tr><tr><td>sympy</td><td>1.6.2</td></tr><tr><td>numpy</td><td>1.18.1</td></tr><tr><td>matplotlib</td><td>3.3.0</td></tr><tr><td>pandas</td><td>1.1.4</td></tr><tr><td>scipy</td><td>1.4.1</td></tr><tr><td colspan='2'>Thu Jan 28 00:37:31 2021 MST</td></tr></table></div></div>
 </div>
 <div class="section" id="capacitors-and-inductors">
 <h1>Capacitors and Inductors<a class="headerlink" href="#capacitors-and-inductors" title="Permalink to this headline">¶</a></h1>
@@ -706,6 +740,9 @@ Recalling that to invoke a resistor</p>
         <span class="n">r1</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.8</span><span class="nd">@u_Ohm</span><span class="p">)</span>
         <span class="n">l2</span><span class="o">=</span><span class="n">L</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">4.34</span><span class="o">/</span><span class="mi">314</span><span class="nd">@u_H</span><span class="p">)</span>
         <span class="n">r2</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">2.21</span><span class="o">/.</span><span class="mi">005</span><span class="nd">@u_Ohm</span><span class="p">)</span>
+        
+        <span class="c1">#dummy R for dealing with loop issues</span>
+        <span class="c1">#rd=R(value=0@u_Ohm)</span>
 
         <span class="c1">#bottom loop elements</span>
         <span class="n">l3</span><span class="o">=</span><span class="n">L</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">31.6</span><span class="o">/</span><span class="mi">314</span><span class="nd">@u_H</span><span class="p">)</span>
@@ -714,7 +751,7 @@ Recalling that to invoke a resistor</p>
         <span class="n">r4</span><span class="o">=</span><span class="n">R</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">2.21</span><span class="o">/.</span><span class="mi">005</span><span class="nd">@u_Ohm</span><span class="p">)</span>
 
         <span class="c1">#conect terminal loop</span>
-        <span class="n">P</span> <span class="o">&amp;</span> <span class="n">l1</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span>  <span class="o">&amp;</span> <span class="n">l3</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">N</span>
+        <span class="n">P</span> <span class="o">&amp;</span> <span class="n">l1</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span>   <span class="o">&amp;</span> <span class="n">l3</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">N</span>
 
         <span class="c1">#connect top loop</span>
         <span class="n">l1</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">r1</span> <span class="o">&amp;</span> <span class="n">l2</span> <span class="o">&amp;</span> <span class="n">r2</span> <span class="o">&amp;</span> <span class="n">l1</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">]</span>
@@ -855,16 +892,16 @@ Also note that Voltage sources can not be put into parallel in inductors and the
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-L1 N_2 N_4 0.10063694267515924H
-L2 N_5 N_6 0.013821656050955413H
-L3 N_4 0 0.10063694267515924H
-L4 N_7 N_8 0.013821656050955413H
-R2 N_2 N_5 0.8Ohm
-R3 N_6 N_4 442.0Ohm
-R4 N_4 N_7 0.8Ohm
-R5 N_8 0 442.0Ohm
 V1 N_1 0 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 Rdummy N_1 N_2 0Ohm
+L1 N_2 N_4 0.10063694267515924H
+R2 N_2 N_5 0.8Ohm
+L2 N_5 N_6 0.013821656050955413H
+R3 N_6 N_4 442.0Ohm
+L3 N_4 0 0.10063694267515924H
+R4 N_4 N_7 0.8Ohm
+L4 N_7 N_8 0.013821656050955413H
+R5 N_8 0 442.0Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2010,17 +2047,17 @@ Rdummy N_1 N_2 0Ohm
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-L1 N_2 N_5 0.10063694267515924H
-L2 N_6 N_7 0.013821656050955413H
-L3 N_5 0 0.10063694267515924H
-L4 N_8 N_9 0.013821656050955413H
-R2 N_2 N_6 0.8Ohm
-R3 N_7 N_5 442.0Ohm
-R4 N_5 N_8 0.8Ohm
-R5 N_9 0 442.0Ohm
 V1 N_1 0 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
-Ccomp N_2 0 4.2916828429243215e-05
-Rdummy N_1 N_2 0Ohm
+Rdummy N_1 N_3 0Ohm
+Ccomp N_3 0 4.2916828429243215e-05
+L1 N_3 N_5 0.10063694267515924H
+R2 N_3 N_6 0.8Ohm
+L2 N_6 N_7 0.013821656050955413H
+R3 N_7 N_5 442.0Ohm
+L3 N_5 0 0.10063694267515924H
+R4 N_5 N_8 0.8Ohm
+L4 N_8 N_9 0.013821656050955413H
+R5 N_9 0 442.0Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -2901,31 +2938,31 @@ Rdummy N_1 N_2 0Ohm
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+RaA a A_ 0Ohm
+RbB b B_ 0Ohm
+RnN n N_ 0Ohm
+Rgndbus n N_5 0Ohm
+Vamm_earth N_5 0 0V
+Vamm_gfi N_ N_6 0V
+Rneu_chassie N_6 0 1e+16Ohm
 VA a n DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 VB n b DC 0V AC 120V -90.0rad SIN(0V 1V 50Hz 0s 0Hz)
 L1 A_ N_7 0.10063694267515924H
-L2 N_8 N_9 0.013821656050955413H
-L3 N_7 N_ 0.10063694267515924H
-L4 N_10 N_11 0.013821656050955413H
-L5 B_ N_12 0.10063694267515924H
-L6 N_13 N_14 0.013821656050955413H
-L7 N_12 N_ 0.10063694267515924H
-L8 N_15 N_16 0.013821656050955413H
-R10 B_ N_13 0.8Ohm
-R11 N_14 N_12 442.0Ohm
-R12 N_12 N_15 0.8Ohm
-R13 N_16 N_ 442.0Ohm
 R6 A_ N_8 0.8Ohm
+L2 N_8 N_9 0.013821656050955413H
 R7 N_9 N_7 442.0Ohm
+L3 N_7 N_ 0.10063694267515924H
 R8 N_7 N_10 0.8Ohm
+L4 N_10 N_11 0.013821656050955413H
 R9 N_11 N_ 442.0Ohm
-RaA a A_ 0Ohm
-Vamm_earth N_5 0 0V
-Vamm_gfi N_ N_6 0V
-RbB b B_ 0Ohm
-Rgndbus n N_5 0Ohm
-RnN n N_ 0Ohm
-Rneu_chassie N_6 0 1e+16Ohm
+L5 B_ N_12 0.10063694267515924H
+R10 B_ N_13 0.8Ohm
+L6 N_13 N_14 0.013821656050955413H
+R11 N_14 N_12 442.0Ohm
+L7 N_12 N_ 0.10063694267515924H
+R12 N_12 N_15 0.8Ohm
+L8 N_15 N_16 0.013821656050955413H
+R13 N_16 N_ 442.0Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -3764,41 +3801,41 @@ Rneu_chassie N_6 0 1e+16Ohm
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
+RaA a A_ 0Ohm
+RbB b B_ 0Ohm
+RcC c C_ 0Ohm
+RnN n N_ 0Ohm
+Rgndbus n N_7 0Ohm
+Vamm_earth N_7 0 0V
+Vamm_gfi N_ N_8 0V
+Rneu_chassie N_8 0 1e+16Ohm
 VA a n DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 VB b n DC 0V AC 120V -119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
 VC c n DC 0V AC 120V 119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
 L1 A_ N_9 0.10063694267515924H
-L10 N_20 N_21 0.013821656050955413H
-L11 N_19 N_ 0.10063694267515924H
-L12 N_22 N_23 0.013821656050955413H
-L2 N_10 N_11 0.013821656050955413H
-L3 N_9 N_ 0.10063694267515924H
-L4 N_12 N_13 0.013821656050955413H
-L5 B_ N_14 0.10063694267515924H
-L6 N_15 N_16 0.013821656050955413H
-L7 N_14 N_ 0.10063694267515924H
-L8 N_17 N_18 0.013821656050955413H
-L9 C_ N_19 0.10063694267515924H
-R10 N_13 N_ 442.0Ohm
-R11 B_ N_15 0.8Ohm
-R12 N_16 N_14 442.0Ohm
-R13 N_14 N_17 0.8Ohm
-R14 N_18 N_ 442.0Ohm
-R15 C_ N_20 0.8Ohm
-R16 N_21 N_19 442.0Ohm
-R17 N_19 N_22 0.8Ohm
-R18 N_23 N_ 442.0Ohm
 R7 A_ N_10 0.8Ohm
+L2 N_10 N_11 0.013821656050955413H
 R8 N_11 N_9 442.0Ohm
+L3 N_9 N_ 0.10063694267515924H
 R9 N_9 N_12 0.8Ohm
-RaA a A_ 0Ohm
-Vamm_earth N_7 0 0V
-Vamm_gfi N_ N_8 0V
-RbB b B_ 0Ohm
-RcC c C_ 0Ohm
-Rgndbus n N_7 0Ohm
-RnN n N_ 0Ohm
-Rneu_chassie N_8 0 1e+16Ohm
+L4 N_12 N_13 0.013821656050955413H
+R10 N_13 N_ 442.0Ohm
+L5 B_ N_14 0.10063694267515924H
+R11 B_ N_15 0.8Ohm
+L6 N_15 N_16 0.013821656050955413H
+R12 N_16 N_14 442.0Ohm
+L7 N_14 N_ 0.10063694267515924H
+R13 N_14 N_17 0.8Ohm
+L8 N_17 N_18 0.013821656050955413H
+R14 N_18 N_ 442.0Ohm
+L9 C_ N_19 0.10063694267515924H
+R15 C_ N_20 0.8Ohm
+L10 N_20 N_21 0.013821656050955413H
+R16 N_21 N_19 442.0Ohm
+L11 N_19 N_ 0.10063694267515924H
+R17 N_19 N_22 0.8Ohm
+L12 N_22 N_23 0.013821656050955413H
+R18 N_23 N_ 442.0Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No errors or warnings found during netlist generation.
@@ -4824,46 +4861,46 @@ Rneu_chassie N_8 0 1e+16Ohm
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (b and B_) into b.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (c and C_) into c.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Merging two named nets (C_ and c) into C_.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.title 
-VAB a N_7 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
-VBC b N_8 DC 0V AC 120V -119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
-VCA c N_9 DC 0V AC 120V 119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
-L1 b N_10 0.10063694267515924H
-L10 N_21 N_22 0.013821656050955413H
-L11 N_20 N_6 0.10063694267515924H
-L12 N_23 N_24 0.013821656050955413H
-L2 N_11 N_12 0.013821656050955413H
-L3 N_10 N_2 0.10063694267515924H
-L4 N_13 N_14 0.013821656050955413H
-L5 c N_15 0.10063694267515924H
-L6 N_16 N_17 0.013821656050955413H
-L7 N_15 N_4 0.10063694267515924H
-L8 N_18 N_19 0.013821656050955413H
-L9 a N_20 0.10063694267515924H
-R1 N_2 c 0Ohm
-R10 b N_11 0.8Ohm
-R11 N_12 N_10 442.0Ohm
-R12 N_10 N_13 0.8Ohm
-R13 N_14 N_2 442.0Ohm
-R14 c N_16 0.8Ohm
-R15 N_17 N_15 442.0Ohm
-R16 N_15 N_18 0.8Ohm
-R17 N_19 N_4 442.0Ohm
-R18 a N_21 0.8Ohm
-R19 N_22 N_20 442.0Ohm
+R1 N_2 C_ 0Ohm
 R2 N_4 a 0Ohm
-R20 N_20 N_23 0.8Ohm
-R21 N_24 N_6 442.0Ohm
 R3 N_6 b 0Ohm
+VAB a N_7 DC 0V AC 120V 0.0rad SIN(0V 1V 50Hz 0s 0Hz)
 Rabwire N_7 b 0Ohm
 Raopen a 0 1e+16Ohm
-Rbcwire N_8 c 0Ohm
+VBC b N_8 DC 0V AC 120V -119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
+Rbcwire N_8 C_ 0Ohm
 Rbopen b 0 1e+16Ohm
+VCA C_ N_9 DC 0V AC 120V 119.99999999999999rad SIN(0V 1V 50Hz 0s 0Hz)
 Rcawire N_9 a 0Ohm
-Rcopen c 0 1e+16Ohm
+Rcopen C_ 0 1e+16Ohm
+L1 b N_10 0.10063694267515924H
+R10 b N_11 0.8Ohm
+L2 N_11 N_12 0.013821656050955413H
+R11 N_12 N_10 442.0Ohm
+L3 N_10 N_2 0.10063694267515924H
+R12 N_10 N_13 0.8Ohm
+L4 N_13 N_14 0.013821656050955413H
+R13 N_14 N_2 442.0Ohm
+L5 C_ N_15 0.10063694267515924H
+R14 C_ N_16 0.8Ohm
+L6 N_16 N_17 0.013821656050955413H
+R15 N_17 N_15 442.0Ohm
+L7 N_15 N_4 0.10063694267515924H
+R16 N_15 N_18 0.8Ohm
+L8 N_18 N_19 0.013821656050955413H
+R17 N_19 N_4 442.0Ohm
+L9 a N_20 0.10063694267515924H
+R18 a N_21 0.8Ohm
+L10 N_21 N_22 0.013821656050955413H
+R19 N_22 N_20 442.0Ohm
+L11 N_20 N_6 0.10063694267515924H
+R20 N_20 N_23 0.8Ohm
+L12 N_23 N_24 0.013821656050955413H
+R21 N_24 N_6 442.0Ohm
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 warnings found during netlist generation.
@@ -4888,17 +4925,17 @@ Rcopen c 0 1e+16Ohm
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABPhase_Source&#39;: 
-  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
-     Pin AB/1/p,anode,plus,A,+/PASSIVE
-     Pin AB/2/n,m,K,cathode,neg,negative,-,C,minus/PASSIVE,
+  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+     Pin AB/1/p,anode,A,plus,+/PASSIVE
+     Pin AB/2/n,neg,minus,K,-,negative,C,m,cathode/PASSIVE,
  &#39;BCPhase_Source&#39;: 
-  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
-     Pin BC/1/p,anode,plus,A,+/PASSIVE
-     Pin BC/2/n,m,K,cathode,neg,negative,-,C,minus/PASSIVE,
+  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+     Pin BC/1/p,anode,A,plus,+/PASSIVE
+     Pin BC/2/n,neg,minus,K,-,negative,C,m,cathode/PASSIVE,
  &#39;CAPhase_Source&#39;: 
-  SINEV (SINUSOIDALVOLTAGE, sinusoidalvoltage, sinev): Sinusoidal voltage source
-     Pin CA/1/p,anode,plus,A,+/PASSIVE
-     Pin CA/2/n,m,K,cathode,neg,negative,-,C,minus/PASSIVE}
+  SINEV (sinev, SINUSOIDALVOLTAGE, sinusoidalvoltage): Sinusoidal voltage source
+     Pin CA/1/p,anode,A,plus,+/PASSIVE
+     Pin CA/2/n,neg,minus,K,-,negative,C,m,cathode/PASSIVE}
 </pre></div>
 </div>
 </div>
@@ -4961,47 +4998,47 @@ Rcopen c 0 1e+16Ohm
   <tbody>
     <tr>
       <th>48.000000</th>
-      <td>60.031250-3.556649j</td>
+      <td>108.802368-6.661806j</td>
       <td>0.135554-1.978112j</td>
-      <td>-59.968613-3.558628j</td>
+      <td>-11.197499-6.663784j</td>
       <td>-1.780872+0.871663j</td>
-      <td>0.029606+100.365295j</td>
+      <td>48.800720+97.260139j</td>
       <td>1.645318+1.106449j</td>
     </tr>
     <tr>
       <th>48.141415</th>
-      <td>60.391308-34.311031j</td>
+      <td>60.320335-35.100140j</td>
       <td>0.135554-1.972309j</td>
-      <td>-59.608559-34.313004j</td>
+      <td>-59.679527-35.102112j</td>
       <td>-1.775846+0.868761j</td>
-      <td>0.389666+69.610916j</td>
+      <td>0.318696+68.821808j</td>
       <td>1.640293+1.103547j</td>
     </tr>
     <tr>
       <th>48.282829</th>
-      <td>60.010448-34.633430j</td>
+      <td>60.007690-34.652252j</td>
       <td>0.135553-1.966540j</td>
-      <td>-59.989414-34.635395j</td>
+      <td>-59.992176-34.654221j</td>
       <td>-1.770850+0.865877j</td>
-      <td>0.008814+69.288521j</td>
+      <td>0.006055+69.269691j</td>
       <td>1.635297+1.100662j</td>
     </tr>
     <tr>
       <th>48.424244</th>
-      <td>59.996464-34.664597j</td>
+      <td>59.979683-34.625153j</td>
       <td>0.135553-1.960804j</td>
-      <td>-60.003399-34.666557j</td>
+      <td>-60.020184-34.627113j</td>
       <td>-1.765883+0.863010j</td>
-      <td>-0.005165+69.257355j</td>
+      <td>-0.021949+69.296799j</td>
       <td>1.630330+1.097794j</td>
     </tr>
     <tr>
       <th>48.565655</th>
-      <td>60.017643-34.689152j</td>
+      <td>59.959332-34.640480j</td>
       <td>0.135552-1.955102j</td>
-      <td>-59.982220-34.691109j</td>
+      <td>-60.040535-34.642433j</td>
       <td>-1.760944+0.860159j</td>
-      <td>0.016018+69.232803j</td>
+      <td>-0.042294+69.281471j</td>
       <td>1.625392+1.094943j</td>
     </tr>
     <tr>
@@ -5015,47 +5052,47 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>61.434345</th>
-      <td>59.996933-34.655178j</td>
+      <td>59.987144-34.628605j</td>
       <td>0.135521-1.546178j</td>
-      <td>-60.002930-34.656723j</td>
+      <td>-60.012718-34.630150j</td>
       <td>-1.406790+0.655724j</td>
-      <td>-0.004336+69.266983j</td>
+      <td>-0.014125+69.293556j</td>
       <td>1.271269+0.890454j</td>
     </tr>
     <tr>
       <th>61.575756</th>
-      <td>79.058121-45.661934j</td>
+      <td>45.524448-59.687809j</td>
       <td>0.135521-1.542635j</td>
-      <td>-40.941746-45.663475j</td>
+      <td>-74.475418-59.689350j</td>
       <td>-1.403721+0.653953j</td>
-      <td>19.056849+58.260227j</td>
+      <td>-14.476818+44.234352j</td>
       <td>1.268200+0.888682j</td>
     </tr>
     <tr>
       <th>61.717171</th>
-      <td>60.003307-34.609249j</td>
+      <td>60.025768-34.658192j</td>
       <td>0.135521-1.539107j</td>
-      <td>-59.996555-34.610790j</td>
+      <td>-59.974094-34.659729j</td>
       <td>-1.400666+0.652189j</td>
-      <td>0.002043+69.312912j</td>
+      <td>0.024505+69.263969j</td>
       <td>1.265146+0.886918j</td>
     </tr>
     <tr>
       <th>61.858585</th>
-      <td>59.987812-34.635693j</td>
+      <td>60.002949-34.631813j</td>
       <td>0.135520-1.535596j</td>
-      <td>-60.012054-34.637230j</td>
+      <td>-59.996918-34.633350j</td>
       <td>-1.397626+0.650434j</td>
-      <td>-0.013451+69.286469j</td>
+      <td>0.001686+69.290352j</td>
       <td>1.262105+0.885162j</td>
     </tr>
     <tr>
       <th>62.000000</th>
-      <td>60.015533-34.611515j</td>
+      <td>60.023380-34.665222j</td>
       <td>0.135520-1.532102j</td>
-      <td>-59.984329-34.613045j</td>
+      <td>-59.976486-34.666752j</td>
       <td>-1.394599+0.648687j</td>
-      <td>0.014275+69.310654j</td>
+      <td>0.022120+69.256943j</td>
       <td>1.259079+0.883415j</td>
     </tr>
   </tbody>
@@ -5197,35 +5234,35 @@ Rcopen c 0 1e+16Ohm
   <tbody>
     <tr>
       <th>48.000000</th>
-      <td>60.031250-3.556649j</td>
+      <td>108.802368-6.661806j</td>
       <td>0.135554-1.978112j</td>
-      <td>-59.968613-3.558628j</td>
+      <td>-11.197499-6.663784j</td>
       <td>-1.780872+0.871663j</td>
-      <td>0.029606+100.365295j</td>
+      <td>48.800720+97.260139j</td>
       <td>1.645318+1.106449j</td>
-      <td>119.999863+0.001978j</td>
-      <td>119.999863</td>
-      <td>0.000945</td>
+      <td>119.999870+0.001978j</td>
+      <td>119.999870</td>
+      <td>0.000944</td>
       <td>1.916427-2.849775j</td>
       <td>...</td>
       <td>1.509764+3.084561j</td>
       <td>3.434226</td>
       <td>63.920181</td>
-      <td>229.976562-341.968781j</td>
-      <td>114.982651</td>
-      <td>170.988174</td>
-      <td>114.982651+170.988174j</td>
-      <td>206.053314</td>
+      <td>229.976578-341.968811j</td>
+      <td>114.982658</td>
+      <td>170.988190</td>
+      <td>114.982658+170.988190j</td>
+      <td>206.053329</td>
       <td>0.558024</td>
       <td>56.080757</td>
     </tr>
     <tr>
       <th>48.141415</th>
-      <td>60.391308-34.311031j</td>
+      <td>60.320335-35.100140j</td>
       <td>0.135554-1.972309j</td>
-      <td>-59.608559-34.313004j</td>
+      <td>-59.679527-35.102112j</td>
       <td>-1.775846+0.868761j</td>
-      <td>0.389666+69.610916j</td>
+      <td>0.318696+68.821808j</td>
       <td>1.640293+1.103547j</td>
       <td>119.999863+0.001972j</td>
       <td>119.999863</td>
@@ -5245,15 +5282,15 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.282829</th>
-      <td>60.010448-34.633430j</td>
+      <td>60.007690-34.652252j</td>
       <td>0.135553-1.966540j</td>
-      <td>-59.989414-34.635395j</td>
+      <td>-59.992176-34.654221j</td>
       <td>-1.770850+0.865877j</td>
-      <td>0.008814+69.288521j</td>
+      <td>0.006055+69.269691j</td>
       <td>1.635297+1.100662j</td>
-      <td>119.999863+0.001965j</td>
+      <td>119.999863+0.001968j</td>
       <td>119.999863</td>
-      <td>0.000938</td>
+      <td>0.000940</td>
       <td>1.906403-2.832417j</td>
       <td>...</td>
       <td>1.499743+3.067202j</td>
@@ -5269,11 +5306,11 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.424244</th>
-      <td>59.996464-34.664597j</td>
+      <td>59.979683-34.625153j</td>
       <td>0.135553-1.960804j</td>
-      <td>-60.003399-34.666557j</td>
+      <td>-60.020184-34.627113j</td>
       <td>-1.765883+0.863010j</td>
-      <td>-0.005165+69.257355j</td>
+      <td>-0.021949+69.296799j</td>
       <td>1.630330+1.097794j</td>
       <td>119.999863+0.001961j</td>
       <td>119.999863</td>
@@ -5293,27 +5330,27 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.565655</th>
-      <td>60.017643-34.689152j</td>
+      <td>59.959332-34.640480j</td>
       <td>0.135552-1.955102j</td>
-      <td>-59.982220-34.691109j</td>
+      <td>-60.040535-34.642433j</td>
       <td>-1.760944+0.860159j</td>
-      <td>0.016018+69.232803j</td>
+      <td>-0.042294+69.281471j</td>
       <td>1.625392+1.094943j</td>
-      <td>119.999863+0.001957j</td>
+      <td>119.999863+0.001953j</td>
       <td>119.999863</td>
-      <td>0.000934</td>
+      <td>0.000933</td>
       <td>1.896497-2.815262j</td>
       <td>...</td>
       <td>1.489840+3.050045j</td>
       <td>3.394466</td>
       <td>63.966122</td>
-      <td>227.584885-337.827271j</td>
-      <td>113.786934</td>
-      <td>168.917358</td>
-      <td>113.786934+168.917358j</td>
-      <td>203.667725</td>
+      <td>227.584869-337.827301j</td>
+      <td>113.786942</td>
+      <td>168.917343</td>
+      <td>113.786942+168.917343j</td>
+      <td>203.667709</td>
       <td>0.558689</td>
-      <td>56.034809</td>
+      <td>56.034805</td>
     </tr>
   </tbody>
 </table>
@@ -5398,18 +5435,18 @@ Rcopen c 0 1e+16Ohm
   <tbody>
     <tr>
       <th>48.000000</th>
-      <td>60.031250-3.556649j</td>
+      <td>108.802368-6.661806j</td>
       <td>0.135554-1.978112j</td>
-      <td>-59.968613-3.558628j</td>
+      <td>-11.197499-6.663784j</td>
       <td>-1.780872+0.871663j</td>
-      <td>0.029606+100.365295j</td>
+      <td>48.800720+97.260139j</td>
       <td>1.645318+1.106449j</td>
-      <td>119.999863+0.001978j</td>
-      <td>119.999863</td>
-      <td>0.000945</td>
+      <td>119.999870+0.001978j</td>
+      <td>119.999870</td>
+      <td>0.000944</td>
       <td>1.916427-2.849775j</td>
       <td>...</td>
-      <td>206.053314</td>
+      <td>206.053329</td>
       <td>0.558024</td>
       <td>56.080757</td>
       <td>181.165359+370.149933j</td>
@@ -5422,11 +5459,11 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.141415</th>
-      <td>60.391308-34.311031j</td>
+      <td>60.320335-35.100140j</td>
       <td>0.135554-1.972309j</td>
-      <td>-59.608559-34.313004j</td>
+      <td>-59.679527-35.102112j</td>
       <td>-1.775846+0.868761j</td>
-      <td>0.389666+69.610916j</td>
+      <td>0.318696+68.821808j</td>
       <td>1.640293+1.103547j</td>
       <td>119.999863+0.001972j</td>
       <td>119.999863</td>
@@ -5446,35 +5483,35 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.282829</th>
-      <td>60.010448-34.633430j</td>
+      <td>60.007690-34.652252j</td>
       <td>0.135553-1.966540j</td>
-      <td>-59.989414-34.635395j</td>
+      <td>-59.992176-34.654221j</td>
       <td>-1.770850+0.865877j</td>
-      <td>0.008814+69.288521j</td>
+      <td>0.006055+69.269691j</td>
       <td>1.635297+1.100662j</td>
-      <td>119.999863+0.001965j</td>
+      <td>119.999863+0.001968j</td>
       <td>119.999863</td>
-      <td>0.000938</td>
+      <td>0.000940</td>
       <td>1.906403-2.832417j</td>
       <td>...</td>
       <td>204.853516</td>
       <td>0.558356</td>
       <td>56.057785</td>
-      <td>179.962967+368.066833j</td>
-      <td>114.381294</td>
-      <td>169.946716</td>
-      <td>114.381294+169.946716j</td>
-      <td>204.853531</td>
+      <td>179.962982+368.066803j</td>
+      <td>114.381287</td>
+      <td>169.946701</td>
+      <td>114.381287+169.946701j</td>
+      <td>204.853516</td>
       <td>0.558356</td>
       <td>56.057785</td>
     </tr>
     <tr>
       <th>48.424244</th>
-      <td>59.996464-34.664597j</td>
+      <td>59.979683-34.625153j</td>
       <td>0.135553-1.960804j</td>
-      <td>-60.003399-34.666557j</td>
+      <td>-60.020184-34.627113j</td>
       <td>-1.765883+0.863010j</td>
-      <td>-0.005165+69.257355j</td>
+      <td>-0.021949+69.296799j</td>
       <td>1.630330+1.097794j</td>
       <td>119.999863+0.001961j</td>
       <td>119.999863</td>
@@ -5494,24 +5531,24 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.565655</th>
-      <td>60.017643-34.689152j</td>
+      <td>59.959332-34.640480j</td>
       <td>0.135552-1.955102j</td>
-      <td>-59.982220-34.691109j</td>
+      <td>-60.040535-34.642433j</td>
       <td>-1.760944+0.860159j</td>
-      <td>0.016018+69.232803j</td>
+      <td>-0.042294+69.281471j</td>
       <td>1.625392+1.094943j</td>
-      <td>119.999863+0.001957j</td>
+      <td>119.999863+0.001953j</td>
       <td>119.999863</td>
-      <td>0.000934</td>
+      <td>0.000933</td>
       <td>1.896497-2.815262j</td>
       <td>...</td>
-      <td>203.667725</td>
+      <td>203.667709</td>
       <td>0.558689</td>
-      <td>56.034809</td>
-      <td>178.774567+366.007935j</td>
-      <td>113.786926</td>
-      <td>168.917358</td>
-      <td>113.786926+168.917358j</td>
+      <td>56.034805</td>
+      <td>178.774582+366.007904j</td>
+      <td>113.786934</td>
+      <td>168.917343</td>
+      <td>113.786934+168.917343j</td>
       <td>203.667709</td>
       <td>0.558689</td>
       <td>56.034809</td>
@@ -5599,35 +5636,35 @@ Rcopen c 0 1e+16Ohm
   <tbody>
     <tr>
       <th>48.000000</th>
-      <td>60.031250-3.556649j</td>
+      <td>108.802368-6.661806j</td>
       <td>0.135554-1.978112j</td>
-      <td>-59.968613-3.558628j</td>
+      <td>-11.197499-6.663784j</td>
       <td>-1.780872+0.871663j</td>
-      <td>0.029606+100.365295j</td>
+      <td>48.800720+97.260139j</td>
       <td>1.645318+1.106449j</td>
-      <td>119.999863+0.001978j</td>
-      <td>119.999863</td>
-      <td>0.000945</td>
+      <td>119.999870+0.001978j</td>
+      <td>119.999870</td>
+      <td>0.000944</td>
       <td>1.916427-2.849775j</td>
       <td>...</td>
       <td>206.053299</td>
       <td>0.558024</td>
       <td>56.080757</td>
-      <td>-411.141937-28.181152j</td>
+      <td>-411.141937-28.181168j</td>
       <td>114.982651</td>
-      <td>170.988174</td>
-      <td>114.982651+170.988174j</td>
+      <td>170.988190</td>
+      <td>114.982651+170.988190j</td>
       <td>206.053314</td>
       <td>0.558024</td>
       <td>56.080757</td>
     </tr>
     <tr>
       <th>48.141415</th>
-      <td>60.391308-34.311031j</td>
+      <td>60.320335-35.100140j</td>
       <td>0.135554-1.972309j</td>
-      <td>-59.608559-34.313004j</td>
+      <td>-59.679527-35.102112j</td>
       <td>-1.775846+0.868761j</td>
-      <td>0.389666+69.610916j</td>
+      <td>0.318696+68.821808j</td>
       <td>1.640293+1.103547j</td>
       <td>119.999863+0.001972j</td>
       <td>119.999863</td>
@@ -5647,35 +5684,35 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.282829</th>
-      <td>60.010448-34.633430j</td>
+      <td>60.007690-34.652252j</td>
       <td>0.135553-1.966540j</td>
-      <td>-59.989414-34.635395j</td>
+      <td>-59.992176-34.654221j</td>
       <td>-1.770850+0.865877j</td>
-      <td>0.008814+69.288521j</td>
+      <td>0.006055+69.269691j</td>
       <td>1.635297+1.100662j</td>
-      <td>119.999863+0.001965j</td>
+      <td>119.999863+0.001968j</td>
       <td>119.999863</td>
-      <td>0.000938</td>
+      <td>0.000940</td>
       <td>1.906403-2.832417j</td>
       <td>...</td>
-      <td>204.853531</td>
+      <td>204.853516</td>
       <td>0.558356</td>
       <td>56.057785</td>
-      <td>-408.736694-28.180878j</td>
-      <td>114.381287</td>
-      <td>169.946701</td>
-      <td>114.381287+169.946701j</td>
-      <td>204.853516</td>
+      <td>-408.736664-28.180893j</td>
+      <td>114.381271</td>
+      <td>169.946686</td>
+      <td>114.381271+169.946686j</td>
+      <td>204.853485</td>
       <td>0.558356</td>
       <td>56.057785</td>
     </tr>
     <tr>
       <th>48.424244</th>
-      <td>59.996464-34.664597j</td>
+      <td>59.979683-34.625153j</td>
       <td>0.135553-1.960804j</td>
-      <td>-60.003399-34.666557j</td>
+      <td>-60.020184-34.627113j</td>
       <td>-1.765883+0.863010j</td>
-      <td>-0.005165+69.257355j</td>
+      <td>-0.021949+69.296799j</td>
       <td>1.630330+1.097794j</td>
       <td>119.999863+0.001961j</td>
       <td>119.999863</td>
@@ -5685,7 +5722,7 @@ Rcopen c 0 1e+16Ohm
       <td>204.258865</td>
       <td>0.558523</td>
       <td>56.046288</td>
-      <td>-407.544586-28.180756j</td>
+      <td>-407.544586-28.180771j</td>
       <td>114.083237</td>
       <td>169.430511</td>
       <td>114.083237+169.430511j</td>
@@ -5695,15 +5732,15 @@ Rcopen c 0 1e+16Ohm
     </tr>
     <tr>
       <th>48.565655</th>
-      <td>60.017643-34.689152j</td>
+      <td>59.959332-34.640480j</td>
       <td>0.135552-1.955102j</td>
-      <td>-59.982220-34.691109j</td>
+      <td>-60.040535-34.642433j</td>
       <td>-1.760944+0.860159j</td>
-      <td>0.016018+69.232803j</td>
+      <td>-0.042294+69.281471j</td>
       <td>1.625392+1.094943j</td>
-      <td>119.999863+0.001957j</td>
+      <td>119.999863+0.001953j</td>
       <td>119.999863</td>
-      <td>0.000934</td>
+      <td>0.000933</td>
       <td>1.896497-2.815262j</td>
       <td>...</td>
       <td>203.667709</td>

@@ -10,7 +10,7 @@
 # ```
 # The SKiDl version that is being used is the authors personal fork of SKiDl 0.0.31.dev0 with some modifications that are being added to the in development branch of SKiDl as of 20201214 and can be got via
 # ```
-# pip install git+https://github.com/GProtoZeroW/skidl.git
+# pip install git+https://github.com/GProtoZeroW/skidl.git@development
 # ```
 # When the in development branch of version of SKiDl become the master one I will update this and the book to reflect the said SKiDl release. FYI the SKiDl main repo is located at https://github.com/xesscorp/skidl
 # 

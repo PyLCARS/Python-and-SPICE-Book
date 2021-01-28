@@ -44,7 +44,7 @@ get_ipython().run_line_magic('version_information', 'skidl, PySpice,lcapy, sympy
 
 
 #instatate the rc_lowpass filter to 
-lowpassF=rc_lowpass(C_value=.1@u_uF, R_value=1@u_kOhm)
+lowpassF=rlc_parallel_highpass()
 lowpassF.lcapy_self()
 
 
@@ -84,19 +84,19 @@ res=sim.ac_sensitivity('V(Out)', 'lin', 10, 1@u_Hz, 10@u_MHz)
 res.elements
 
 
-# In[18]:
+# In[8]:
 
 
 res=sim.dc_sensitivity('V(Out)')
 
 
-# In[19]:
+# In[9]:
 
 
 res.branches
 
 
-# In[20]:
+# In[10]:
 
 
 res.elements
@@ -108,10 +108,24 @@ res.elements
 res.internal_parameters
 
 
-# In[22]:
+# In[ ]:
 
 
 res.nodes
+
+
+# In[11]:
+
+
+circ.element_names
+
+
+# In[14]:
+
+
+for e in circ.element_names:
+    print(e.lower())
+    
 
 
 # In[ ]:
